@@ -8,6 +8,7 @@ import dto.UsuarioDTO;
 import interfacesDTO.IUsuarioNegocio;
 import interfazSS.IAgregarUsuarioSS;
 import interfazSS.IInicioSesionSS;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -213,7 +214,6 @@ private IAgregarUsuarioSS agregarUsuarioSS;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
 this.setVisible(false);
-IniciarSesion iniciarSesion=new IniciarSesion(agregarUsuarioSS,iInicioSesionSS);
 iniciarSesion.setVisible(true);
 
 
@@ -221,23 +221,31 @@ iniciarSesion.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-String nombre=jTextField1.getText();
-String apellidoPaterno=jTextField2.getText();
-String apellidoMaterno=jTextField3.getText();
-        String numero=jTextField4.getText();
-        String correo=jTextField5.getText();
-        String contraseña=jTextField6.getText();
+  String nombre = jTextField1.getText();
+    String apellidoPaterno = jTextField2.getText();
+    String apellidoMaterno = jTextField3.getText();
+    String numero = jTextField4.getText();
+    String correo = jTextField5.getText();
+    String contraseña = jTextField6.getText();
+    
+    if (nombre.isEmpty() || apellidoPaterno.isEmpty() || apellidoMaterno.isEmpty() ||
+        numero.isEmpty() || correo.isEmpty() || contraseña.isEmpty()) {
         
-        UsuarioDTO usuarioDTO=new UsuarioDTO();
-        usuarioDTO.setNombre(nombre);
-        usuarioDTO.setApellidoPaterno(apellidoPaterno);
-        usuarioDTO.setApellidoMaterno(apellidoMaterno);
-        usuarioDTO.setNumero(numero);
-        usuarioDTO.setCorreo(correo);
-        usuarioDTO.setContraseña(contraseña);
-       agregarUsuarioSS.agregarUsuario(usuarioDTO);
-        this.setVisible(false);
-iniciarSesion.setVisible(true);
+        JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+    
+    UsuarioDTO usuarioDTO = new UsuarioDTO();
+    usuarioDTO.setNombre(nombre);
+    usuarioDTO.setApellidoPaterno(apellidoPaterno);
+    usuarioDTO.setApellidoMaterno(apellidoMaterno);
+    usuarioDTO.setNumero(numero);
+    usuarioDTO.setCorreo(correo);
+    usuarioDTO.setContraseña(contraseña);
+    
+    agregarUsuarioSS.agregarUsuario(usuarioDTO);
+    this.setVisible(false);
+    iniciarSesion.setVisible(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed

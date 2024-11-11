@@ -168,14 +168,19 @@ registrarUsuario.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
- String correo = jTextField1.getText();
+String correo = jTextField1.getText();
     String contraseña = jTextField2.getText();
+    
+    if (correo.isEmpty() || contraseña.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, complete ambos campos.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
     
     UsuarioDTO usuarioDTO = iInicioSesionSS.iniciarSesion(correo, contraseña);
     
     if (usuarioDTO != null) {
         this.setVisible(false);
-        MenuPrincipal menuPrincipal = new MenuPrincipal();
+        MenuPrincipal menuPrincipal = new MenuPrincipal(this, iInicioSesionSS);
         menuPrincipal.setVisible(true);
     } else {
         JOptionPane.showMessageDialog(this, "Credenciales incorrectas. Intente de nuevo.", "Error de Inicio de Sesión", JOptionPane.ERROR_MESSAGE);

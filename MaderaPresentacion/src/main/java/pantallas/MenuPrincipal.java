@@ -4,17 +4,22 @@
  */
 package pantallas;
 
+import interfazSS.IInicioSesionSS;
+
 /**
  *
  * @author Oley
  */
 public class MenuPrincipal extends javax.swing.JFrame {
-
+ private IniciarSesion iniciarSesion;
+ private IInicioSesionSS iInicioSesionSS;
     /**
      * Creates new form MenuPrincipal
      */
-    public MenuPrincipal() {
-        initComponents();
+    public MenuPrincipal(  IniciarSesion iniciarSesion,IInicioSesionSS iInicioSesionSS) {
+        this.iInicioSesionSS=iInicioSesionSS;
+this.iniciarSesion=iniciarSesion;
+initComponents();
     }
 
     /**
