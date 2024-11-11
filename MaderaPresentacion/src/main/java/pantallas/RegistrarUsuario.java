@@ -88,20 +88,32 @@ private IAgregarUsuarioSS agregarUsuarioSS;
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Nombre");
 
+        jTextField1.setBackground(new java.awt.Color(153, 153, 153));
+
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Apellido Paterno:");
+
+        jTextField2.setBackground(new java.awt.Color(153, 153, 153));
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Apellido Materno:");
 
+        jTextField3.setBackground(new java.awt.Color(153, 153, 153));
+
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Numero:");
+
+        jTextField4.setBackground(new java.awt.Color(153, 153, 153));
 
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Correo:");
 
+        jTextField5.setBackground(new java.awt.Color(153, 153, 153));
+
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Contraseña:");
+
+        jTextField6.setBackground(new java.awt.Color(153, 153, 153));
 
         jButton1.setText("Regresar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -194,7 +206,7 @@ private IAgregarUsuarioSS agregarUsuarioSS;
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addGap(0, 30, Short.MAX_VALUE))
+                .addGap(0, 20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -209,6 +221,7 @@ private IAgregarUsuarioSS agregarUsuarioSS;
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

@@ -41,7 +41,7 @@ private IUsuarioDAO iusuarioDAO;
             usuarioDTOResponse.setNumero(usuarioGuardado.getNumero());
             usuarioDTOResponse.setCorreo(usuarioGuardado.getCorreo());
             usuarioDTOResponse.setContraseña(usuarioGuardado.getContraseña());
-            usuarioDTOResponse.setId(usuarioGuardado.getId().toString());  // Aquí se convierte a String
+            usuarioDTOResponse.setId(usuarioGuardado.getId().toString());  
             return usuarioDTOResponse;
         } else {
             throw new RuntimeException("Error al agregar el usuario, intentelo más tarde");

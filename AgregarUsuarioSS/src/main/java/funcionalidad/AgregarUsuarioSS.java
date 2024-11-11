@@ -29,7 +29,7 @@ public class AgregarUsuarioSS implements IAgregarUsuarioSS {
             if (usuarioGuardado != null) {
                 return usuarioGuardado;
             } else {
-                throw new RuntimeException("Error al agregar el usuario."); // Si no se pudo agregar el usuario
+                throw new RuntimeException("Error al agregar el usuario."); 
             }
         } catch (Exception e) {
             e.printStackTrace();

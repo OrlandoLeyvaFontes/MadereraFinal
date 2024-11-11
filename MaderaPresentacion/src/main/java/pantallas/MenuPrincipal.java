@@ -41,6 +41,11 @@ initComponents();
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jButton1.setText("Comprar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -95,7 +100,17 @@ initComponents();
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+this.setVisible(false);
+ProductosVenta productosVenta=new ProductosVenta();
+productosVenta.setVisible(true);
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
   
 

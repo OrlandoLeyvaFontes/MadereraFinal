@@ -1,5 +1,8 @@
+Prueba\Main.class
+dao\MaderaDAO.class
 interfacesDAO\IUsuarioDAO.class
 dao\UsuarioDAO.class
+interfacesDAO\IMaderaDAO.class
 conexion\Conexion.class
-Prueba\Main.class
 entidades\Usuario.class
+entidades\Madera.class

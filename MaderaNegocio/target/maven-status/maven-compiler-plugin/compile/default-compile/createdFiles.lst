@@ -1,4 +1,7 @@
 negocio\UsuarioNegocio.class
 dto\UsuarioDTO.class
 interfacesDTO\IUsuarioNegocio.class
+negocio\MaderaNegocio.class
+interfacesDTO\IMadereraNegocio.class
+dto\MaderaDTO.class
 main\Main.class
