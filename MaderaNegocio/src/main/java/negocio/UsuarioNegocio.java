@@ -48,6 +48,27 @@ private IUsuarioDAO iusuarioDAO;
         }
     }
 
+    @Override
+    public UsuarioDTO iniciarSesion(String correo, String contrasena) {
+     Usuario usuario = iusuarioDAO.iniciarSesion(correo, contrasena);
+
+    if (usuario != null) {
+        UsuarioDTO usuarioDTO = new UsuarioDTO();
+        
+        usuarioDTO.setId(usuario.getId().toString());
+        
+        usuarioDTO.setNombre(usuario.getNombre());
+        usuarioDTO.setApellidoPaterno(usuario.getApellidoPaterno());
+        usuarioDTO.setApellidoMaterno(usuario.getApellidoMaterno());
+        usuarioDTO.setNumero(usuario.getNumero());
+        usuarioDTO.setCorreo(usuario.getCorreo());
+        
+        return usuarioDTO; 
+    } else {
+        System.out.println("Credenciales incorrectas");
+        return null;
+    }}
+
     
 
     

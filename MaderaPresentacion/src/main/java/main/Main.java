@@ -5,8 +5,10 @@
 package main;
 
 import funcionalidad.AgregarUsuarioSS;
+import funcionalidad.InicioDeSesionSS;
 import interfacesDTO.IUsuarioNegocio;
 import interfazSS.IAgregarUsuarioSS;
+import interfazSS.IInicioSesionSS;
 import negocio.UsuarioNegocio;
 import pantallas.IniciarSesion;
 
@@ -16,9 +18,9 @@ import pantallas.IniciarSesion;
  */
 public class Main {
     public static void main(String[] args) {
-        
+        IInicioSesionSS iInicioSesionSS=new InicioDeSesionSS();
         IAgregarUsuarioSS agregarUsuarioSS= new AgregarUsuarioSS();
-        IniciarSesion  inicio=new IniciarSesion(agregarUsuarioSS);
+        IniciarSesion  inicio=new IniciarSesion(agregarUsuarioSS,iInicioSesionSS);
         inicio.setVisible(true);
         
         

@@ -12,6 +12,8 @@ import entidades.Usuario;
  * @author Oley
  */
 public interface IUsuarioNegocio {
-        public UsuarioDTO agregarUsuario(UsuarioDTO usuarioDTO);
 
+    public UsuarioDTO agregarUsuario(UsuarioDTO usuarioDTO);
+
+    public UsuarioDTO iniciarSesion(String correo, String contrasena);
 }

@@ -12,4 +12,5 @@ import entidades.Usuario;
  */
 public interface IUsuarioDAO {
     public Usuario agregarUsuario(Usuario usuario);
+     public Usuario iniciarSesion(String correo, String contrasena);
 }

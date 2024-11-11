@@ -29,15 +29,31 @@ public class Main {
         MongoDatabase database = mongoClient.getDatabase("maderera");
 
         UsuarioDAO usuarioDAO = new UsuarioDAO();
+//
+//        Usuario nuevoUsuario = new Usuario("Juan", "Perez", "Gomez", "123456789", "juan.perez@example.com", "12345");
+//
+//        Usuario usuarioGuardado = usuarioDAO.agregarUsuario(nuevoUsuario);
 
-        Usuario nuevoUsuario = new Usuario("Juan", "Perez", "Gomez", "123456789", "juan.perez@example.com", "12345");
 
-        Usuario usuarioGuardado = usuarioDAO.agregarUsuario(nuevoUsuario);
+        String correo = "juan.perez@example.com"; 
+        String contrasena = "12345";
 
-        
+        Usuario usuario = usuarioDAO.iniciarSesion(correo, contrasena);
+
+        if (usuario != null) {
+            System.out.println("Inicio de sesión exitoso:");
+            System.out.println("Nombre: " + usuario.getNombre());
+            System.out.println("Apellido Paterno: " + usuario.getApellidoPaterno());
+            System.out.println("Apellido Materno: " + usuario.getApellidoMaterno());
+            System.out.println("Número: " + usuario.getNumero());
+            System.out.println("Correo: " + usuario.getCorreo());
+        } else {
+            System.out.println("Credenciales incorrectas o usuario no encontrado.");
+        }
+    }
 
     
     }
     
     
-}
+

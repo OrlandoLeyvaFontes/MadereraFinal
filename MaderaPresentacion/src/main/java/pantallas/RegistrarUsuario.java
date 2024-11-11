@@ -7,6 +7,7 @@ package pantallas;
 import dto.UsuarioDTO;
 import interfacesDTO.IUsuarioNegocio;
 import interfazSS.IAgregarUsuarioSS;
+import interfazSS.IInicioSesionSS;
 
 /**
  *
@@ -14,10 +15,13 @@ import interfazSS.IAgregarUsuarioSS;
  */
 public class RegistrarUsuario extends javax.swing.JFrame {
 private IAgregarUsuarioSS agregarUsuarioSS;
+ private IInicioSesionSS iInicioSesionSS;
+ private IniciarSesion iniciarSesion;
     /**
      * Creates new form RegistrarUsuario
      */
-    public RegistrarUsuario(IAgregarUsuarioSS agregarUsuarioSS) {
+    public RegistrarUsuario(IniciarSesion iniciarSesion,IAgregarUsuarioSS agregarUsuarioSS) {
+        this.iniciarSesion=iniciarSesion;
         this.agregarUsuarioSS=agregarUsuarioSS;
         initComponents();
     }
@@ -209,7 +213,7 @@ private IAgregarUsuarioSS agregarUsuarioSS;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
 this.setVisible(false);
-IniciarSesion iniciarSesion=new IniciarSesion(agregarUsuarioSS);
+IniciarSesion iniciarSesion=new IniciarSesion(agregarUsuarioSS,iInicioSesionSS);
 iniciarSesion.setVisible(true);
 
 
@@ -233,7 +237,6 @@ String apellidoMaterno=jTextField3.getText();
         usuarioDTO.setContraseña(contraseña);
        agregarUsuarioSS.agregarUsuario(usuarioDTO);
         this.setVisible(false);
-IniciarSesion iniciarSesion=new IniciarSesion(agregarUsuarioSS);
 iniciarSesion.setVisible(true);
 
         // TODO add your handling code here:

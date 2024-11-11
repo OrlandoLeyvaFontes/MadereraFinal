@@ -36,9 +36,33 @@ public class UsuarioDAO implements  IUsuarioDAO{
 
             collection.insertOne(document);
 
-            // Asigna el ID generado al objeto Usuario
             usuario.setId(document.getObjectId("_id"));
             return usuario;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public Usuario iniciarSesion(String correo, String contrasena) {
+ try {
+            Document query = new Document("correo", correo).append("contraseña", contrasena);
+            Document result = collection.find(query).first();
+
+            if (result != null) {
+                Usuario usuario = new Usuario();
+                usuario.setId(result.getObjectId("_id"));
+                usuario.setNombre(result.getString("nombre"));
+                usuario.setApellidoPaterno(result.getString("apellidoPaterno"));
+                usuario.setApellidoMaterno(result.getString("apellidoMaterno"));
+                usuario.setNumero(result.getString("numero"));
+                usuario.setCorreo(result.getString("correo"));
+                usuario.setContraseña(result.getString("contraseña"));
+                return usuario; 
+            } else {
+                return null; 
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return null;

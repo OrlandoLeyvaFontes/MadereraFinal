@@ -4,8 +4,11 @@
  */
 package pantallas;
 
+import dto.UsuarioDTO;
 import interfacesDTO.IUsuarioNegocio;
 import interfazSS.IAgregarUsuarioSS;
+import interfazSS.IInicioSesionSS;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,9 +18,11 @@ public class IniciarSesion extends javax.swing.JFrame {
     /**
      * Creates new form IniciarSesion
      */
+    private  IInicioSesionSS iInicioSesionSS;
     private IAgregarUsuarioSS agregarUsuarioSS;
-    public IniciarSesion(IAgregarUsuarioSS agregarUsuarioSS) {
+    public IniciarSesion(IAgregarUsuarioSS agregarUsuarioSS, IInicioSesionSS iInicioSesionSS) {
        this.agregarUsuarioSS=agregarUsuarioSS;
+       this.iInicioSesionSS=iInicioSesionSS;
         initComponents();
     }
 
@@ -54,7 +59,7 @@ public class IniciarSesion extends javax.swing.JFrame {
         });
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Usuario:");
+        jLabel2.setText("Correo:");
 
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Contraseña:");
@@ -124,9 +129,9 @@ public class IniciarSesion extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -156,18 +161,25 @@ public class IniciarSesion extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 this.setVisible(false);
-RegistrarUsuario registrarUsuario=new RegistrarUsuario(agregarUsuarioSS);
+RegistrarUsuario registrarUsuario=new RegistrarUsuario(this,agregarUsuarioSS);
 registrarUsuario.setVisible(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-this.setVisible(false);
-MenuPrincipal menuPrincipal=new MenuPrincipal();
-menuPrincipal.setVisible(true);
-
+ String correo = jTextField1.getText();
+    String contraseña = jTextField2.getText();
+    
+    UsuarioDTO usuarioDTO = iInicioSesionSS.iniciarSesion(correo, contraseña);
+    
+    if (usuarioDTO != null) {
+        this.setVisible(false);
+        MenuPrincipal menuPrincipal = new MenuPrincipal();
+        menuPrincipal.setVisible(true);
+    } else {
+        JOptionPane.showMessageDialog(this, "Credenciales incorrectas. Intente de nuevo.", "Error de Inicio de Sesión", JOptionPane.ERROR_MESSAGE);
+    }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
