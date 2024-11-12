@@ -1,6 +1,9 @@
+dto\TarjetasDTO.class
+interfacesDTO\ITarjetasNegocio.class
 negocio\UsuarioNegocio.class
 dto\UsuarioDTO.class
 interfacesDTO\IUsuarioNegocio.class
+negocio\TarjetasNegocio.class
 negocio\MaderaNegocio.class
 interfacesDTO\IMadereraNegocio.class
 dto\MaderaDTO.class
