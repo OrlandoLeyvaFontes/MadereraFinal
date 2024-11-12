@@ -1,8 +1,11 @@
+dao\TarjetasDAO.class
 Prueba\Main.class
 dao\MaderaDAO.class
+entidades\Tarjetas.class
 interfacesDAO\IUsuarioDAO.class
 dao\UsuarioDAO.class
 interfacesDAO\IMaderaDAO.class
 conexion\Conexion.class
 entidades\Usuario.class
 entidades\Madera.class
+interfacesDAO\ITarjetasDAO.class

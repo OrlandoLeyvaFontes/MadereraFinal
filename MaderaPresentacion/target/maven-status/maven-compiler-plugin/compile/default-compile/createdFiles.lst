@@ -2,9 +2,13 @@ pantallas\IniciarSesion$2.class
 pantallas\MenuPrincipal.class
 pantallas\ProductosVenta.class
 pantallas\RegistrarUsuario$1.class
-pantallas\RegistrarUsuario.class
+pantallas\DetallesProducto.class
 pantallas\MenuPrincipal$1.class
-pantallas\RegistrarUsuario$2.class
-pantallas\IniciarSesion.class
 main\Main.class
 pantallas\IniciarSesion$1.class
+pantallas\RegistrarUsuario.class
+pantallas\DetallesProducto$1.class
+pantallas\RegistrarUsuario$2.class
+pantallas\IniciarSesion.class
+pantallas\ConfirmarCompra.class
+pantallas\ProductosVenta$1.class
