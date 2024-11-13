@@ -6,8 +6,11 @@ package pantallas;
 
 import dto.UsuarioDTO;
 import interfacesDTO.IUsuarioNegocio;
+import interfazSS.IAgregarTarjetasSS;
 import interfazSS.IAgregarUsuarioSS;
+import interfazSS.IBuscarMaderaPorIDSS;
 import interfazSS.IInicioSesionSS;
+import interfazSS.IObtenerMaderas;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,11 +21,18 @@ public class IniciarSesion extends javax.swing.JFrame {
     /**
      * Creates new form IniciarSesion
      */
+    private IAgregarTarjetasSS agregarTarjetasSS;
     private  IInicioSesionSS iInicioSesionSS;
     private IAgregarUsuarioSS agregarUsuarioSS;
-    public IniciarSesion(IAgregarUsuarioSS agregarUsuarioSS, IInicioSesionSS iInicioSesionSS) {
+    private IObtenerMaderas iObtenerMaderas;
+    private IBuscarMaderaPorIDSS buscarMaderaPorIDSS;
+    public IniciarSesion(IAgregarUsuarioSS agregarUsuarioSS, IInicioSesionSS iInicioSesionSS,IAgregarTarjetasSS agregarTarjetasSS
+    ,IObtenerMaderas iObtenerMaderas, IBuscarMaderaPorIDSS buscarMaderaPorIDSS) {
        this.agregarUsuarioSS=agregarUsuarioSS;
        this.iInicioSesionSS=iInicioSesionSS;
+       this.agregarTarjetasSS=agregarTarjetasSS;
+       this.iObtenerMaderas=iObtenerMaderas;
+       this.buscarMaderaPorIDSS=buscarMaderaPorIDSS;
         initComponents();
     }
 
@@ -177,7 +187,7 @@ String correo = jTextField1.getText();
     
     if (usuarioDTO != null) {
         this.setVisible(false);
-        MenuPrincipal menuPrincipal = new MenuPrincipal(this, iInicioSesionSS);
+        MenuPrincipal menuPrincipal = new MenuPrincipal(this, iInicioSesionSS,agregarTarjetasSS,iObtenerMaderas,buscarMaderaPorIDSS);
         menuPrincipal.setVisible(true);
     } else {
         JOptionPane.showMessageDialog(this, "Credenciales incorrectas. Intente de nuevo.", "Error de Inicio de Sesión", JOptionPane.ERROR_MESSAGE);

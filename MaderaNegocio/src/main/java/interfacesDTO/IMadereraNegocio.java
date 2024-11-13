@@ -6,12 +6,17 @@ package interfacesDTO;
 
 import dto.MaderaDTO;
 import entidades.Madera;
+import java.util.List;
 
 /**
  *
  * @author Oley
  */
 public interface IMadereraNegocio {
-            public MaderaDTO agregarMadera(MaderaDTO maderaDTO);
 
+    public MaderaDTO agregarMadera(MaderaDTO maderaDTO);
+
+    public List<MaderaDTO> obtenerMaderas();
+    
+    public MaderaDTO buscarMaderaPorId(String id);
 }

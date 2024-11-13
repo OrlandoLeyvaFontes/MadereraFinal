@@ -4,19 +4,64 @@
  */
 package pantallas;
 
+import dto.MaderaDTO;
+import interfazSS.IBuscarMaderaPorIDSS;
+import interfazSS.IObtenerMaderas;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Oley
  */
 public class ProductosVenta extends javax.swing.JFrame {
-
+private MenuPrincipal menuPrincipal;
+private IObtenerMaderas iObtenerMaderas;
+private  IBuscarMaderaPorIDSS buscarMaderaPorIDSS;
     /**
      * Creates new form ProductosVenta
      */
-    public ProductosVenta() {
+    public ProductosVenta(MenuPrincipal menuPrincipal,IObtenerMaderas iObtenerMaderas, IBuscarMaderaPorIDSS buscarMaderaPorIDSS) {
+        this.menuPrincipal=menuPrincipal;
+        this.iObtenerMaderas=iObtenerMaderas;
+        this.buscarMaderaPorIDSS=buscarMaderaPorIDSS;
         initComponents();
+        CargarMetodosIniciales();
+    }
+private void CargarMetodosIniciales() {
+    cargarMaderasEnTablas();
+}
+
+private void cargarMaderasEnTablas() {
+    List<MaderaDTO> maderaLista = this.iObtenerMaderas.obtenerMaderas();
+    if (maderaLista != null && !maderaLista.isEmpty()) {
+        llenarTablaMaderas(maderaLista);
+    } else {
+        JOptionPane.showMessageDialog(this, "No hay datos disponibles para mostrar.", "Información", JOptionPane.INFORMATION_MESSAGE);
+    }
+}
+
+private void llenarTablaMaderas(List<MaderaDTO> maderaLista){
+    DefaultTableModel model = new DefaultTableModel(
+        new String[]{"Nombre", "Precio", "Descripción"}, 0
+    ) {
+        boolean[] canEdit = new boolean[]{false, false, false};
+
+        @Override
+        public boolean isCellEditable(int rowIndex, int columnIndex) {
+            return canEdit[columnIndex];
+        }
+    };
+
+    for (MaderaDTO madera : maderaLista) {
+        model.addRow(new Object[]{madera.getNombre(), madera.getPrecioUnitario(), madera.getDescripcion()});
     }
 
+    jTable1.setModel(model);
+    }
+        
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,7 +81,7 @@ public class ProductosVenta extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnDetallesProducto = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -51,11 +96,13 @@ public class ProductosVenta extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Maderera En Linea");
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
 
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Buscar Producto");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -116,6 +163,7 @@ public class ProductosVenta extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(153, 153, 153));
         jPanel4.setForeground(new java.awt.Color(153, 153, 153));
 
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Productos a la venta");
         jLabel3.setMaximumSize(new java.awt.Dimension(200, 20));
         jLabel3.setMinimumSize(new java.awt.Dimension(200, 20));
@@ -149,18 +197,19 @@ public class ProductosVenta extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 255));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Ver Mas");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnDetallesProducto.setBackground(new java.awt.Color(0, 102, 255));
+        btnDetallesProducto.setForeground(new java.awt.Color(255, 255, 255));
+        btnDetallesProducto.setText("Ver Mas");
+        btnDetallesProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnDetallesProductoActionPerformed(evt);
             }
         });
 
         jPanel6.setBackground(new java.awt.Color(153, 153, 153));
         jPanel6.setForeground(new java.awt.Color(153, 153, 153));
 
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Instrucciones");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -180,12 +229,16 @@ public class ProductosVenta extends javax.swing.JFrame {
                 .addGap(22, 22, 22))
         );
 
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Selecione el producto y");
 
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("luego da clic en \"ver mas\"");
 
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("para saber mas sobre");
 
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("dicho producto");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -215,7 +268,7 @@ public class ProductosVenta extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btnDetallesProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel8))))
                                 .addGap(35, 35, 35))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -247,7 +300,7 @@ public class ProductosVenta extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel8)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addComponent(btnDetallesProducto)
                         .addContainerGap())))
         );
 
@@ -266,19 +319,33 @@ public class ProductosVenta extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-this.setVisible(false);
-DetallesProducto detallesProducto=new DetallesProducto();
-detallesProducto.setVisible(true);
-
-
+    private void btnDetallesProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetallesProductoActionPerformed
+int row = jTable1.getSelectedRow();
+    if (row >= 0) {
+        // Obtener los datos de la fila seleccionada
+        String nombre = (String) jTable1.getValueAt(row, 0);
+        Double precio = (Double) jTable1.getValueAt(row, 1);
+        String descripcion = (String) jTable1.getValueAt(row, 2);
+        
+        // Ocultar la ventana actual
+        this.setVisible(false);
+        
+        // Crear y mostrar el frame de detalles con los datos seleccionados
+        DetallesProducto detallesProducto = new DetallesProducto(iObtenerMaderas, this, nombre, precio, descripcion);
+        detallesProducto.setVisible(true);
+    } else {
+        JOptionPane.showMessageDialog(this,
+            "Por favor, seleccione un producto de la tabla.",
+            "Error",
+            JOptionPane.ERROR_MESSAGE);
+    }
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnDetallesProductoActionPerformed
 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnDetallesProducto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

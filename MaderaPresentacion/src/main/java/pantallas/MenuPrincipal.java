@@ -4,22 +4,33 @@
  */
 package pantallas;
 
+import interfazSS.IAgregarTarjetasSS;
+import interfazSS.IBuscarMaderaPorIDSS;
 import interfazSS.IInicioSesionSS;
+import interfazSS.IObtenerMaderas;
 
 /**
  *
  * @author Oley
  */
 public class MenuPrincipal extends javax.swing.JFrame {
- private IniciarSesion iniciarSesion;
- private IInicioSesionSS iInicioSesionSS;
+ private IObtenerMaderas iObtenerMaderas;
+    private IniciarSesion iniciarSesion;
+    private IInicioSesionSS iInicioSesionSS;
+    private IAgregarTarjetasSS agregarTarjetasSS;
+    private  IBuscarMaderaPorIDSS buscarMaderaPorIDSS;
+
     /**
      * Creates new form MenuPrincipal
      */
-    public MenuPrincipal(  IniciarSesion iniciarSesion,IInicioSesionSS iInicioSesionSS) {
-        this.iInicioSesionSS=iInicioSesionSS;
-this.iniciarSesion=iniciarSesion;
-initComponents();
+    public MenuPrincipal(IniciarSesion iniciarSesion, IInicioSesionSS iInicioSesionSS, IAgregarTarjetasSS agregarTarjetasSS,IObtenerMaderas iObtenerMaderas,
+     IBuscarMaderaPorIDSS buscarMaderaPorIDSS) {
+        this.iInicioSesionSS = iInicioSesionSS;
+        this.agregarTarjetasSS = agregarTarjetasSS;
+        this.iniciarSesion = iniciarSesion;
+        this.iObtenerMaderas=iObtenerMaderas;
+        this.buscarMaderaPorIDSS=buscarMaderaPorIDSS;
+        initComponents();
     }
 
     /**
@@ -75,6 +86,11 @@ initComponents();
         );
 
         jButton2.setText("Añadir Tarjetas");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Todavia no tienes una tarjeta?");
 
@@ -167,15 +183,21 @@ initComponents();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-this.setVisible(false);
-ProductosVenta productosVenta=new ProductosVenta();
-productosVenta.setVisible(true);
-
+        this.setVisible(false);
+        ProductosVenta productosVenta = new ProductosVenta(this,iObtenerMaderas,buscarMaderaPorIDSS);
+        productosVenta.setVisible(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-  
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.setVisible(false);
+        AgregarTarjeta agregarTarjeta = new AgregarTarjeta(this, agregarTarjetasSS);
+        agregarTarjeta.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

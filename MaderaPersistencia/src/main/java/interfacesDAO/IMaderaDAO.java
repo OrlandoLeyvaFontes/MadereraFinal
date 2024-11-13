@@ -6,6 +6,7 @@ package interfacesDAO;
 
 import entidades.Madera;
 import entidades.Usuario;
+import java.util.List;
 
 /**
  *
@@ -13,5 +14,7 @@ import entidades.Usuario;
  */
 public interface IMaderaDAO {
         public Madera agregarMadera(Madera madera);
+        public List<Madera> obtenerMaderas();
+        public Madera buscarMaderaPorId(String id);
 
 }
