@@ -4,18 +4,12 @@
  */
 package interfacesDAO;
 
-import entidades.Madera;
-import entidades.Usuario;
-import java.util.List;
 import org.bson.types.ObjectId;
 
 /**
  *
  * @author Oley
  */
-public interface IMaderaDAO {
-        public Madera agregarMadera(Madera madera);
-        public List<Madera> obtenerMaderas();
-        public Madera buscarMaderaPorId(String id);
+public interface IMaderaCompraDAO {
 
 }

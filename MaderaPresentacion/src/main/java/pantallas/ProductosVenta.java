@@ -44,9 +44,9 @@ private void cargarMaderasEnTablas() {
 
 private void llenarTablaMaderas(List<MaderaDTO> maderaLista){
     DefaultTableModel model = new DefaultTableModel(
-        new String[]{"Nombre", "Precio", "Descripción"}, 0
+        new String[]{"Nombre", "Precio", "Descripción","cantidad"}, 0
     ) {
-        boolean[] canEdit = new boolean[]{false, false, false};
+        boolean[] canEdit = new boolean[]{false, false, false,false};
 
         @Override
         public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -55,7 +55,7 @@ private void llenarTablaMaderas(List<MaderaDTO> maderaLista){
     };
 
     for (MaderaDTO madera : maderaLista) {
-        model.addRow(new Object[]{madera.getNombre(), madera.getPrecioUnitario(), madera.getDescripcion()});
+        model.addRow(new Object[]{madera.getNombre(), madera.getPrecioUnitario(), madera.getDescripcion(),madera.getCantidad()});
     }
 
     jTable1.setModel(model);
@@ -149,13 +149,13 @@ private void llenarTablaMaderas(List<MaderaDTO> maderaLista){
         jTable1.setBackground(new java.awt.Color(255, 204, 102));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Nombre", "Precio", "Disponible"
+                "Nombre", "Precio", "Disponible", "Cantidad"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -326,12 +326,13 @@ int row = jTable1.getSelectedRow();
         String nombre = (String) jTable1.getValueAt(row, 0);
         Double precio = (Double) jTable1.getValueAt(row, 1);
         String descripcion = (String) jTable1.getValueAt(row, 2);
+        int cantidad=(int) jTable1.getValueAt(row, 3);
         
         // Ocultar la ventana actual
         this.setVisible(false);
         
         // Crear y mostrar el frame de detalles con los datos seleccionados
-        DetallesProducto detallesProducto = new DetallesProducto(iObtenerMaderas, this, nombre, precio, descripcion);
+        DetallesProducto detallesProducto = new DetallesProducto(iObtenerMaderas, this, nombre, precio, descripcion,cantidad);
         detallesProducto.setVisible(true);
     } else {
         JOptionPane.showMessageDialog(this,

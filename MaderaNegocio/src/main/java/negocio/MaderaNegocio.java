@@ -58,6 +58,7 @@ public List<MaderaDTO> obtenerMaderas() {
             maderaDTO.setNombre(madera.getNombre());
             maderaDTO.setDescripcion(madera.getDescripcion());
             maderaDTO.setPrecioUnitario(madera.getPrecioUnitario());
+            maderaDTO.setCantidad(madera.getCantidad());
             listaMaderasDTO.add(maderaDTO);
         }
     } catch (Exception e) {

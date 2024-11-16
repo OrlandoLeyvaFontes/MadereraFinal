@@ -5,6 +5,8 @@
     <class>entidades.Usuario</class>
     <class>entidades.Madera</class>
     <class>entidades.Tarjetas</class>
+    <class>entidades.Compra</class>
+    <class>entidades.MaderaCompra</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/maderera?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

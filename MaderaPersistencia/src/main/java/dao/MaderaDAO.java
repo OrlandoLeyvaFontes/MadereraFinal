@@ -52,6 +52,7 @@ List<Madera> listaMaderas = new ArrayList<>();
             madera.setNombre(documento.getString("nombre"));
             madera.setDescripcion(documento.getString("descripcion"));
             madera.setPrecioUnitario(documento.getDouble("precioUnitario"));
+            madera.setCantidad(documento.getInteger("cantidad"));
             listaMaderas.add(madera);
         }
     } catch (Exception e) {
@@ -80,5 +81,7 @@ List<Madera> listaMaderas = new ArrayList<>();
         }
         return null;  
     }
+
+    
     
 }

@@ -5,18 +5,13 @@
 package Prueba;
 
 import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
-import dao.TarjetasDAO;
-import dao.UsuarioDAO;
-import entidades.Tarjetas;
-import entidades.Usuario;
-import interfacesDAO.ITarjetasDAO;
-import java.util.Calendar;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
+import dao.MaderaCompraDAO;
+import dao.MaderaDAO;
+import org.bson.Document;
+import org.bson.types.ObjectId;
 /**
  *
  * @author Oley
@@ -28,44 +23,23 @@ public class Main {
     /*
     Clase que sirve para probar metodos
     */
-     String uri = "mongodb://localhost:27017";
-        MongoClient mongoClient = MongoClients.create(uri);
+        
+         // Conexión a MongoDB
+        String uri = "mongodb://localhost:27017"; 
+        var mongoClient = MongoClients.create(uri);
         MongoDatabase database = mongoClient.getDatabase("maderera");
 
-//        UsuarioDAO usuarioDAO = new UsuarioDAO();
-////
-////        Usuario nuevoUsuario = new Usuario("Juan", "Perez", "Gomez", "123456789", "juan.perez@example.com", "12345");
-////
-////        Usuario usuarioGuardado = usuarioDAO.agregarUsuario(nuevoUsuario);
+//        // Crear el DAO
+//        MaderaDAO maderaCompraDAO = new MaderaDAO();
 //
+//        // Llamada al método para actualizar la cantidad y precio
+//        ObjectId idMadera = new ObjectId("673844838019a752f44cd532");
+//        int nuevaCantidad = 20; // Nueva cantidad de madera
 //
-//        String correo = "juan.perez@example.com"; 
-//        String contrasena = "12345";
-//
-//        Usuario usuario = usuarioDAO.iniciarSesion(correo, contrasena);
-//
-//        if (usuario != null) {
-//            System.out.println("Inicio de sesión exitoso:");
-//            System.out.println("Nombre: " + usuario.getNombre());
-//            System.out.println("Apellido Paterno: " + usuario.getApellidoPaterno());
-//            System.out.println("Apellido Materno: " + usuario.getApellidoMaterno());
-//            System.out.println("Número: " + usuario.getNumero());
-//            System.out.println("Correo: " + usuario.getCorreo());
-//        } else {
-//            System.out.println("Credenciales incorrectas o usuario no encontrado.");
-//        }
-//    }
-/**
- * Probamos el añadir tarjetas
- */
-    ITarjetasDAO iTarjetasDAO=new TarjetasDAO();
-        Calendar fechaVencimiento = Calendar.getInstance();
-        fechaVencimiento.set(2024, Calendar.DECEMBER, 25); 
-
-        // Crear una tarjeta para agregar
-        Tarjetas tarjeta = new Tarjetas("Juan Pérez", "1234567812345678", fechaVencimiento, "123");
-iTarjetasDAO.agregarTarjetas(tarjeta);
+//        // Actualizar la madera en la base de datos
+//        maderaCompraDAO.actualizarCantidadYPrecio(idMadera, nuevaCantidad);
+    }
     }
     
     
-}
+
