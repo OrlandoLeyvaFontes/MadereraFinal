@@ -4,7 +4,9 @@
  */
 package interfacesDAO;
 
+import entidades.Tarjetas;
 import entidades.Usuario;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -13,4 +15,5 @@ import entidades.Usuario;
 public interface IUsuarioDAO {
     public Usuario agregarUsuario(Usuario usuario);
      public Usuario iniciarSesion(String correo, String contrasena);
+     public boolean agregarTarjeta(ObjectId usuarioId, Tarjetas tarjeta);
 }

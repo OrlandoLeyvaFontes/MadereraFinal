@@ -175,7 +175,7 @@ registrarUsuario.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-String correo = jTextField1.getText();
+ String correo = jTextField1.getText();
     String contraseña = jTextField2.getText();
     
     if (correo.isEmpty() || contraseña.isEmpty()) {
@@ -186,13 +186,17 @@ String correo = jTextField1.getText();
     UsuarioDTO usuarioDTO = iInicioSesionSS.iniciarSesion(correo, contraseña);
     
     if (usuarioDTO != null) {
+        // Obtener el ID del usuario
+        String usuarioId = usuarioDTO.getId(); 
+
         this.setVisible(false);
-        MenuPrincipal menuPrincipal = new MenuPrincipal(this, iInicioSesionSS,agregarTarjetasSS,iObtenerMaderas,buscarMaderaPorIDSS);
+        
+        // Pasar el ID del usuario al MenuPrincipal
+        MenuPrincipal menuPrincipal = new MenuPrincipal(this, iInicioSesionSS, agregarTarjetasSS, iObtenerMaderas, buscarMaderaPorIDSS, usuarioId);
         menuPrincipal.setVisible(true);
     } else {
         JOptionPane.showMessageDialog(this, "Credenciales incorrectas. Intente de nuevo.", "Error de Inicio de Sesión", JOptionPane.ERROR_MESSAGE);
     }
-
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 

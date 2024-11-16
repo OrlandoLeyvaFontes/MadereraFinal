@@ -4,8 +4,11 @@
  */
 package interfacesDTO;
 
+import dto.TarjetasDTO;
 import dto.UsuarioDTO;
+import entidades.Tarjetas;
 import entidades.Usuario;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -14,6 +17,7 @@ import entidades.Usuario;
 public interface IUsuarioNegocio {
 
     public UsuarioDTO agregarUsuario(UsuarioDTO usuarioDTO);
+     public boolean agregarTarjeta(String usuarioId, TarjetasDTO tarjetasDTO);
 
     public UsuarioDTO iniciarSesion(String correo, String contrasena);
 }

@@ -5,25 +5,30 @@
 package negocio;
 
 import dao.UsuarioDAO;
+import dto.TarjetasDTO;
 import dto.UsuarioDTO;
+import entidades.Tarjetas;
 import entidades.Usuario;
 import interfacesDAO.IUsuarioDAO;
 import interfacesDTO.IUsuarioNegocio;
+import java.util.Calendar;
+import org.bson.types.ObjectId;
 
 /**
  *
  * @author Oley
  */
-public class UsuarioNegocio implements  IUsuarioNegocio{
-private IUsuarioDAO iusuarioDAO;
+public class UsuarioNegocio implements IUsuarioNegocio {
+
+    private IUsuarioDAO iusuarioDAO;
 
     public UsuarioNegocio() {
-        this.iusuarioDAO = new UsuarioDAO() ;
+        this.iusuarioDAO = new UsuarioDAO();
     }
 
     @Override
     public UsuarioDTO agregarUsuario(UsuarioDTO usuarioDTO) {
-            Usuario usuario = new Usuario();
+        Usuario usuario = new Usuario();
         usuario.setNombre(usuarioDTO.getNombre());
         usuario.setApellidoPaterno(usuarioDTO.getApellidoPaterno());
         usuario.setApellidoMaterno(usuarioDTO.getApellidoMaterno());
@@ -35,13 +40,13 @@ private IUsuarioDAO iusuarioDAO;
 
         if (usuarioGuardado != null) {
             UsuarioDTO usuarioDTOResponse = new UsuarioDTO();
+            usuarioDTOResponse.setId(usuarioGuardado.getId().toString());
             usuarioDTOResponse.setNombre(usuarioGuardado.getNombre());
             usuarioDTOResponse.setApellidoPaterno(usuarioGuardado.getApellidoPaterno());
             usuarioDTOResponse.setApellidoMaterno(usuarioGuardado.getApellidoMaterno());
             usuarioDTOResponse.setNumero(usuarioGuardado.getNumero());
             usuarioDTOResponse.setCorreo(usuarioGuardado.getCorreo());
             usuarioDTOResponse.setContraseña(usuarioGuardado.getContraseña());
-            usuarioDTOResponse.setId(usuarioGuardado.getId().toString());  
             return usuarioDTOResponse;
         } else {
             throw new RuntimeException("Error al agregar el usuario, intentelo más tarde");
@@ -50,28 +55,43 @@ private IUsuarioDAO iusuarioDAO;
 
     @Override
     public UsuarioDTO iniciarSesion(String correo, String contrasena) {
-     Usuario usuario = iusuarioDAO.iniciarSesion(correo, contrasena);
+        Usuario usuario = iusuarioDAO.iniciarSesion(correo, contrasena);
 
-    if (usuario != null) {
-        UsuarioDTO usuarioDTO = new UsuarioDTO();
-        
-        usuarioDTO.setId(usuario.getId().toString());
-        
-        usuarioDTO.setNombre(usuario.getNombre());
-        usuarioDTO.setApellidoPaterno(usuario.getApellidoPaterno());
-        usuarioDTO.setApellidoMaterno(usuario.getApellidoMaterno());
-        usuarioDTO.setNumero(usuario.getNumero());
-        usuarioDTO.setCorreo(usuario.getCorreo());
-        
-        return usuarioDTO; 
-    } else {
-        System.out.println("Credenciales incorrectas");
-        return null;
-    }}
+        if (usuario != null) {
+            UsuarioDTO usuarioDTO = new UsuarioDTO();
+            usuarioDTO.setId(usuario.getId().toString());
+            usuarioDTO.setNombre(usuario.getNombre());
+            usuarioDTO.setApellidoPaterno(usuario.getApellidoPaterno());
+            usuarioDTO.setApellidoMaterno(usuario.getApellidoMaterno());
+            usuarioDTO.setNumero(usuario.getNumero());
+            usuarioDTO.setCorreo(usuario.getCorreo());
+            return usuarioDTO;
+        } else {
+            System.out.println("Credenciales incorrectas");
+            return null;
+        }
+    }
 
-    
+    @Override
+    public boolean agregarTarjeta(String usuarioId, TarjetasDTO tarjetasDTO) {
+     try {
+        Tarjetas tarjeta = new Tarjetas();
+        tarjeta.setNombre(tarjetasDTO.getNombre());
+        tarjeta.setNumero(tarjetasDTO.getNumero());
 
-    
-   
-    
+        Calendar fechaVencimiento = Calendar.getInstance();
+        fechaVencimiento.setTime(tarjetasDTO.getFehcaVencimiento().getTime());
+        tarjeta.setFehcaVencimiento(fechaVencimiento);
+
+        tarjeta.setCVV(tarjetasDTO.getCVV());
+
+        ObjectId objectId = new ObjectId(usuarioId);
+
+        return iusuarioDAO.agregarTarjeta(objectId, tarjeta);
+    } catch (Exception e) {
+        e.printStackTrace();
+        return false; 
+    }
+    }
+
 }

@@ -12,6 +12,6 @@ import dto.UsuarioDTO;
  * @author Oley
  */
 public interface IAgregarTarjetasSS {
-            public TarjetasDTO agregarTarjetas(TarjetasDTO tarjetasDTO);
+     public boolean agregarTarjeta(String usuarioId, TarjetasDTO tarjetasDTO);
 
 }

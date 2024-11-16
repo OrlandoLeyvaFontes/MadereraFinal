@@ -5,6 +5,7 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,7 +27,7 @@ public class Usuario implements Serializable {
     private String numero;
     private String correo;
     private String contraseña;
-
+private List<Tarjetas> tarjetas;
     public Usuario() {}
 
     public Usuario(String nombre, String apellidoPaterno, String apellidoMaterno, String numero, String correo, String contraseña) {
@@ -36,6 +37,17 @@ public class Usuario implements Serializable {
         this.numero = numero;
         this.correo = correo;
         this.contraseña = contraseña;
+    }
+
+    public Usuario(ObjectId id, String nombre, String apellidoPaterno, String apellidoMaterno, String numero, String correo, String contraseña, List<Tarjetas> tarjetas) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.numero = numero;
+        this.correo = correo;
+        this.contraseña = contraseña;
+        this.tarjetas = tarjetas;
     }
 
     public ObjectId getId() {
@@ -92,6 +104,14 @@ public class Usuario implements Serializable {
 
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
+    }
+
+    public List<Tarjetas> getTarjetas() {
+        return tarjetas;
+    }
+
+    public void setTarjetas(List<Tarjetas> tarjetas) {
+        this.tarjetas = tarjetas;
     }
 
 }

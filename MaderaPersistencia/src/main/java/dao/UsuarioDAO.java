@@ -7,9 +7,16 @@ package dao;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
 import conexion.Conexion;
+import entidades.Tarjetas;
 import entidades.Usuario;
 import interfacesDAO.IUsuarioDAO;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
@@ -24,7 +31,7 @@ public class UsuarioDAO implements  IUsuarioDAO{
         this.collection = Conexion.getDatabase().getCollection("usuarios");
     }
 
-    @Override
+  @Override
     public Usuario agregarUsuario(Usuario usuario) {
         try {
             Document document = new Document("nombre", usuario.getNombre())
@@ -32,7 +39,8 @@ public class UsuarioDAO implements  IUsuarioDAO{
                 .append("apellidoMaterno", usuario.getApellidoMaterno())
                 .append("numero", usuario.getNumero())
                 .append("correo", usuario.getCorreo())
-                .append("contraseña", usuario.getContraseña());
+                .append("contraseña", usuario.getContraseña())
+                .append("tarjetas", new ArrayList<>()); 
 
             collection.insertOne(document);
 
@@ -44,9 +52,28 @@ public class UsuarioDAO implements  IUsuarioDAO{
         }
     }
 
+    public boolean agregarTarjeta(ObjectId usuarioId, Tarjetas tarjeta) {
+        try {
+            Document tarjetaDoc = new Document("nombre", tarjeta.getNombre())
+                .append("numero", tarjeta.getNumero())
+                .append("fechaVencimiento", tarjeta.getFehcaVencimiento().getTime())
+                .append("CVV", tarjeta.getCVV());
+
+            collection.updateOne(
+                Filters.eq("_id", usuarioId),
+                Updates.push("tarjetas", tarjetaDoc)
+            );
+
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     @Override
     public Usuario iniciarSesion(String correo, String contrasena) {
- try {
+        try {
             Document query = new Document("correo", correo).append("contraseña", contrasena);
             Document result = collection.find(query).first();
 
@@ -59,7 +86,26 @@ public class UsuarioDAO implements  IUsuarioDAO{
                 usuario.setNumero(result.getString("numero"));
                 usuario.setCorreo(result.getString("correo"));
                 usuario.setContraseña(result.getString("contraseña"));
-                return usuario; 
+
+                List<Document> tarjetasDocs = result.getList("tarjetas", Document.class);
+                if (tarjetasDocs != null) {
+                    List<Tarjetas> tarjetas = new ArrayList<>();
+                    for (Document tarjetaDoc : tarjetasDocs) {
+                        Tarjetas tarjeta = new Tarjetas();
+                        tarjeta.setNombre(tarjetaDoc.getString("nombre"));
+                        tarjeta.setNumero(tarjetaDoc.getString("numero"));
+
+                        Date fecha = tarjetaDoc.getDate("fechaVencimiento");
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.setTime(fecha);
+                        tarjeta.setFehcaVencimiento(calendar);
+
+                        tarjeta.setCVV(tarjetaDoc.getString("CVV"));
+                        tarjetas.add(tarjeta);
+                    }
+                    usuario.setTarjetas(tarjetas);
+                }
+                return usuario;
             } else {
                 return null; 
             }

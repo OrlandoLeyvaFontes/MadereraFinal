@@ -19,12 +19,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private IInicioSesionSS iInicioSesionSS;
     private IAgregarTarjetasSS agregarTarjetasSS;
     private  IBuscarMaderaPorIDSS buscarMaderaPorIDSS;
+    private String usuarioId;
+
 
     /**
      * Creates new form MenuPrincipal
      */
     public MenuPrincipal(IniciarSesion iniciarSesion, IInicioSesionSS iInicioSesionSS, IAgregarTarjetasSS agregarTarjetasSS,IObtenerMaderas iObtenerMaderas,
-     IBuscarMaderaPorIDSS buscarMaderaPorIDSS) {
+     IBuscarMaderaPorIDSS buscarMaderaPorIDSS,String usuarioId) {
+        this.usuarioId = usuarioId;
         this.iInicioSesionSS = iInicioSesionSS;
         this.agregarTarjetasSS = agregarTarjetasSS;
         this.iniciarSesion = iniciarSesion;
@@ -32,7 +35,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.buscarMaderaPorIDSS=buscarMaderaPorIDSS;
         initComponents();
     }
-
+//public void setUsuarioId(String usuarioId) {
+//        this.usuarioId = usuarioId;
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -192,7 +197,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.setVisible(false);
-        AgregarTarjeta agregarTarjeta = new AgregarTarjeta(this, agregarTarjetasSS);
+        AgregarTarjeta agregarTarjeta = new AgregarTarjeta(this, agregarTarjetasSS,usuarioId);
         agregarTarjeta.setVisible(true);
 
         // TODO add your handling code here:

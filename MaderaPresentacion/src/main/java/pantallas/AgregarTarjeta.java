@@ -20,13 +20,14 @@ public class AgregarTarjeta extends javax.swing.JFrame {
     
     private MenuPrincipal menuPrincipal;
     private IAgregarTarjetasSS agregarTarjetasSS;
-
+private String usuarioId;
     /**
      * Creates new form AgregarTarjeta
      */
-    public AgregarTarjeta(MenuPrincipal menuPrincipal, IAgregarTarjetasSS agregarTarjetasSS) {
+    public AgregarTarjeta(MenuPrincipal menuPrincipal, IAgregarTarjetasSS agregarTarjetasSS,String usuarioId) {
         this.menuPrincipal = menuPrincipal;
         this.agregarTarjetasSS = agregarTarjetasSS;
+        this.usuarioId = usuarioId;
         initComponents();
     }
 
@@ -233,7 +234,8 @@ public class AgregarTarjeta extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    String nombre = jTextField1.getText();
+
+   String nombre = jTextField1.getText();
     String numero = jTextField2.getText();
     LocalDate fechaVencimiento = datePickerBloqueo.getDate(); 
     String ccv = jTextField4.getText();
@@ -249,12 +251,12 @@ public class AgregarTarjeta extends javax.swing.JFrame {
 
     Calendar fechaVencimientoCalendar = Calendar.getInstance();
     fechaVencimientoCalendar.set(fechaVencimiento.getYear(), fechaVencimiento.getMonthValue() - 1, fechaVencimiento.getDayOfMonth());
-    tarjetasDTO.setFehcaVencimiento(fechaVencimientoCalendar); 
+    tarjetasDTO.setFehcaVencimiento(fechaVencimientoCalendar);
 
     tarjetasDTO.setCVV(ccv);
 
     try {
-        agregarTarjetasSS.agregarTarjetas(tarjetasDTO);
+        agregarTarjetasSS.agregarTarjeta(usuarioId, tarjetasDTO);  // Pasamos el usuarioId aquí
         JOptionPane.showMessageDialog(this, "La tarjeta ha sido guardada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
     } catch (Exception e) {
         JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar la tarjeta.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -262,7 +264,6 @@ public class AgregarTarjeta extends javax.swing.JFrame {
 
     this.setVisible(false);
     menuPrincipal.setVisible(true);
-
 
     }//GEN-LAST:event_jButton2ActionPerformed
 

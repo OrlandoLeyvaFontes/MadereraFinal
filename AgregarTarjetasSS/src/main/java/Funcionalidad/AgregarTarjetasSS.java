@@ -7,37 +7,27 @@ package Funcionalidad;
 import dto.TarjetasDTO;
 import dto.UsuarioDTO;
 import interfacesDTO.ITarjetasNegocio;
+import interfacesDTO.IUsuarioNegocio;
 import interfazSS.IAgregarTarjetasSS;
 import negocio.TarjetasNegocio;
+import negocio.UsuarioNegocio;
 
 /**
  *
  * @author Oley
  */
-public class AgregarTarjetasSS implements IAgregarTarjetasSS{
-ITarjetasNegocio iTarjetasNegocio;
+public class AgregarTarjetasSS implements IAgregarTarjetasSS {
+
+    IUsuarioNegocio iUsuarioNegocio;
 
     public AgregarTarjetasSS() {
-        this.iTarjetasNegocio = new TarjetasNegocio();
+        this.iUsuarioNegocio = new UsuarioNegocio();
     }
 
     @Override
-    public TarjetasDTO agregarTarjetas(TarjetasDTO tarjetasDTO) {
-       try {
-            TarjetasDTO tarjetasDTO1 = iTarjetasNegocio.agregarTarjetas(tarjetasDTO);
+    public boolean agregarTarjeta(String usuarioId, TarjetasDTO tarjetasDTO) {
+        return iUsuarioNegocio.agregarTarjeta(usuarioId, tarjetasDTO);
 
-            if (tarjetasDTO1 != null) {
-                return tarjetasDTO1;
-            } else {
-                throw new RuntimeException("Error al agregar la tarjeta."); 
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Ocurrió un error al intentar agregar la tarjeta: " + e.getMessage());
-        }
     }
 
-   
-   
-    
 }
