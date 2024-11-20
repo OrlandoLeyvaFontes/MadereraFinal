@@ -50,6 +50,11 @@ private List<Tarjetas> tarjetas;
         this.tarjetas = tarjetas;
     }
 
+    public Usuario(ObjectId id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+
     public ObjectId getId() {
         return id;
     }

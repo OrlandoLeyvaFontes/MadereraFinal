@@ -17,5 +17,7 @@ public interface IMaderaDAO {
         public Madera agregarMadera(Madera madera);
         public List<Madera> obtenerMaderas();
         public Madera buscarMaderaPorId(String id);
+        public Madera obtenerMaderaPorId(ObjectId id);
+         public void actualizar(Madera madera);
 
 }

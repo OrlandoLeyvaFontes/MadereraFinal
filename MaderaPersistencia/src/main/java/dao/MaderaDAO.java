@@ -6,6 +6,7 @@ package dao;
 
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
 import conexion.Conexion;
 import entidades.Madera;
 import interfacesDAO.IMaderaDAO;
@@ -81,6 +82,23 @@ List<Madera> listaMaderas = new ArrayList<>();
         }
         return null;  
     }
+
+    @Override
+    public Madera obtenerMaderaPorId(ObjectId id) {
+ MongoCollection<Document> coleccionMadera = Conexion.getDatabase().getCollection("Madera"); // Asegúrate de obtener la base de datos correctamente
+    Document doc = coleccionMadera.find(Filters.eq("_id", id)).first();
+    if (doc != null) {
+        return new Madera(doc.getObjectId("_id"), doc.getString("nombre"));
+    }
+    return null;
+       }
+
+    @Override
+    public void actualizar(Madera madera) {
+        Document filtro = new Document("_id", madera.getId());
+        Document actualizacion = new Document("$set", new Document("cantidad", madera.getCantidad()));
+
+        collection.updateOne(filtro, actualizacion);    }
 
     
     

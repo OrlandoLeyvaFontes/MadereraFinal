@@ -5,7 +5,9 @@
 package pantallas;
 
 import dto.UsuarioDTO;
+import funcionalidad.ObtenerNumerosTarjetasPorUsuarioSS;
 import interfacesDTO.IUsuarioNegocio;
+import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
 import interfazSS.IAgregarTarjetasSS;
 import interfazSS.IAgregarUsuarioSS;
 import interfazSS.IBuscarMaderaPorIDSS;
@@ -26,8 +28,11 @@ public class IniciarSesion extends javax.swing.JFrame {
     private IAgregarUsuarioSS agregarUsuarioSS;
     private IObtenerMaderas iObtenerMaderas;
     private IBuscarMaderaPorIDSS buscarMaderaPorIDSS;
+      private IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS;
+
     public IniciarSesion(IAgregarUsuarioSS agregarUsuarioSS, IInicioSesionSS iInicioSesionSS,IAgregarTarjetasSS agregarTarjetasSS
-    ,IObtenerMaderas iObtenerMaderas, IBuscarMaderaPorIDSS buscarMaderaPorIDSS) {
+    ,IObtenerMaderas iObtenerMaderas, IBuscarMaderaPorIDSS buscarMaderaPorIDSS,IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS) {
+        this.iObtenerNumerosTarjetasPorUsuarioSS=iObtenerNumerosTarjetasPorUsuarioSS;
        this.agregarUsuarioSS=agregarUsuarioSS;
        this.iInicioSesionSS=iInicioSesionSS;
        this.agregarTarjetasSS=agregarTarjetasSS;
@@ -192,7 +197,7 @@ registrarUsuario.setVisible(true);
         this.setVisible(false);
         
         // Pasar el ID del usuario al MenuPrincipal
-        MenuPrincipal menuPrincipal = new MenuPrincipal(this, iInicioSesionSS, agregarTarjetasSS, iObtenerMaderas, buscarMaderaPorIDSS, usuarioId);
+        MenuPrincipal menuPrincipal = new MenuPrincipal(this, iInicioSesionSS, agregarTarjetasSS, iObtenerMaderas, buscarMaderaPorIDSS, usuarioId,iObtenerNumerosTarjetasPorUsuarioSS);
         menuPrincipal.setVisible(true);
     } else {
         JOptionPane.showMessageDialog(this, "Credenciales incorrectas. Intente de nuevo.", "Error de Inicio de Sesión", JOptionPane.ERROR_MESSAGE);

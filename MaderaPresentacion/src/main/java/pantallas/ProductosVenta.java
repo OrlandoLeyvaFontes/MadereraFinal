@@ -5,6 +5,7 @@
 package pantallas;
 
 import dto.MaderaDTO;
+import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
 import interfazSS.IBuscarMaderaPorIDSS;
 import interfazSS.IObtenerMaderas;
 import java.util.List;
@@ -16,52 +17,60 @@ import javax.swing.table.DefaultTableModel;
  * @author Oley
  */
 public class ProductosVenta extends javax.swing.JFrame {
-private MenuPrincipal menuPrincipal;
-private IObtenerMaderas iObtenerMaderas;
-private  IBuscarMaderaPorIDSS buscarMaderaPorIDSS;
+
+    private MenuPrincipal menuPrincipal;
+    private IObtenerMaderas iObtenerMaderas;
+    private IBuscarMaderaPorIDSS buscarMaderaPorIDSS;
+    private IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS;
+     private String usuarioId;
+
     /**
      * Creates new form ProductosVenta
      */
-    public ProductosVenta(MenuPrincipal menuPrincipal,IObtenerMaderas iObtenerMaderas, IBuscarMaderaPorIDSS buscarMaderaPorIDSS) {
-        this.menuPrincipal=menuPrincipal;
-        this.iObtenerMaderas=iObtenerMaderas;
-        this.buscarMaderaPorIDSS=buscarMaderaPorIDSS;
+    public ProductosVenta(MenuPrincipal menuPrincipal, IObtenerMaderas iObtenerMaderas, IBuscarMaderaPorIDSS buscarMaderaPorIDSS,   IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS,
+            String usuarioId
+) {
+        this.menuPrincipal = menuPrincipal;
+        this.iObtenerMaderas = iObtenerMaderas;
+        this.buscarMaderaPorIDSS = buscarMaderaPorIDSS;
+        this.iObtenerNumerosTarjetasPorUsuarioSS=iObtenerNumerosTarjetasPorUsuarioSS;
+        this.usuarioId=usuarioId;
         initComponents();
         CargarMetodosIniciales();
     }
-private void CargarMetodosIniciales() {
-    cargarMaderasEnTablas();
-}
 
-private void cargarMaderasEnTablas() {
-    List<MaderaDTO> maderaLista = this.iObtenerMaderas.obtenerMaderas();
-    if (maderaLista != null && !maderaLista.isEmpty()) {
-        llenarTablaMaderas(maderaLista);
-    } else {
-        JOptionPane.showMessageDialog(this, "No hay datos disponibles para mostrar.", "Información", JOptionPane.INFORMATION_MESSAGE);
+    private void CargarMetodosIniciales() {
+        cargarMaderasEnTablas();
     }
-}
 
-private void llenarTablaMaderas(List<MaderaDTO> maderaLista){
-    DefaultTableModel model = new DefaultTableModel(
-        new String[]{"Nombre", "Precio", "Descripción","cantidad"}, 0
-    ) {
-        boolean[] canEdit = new boolean[]{false, false, false,false};
-
-        @Override
-        public boolean isCellEditable(int rowIndex, int columnIndex) {
-            return canEdit[columnIndex];
+    private void cargarMaderasEnTablas() {
+        List<MaderaDTO> maderaLista = this.iObtenerMaderas.obtenerMaderas();
+        if (maderaLista != null && !maderaLista.isEmpty()) {
+            llenarTablaMaderas(maderaLista);
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay datos disponibles para mostrar.", "Información", JOptionPane.INFORMATION_MESSAGE);
         }
-    };
-
-    for (MaderaDTO madera : maderaLista) {
-        model.addRow(new Object[]{madera.getNombre(), madera.getPrecioUnitario(), madera.getDescripcion(),madera.getCantidad()});
     }
 
-    jTable1.setModel(model);
+    private void llenarTablaMaderas(List<MaderaDTO> maderaLista) {
+        DefaultTableModel model = new DefaultTableModel(
+                new String[]{"Nombre", "Precio", "Descripción", "cantidad"}, 0
+        ) {
+            boolean[] canEdit = new boolean[]{false, false, false, false};
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        };
+
+        for (MaderaDTO madera : maderaLista) {
+            model.addRow(new Object[]{madera.getNombre(), madera.getPrecioUnitario(), madera.getDescripcion(), madera.getCantidad()});
+        }
+
+        jTable1.setModel(model);
     }
-        
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -320,30 +329,29 @@ private void llenarTablaMaderas(List<MaderaDTO> maderaLista){
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDetallesProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetallesProductoActionPerformed
-int row = jTable1.getSelectedRow();
-    if (row >= 0) {
-        // Obtener los datos de la fila seleccionada
-        String nombre = (String) jTable1.getValueAt(row, 0);
-        Double precio = (Double) jTable1.getValueAt(row, 1);
-        String descripcion = (String) jTable1.getValueAt(row, 2);
-        int cantidad=(int) jTable1.getValueAt(row, 3);
-        
-        // Ocultar la ventana actual
-        this.setVisible(false);
-        
-        // Crear y mostrar el frame de detalles con los datos seleccionados
-        DetallesProducto detallesProducto = new DetallesProducto(iObtenerMaderas, this, nombre, precio, descripcion,cantidad);
-        detallesProducto.setVisible(true);
-    } else {
-        JOptionPane.showMessageDialog(this,
-            "Por favor, seleccione un producto de la tabla.",
-            "Error",
-            JOptionPane.ERROR_MESSAGE);
-    }
+        int row = jTable1.getSelectedRow();
+        if (row >= 0) {
+            // Obtener los datos de la fila seleccionada
+            String nombre = (String) jTable1.getValueAt(row, 0);
+            Double precio = (Double) jTable1.getValueAt(row, 1);
+            String descripcion = (String) jTable1.getValueAt(row, 2);
+            int cantidad = (int) jTable1.getValueAt(row, 3);
+
+            // Ocultar la ventana actual
+            this.setVisible(false);
+
+            // Crear y mostrar el frame de detalles con los datos seleccionados
+            DetallesProducto detallesProducto = new DetallesProducto(iObtenerMaderas, this, nombre, precio, descripcion, cantidad,iObtenerNumerosTarjetasPorUsuarioSS,usuarioId);
+            detallesProducto.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "Por favor, seleccione un producto de la tabla.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDetallesProductoActionPerformed
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDetallesProducto;

@@ -11,7 +11,9 @@ import entidades.Tarjetas;
 import entidades.Usuario;
 import interfacesDAO.IUsuarioDAO;
 import interfacesDTO.IUsuarioNegocio;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import org.bson.types.ObjectId;
 
 /**
@@ -93,5 +95,23 @@ public class UsuarioNegocio implements IUsuarioNegocio {
         return false; 
     }
     }
+
+    @Override
+    public List<String> obtenerNumerosTarjetasPorUsuario(String idUsuario) {
+ try {
+        ObjectId objectId = new ObjectId(idUsuario);
+        List<String> numerosTarjetas = iusuarioDAO.obtenerNumerosTarjetasPorUsuario(objectId);
+
+        if (numerosTarjetas == null || numerosTarjetas.isEmpty()) {
+            System.out.println("El usuario no tiene tarjetas asociadas.");
+            return new ArrayList<>();
+        }
+
+        return numerosTarjetas;
+    } catch (Exception e) {
+        System.err.println("Error al obtener los números de las tarjetas: " + e.getMessage());
+        e.printStackTrace();
+        return new ArrayList<>();
+    }    }
 
 }

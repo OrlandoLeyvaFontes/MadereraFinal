@@ -30,6 +30,11 @@ private int cantidad;
         this.precioUnitario = precioUnitario;
     }
 
+    public Madera(ObjectId id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+
     public ObjectId getId() {
         return id;
     }

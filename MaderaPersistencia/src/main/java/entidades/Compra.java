@@ -5,6 +5,7 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -19,21 +20,20 @@ import org.bson.types.ObjectId;
  */
 public class Compra implements Serializable {
 
-       private ObjectId id; 
-    private ObjectId idUsuario; 
-    private ObjectId idTarjeta; 
-    private List<MaderaCompra> maderaComprada; 
-    private double total; 
-    private Date fechaCompra; 
-    private String estado;
+      private ObjectId id;
+    private Calendar fechaCompra;
+    private double precioTotal;
+    private int cantidad;
+    private Madera madera;
+    private Usuario usuario;
 
-    public Compra(ObjectId idUsuario, ObjectId idTarjeta, List<MaderaCompra> maderaComprada, double total, Date fechaCompra, String estado) {
-        this.idUsuario = idUsuario;
-        this.idTarjeta = idTarjeta;
-        this.maderaComprada = maderaComprada;
-        this.total = total;
+    public Compra() {
+    }
+
+    public Compra( Calendar fechaCompra, double precioTotal, int cantidad) {
         this.fechaCompra = fechaCompra;
-        this.estado = estado;
+        this.precioTotal = precioTotal;
+        this.cantidad = cantidad;
     }
 
     public ObjectId getId() {
@@ -44,51 +44,49 @@ public class Compra implements Serializable {
         this.id = id;
     }
 
-    public ObjectId getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(ObjectId idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public ObjectId getIdTarjeta() {
-        return idTarjeta;
-    }
-
-    public void setIdTarjeta(ObjectId idTarjeta) {
-        this.idTarjeta = idTarjeta;
-    }
-
-    public List<MaderaCompra> getMaderaComprada() {
-        return maderaComprada;
-    }
-
-    public void setMaderaComprada(List<MaderaCompra> maderaComprada) {
-        this.maderaComprada = maderaComprada;
-    }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
-    }
-
-    public Date getFechaCompra() {
+    public Calendar getFechaCompra() {
         return fechaCompra;
     }
 
-    public void setFechaCompra(Date fechaCompra) {
+    public void setFechaCompra(Calendar fechaCompra) {
         this.fechaCompra = fechaCompra;
     }
 
-    public String getEstado() {
-        return estado;
+    public double getPrecioTotal() {
+        return precioTotal;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setPrecioTotal(double precioTotal) {
+        this.precioTotal = precioTotal;
     }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public Madera getMadera() {
+        return madera;
+    }
+
+    public void setMadera(Madera madera) {
+        this.madera = madera;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+   
+   
+   
+   
+       
+       
 }

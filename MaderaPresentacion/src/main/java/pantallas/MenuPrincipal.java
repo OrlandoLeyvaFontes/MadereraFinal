@@ -4,6 +4,7 @@
  */
 package pantallas;
 
+import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
 import interfazSS.IAgregarTarjetasSS;
 import interfazSS.IBuscarMaderaPorIDSS;
 import interfazSS.IInicioSesionSS;
@@ -20,19 +21,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private IAgregarTarjetasSS agregarTarjetasSS;
     private  IBuscarMaderaPorIDSS buscarMaderaPorIDSS;
     private String usuarioId;
+       private IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS;
 
 
     /**
      * Creates new form MenuPrincipal
      */
     public MenuPrincipal(IniciarSesion iniciarSesion, IInicioSesionSS iInicioSesionSS, IAgregarTarjetasSS agregarTarjetasSS,IObtenerMaderas iObtenerMaderas,
-     IBuscarMaderaPorIDSS buscarMaderaPorIDSS,String usuarioId) {
+     IBuscarMaderaPorIDSS buscarMaderaPorIDSS,String usuarioId,       IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS
+) {
         this.usuarioId = usuarioId;
         this.iInicioSesionSS = iInicioSesionSS;
         this.agregarTarjetasSS = agregarTarjetasSS;
         this.iniciarSesion = iniciarSesion;
         this.iObtenerMaderas=iObtenerMaderas;
         this.buscarMaderaPorIDSS=buscarMaderaPorIDSS;
+        this.iObtenerNumerosTarjetasPorUsuarioSS=iObtenerNumerosTarjetasPorUsuarioSS;
         initComponents();
     }
 //public void setUsuarioId(String usuarioId) {
@@ -189,7 +193,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);
-        ProductosVenta productosVenta = new ProductosVenta(this,iObtenerMaderas,buscarMaderaPorIDSS);
+        ProductosVenta productosVenta = new ProductosVenta(this,iObtenerMaderas,buscarMaderaPorIDSS,iObtenerNumerosTarjetasPorUsuarioSS,usuarioId);
         productosVenta.setVisible(true);
 
         // TODO add your handling code here:

@@ -4,6 +4,7 @@
  */
 package pantallas;
 
+import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
 import interfazSS.IInicioSesionSS;
 import interfazSS.IObtenerMaderas;
 import javax.swing.table.DefaultTableModel;
@@ -19,16 +20,23 @@ private ProductosVenta productosVenta;
     private Double precioProducto;
     private String descripcionProducto;
     private int cantidad;
+          private IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS;
+        private  String usuarioId;
+
     /**
      * Creates new form DetallesProducto
      */
-    public DetallesProducto( IObtenerMaderas iObtenerMaderas,ProductosVenta productosVenta,String nombre, Double precio, String descripcion,int cantidad) {
+    public DetallesProducto( IObtenerMaderas iObtenerMaderas,ProductosVenta productosVenta,String nombre, Double precio, String descripcion,int cantidad,
+                   IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS, String usuarioId
+) {
         this.iObtenerMaderas=iObtenerMaderas;
         this.productosVenta=productosVenta;
         this.nombreProducto = nombre;
         this.precioProducto = precio;
         this.descripcionProducto = descripcion;
         this.cantidad=cantidad;
+        this.iObtenerNumerosTarjetasPorUsuarioSS=iObtenerNumerosTarjetasPorUsuarioSS;
+        this.usuarioId=usuarioId;
         initComponents();
                 mostrarDetallesProducto();
 
@@ -158,6 +166,11 @@ private void mostrarDetallesProducto() {
         jButton4.setBackground(new java.awt.Color(51, 204, 0));
         jButton4.setForeground(new java.awt.Color(0, 0, 0));
         jButton4.setText("Comprar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Cantidad:");
@@ -263,6 +276,20 @@ productosVenta.setVisible(true);
           
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+
+this.setVisible(false);
+MenuDeTarjetas menuDeTarjetas=new MenuDeTarjetas(this,iObtenerNumerosTarjetasPorUsuarioSS,usuarioId);
+menuDeTarjetas.setVisible(true);
+
+
+
+
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
    
 

@@ -8,6 +8,7 @@ import dto.TarjetasDTO;
 import dto.UsuarioDTO;
 import entidades.Tarjetas;
 import entidades.Usuario;
+import java.util.List;
 import org.bson.types.ObjectId;
 
 /**
@@ -20,4 +21,8 @@ public interface IUsuarioNegocio {
      public boolean agregarTarjeta(String usuarioId, TarjetasDTO tarjetasDTO);
 
     public UsuarioDTO iniciarSesion(String correo, String contrasena);
+    public List<String> obtenerNumerosTarjetasPorUsuario(String idUsuario);
+
+
+
 }

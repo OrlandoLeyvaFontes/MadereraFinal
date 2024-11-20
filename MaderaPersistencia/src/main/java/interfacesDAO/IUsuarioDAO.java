@@ -6,6 +6,7 @@ package interfacesDAO;
 
 import entidades.Tarjetas;
 import entidades.Usuario;
+import java.util.List;
 import org.bson.types.ObjectId;
 
 /**
@@ -16,4 +17,7 @@ public interface IUsuarioDAO {
     public Usuario agregarUsuario(Usuario usuario);
      public Usuario iniciarSesion(String correo, String contrasena);
      public boolean agregarTarjeta(ObjectId usuarioId, Tarjetas tarjeta);
+public List<String> obtenerNumerosTarjetasPorUsuario(ObjectId idUsuario);
+public Usuario obtenerUsuarioPorId(ObjectId id);
+
 }

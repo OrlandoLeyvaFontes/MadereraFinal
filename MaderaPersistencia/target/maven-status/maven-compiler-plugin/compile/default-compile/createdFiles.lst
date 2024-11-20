@@ -1,9 +1,9 @@
 dao\TarjetasDAO.class
+dao\CompraDAO.class
 Prueba\Main.class
 dao\MaderaDAO.class
-entidades\MaderaCompra.class
+interfacesDAO\ICompraDAO.class
 entidades\Madera.class
-interfacesDAO\IMaderaCompraDAO.class
 entidades\Tarjetas.class
 interfacesDAO\IUsuarioDAO.class
 dao\UsuarioDAO.class
@@ -12,4 +12,3 @@ interfacesDAO\IMaderaDAO.class
 conexion\Conexion.class
 entidades\Usuario.class
 interfacesDAO\ITarjetasDAO.class
-dao\MaderaCompraDAO.class

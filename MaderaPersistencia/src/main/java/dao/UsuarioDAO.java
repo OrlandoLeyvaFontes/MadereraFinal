@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
@@ -114,9 +115,45 @@ public class UsuarioDAO implements  IUsuarioDAO{
             return null;
         }
     }
+
+    @Override
+    public List<String> obtenerNumerosTarjetasPorUsuario(ObjectId idUsuario) {
+    
+     try {
+        Document usuario = collection.find(Filters.eq("_id", idUsuario)).first();
+        if (usuario == null) {
+            System.out.println("Usuario no encontrado");
+            return new ArrayList<>();
+        }
+
+        List<Document> tarjetas = (List<Document>) usuario.get("tarjetas");
+        if (tarjetas == null || tarjetas.isEmpty()) {
+            System.out.println("El usuario no tiene tarjetas asociadas");
+            return new ArrayList<>();
+        }
+
+        System.out.println("Tarjetas encontradas: " + tarjetas);
+
+        return tarjetas.stream()
+                .map(tarjeta -> tarjeta.getString("numero"))
+                .collect(Collectors.toList());
+    } catch (Exception e) {
+        e.printStackTrace();
+        return new ArrayList<>();
+    
 }
+    }
 
-
+    @Override
+    public Usuario obtenerUsuarioPorId(ObjectId id) {
+  MongoCollection<Document> coleccionUsuarios = Conexion.getDatabase().getCollection("usuarios"); // Asegúrate de obtener la base de datos correctamente
+    Document doc = coleccionUsuarios.find(Filters.eq("_id", id)).first();
+    if (doc != null) {
+        return new Usuario(doc.getObjectId("_id"), doc.getString("nombre"));
+    }
+    return null;
+        }
+}
     
 
 
