@@ -10,6 +10,7 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 import dao.CompraDAO;
 import dao.MaderaDAO;
+import dao.TarjetasDAO;
 import dao.UsuarioDAO;
 import entidades.Compra;
 import entidades.Madera;
@@ -31,58 +32,20 @@ public class Main {
     Clase que sirve para probar metodos
     */
         
-         // Conexión a MongoDB
         String uri = "mongodb://localhost:27017"; 
         var mongoClient = MongoClients.create(uri);
         MongoDatabase database = mongoClient.getDatabase("maderera");
   
-         CompraDAO compraDAO = new CompraDAO();
-        MaderaDAO maderaDAO = new MaderaDAO(); // Asegúrate de tener un DAO para Madera
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
+       UsuarioDAO usuarioDAO = new UsuarioDAO();
 
-        // Crear datos de ejemplo (IDs válidos de Madera y Usuario)
-        ObjectId maderaId = new ObjectId("673854a7673d5472ce4f0e80"); // ID de Madera en tu colección
-        ObjectId usuarioId = new ObjectId("673854b1673d5472ce4f0e84"); // ID de Usuario en tu colección
+    String cvv = "e";
 
-        // Obtener la Madera y Usuario de la base de datos usando sus IDs
-        Madera madera = maderaDAO.obtenerMaderaPorId(maderaId);
-        Usuario usuario = usuarioDAO.obtenerUsuarioPorId(usuarioId);
+    if (!usuarioDAO.iniciarSesionPorCVV(cvv)) {
+        System.out.println("Inicio de sesión fallido. CVV incorrecto.");
+        return; 
+    }
 
-        // Verificar que los objetos fueron encontrados
-        if (madera == null) {
-            System.out.println("Madera no encontrada.");
-            return;
-        }
-        if (usuario == null) {
-            System.out.println("Usuario no encontrado.");
-            return;
-        }
-
-        // Obtener precio unitario de la madera
-        Double precioUnitario = madera.getPrecioUnitario();
-        if (precioUnitario == null) {
-            System.out.println("Error: El precio unitario de la madera no está definido.");
-            return;  // Termina el flujo si el precio unitario es nulo
-        }
-
-        // Crear la Compra
-        Compra compra = new Compra();
-        compra.setId(new ObjectId());  // El ID lo genera MongoDB al insertarlo
-        compra.setFechaCompra(Calendar.getInstance());
-        compra.setCantidad(2);  // Puedes ajustar la cantidad
-        compra.setMadera(madera);  // Asignar el objeto Madera correctamente
-        compra.setUsuario(usuario);
-
-        // Calcular el precio total (sin descuentos)
-        double precioTotal = precioUnitario * compra.getCantidad();
-        compra.setPrecioTotal(precioTotal);  // Asignar el precio total a la compra
-
-        // Guardar la compra en la base de datos
-        compraDAO.guardarCompra(compra);
-
-        
-        
-        
+    System.out.println("Inicio de sesión exitoso.");
     }
     
     

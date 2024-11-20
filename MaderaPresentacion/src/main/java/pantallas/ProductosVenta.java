@@ -5,6 +5,7 @@
 package pantallas;
 
 import dto.MaderaDTO;
+import interfaz.IInicioSesionCVVSS;
 import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
 import interfazSS.IBuscarMaderaPorIDSS;
 import interfazSS.IObtenerMaderas;
@@ -23,18 +24,19 @@ public class ProductosVenta extends javax.swing.JFrame {
     private IBuscarMaderaPorIDSS buscarMaderaPorIDSS;
     private IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS;
      private String usuarioId;
-
+private IInicioSesionCVVSS  iInicioSesionCVVSS;
     /**
      * Creates new form ProductosVenta
      */
     public ProductosVenta(MenuPrincipal menuPrincipal, IObtenerMaderas iObtenerMaderas, IBuscarMaderaPorIDSS buscarMaderaPorIDSS,   IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS,
-            String usuarioId
+            String usuarioId,IInicioSesionCVVSS  iInicioSesionCVVSS
 ) {
         this.menuPrincipal = menuPrincipal;
         this.iObtenerMaderas = iObtenerMaderas;
         this.buscarMaderaPorIDSS = buscarMaderaPorIDSS;
         this.iObtenerNumerosTarjetasPorUsuarioSS=iObtenerNumerosTarjetasPorUsuarioSS;
         this.usuarioId=usuarioId;
+        this.iInicioSesionCVVSS=iInicioSesionCVVSS;
         initComponents();
         CargarMetodosIniciales();
     }
@@ -341,7 +343,7 @@ public class ProductosVenta extends javax.swing.JFrame {
             this.setVisible(false);
 
             // Crear y mostrar el frame de detalles con los datos seleccionados
-            DetallesProducto detallesProducto = new DetallesProducto(iObtenerMaderas, this, nombre, precio, descripcion, cantidad,iObtenerNumerosTarjetasPorUsuarioSS,usuarioId);
+            DetallesProducto detallesProducto = new DetallesProducto(iObtenerMaderas, this, nombre, precio, descripcion, cantidad,iObtenerNumerosTarjetasPorUsuarioSS,usuarioId,iInicioSesionCVVSS);
             detallesProducto.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this,

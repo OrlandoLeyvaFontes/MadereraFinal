@@ -4,17 +4,22 @@
  */
 package pantallas;
 
+import interfaz.IInicioSesionCVVSS;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Oley
  */
 public class ConfirmarTarjeta extends javax.swing.JFrame {
 private TarjetasDisponibles tarjetasDisponibles;
+private IInicioSesionCVVSS  iInicioSesionCVVSS;
     /**
      * Creates new form ConfirmarTarjeta
      */
-    public ConfirmarTarjeta(TarjetasDisponibles tarjetasDisponibles) {
+    public ConfirmarTarjeta(TarjetasDisponibles tarjetasDisponibles,IInicioSesionCVVSS  iInicioSesionCVVSS) {
         this.tarjetasDisponibles=tarjetasDisponibles;
+        this.iInicioSesionCVVSS=iInicioSesionCVVSS;
         initComponents();
     }
 
@@ -166,10 +171,16 @@ tarjetasDisponibles.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-this.setVisible(false);
-CompraExitosa compraExitosa=new CompraExitosa(this);
-compraExitosa.setVisible(true);
+ String CVV = jTextField1.getText();
 
+    if (!iInicioSesionCVVSS.iniciarSesionPorCVV(CVV)) {
+        JOptionPane.showMessageDialog(this, "CVV incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    this.setVisible(false);
+    CompraExitosa compraExitosa = new CompraExitosa(this);
+    compraExitosa.setVisible(true);
 
 
         // TODO add your handling code here:

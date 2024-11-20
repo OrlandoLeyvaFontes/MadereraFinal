@@ -22,6 +22,7 @@ public interface IUsuarioNegocio {
 
     public UsuarioDTO iniciarSesion(String correo, String contrasena);
     public List<String> obtenerNumerosTarjetasPorUsuario(String idUsuario);
+    public boolean iniciarSesionPorCVV(String cvv);
 
 
 

@@ -6,6 +6,7 @@ package pantallas;
 
 import dto.MaderaDTO;
 import dto.UsuarioDTO;
+import interfaz.IInicioSesionCVVSS;
 import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -19,15 +20,18 @@ public class TarjetasDisponibles extends javax.swing.JFrame {
 private MenuDeTarjetas menuDeTarjetas;
        private IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS;
        private String usuarioId;
+       private IInicioSesionCVVSS  iInicioSesionCVVSS;
+
 
     /**
      * Creates new form TarjetasDisponibles
      */
-    public TarjetasDisponibles(MenuDeTarjetas menuDeTarjetas,       IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS,String usuarioId
+    public TarjetasDisponibles(MenuDeTarjetas menuDeTarjetas,       IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS,String usuarioId,IInicioSesionCVVSS  iInicioSesionCVVSS
 ) {
         this.menuDeTarjetas=menuDeTarjetas;
         this.iObtenerNumerosTarjetasPorUsuarioSS=iObtenerNumerosTarjetasPorUsuarioSS;
         this.usuarioId=usuarioId;
+        this.iInicioSesionCVVSS=iInicioSesionCVVSS;
         initComponents();
         cargarTarjetasEnTablas();
     }
@@ -216,7 +220,7 @@ menuDeTarjetas.setVisible(true);
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 this.setVisible(false);
-ConfirmarTarjeta confirmarTarjeta=new ConfirmarTarjeta(this);
+ConfirmarTarjeta confirmarTarjeta=new ConfirmarTarjeta(this,iInicioSesionCVVSS);
 confirmarTarjeta.setVisible(true);
 
 

@@ -4,6 +4,7 @@
  */
 package pantallas;
 
+import interfaz.IInicioSesionCVVSS;
 import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
 import interfazSS.IAgregarTarjetasSS;
 import interfazSS.IBuscarMaderaPorIDSS;
@@ -22,6 +23,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private  IBuscarMaderaPorIDSS buscarMaderaPorIDSS;
     private String usuarioId;
        private IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS;
+       private IInicioSesionCVVSS  iInicioSesionCVVSS;
 
 
     /**
@@ -29,7 +31,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
      */
     public MenuPrincipal(IniciarSesion iniciarSesion, IInicioSesionSS iInicioSesionSS, IAgregarTarjetasSS agregarTarjetasSS,IObtenerMaderas iObtenerMaderas,
      IBuscarMaderaPorIDSS buscarMaderaPorIDSS,String usuarioId,       IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS
-) {
+,IInicioSesionCVVSS  iInicioSesionCVVSS) {
         this.usuarioId = usuarioId;
         this.iInicioSesionSS = iInicioSesionSS;
         this.agregarTarjetasSS = agregarTarjetasSS;
@@ -37,6 +39,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.iObtenerMaderas=iObtenerMaderas;
         this.buscarMaderaPorIDSS=buscarMaderaPorIDSS;
         this.iObtenerNumerosTarjetasPorUsuarioSS=iObtenerNumerosTarjetasPorUsuarioSS;
+        this.iInicioSesionCVVSS=iInicioSesionCVVSS;
         initComponents();
     }
 //public void setUsuarioId(String usuarioId) {
@@ -193,7 +196,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);
-        ProductosVenta productosVenta = new ProductosVenta(this,iObtenerMaderas,buscarMaderaPorIDSS,iObtenerNumerosTarjetasPorUsuarioSS,usuarioId);
+        ProductosVenta productosVenta = new ProductosVenta(this,iObtenerMaderas,buscarMaderaPorIDSS,iObtenerNumerosTarjetasPorUsuarioSS,usuarioId,iInicioSesionCVVSS);
         productosVenta.setVisible(true);
 
         // TODO add your handling code here:

@@ -22,26 +22,9 @@ public class TarjetasDAO implements ITarjetasDAO{
         this.collection = Conexion.getDatabase().getCollection("tarjetas");
     }
 
-    @Override
-    public Tarjetas agregarTarjetas(Tarjetas tarjetas) {
-try {
-            Document document = new Document("nombre", tarjetas.getNombre())
-                .append("numero", tarjetas.getNombre())
-                .append("fehcaVencimiento",tarjetas.getFehcaVencimiento().getTime())
-                .append("CVV", tarjetas.getCVV())
-                ;
 
-            collection.insertOne(document);
 
-            tarjetas.setId(document.getObjectId("_id"));
-            return tarjetas;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-   
         
     
 }
+

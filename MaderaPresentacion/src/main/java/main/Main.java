@@ -10,9 +10,11 @@ import funcionalidad.AgregarMaderaSS;
 import funcionalidad.AgregarUsuarioSS;
 import funcionalidad.BuscarMaderaPorIDSS;
 import funcionalidad.InicioDeSesionSS;
+import funcionalidad.InicioSesionCVVSS;
 import funcionalidad.ObtenerMaderasSS;
 import funcionalidad.ObtenerNumerosTarjetasPorUsuarioSS;
 import interfacesDTO.IUsuarioNegocio;
+import interfaz.IInicioSesionCVVSS;
 import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
 import interfazSS.IAgregarMaderaSS;
 import interfazSS.IAgregarTarjetasSS;
@@ -37,7 +39,7 @@ public class Main {
         IAgregarTarjetasSS agregarTarjetasSS=new AgregarTarjetasSS();
         IObtenerMaderas iObtenerMaderas=new ObtenerMaderasSS();
         IBuscarMaderaPorIDSS buscarMaderaPorIDSS=new BuscarMaderaPorIDSS();
-        
+        IInicioSesionCVVSS  iInicioSesionCVVSS=new InicioSesionCVVSS();
         MaderaDTO maderaDTO1 = new MaderaDTO("Pino", "Madera de pino para construcción", 50, 120.5);
         agregarMaderaSS.agregarMadera(maderaDTO1);
 
@@ -51,7 +53,8 @@ public class Main {
         agregarMaderaSS.agregarMadera(maderaDTO5);
         MaderaDTO maderaDTO6 = new MaderaDTO("Cerezo", "Madera de cerezo para acabados finos", 40, 420.0);
         agregarMaderaSS.agregarMadera(maderaDTO6);
-        IniciarSesion inicio = new IniciarSesion(agregarUsuarioSS, iInicioSesionSS,agregarTarjetasSS,iObtenerMaderas,buscarMaderaPorIDSS,iObtenerNumerosTarjetasPorUsuarioSS);
+        IniciarSesion inicio = new IniciarSesion(agregarUsuarioSS, iInicioSesionSS,agregarTarjetasSS,iObtenerMaderas,buscarMaderaPorIDSS,iObtenerNumerosTarjetasPorUsuarioSS
+        ,iInicioSesionCVVSS);
         inicio.setVisible(true);
 
     }

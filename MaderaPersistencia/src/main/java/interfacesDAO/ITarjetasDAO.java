@@ -12,6 +12,6 @@ import entidades.Usuario;
  * @author Oley
  */
 public interface ITarjetasDAO {
-        public Tarjetas agregarTarjetas(Tarjetas tarjetas);
+//        public Tarjetas agregarTarjetas(Tarjetas tarjetas);
 
 }

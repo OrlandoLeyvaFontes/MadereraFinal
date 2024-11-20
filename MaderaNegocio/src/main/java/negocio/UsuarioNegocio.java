@@ -114,4 +114,9 @@ public class UsuarioNegocio implements IUsuarioNegocio {
         return new ArrayList<>();
     }    }
 
+    @Override
+    public boolean iniciarSesionPorCVV(String cvv) {
+        return iusuarioDAO.iniciarSesionPorCVV(cvv);
+    }
+
 }

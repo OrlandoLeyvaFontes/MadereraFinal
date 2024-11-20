@@ -4,6 +4,7 @@
  */
 package pantallas;
 
+import interfaz.IInicioSesionCVVSS;
 import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
 
 /**
@@ -14,15 +15,18 @@ public class MenuDeTarjetas extends javax.swing.JFrame {
 private DetallesProducto detallesProducto;
        private IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS;
        private String usuarioId;
+       private IInicioSesionCVVSS  iInicioSesionCVVSS;
 
     /**
      * Creates new form MenuDeTarjetas
      */
-    public MenuDeTarjetas(DetallesProducto detallesProducto,       IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS,String usuarioId
+    public MenuDeTarjetas(DetallesProducto detallesProducto,       IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS,String usuarioId,
+            IInicioSesionCVVSS  iInicioSesionCVVSS
 ) {
         this.iObtenerNumerosTarjetasPorUsuarioSS=iObtenerNumerosTarjetasPorUsuarioSS;
         this.detallesProducto=detallesProducto;
         this.usuarioId=usuarioId;
+        this.iInicioSesionCVVSS=iInicioSesionCVVSS;
         initComponents();
     }
 
@@ -184,7 +188,7 @@ detallesProducto.setVisible(true);
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
 this.setVisible(false);
-        TarjetasDisponibles tarjetasDisponibles=new TarjetasDisponibles(this,iObtenerNumerosTarjetasPorUsuarioSS,usuarioId);
+        TarjetasDisponibles tarjetasDisponibles=new TarjetasDisponibles(this,iObtenerNumerosTarjetasPorUsuarioSS,usuarioId,iInicioSesionCVVSS);
         tarjetasDisponibles.setVisible(true);
 
 

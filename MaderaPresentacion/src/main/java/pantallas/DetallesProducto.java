@@ -4,6 +4,7 @@
  */
 package pantallas;
 
+import interfaz.IInicioSesionCVVSS;
 import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
 import interfazSS.IInicioSesionSS;
 import interfazSS.IObtenerMaderas;
@@ -22,12 +23,13 @@ private ProductosVenta productosVenta;
     private int cantidad;
           private IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS;
         private  String usuarioId;
+        private IInicioSesionCVVSS  iInicioSesionCVVSS;
 
     /**
      * Creates new form DetallesProducto
      */
     public DetallesProducto( IObtenerMaderas iObtenerMaderas,ProductosVenta productosVenta,String nombre, Double precio, String descripcion,int cantidad,
-                   IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS, String usuarioId
+                   IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS, String usuarioId,IInicioSesionCVVSS  iInicioSesionCVVSS
 ) {
         this.iObtenerMaderas=iObtenerMaderas;
         this.productosVenta=productosVenta;
@@ -37,6 +39,7 @@ private ProductosVenta productosVenta;
         this.cantidad=cantidad;
         this.iObtenerNumerosTarjetasPorUsuarioSS=iObtenerNumerosTarjetasPorUsuarioSS;
         this.usuarioId=usuarioId;
+        this.iInicioSesionCVVSS=iInicioSesionCVVSS;
         initComponents();
                 mostrarDetallesProducto();
 
@@ -280,7 +283,7 @@ productosVenta.setVisible(true);
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
 this.setVisible(false);
-MenuDeTarjetas menuDeTarjetas=new MenuDeTarjetas(this,iObtenerNumerosTarjetasPorUsuarioSS,usuarioId);
+MenuDeTarjetas menuDeTarjetas=new MenuDeTarjetas(this,iObtenerNumerosTarjetasPorUsuarioSS,usuarioId,iInicioSesionCVVSS);
 menuDeTarjetas.setVisible(true);
 
 
