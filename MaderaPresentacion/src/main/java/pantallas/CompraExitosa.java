@@ -10,11 +10,13 @@ package pantallas;
  */
 public class CompraExitosa extends javax.swing.JFrame {
 private ConfirmarTarjeta confirmarTarjeta;
+private MenuPrincipal menuPrincipal1;
     /**
      * Creates new form CompraExitosa
      */
-    public CompraExitosa(ConfirmarTarjeta confirmarTarjeta) {
+    public CompraExitosa(ConfirmarTarjeta confirmarTarjeta,MenuPrincipal menuPrincipal1) {
         this.confirmarTarjeta=confirmarTarjeta;
+        this.menuPrincipal1=menuPrincipal1;
         initComponents();
     }
 
@@ -106,6 +108,11 @@ private ConfirmarTarjeta confirmarTarjeta;
 
         jButton3.setBackground(new java.awt.Color(51, 153, 0));
         jButton3.setText("Continuar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -163,6 +170,13 @@ confirmarTarjeta.setVisible(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+this.setVisible(false);
+menuPrincipal1.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
   
 

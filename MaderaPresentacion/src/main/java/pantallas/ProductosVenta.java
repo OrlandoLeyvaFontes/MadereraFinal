@@ -343,7 +343,8 @@ private IInicioSesionCVVSS  iInicioSesionCVVSS;
             this.setVisible(false);
 
             // Crear y mostrar el frame de detalles con los datos seleccionados
-            DetallesProducto detallesProducto = new DetallesProducto(iObtenerMaderas, this, nombre, precio, descripcion, cantidad,iObtenerNumerosTarjetasPorUsuarioSS,usuarioId,iInicioSesionCVVSS);
+            DetallesProducto detallesProducto = new DetallesProducto(iObtenerMaderas, this, nombre, precio, descripcion, cantidad,iObtenerNumerosTarjetasPorUsuarioSS,usuarioId,iInicioSesionCVVSS
+            , menuPrincipal);
             detallesProducto.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this,

@@ -14,12 +14,14 @@ import javax.swing.JOptionPane;
 public class ConfirmarTarjeta extends javax.swing.JFrame {
 private TarjetasDisponibles tarjetasDisponibles;
 private IInicioSesionCVVSS  iInicioSesionCVVSS;
+private MenuPrincipal menuPrincipal1;
     /**
      * Creates new form ConfirmarTarjeta
      */
-    public ConfirmarTarjeta(TarjetasDisponibles tarjetasDisponibles,IInicioSesionCVVSS  iInicioSesionCVVSS) {
+    public ConfirmarTarjeta(TarjetasDisponibles tarjetasDisponibles,IInicioSesionCVVSS  iInicioSesionCVVSS,MenuPrincipal menuPrincipal1) {
         this.tarjetasDisponibles=tarjetasDisponibles;
         this.iInicioSesionCVVSS=iInicioSesionCVVSS;
+        this.menuPrincipal1=menuPrincipal1;
         initComponents();
     }
 
@@ -179,7 +181,7 @@ tarjetasDisponibles.setVisible(true);
     }
 
     this.setVisible(false);
-    CompraExitosa compraExitosa = new CompraExitosa(this);
+    CompraExitosa compraExitosa = new CompraExitosa(this, menuPrincipal1);
     compraExitosa.setVisible(true);
 
 

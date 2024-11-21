@@ -21,17 +21,20 @@ private MenuDeTarjetas menuDeTarjetas;
        private IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS;
        private String usuarioId;
        private IInicioSesionCVVSS  iInicioSesionCVVSS;
+       private MenuPrincipal menuPrincipal1;
 
 
     /**
      * Creates new form TarjetasDisponibles
      */
-    public TarjetasDisponibles(MenuDeTarjetas menuDeTarjetas,       IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS,String usuarioId,IInicioSesionCVVSS  iInicioSesionCVVSS
+    public TarjetasDisponibles(MenuDeTarjetas menuDeTarjetas,       IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS,String usuarioId,IInicioSesionCVVSS  iInicioSesionCVVSS,
+            MenuPrincipal menuPrincipal1
 ) {
         this.menuDeTarjetas=menuDeTarjetas;
         this.iObtenerNumerosTarjetasPorUsuarioSS=iObtenerNumerosTarjetasPorUsuarioSS;
         this.usuarioId=usuarioId;
         this.iInicioSesionCVVSS=iInicioSesionCVVSS;
+        this.menuPrincipal1=menuPrincipal1;
         initComponents();
         cargarTarjetasEnTablas();
     }
@@ -220,7 +223,7 @@ menuDeTarjetas.setVisible(true);
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 this.setVisible(false);
-ConfirmarTarjeta confirmarTarjeta=new ConfirmarTarjeta(this,iInicioSesionCVVSS);
+ConfirmarTarjeta confirmarTarjeta=new ConfirmarTarjeta(this,iInicioSesionCVVSS,menuPrincipal1);
 confirmarTarjeta.setVisible(true);
 
 
