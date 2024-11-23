@@ -4,6 +4,7 @@
  */
 package pantallas;
 
+import interfaz.IGuardarCompraSS;
 import interfaz.IInicioSesionCVVSS;
 import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
 import interfazSS.IInicioSesionSS;
@@ -25,12 +26,14 @@ private ProductosVenta productosVenta;
         private  String usuarioId;
         private IInicioSesionCVVSS  iInicioSesionCVVSS;
         private MenuPrincipal menuPrincipal1;
-
+        private String idMadera;
+        private IGuardarCompraSS iGuardarCompraSS;
     /**
      * Creates new form DetallesProducto
      */
     public DetallesProducto( IObtenerMaderas iObtenerMaderas,ProductosVenta productosVenta,String nombre, Double precio, String descripcion,int cantidad,
                    IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS, String usuarioId,IInicioSesionCVVSS  iInicioSesionCVVSS,MenuPrincipal menuPrincipal1
+,String idMadera,IGuardarCompraSS iGuardarCompraSS
 ) {
         this.iObtenerMaderas=iObtenerMaderas;
         this.productosVenta=productosVenta;
@@ -38,10 +41,13 @@ private ProductosVenta productosVenta;
         this.precioProducto = precio;
         this.descripcionProducto = descripcion;
         this.cantidad=cantidad;
+
         this.iObtenerNumerosTarjetasPorUsuarioSS=iObtenerNumerosTarjetasPorUsuarioSS;
         this.usuarioId=usuarioId;
         this.iInicioSesionCVVSS=iInicioSesionCVVSS;
         this.menuPrincipal1=menuPrincipal1;
+                        this.idMadera=idMadera;
+this.iGuardarCompraSS=iGuardarCompraSS;
         initComponents();
                 mostrarDetallesProducto();
 
@@ -268,16 +274,17 @@ productosVenta.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-  if (jComboBox1.getSelectedIndex() != -1) {
+   if (jComboBox1.getSelectedIndex() != -1) {
+        // Obtener la cantidad seleccionada desde el ComboBox
         String cantidadStr = (String) jComboBox1.getSelectedItem();
-        Integer cantidad = Integer.parseInt(cantidadStr); 
+        this.cantidad = Integer.parseInt(cantidadStr);  // Guardar la cantidad seleccionada
 
         double precioProducto = this.precioProducto;
-
         double total = cantidad * precioProducto;
 
+        // Actualizar el total en la interfaz
         jLabel4.setText("Total: $" + String.format("%.2f", total));
-  } 
+    }
           
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
@@ -285,7 +292,7 @@ productosVenta.setVisible(true);
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
 this.setVisible(false);
-MenuDeTarjetas menuDeTarjetas=new MenuDeTarjetas(this,iObtenerNumerosTarjetasPorUsuarioSS,usuarioId,iInicioSesionCVVSS, menuPrincipal1);
+MenuDeTarjetas menuDeTarjetas=new MenuDeTarjetas(this,iObtenerNumerosTarjetasPorUsuarioSS,usuarioId,iInicioSesionCVVSS, menuPrincipal1,cantidad,idMadera,iGuardarCompraSS);
 menuDeTarjetas.setVisible(true);
 
 

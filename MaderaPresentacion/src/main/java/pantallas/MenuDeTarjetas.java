@@ -4,6 +4,7 @@
  */
 package pantallas;
 
+import interfaz.IGuardarCompraSS;
 import interfaz.IInicioSesionCVVSS;
 import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
 
@@ -17,17 +18,23 @@ private DetallesProducto detallesProducto;
        private String usuarioId;
        private IInicioSesionCVVSS  iInicioSesionCVVSS;
 private MenuPrincipal menuPrincipal1;
+private int cantidad;
+private String idMadera;
+private IGuardarCompraSS iGuardarCompraSS;
     /**
      * Creates new form MenuDeTarjetas
      */
     public MenuDeTarjetas(DetallesProducto detallesProducto,       IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS,String usuarioId,
-            IInicioSesionCVVSS  iInicioSesionCVVSS,MenuPrincipal menuPrincipal1
+            IInicioSesionCVVSS  iInicioSesionCVVSS,MenuPrincipal menuPrincipal1,int cantidad,String idMadera,IGuardarCompraSS iGuardarCompraSS
 ) {
         this.iObtenerNumerosTarjetasPorUsuarioSS=iObtenerNumerosTarjetasPorUsuarioSS;
         this.detallesProducto=detallesProducto;
         this.usuarioId=usuarioId;
         this.iInicioSesionCVVSS=iInicioSesionCVVSS;
         this.menuPrincipal1=menuPrincipal1;
+        this.cantidad=cantidad;
+        this.idMadera=idMadera;
+        this.iGuardarCompraSS=iGuardarCompraSS;
         initComponents();
     }
 
@@ -182,7 +189,7 @@ detallesProducto.setVisible(true);
 
 this.setVisible(false);
         TarjetasDisponibles tarjetasDisponibles=new TarjetasDisponibles(this,iObtenerNumerosTarjetasPorUsuarioSS,usuarioId,iInicioSesionCVVSS,
-         menuPrincipal1);
+         menuPrincipal1,cantidad,idMadera,iGuardarCompraSS);
         tarjetasDisponibles.setVisible(true);
 
 

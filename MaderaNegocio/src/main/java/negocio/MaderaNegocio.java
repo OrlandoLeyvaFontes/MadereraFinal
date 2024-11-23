@@ -55,6 +55,7 @@ public List<MaderaDTO> obtenerMaderas() {
         List<Madera> listaMaderas = iMaderaDAO.obtenerMaderas(); 
         for (Madera madera : listaMaderas) {
             MaderaDTO maderaDTO = new MaderaDTO();
+            maderaDTO.setId(madera.getId().toString());
             maderaDTO.setNombre(madera.getNombre());
             maderaDTO.setDescripcion(madera.getDescripcion());
             maderaDTO.setPrecioUnitario(madera.getPrecioUnitario());

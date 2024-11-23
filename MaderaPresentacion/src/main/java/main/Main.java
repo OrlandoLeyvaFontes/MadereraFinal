@@ -9,11 +9,13 @@ import dto.MaderaDTO;
 import funcionalidad.AgregarMaderaSS;
 import funcionalidad.AgregarUsuarioSS;
 import funcionalidad.BuscarMaderaPorIDSS;
+import funcionalidad.GuardarCompraSS;
 import funcionalidad.InicioDeSesionSS;
 import funcionalidad.InicioSesionCVVSS;
 import funcionalidad.ObtenerMaderasSS;
 import funcionalidad.ObtenerNumerosTarjetasPorUsuarioSS;
 import interfacesDTO.IUsuarioNegocio;
+import interfaz.IGuardarCompraSS;
 import interfaz.IInicioSesionCVVSS;
 import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
 import interfazSS.IAgregarMaderaSS;
@@ -42,7 +44,7 @@ public class Main {
         IInicioSesionCVVSS  iInicioSesionCVVSS=new InicioSesionCVVSS();
         MaderaDTO maderaDTO1 = new MaderaDTO("Pino", "Madera de pino para construcción", 50, 120.5);
         agregarMaderaSS.agregarMadera(maderaDTO1);
-
+IGuardarCompraSS iGuardarCompraSS=new GuardarCompraSS();
         MaderaDTO maderaDTO2 = new MaderaDTO("Roble", "Madera de roble para muebles", 30, 250.75);
         agregarMaderaSS.agregarMadera(maderaDTO2);
         MaderaDTO maderaDTO3 = new MaderaDTO("Cedro", "Madera de cedro para decoración", 100, 350.0);
@@ -54,7 +56,7 @@ public class Main {
         MaderaDTO maderaDTO6 = new MaderaDTO("Cerezo", "Madera de cerezo para acabados finos", 40, 420.0);
         agregarMaderaSS.agregarMadera(maderaDTO6);
         IniciarSesion inicio = new IniciarSesion(agregarUsuarioSS, iInicioSesionSS,agregarTarjetasSS,iObtenerMaderas,buscarMaderaPorIDSS,iObtenerNumerosTarjetasPorUsuarioSS
-        ,iInicioSesionCVVSS);
+        ,iInicioSesionCVVSS,iGuardarCompraSS);
         inicio.setVisible(true);
 
     }

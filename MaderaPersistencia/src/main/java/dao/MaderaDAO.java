@@ -50,6 +50,7 @@ List<Madera> listaMaderas = new ArrayList<>();
         FindIterable<Document> documentos = collection.find();
         for (Document documento : documentos) {
             Madera madera = new Madera();
+            madera.setId(documento.getObjectId("_id"));
             madera.setNombre(documento.getString("nombre"));
             madera.setDescripcion(documento.getString("descripcion"));
             madera.setPrecioUnitario(documento.getDouble("precioUnitario"));

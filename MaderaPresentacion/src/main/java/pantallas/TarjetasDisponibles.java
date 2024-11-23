@@ -6,6 +6,7 @@ package pantallas;
 
 import dto.MaderaDTO;
 import dto.UsuarioDTO;
+import interfaz.IGuardarCompraSS;
 import interfaz.IInicioSesionCVVSS;
 import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
 import java.util.List;
@@ -22,19 +23,23 @@ private MenuDeTarjetas menuDeTarjetas;
        private String usuarioId;
        private IInicioSesionCVVSS  iInicioSesionCVVSS;
        private MenuPrincipal menuPrincipal1;
-
-
+private int cantidad;
+private String idMadera;
+private IGuardarCompraSS iGuardarCompraSS;
     /**
      * Creates new form TarjetasDisponibles
      */
     public TarjetasDisponibles(MenuDeTarjetas menuDeTarjetas,       IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS,String usuarioId,IInicioSesionCVVSS  iInicioSesionCVVSS,
-            MenuPrincipal menuPrincipal1
+            MenuPrincipal menuPrincipal1,int cantidad,String idMadera,IGuardarCompraSS iGuardarCompraSS
 ) {
         this.menuDeTarjetas=menuDeTarjetas;
         this.iObtenerNumerosTarjetasPorUsuarioSS=iObtenerNumerosTarjetasPorUsuarioSS;
         this.usuarioId=usuarioId;
         this.iInicioSesionCVVSS=iInicioSesionCVVSS;
         this.menuPrincipal1=menuPrincipal1;
+        this.cantidad=cantidad;
+        this.idMadera=idMadera;
+        this.iGuardarCompraSS=iGuardarCompraSS;
         initComponents();
         cargarTarjetasEnTablas();
     }
@@ -223,7 +228,7 @@ menuDeTarjetas.setVisible(true);
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 this.setVisible(false);
-ConfirmarTarjeta confirmarTarjeta=new ConfirmarTarjeta(this,iInicioSesionCVVSS,menuPrincipal1);
+ConfirmarTarjeta confirmarTarjeta=new ConfirmarTarjeta(this,iInicioSesionCVVSS,menuPrincipal1,cantidad,idMadera,usuarioId,iGuardarCompraSS);
 confirmarTarjeta.setVisible(true);
 
 

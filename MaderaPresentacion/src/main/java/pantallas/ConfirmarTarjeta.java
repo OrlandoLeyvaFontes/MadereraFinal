@@ -4,7 +4,12 @@
  */
 package pantallas;
 
+import dto.CompraDTO;
+import dto.MaderaDTO;
+import dto.UsuarioDTO;
+import interfaz.IGuardarCompraSS;
 import interfaz.IInicioSesionCVVSS;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,13 +20,23 @@ public class ConfirmarTarjeta extends javax.swing.JFrame {
 private TarjetasDisponibles tarjetasDisponibles;
 private IInicioSesionCVVSS  iInicioSesionCVVSS;
 private MenuPrincipal menuPrincipal1;
+private int cantidad;
+private String idMadera;
+       private String usuarioId;
+       private IGuardarCompraSS iGuardarCompraSS;
+
     /**
      * Creates new form ConfirmarTarjeta
      */
-    public ConfirmarTarjeta(TarjetasDisponibles tarjetasDisponibles,IInicioSesionCVVSS  iInicioSesionCVVSS,MenuPrincipal menuPrincipal1) {
+    public ConfirmarTarjeta(TarjetasDisponibles tarjetasDisponibles,IInicioSesionCVVSS  iInicioSesionCVVSS,MenuPrincipal menuPrincipal1,
+            int cantidad,String idMadera, String usuarioId,IGuardarCompraSS iGuardarCompraSS) {
         this.tarjetasDisponibles=tarjetasDisponibles;
         this.iInicioSesionCVVSS=iInicioSesionCVVSS;
         this.menuPrincipal1=menuPrincipal1;
+        this.cantidad=cantidad;
+        this.idMadera=idMadera;
+        this.usuarioId=usuarioId;
+        this.iGuardarCompraSS=iGuardarCompraSS;
         initComponents();
     }
 
@@ -183,8 +198,17 @@ tarjetasDisponibles.setVisible(true);
     this.setVisible(false);
     CompraExitosa compraExitosa = new CompraExitosa(this, menuPrincipal1);
     compraExitosa.setVisible(true);
-
-
+    CompraDTO compraDTO=new CompraDTO();
+            compraDTO.setFechaCompra(Calendar.getInstance());  
+compraDTO.setCantidad(cantidad);
+  MaderaDTO maderaDTO=new MaderaDTO();
+  maderaDTO.setId(idMadera);
+compraDTO.setMadera(maderaDTO);
+  iGuardarCompraSS.guardarCompra(compraDTO);
+UsuarioDTO usuarioDTO=new UsuarioDTO();
+usuarioDTO.setId(usuarioId);
+compraDTO.setUsuario(usuarioDTO);
+iGuardarCompraSS.guardarCompra(compraDTO);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
