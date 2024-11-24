@@ -198,16 +198,20 @@ tarjetasDisponibles.setVisible(true);
     this.setVisible(false);
     CompraExitosa compraExitosa = new CompraExitosa(this, menuPrincipal1);
     compraExitosa.setVisible(true);
-    CompraDTO compraDTO=new CompraDTO();
-            compraDTO.setFechaCompra(Calendar.getInstance());  
+    CompraDTO compraDTO = new CompraDTO();
+compraDTO.setFechaCompra(Calendar.getInstance());  
 compraDTO.setCantidad(cantidad);
-  MaderaDTO maderaDTO=new MaderaDTO();
-  maderaDTO.setId(idMadera);
+
+MaderaDTO maderaDTO = new MaderaDTO();
+maderaDTO.setId(idMadera);
 compraDTO.setMadera(maderaDTO);
-  iGuardarCompraSS.guardarCompra(compraDTO);
-UsuarioDTO usuarioDTO=new UsuarioDTO();
+
+iGuardarCompraSS.guardarCompra(compraDTO);
+
+UsuarioDTO usuarioDTO = new UsuarioDTO();
 usuarioDTO.setId(usuarioId);
 compraDTO.setUsuario(usuarioDTO);
+
 iGuardarCompraSS.guardarCompra(compraDTO);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed

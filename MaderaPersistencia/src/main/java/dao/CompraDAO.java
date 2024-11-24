@@ -12,7 +12,9 @@ import entidades.Compra;
 import entidades.Madera;
 import entidades.Usuario;
 import interfacesDAO.ICompraDAO;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
@@ -21,15 +23,18 @@ import org.bson.types.ObjectId;
  * @author Oley
  */
 public class CompraDAO implements  ICompraDAO{
+    private MongoCollection<Document> collection;
 
     private final MongoCollection<Document> coleccionCompras;
-    private final MongoCollection<Document> coleccionMaderas;
-    private final MongoCollection<Document> coleccionUsuarios;
+    private final MongoCollection<Document> maderaCollection;
+    private final MongoCollection<Document> usuarioCollection;
 
     public CompraDAO( ) {
+                this.collection = Conexion.getDatabase().getCollection("Carrito");
+
         this.coleccionCompras = Conexion.getDatabase().getCollection("compras");
-        this.coleccionMaderas = Conexion.getDatabase().getCollection("Madera");
-        this.coleccionUsuarios = Conexion.getDatabase().getCollection("usuarios");
+        this.maderaCollection = Conexion.getDatabase().getCollection("Madera");
+        this.usuarioCollection = Conexion.getDatabase().getCollection("usuarios");
     }
 
    
@@ -41,7 +46,7 @@ public class CompraDAO implements  ICompraDAO{
     double precioTotal = 0;
 
     if (maderaId != null) {
-        Document maderaDoc = coleccionMaderas.find(Filters.eq("_id", maderaId)).first();
+        Document maderaDoc = maderaCollection.find(Filters.eq("_id", maderaId)).first();
         if (maderaDoc != null) {
             maderaNombre = maderaDoc.getString("nombre");
             Integer cantidadActual = maderaDoc.getInteger("cantidad", 0);
@@ -53,7 +58,7 @@ public class CompraDAO implements  ICompraDAO{
                 return;
             }
 
-            coleccionMaderas.updateOne(Filters.eq("_id", maderaId), 
+            maderaCollection.updateOne(Filters.eq("_id", maderaId), 
                 new Document("$set", new Document("cantidad", nuevaCantidad)));
 
             Double precioUnitario = maderaDoc.getDouble("precioUnitario");
@@ -69,7 +74,7 @@ public class CompraDAO implements  ICompraDAO{
     ObjectId usuarioId = compra.getUsuario().getId();
     String usuarioNombre = null;
     if (usuarioId != null) {
-        Document usuarioDoc = coleccionUsuarios.find(Filters.eq("_id", usuarioId)).first();
+        Document usuarioDoc = usuarioCollection.find(Filters.eq("_id", usuarioId)).first();
         if (usuarioDoc != null) {
             usuarioNombre = usuarioDoc.getString("nombre");
         }
@@ -89,4 +94,110 @@ public class CompraDAO implements  ICompraDAO{
     System.out.println("Cantidad: " + compra.getCantidad());
     System.out.println("Precio total: " + precioTotal);
     System.out.println("Comprador: " + usuarioNombre); }
+    
+    
+    
+    private Document obtenerMadera(ObjectId maderaId) {
+    return maderaCollection.find(Filters.eq("_id", maderaId)).first();
+}
+private String obtenerNombreUsuario(ObjectId usuarioId) {
+    Document usuarioDoc = usuarioCollection.find(Filters.eq("_id", usuarioId)).first();
+    return usuarioDoc != null ? usuarioDoc.getString("nombre") : "Desconocido";
+}
+
+    
+   public void comprarCarrito(ObjectId usuarioId) {
+    Document carritoDoc = collection.find(Filters.eq("usuarioId", usuarioId)).first();
+    
+    if (carritoDoc == null) {
+        System.out.println("Error: No se encontró el carrito para el usuario.");
+        return;
+    }
+
+    List<Document> maderasCarrito = carritoDoc.getList("maderas", Document.class);
+
+    if (maderasCarrito == null || maderasCarrito.isEmpty()) {
+        System.out.println("Error: El carrito está vacío.");
+        return;
+    }
+
+    String usuarioNombre = obtenerNombreUsuario(usuarioId);
+    boolean compraExitosa = true;
+    List<Compra> compras = new ArrayList<>();
+
+    // Procesar cada madera individualmente
+    for (Document maderaDoc : maderasCarrito) {
+        ObjectId maderaId = maderaDoc.getObjectId("id");
+        int cantidad = maderaDoc.getInteger("cantidad", 0);
+
+        Document madera = maderaCollection.find(Filters.eq("_id", maderaId)).first();
+
+        if (madera == null) {
+            System.out.println("Error: Madera no encontrada.");
+            compraExitosa = false;
+            continue;
+        }
+
+        String maderaNombre = madera.getString("nombre");
+        Double precioUnitario = madera.getDouble("precioUnitario");
+
+        if (precioUnitario == null) {
+            System.out.println("Error: Precio de la madera no disponible para '" + maderaNombre + "'.");
+            compraExitosa = false;
+            continue;
+        }
+
+        int cantidadDisponible = madera.getInteger("cantidad", 0);
+
+        if (cantidadDisponible < cantidad) {
+            System.out.println("Error: No hay suficiente stock de la madera '" + maderaNombre + "'. Stock disponible: " + cantidadDisponible);
+            compraExitosa = false;
+            continue;
+        }
+
+        // Actualizar stock
+        int nuevaCantidad = cantidadDisponible - cantidad;
+        maderaCollection.updateOne(Filters.eq("_id", maderaId), 
+            new Document("$set", new Document("cantidad", nuevaCantidad)));
+
+        // Crear una compra individual para cada madera
+        Calendar fechaCompra = Calendar.getInstance();
+        Compra compra = new Compra(fechaCompra, precioUnitario * cantidad, cantidad);
+        compra.setUsuario(new Usuario(usuarioId, usuarioNombre));
+        
+        // Crear y establecer la madera
+        Madera maderaObj = new Madera();
+        maderaObj.setId(maderaId);
+        maderaObj.setNombre(maderaNombre);
+        maderaObj.setPrecioUnitario(precioUnitario);
+        compra.setMadera(maderaObj);
+        
+        compras.add(compra);
+    }
+
+    if (!compraExitosa) {
+        System.out.println("Error: No se pudieron procesar todas las compras. Revisa los productos.");
+        return;
+    }
+
+    // Guardar todas las compras
+    double precioTotalCarrito = 0;
+    int cantidadTotalCarrito = 0;
+    
+    for (Compra compra : compras) {
+        guardarCompra(compra);
+        precioTotalCarrito += compra.getPrecioTotal();
+        cantidadTotalCarrito += compra.getCantidad();
+    }
+
+    // Limpiar el carrito
+    collection.updateOne(Filters.eq("usuarioId", usuarioId),
+        new Document("$set", new Document("maderas", new ArrayList<>()))
+    );
+
+    System.out.println("Compra realizada con éxito para el usuario " + usuarioNombre);
+    System.out.println("Precio total del carrito: " + precioTotalCarrito);
+    System.out.println("Cantidad total de productos: " + cantidadTotalCarrito);
+}
+
 }

@@ -33,9 +33,11 @@ public class IniciarSesion extends javax.swing.JFrame {
       private IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS;
 private IInicioSesionCVVSS  iInicioSesionCVVSS;
 private IGuardarCompraSS iGuardarCompraSS;
+
     public IniciarSesion(IAgregarUsuarioSS agregarUsuarioSS, IInicioSesionSS iInicioSesionSS,IAgregarTarjetasSS agregarTarjetasSS
     ,IObtenerMaderas iObtenerMaderas, IBuscarMaderaPorIDSS buscarMaderaPorIDSS,IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS
-    ,IInicioSesionCVVSS  iInicioSesionCVVSS,IGuardarCompraSS iGuardarCompraSS) {
+    ,IInicioSesionCVVSS  iInicioSesionCVVSS,IGuardarCompraSS iGuardarCompraSS     
+) {
         this.iObtenerNumerosTarjetasPorUsuarioSS=iObtenerNumerosTarjetasPorUsuarioSS;
        this.agregarUsuarioSS=agregarUsuarioSS;
        this.iInicioSesionSS=iInicioSesionSS;

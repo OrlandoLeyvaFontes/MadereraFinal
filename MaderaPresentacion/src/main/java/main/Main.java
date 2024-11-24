@@ -55,8 +55,10 @@ IGuardarCompraSS iGuardarCompraSS=new GuardarCompraSS();
         agregarMaderaSS.agregarMadera(maderaDTO5);
         MaderaDTO maderaDTO6 = new MaderaDTO("Cerezo", "Madera de cerezo para acabados finos", 40, 420.0);
         agregarMaderaSS.agregarMadera(maderaDTO6);
+
         IniciarSesion inicio = new IniciarSesion(agregarUsuarioSS, iInicioSesionSS,agregarTarjetasSS,iObtenerMaderas,buscarMaderaPorIDSS,iObtenerNumerosTarjetasPorUsuarioSS
-        ,iInicioSesionCVVSS,iGuardarCompraSS);
+        ,iInicioSesionCVVSS,iGuardarCompraSS      
+);
         inicio.setVisible(true);
 
     }

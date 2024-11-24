@@ -1,13 +1,16 @@
+dao\CarritoDAO.class
 dao\TarjetasDAO.class
 dao\CompraDAO.class
 Prueba\Main.class
 dao\MaderaDAO.class
 interfacesDAO\ICompraDAO.class
 entidades\Madera.class
+interfacesDAO\ICarritoDAO.class
 entidades\Tarjetas.class
 interfacesDAO\IUsuarioDAO.class
 dao\UsuarioDAO.class
 entidades\Compra.class
+entidades\Carrito.class
 interfacesDAO\IMaderaDAO.class
 conexion\Conexion.class
 entidades\Usuario.class

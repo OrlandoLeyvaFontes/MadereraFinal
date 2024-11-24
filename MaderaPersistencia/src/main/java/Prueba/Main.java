@@ -8,6 +8,7 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
+import dao.CarritoDAO;
 import dao.CompraDAO;
 import dao.MaderaDAO;
 import dao.TarjetasDAO;
@@ -36,19 +37,32 @@ public class Main {
         var mongoClient = MongoClients.create(uri);
         MongoDatabase database = mongoClient.getDatabase("maderera");
   
-       UsuarioDAO usuarioDAO = new UsuarioDAO();
+       
+      CarritoDAO carritoDAO = new CarritoDAO();
+    CompraDAO compraDAO = new CompraDAO();
 
-    String cvv = "e";
+    ObjectId usuarioId = new ObjectId("6741544ce0f6e93e979548da");
+    ObjectId maderaId1 = new ObjectId("6742e93febc40c75ca70eb9e");
+    ObjectId maderaId2 = new ObjectId("6742e93febc40c75ca70eba0");
 
-    if (!usuarioDAO.iniciarSesionPorCVV(cvv)) {
-        System.out.println("Inicio de sesión fallido. CVV incorrecto.");
-        return; 
+    compraDAO.comprarCarrito(usuarioId); 
+
+
+//    System.out.println("Agregando madera1 al carrito...");
+//    carritoDAO.agregarProducto(usuarioId, maderaId1, 3);
+//
+//    System.out.println("Agregando madera2 al carrito...");
+//    carritoDAO.agregarProducto(usuarioId, maderaId2, 2);
+
+//    Document carrito = carritoDAO.obtenerCarrito(usuarioId);
+//    System.out.println("Carrito del usuario: " + carrito.toJson());
+
+//    System.out.println("Eliminando madera1 del carrito...");
+//    carritoDAO.eliminarProducto(usuarioId, maderaId1);
+
+//    carrito = carritoDAO.obtenerCarrito(usuarioId);
+//    System.out.println("Carrito después de eliminar madera1: " + carrito.toJson());
     }
-
-    System.out.println("Inicio de sesión exitoso.");
-    }
-    
-    
     
     }
     
