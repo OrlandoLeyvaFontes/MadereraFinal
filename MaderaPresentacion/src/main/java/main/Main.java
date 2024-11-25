@@ -10,15 +10,19 @@ import funcionalidad.AgregarMaderaSS;
 import funcionalidad.AgregarProductoCarritoSS;
 import funcionalidad.AgregarUsuarioSS;
 import funcionalidad.BuscarMaderaPorIDSS;
+import funcionalidad.EliminarProductoCarritoSS;
 import funcionalidad.GuardarCompraSS;
 import funcionalidad.InicioDeSesionSS;
 import funcionalidad.InicioSesionCVVSS;
+import funcionalidad.ObtenerCarritoSS;
 import funcionalidad.ObtenerMaderasSS;
 import funcionalidad.ObtenerNumerosTarjetasPorUsuarioSS;
 import interfacesDTO.IUsuarioNegocio;
 import interfaz.IAgregarProductoCarritoSS;
+import interfaz.IEliminarProductoCarritoSS;
 import interfaz.IGuardarCompraSS;
 import interfaz.IInicioSesionCVVSS;
+import interfaz.IObtenerCarritoSS;
 import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
 import interfazSS.IAgregarMaderaSS;
 import interfazSS.IAgregarTarjetasSS;
@@ -45,9 +49,8 @@ public class Main {
         IBuscarMaderaPorIDSS buscarMaderaPorIDSS=new BuscarMaderaPorIDSS();
         IInicioSesionCVVSS  iInicioSesionCVVSS=new InicioSesionCVVSS();
         IAgregarProductoCarritoSS iAgregarProductoCarritoSS=new AgregarProductoCarritoSS();
-        
-        
-        
+        IObtenerCarritoSS iObtenerCarritoSS=new ObtenerCarritoSS();
+        IEliminarProductoCarritoSS iEliminarProductoCarritoSS=new EliminarProductoCarritoSS();
         
         MaderaDTO maderaDTO1 = new MaderaDTO("Pino", "Madera de pino para construcción", 50, 120.5);
         agregarMaderaSS.agregarMadera(maderaDTO1);
@@ -64,7 +67,7 @@ IGuardarCompraSS iGuardarCompraSS=new GuardarCompraSS();
         agregarMaderaSS.agregarMadera(maderaDTO6);
 
         IniciarSesion inicio = new IniciarSesion(agregarUsuarioSS, iInicioSesionSS,agregarTarjetasSS,iObtenerMaderas,buscarMaderaPorIDSS,iObtenerNumerosTarjetasPorUsuarioSS
-        ,iInicioSesionCVVSS,iGuardarCompraSS,iAgregarProductoCarritoSS    
+        ,iInicioSesionCVVSS,iGuardarCompraSS,iAgregarProductoCarritoSS,iObtenerCarritoSS,iEliminarProductoCarritoSS
 );
         inicio.setVisible(true);
 

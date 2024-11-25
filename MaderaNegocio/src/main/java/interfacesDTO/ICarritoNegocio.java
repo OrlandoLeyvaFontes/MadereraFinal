@@ -4,6 +4,8 @@
  */
 package interfacesDTO;
 
+import dto.CarritoDTO;
+import java.util.List;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
@@ -13,6 +15,6 @@ import org.bson.types.ObjectId;
  */
 public interface ICarritoNegocio {
         public void agregarProducto(String usuarioId, String maderaId, int cantidad);
- public Document obtenerCarrito(String usuarioId);
+public List<CarritoDTO> obtenerCarrito(String usuarioId);
 public void eliminarProducto(String usuarioId, String maderaId);
 }

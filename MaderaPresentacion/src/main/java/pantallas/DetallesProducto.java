@@ -5,8 +5,10 @@
 package pantallas;
 
 import interfaz.IAgregarProductoCarritoSS;
+import interfaz.IEliminarProductoCarritoSS;
 import interfaz.IGuardarCompraSS;
 import interfaz.IInicioSesionCVVSS;
+import interfaz.IObtenerCarritoSS;
 import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
 import interfazSS.IInicioSesionSS;
 import interfazSS.IObtenerMaderas;
@@ -17,56 +19,65 @@ import javax.swing.table.DefaultTableModel;
  * @author Itson
  */
 public class DetallesProducto extends javax.swing.JFrame {
-private IObtenerMaderas iObtenerMaderas;
-private ProductosVenta productosVenta;
-  private String nombreProducto;
+
+    private IObtenerMaderas iObtenerMaderas;
+    private ProductosVenta productosVenta;
+    private String nombreProducto;
     private Double precioProducto;
     private String descripcionProducto;
     private int cantidad;
-          private IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS;
-        private  String usuarioId;
-        private IInicioSesionCVVSS  iInicioSesionCVVSS;
-        private MenuPrincipal menuPrincipal1;
-        private String idMadera;
-        private IGuardarCompraSS iGuardarCompraSS;
-        private IAgregarProductoCarritoSS iAgregarProductoCarritoSS;
+    private IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS;
+    private String usuarioId;
+    private IInicioSesionCVVSS iInicioSesionCVVSS;
+    private MenuPrincipal menuPrincipal1;
+    private String idMadera;
+    private IGuardarCompraSS iGuardarCompraSS;
+    private IAgregarProductoCarritoSS iAgregarProductoCarritoSS;
+    private IObtenerCarritoSS iObtenerCarritoSS;
+    private IEliminarProductoCarritoSS iEliminarProductoCarritoSS;
+
     /**
      * Creates new form DetallesProducto
      */
-    public DetallesProducto( IObtenerMaderas iObtenerMaderas,ProductosVenta productosVenta,String nombre, Double precio, String descripcion,int cantidad,
-                   IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS, String usuarioId,IInicioSesionCVVSS  iInicioSesionCVVSS,MenuPrincipal menuPrincipal1
-,String idMadera,IGuardarCompraSS iGuardarCompraSS,IAgregarProductoCarritoSS iAgregarProductoCarritoSS
-) {
-        this.iObtenerMaderas=iObtenerMaderas;
-        this.productosVenta=productosVenta;
+    public DetallesProducto(IObtenerMaderas iObtenerMaderas, ProductosVenta productosVenta, String nombre, Double precio, String descripcion, int cantidad,
+            IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS, String usuarioId, IInicioSesionCVVSS iInicioSesionCVVSS, MenuPrincipal menuPrincipal1,
+             String idMadera, IGuardarCompraSS iGuardarCompraSS, IAgregarProductoCarritoSS iAgregarProductoCarritoSS, IObtenerCarritoSS iObtenerCarritoSS,
+             IEliminarProductoCarritoSS iEliminarProductoCarritoSS
+    ) {
+        this.iObtenerMaderas = iObtenerMaderas;
+        this.productosVenta = productosVenta;
         this.nombreProducto = nombre;
         this.precioProducto = precio;
         this.descripcionProducto = descripcion;
-        this.cantidad=cantidad;
+        this.cantidad = cantidad;
 
-        this.iObtenerNumerosTarjetasPorUsuarioSS=iObtenerNumerosTarjetasPorUsuarioSS;
-        this.usuarioId=usuarioId;
-        this.iInicioSesionCVVSS=iInicioSesionCVVSS;
-        this.menuPrincipal1=menuPrincipal1;
-                        this.idMadera=idMadera;
-this.iGuardarCompraSS=iGuardarCompraSS;
-this.iAgregarProductoCarritoSS=iAgregarProductoCarritoSS;
+        this.iObtenerNumerosTarjetasPorUsuarioSS = iObtenerNumerosTarjetasPorUsuarioSS;
+        this.usuarioId = usuarioId;
+        this.iInicioSesionCVVSS = iInicioSesionCVVSS;
+        this.menuPrincipal1 = menuPrincipal1;
+        this.idMadera = idMadera;
+        this.iGuardarCompraSS = iGuardarCompraSS;
+        this.iAgregarProductoCarritoSS = iAgregarProductoCarritoSS;
+        this.iObtenerCarritoSS = iObtenerCarritoSS;
+        this.iEliminarProductoCarritoSS = iEliminarProductoCarritoSS;
         initComponents();
-                mostrarDetallesProducto();
+        mostrarDetallesProducto();
 
     }
-private void mostrarDetallesProducto() {
+
+    private void mostrarDetallesProducto() {
         // Aquí puedes usar los datos recibidos para mostrarlos en tu interfaz
         // Por ejemplo, si tienes una tabla en DetallesProducto:
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0); // Limpiar tabla
-        
+
         // Agregar los detalles a la tabla
         model.addRow(new Object[]{"Nombre", nombreProducto});
         model.addRow(new Object[]{"Precio", precioProducto});
         model.addRow(new Object[]{"Descripción", descripcionProducto});
         model.addRow(new Object[]{"cantidad", cantidad});
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -273,56 +284,46 @@ private void mostrarDetallesProducto() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-this.setVisible(false);
-productosVenta.setVisible(true);
-
-
+        this.setVisible(false);
+        productosVenta.setVisible(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-   if (jComboBox1.getSelectedIndex() != -1) {
-        // Obtener la cantidad seleccionada desde el ComboBox
-        String cantidadStr = (String) jComboBox1.getSelectedItem();
-        this.cantidad = Integer.parseInt(cantidadStr);  // Guardar la cantidad seleccionada
+        if (jComboBox1.getSelectedIndex() != -1) {
+            // Obtener la cantidad seleccionada desde el ComboBox
+            String cantidadStr = (String) jComboBox1.getSelectedItem();
+            this.cantidad = Integer.parseInt(cantidadStr);  // Guardar la cantidad seleccionada
 
-        double precioProducto = this.precioProducto;
-        double total = cantidad * precioProducto;
+            double precioProducto = this.precioProducto;
+            double total = cantidad * precioProducto;
 
-        // Actualizar el total en la interfaz
-        jLabel4.setText("Total: $" + String.format("%.2f", total));
-    }
-          
+            // Actualizar el total en la interfaz
+            jLabel4.setText("Total: $" + String.format("%.2f", total));
+        }
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
-this.setVisible(false);
-MenuDeTarjetas menuDeTarjetas=new MenuDeTarjetas(this,iObtenerNumerosTarjetasPorUsuarioSS,usuarioId,iInicioSesionCVVSS, menuPrincipal1,cantidad,idMadera,iGuardarCompraSS);
-menuDeTarjetas.setVisible(true);
-
-
-
-
-
+        this.setVisible(false);
+        MenuDeTarjetas menuDeTarjetas = new MenuDeTarjetas(this, iObtenerNumerosTarjetasPorUsuarioSS, usuarioId, iInicioSesionCVVSS, menuPrincipal1, cantidad, idMadera, iGuardarCompraSS);
+        menuDeTarjetas.setVisible(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-iAgregarProductoCarritoSS.agregarProducto(usuarioId, idMadera, cantidad);
-this.setVisible(false);
-MenuCarrito menuCarrito=new MenuCarrito(productosVenta);
-menuCarrito.setVisible(true);
-
-
+        iAgregarProductoCarritoSS.agregarProducto(usuarioId, idMadera, cantidad);
+        this.setVisible(false);
+        MenuCarrito menuCarrito = new MenuCarrito(productosVenta, iObtenerCarritoSS, usuarioId,iEliminarProductoCarritoSS);
+        menuCarrito.setVisible(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;

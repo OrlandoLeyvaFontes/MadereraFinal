@@ -45,7 +45,7 @@ public class Main {
     ObjectId maderaId1 = new ObjectId("6742e93febc40c75ca70eb9e");
     ObjectId maderaId2 = new ObjectId("6742e93febc40c75ca70eba0");
 
-    compraDAO.comprarCarrito(usuarioId); 
+//    compraDAO.comprarCarrito(usuarioId); 
 
 
 //    System.out.println("Agregando madera1 al carrito...");
@@ -54,12 +54,14 @@ public class Main {
 //    System.out.println("Agregando madera2 al carrito...");
 //    carritoDAO.agregarProducto(usuarioId, maderaId2, 2);
 
-//    Document carrito = carritoDAO.obtenerCarrito(usuarioId);
-//    System.out.println("Carrito del usuario: " + carrito.toJson());
+    Document carrito = carritoDAO.obtenerCarrito(usuarioId);
+    System.out.println("Carrito del usuario: " + carrito.toJson());
 
 //    System.out.println("Eliminando madera1 del carrito...");
-//    carritoDAO.eliminarProducto(usuarioId, maderaId1);
-
+//    carritoDAO.eliminarProducto(usuarioId, maderaId2);
+//
+//
+//
 //    carrito = carritoDAO.obtenerCarrito(usuarioId);
 //    System.out.println("Carrito después de eliminar madera1: " + carrito.toJson());
     }

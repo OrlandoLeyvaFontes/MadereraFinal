@@ -8,8 +8,10 @@ import dto.UsuarioDTO;
 import funcionalidad.ObtenerNumerosTarjetasPorUsuarioSS;
 import interfacesDTO.IUsuarioNegocio;
 import interfaz.IAgregarProductoCarritoSS;
+import interfaz.IEliminarProductoCarritoSS;
 import interfaz.IGuardarCompraSS;
 import interfaz.IInicioSesionCVVSS;
+import interfaz.IObtenerCarritoSS;
 import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
 import interfazSS.IAgregarTarjetasSS;
 import interfazSS.IAgregarUsuarioSS;
@@ -35,9 +37,13 @@ public class IniciarSesion extends javax.swing.JFrame {
 private IInicioSesionCVVSS  iInicioSesionCVVSS;
 private IGuardarCompraSS iGuardarCompraSS;
 private IAgregarProductoCarritoSS iAgregarProductoCarritoSS;
+private  IObtenerCarritoSS iObtenerCarritoSS;
+private IEliminarProductoCarritoSS iEliminarProductoCarritoSS;
+
     public IniciarSesion(IAgregarUsuarioSS agregarUsuarioSS, IInicioSesionSS iInicioSesionSS,IAgregarTarjetasSS agregarTarjetasSS
     ,IObtenerMaderas iObtenerMaderas, IBuscarMaderaPorIDSS buscarMaderaPorIDSS,IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS
     ,IInicioSesionCVVSS  iInicioSesionCVVSS,IGuardarCompraSS iGuardarCompraSS,IAgregarProductoCarritoSS iAgregarProductoCarritoSS    
+            , IObtenerCarritoSS iObtenerCarritoSS,IEliminarProductoCarritoSS iEliminarProductoCarritoSS
 ) {
         this.iObtenerNumerosTarjetasPorUsuarioSS=iObtenerNumerosTarjetasPorUsuarioSS;
        this.agregarUsuarioSS=agregarUsuarioSS;
@@ -48,6 +54,8 @@ private IAgregarProductoCarritoSS iAgregarProductoCarritoSS;
        this.iInicioSesionCVVSS=iInicioSesionCVVSS;
        this.iGuardarCompraSS=iGuardarCompraSS;
        this.iAgregarProductoCarritoSS=iAgregarProductoCarritoSS;
+       this.iObtenerCarritoSS=iObtenerCarritoSS;
+       this.iEliminarProductoCarritoSS=iEliminarProductoCarritoSS;
         initComponents();
     }
 
@@ -206,7 +214,7 @@ registrarUsuario.setVisible(true);
         this.setVisible(false);
         
         MenuPrincipal menuPrincipal = new MenuPrincipal(this, iInicioSesionSS, agregarTarjetasSS, iObtenerMaderas, buscarMaderaPorIDSS, usuarioId,iObtenerNumerosTarjetasPorUsuarioSS
-        ,iInicioSesionCVVSS,iGuardarCompraSS,iAgregarProductoCarritoSS);
+        ,iInicioSesionCVVSS,iGuardarCompraSS,iAgregarProductoCarritoSS,iObtenerCarritoSS,iEliminarProductoCarritoSS);
         menuPrincipal.setVisible(true);
     } else {
         JOptionPane.showMessageDialog(this, "Credenciales incorrectas. Intente de nuevo.", "Error de Inicio de Sesión", JOptionPane.ERROR_MESSAGE);

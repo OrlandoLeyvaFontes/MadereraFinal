@@ -30,7 +30,7 @@ public class CarritoDAO implements  ICarritoDAO{
         this.maderaCollection = Conexion.getDatabase().getCollection("Madera");
     }
 
-    public void agregarProducto(ObjectId usuarioId, ObjectId maderaId, int cantidad) {
+     public void agregarProducto(ObjectId usuarioId, ObjectId maderaId, int cantidad) {
         if (cantidad <= 0) {
             throw new IllegalArgumentException("La cantidad debe ser mayor a 0.");
         }

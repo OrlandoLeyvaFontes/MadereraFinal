@@ -4,18 +4,26 @@
  */
 package pantallas;
 
+import interfaz.IEliminarProductoCarritoSS;
+import interfaz.IObtenerCarritoSS;
+
 /**
  *
  * @author Oley
  */
 public class MenuCarrito extends javax.swing.JFrame {
 private ProductosVenta productosVenta;
-
+private  IObtenerCarritoSS iObtenerCarritoSS;
+private String usuarioId;
+private IEliminarProductoCarritoSS iEliminarProductoCarritoSS;
     /**
      * Creates new form MenuCarrito
      */
-    public MenuCarrito(ProductosVenta productosVenta) {
+    public MenuCarrito(ProductosVenta productosVenta, IObtenerCarritoSS iObtenerCarritoSS,String usuarioId,IEliminarProductoCarritoSS iEliminarProductoCarritoSS) {
         this.productosVenta=productosVenta;
+        this.iObtenerCarritoSS=iObtenerCarritoSS;
+        this.usuarioId=usuarioId;
+        this.iEliminarProductoCarritoSS=iEliminarProductoCarritoSS;
         initComponents();
     }
 
@@ -126,7 +134,7 @@ productosVenta.setVisible(true);
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 this.setVisible(false);
-DetallesCarritos detallesCarritos=new DetallesCarritos(productosVenta);
+DetallesCarritos detallesCarritos=new DetallesCarritos(productosVenta,iObtenerCarritoSS,usuarioId,iEliminarProductoCarritoSS);
 detallesCarritos.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed

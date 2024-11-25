@@ -4,20 +4,73 @@
  */
 package pantallas;
 
+import dto.CarritoDTO;
+import interfaz.IEliminarProductoCarritoSS;
+import interfaz.IObtenerCarritoSS;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Oley
  */
 public class DetallesCarritos extends javax.swing.JFrame {
 private ProductosVenta productosVenta;
-
+private  IObtenerCarritoSS iObtenerCarritoSS;
+private String usuarioId;
+private IEliminarProductoCarritoSS iEliminarProductoCarritoSS;
     /**
      * Creates new form DetallesCarritos
      */
-    public DetallesCarritos( ProductosVenta productosVenta) {
+    public DetallesCarritos( ProductosVenta productosVenta, IObtenerCarritoSS iObtenerCarritoSS,String usuarioId,IEliminarProductoCarritoSS iEliminarProductoCarritoSS
+    
+    ) {
         this.productosVenta=productosVenta;
+        this.iObtenerCarritoSS=iObtenerCarritoSS;
+        this.usuarioId=usuarioId;
+        this.iEliminarProductoCarritoSS=iEliminarProductoCarritoSS;
         initComponents();
+        CargarMetodosIniciales();
     }
+private void CargarMetodosIniciales(){
+    CargarCarritoEnTablas();
+}
+private void CargarCarritoEnTablas(){
+    List<CarritoDTO> carrito = iObtenerCarritoSS.obtenerCarrito(usuarioId);
+
+    if (carrito == null || carrito.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "El carrito está vacío.");
+        return;
+    }
+
+    DefaultTableModel modeloTabla = new DefaultTableModel();
+    modeloTabla.addColumn("Producto");
+    modeloTabla.addColumn("Cantidad");
+
+    double total = 0;
+    for (CarritoDTO producto : carrito) {
+        String nombreMadera = producto.getMaderasDTO().get(0).getNombre();
+        int cantidad = producto.getCantidades().get(0); 
+        double subtotal = cantidad * producto.getTotal(); 
+
+        total += subtotal;
+
+        Object[] fila = new Object[] {
+            nombreMadera,  // Mostrar el nombre de la madera
+            cantidad,
+            subtotal  // Si quieres agregar el subtotal por producto
+        };
+        modeloTabla.addRow(fila);
+    }
+
+    // Asigna el modelo a la tabla
+    jTable1.setModel(modeloTabla);
+
+    // Muestra el total en la etiqueta correspondiente
+    jLabel4.setText(String.format("%.2f", total));
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.

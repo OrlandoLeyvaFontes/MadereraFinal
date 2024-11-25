@@ -6,8 +6,10 @@ package pantallas;
 
 import dto.MaderaDTO;
 import interfaz.IAgregarProductoCarritoSS;
+import interfaz.IEliminarProductoCarritoSS;
 import interfaz.IGuardarCompraSS;
 import interfaz.IInicioSesionCVVSS;
+import interfaz.IObtenerCarritoSS;
 import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
 import interfazSS.IBuscarMaderaPorIDSS;
 import interfazSS.IObtenerMaderas;
@@ -29,12 +31,15 @@ public class ProductosVenta extends javax.swing.JFrame {
 private IInicioSesionCVVSS  iInicioSesionCVVSS;
 private IGuardarCompraSS iGuardarCompraSS;
 private IAgregarProductoCarritoSS iAgregarProductoCarritoSS;
+private  IObtenerCarritoSS iObtenerCarritoSS;
+private IEliminarProductoCarritoSS iEliminarProductoCarritoSS;
     /**
      * Creates new form ProductosVenta
      */
     public ProductosVenta(MenuPrincipal menuPrincipal, IObtenerMaderas iObtenerMaderas, IBuscarMaderaPorIDSS buscarMaderaPorIDSS,   IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS,
             String usuarioId,IInicioSesionCVVSS  iInicioSesionCVVSS,IGuardarCompraSS iGuardarCompraSS,IAgregarProductoCarritoSS iAgregarProductoCarritoSS
-) {
+, IObtenerCarritoSS iObtenerCarritoSS,IEliminarProductoCarritoSS iEliminarProductoCarritoSS
+    ) {
         this.menuPrincipal = menuPrincipal;
         this.iObtenerMaderas = iObtenerMaderas;
         this.buscarMaderaPorIDSS = buscarMaderaPorIDSS;
@@ -43,6 +48,8 @@ private IAgregarProductoCarritoSS iAgregarProductoCarritoSS;
         this.iInicioSesionCVVSS=iInicioSesionCVVSS;
         this.iGuardarCompraSS=iGuardarCompraSS;
         this.iAgregarProductoCarritoSS=iAgregarProductoCarritoSS;
+        this.iObtenerCarritoSS=iObtenerCarritoSS;
+        this.iEliminarProductoCarritoSS=iEliminarProductoCarritoSS;
         initComponents();
         CargarMetodosIniciales();
     }
@@ -354,20 +361,8 @@ private IAgregarProductoCarritoSS iAgregarProductoCarritoSS;
 
         this.setVisible(false);
 DetallesProducto detallesProducto=new DetallesProducto(iObtenerMaderas, this, nombre, precio, descripcion, cantidad, iObtenerNumerosTarjetasPorUsuarioSS, usuarioId, iInicioSesionCVVSS, menuPrincipal, 
-        idMadera,iGuardarCompraSS,iAgregarProductoCarritoSS);
-//        DetallesProducto detallesProducto = new DetallesProducto(
-//            iObtenerMaderas,
-//            this,
-//            nombre,
-//            precio,
-//            descripcion,
-//            cantidad,
-//            
-//            iObtenerNumerosTarjetasPorUsuarioSS,
-//            iInicioSesionCVVSS,
-//            menuPrincipal,
-//                idMadera
-//        );
+        idMadera,iGuardarCompraSS,iAgregarProductoCarritoSS,iObtenerCarritoSS,iEliminarProductoCarritoSS);
+
         
         detallesProducto.setVisible(true);
     } else {

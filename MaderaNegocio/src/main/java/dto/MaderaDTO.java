@@ -28,6 +28,11 @@ public class MaderaDTO {
         this.precioUnitario = precioUnitario;
     }
 
+    public MaderaDTO(String nombre, double precioUnitario) {
+        this.nombre = nombre;
+        this.precioUnitario = precioUnitario;
+    }
+
     public String getId() {
         return id;
     }
