@@ -8,6 +8,7 @@ import dto.UsuarioDTO;
 import funcionalidad.ObtenerNumerosTarjetasPorUsuarioSS;
 import interfacesDTO.IUsuarioNegocio;
 import interfaz.IAgregarProductoCarritoSS;
+import interfaz.IComprarCarritoSS;
 import interfaz.IEliminarProductoCarritoSS;
 import interfaz.IGuardarCompraSS;
 import interfaz.IInicioSesionCVVSS;
@@ -39,11 +40,11 @@ private IGuardarCompraSS iGuardarCompraSS;
 private IAgregarProductoCarritoSS iAgregarProductoCarritoSS;
 private  IObtenerCarritoSS iObtenerCarritoSS;
 private IEliminarProductoCarritoSS iEliminarProductoCarritoSS;
-
+private  IComprarCarritoSS iComprarCarritoSS;
     public IniciarSesion(IAgregarUsuarioSS agregarUsuarioSS, IInicioSesionSS iInicioSesionSS,IAgregarTarjetasSS agregarTarjetasSS
     ,IObtenerMaderas iObtenerMaderas, IBuscarMaderaPorIDSS buscarMaderaPorIDSS,IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS
     ,IInicioSesionCVVSS  iInicioSesionCVVSS,IGuardarCompraSS iGuardarCompraSS,IAgregarProductoCarritoSS iAgregarProductoCarritoSS    
-            , IObtenerCarritoSS iObtenerCarritoSS,IEliminarProductoCarritoSS iEliminarProductoCarritoSS
+            , IObtenerCarritoSS iObtenerCarritoSS,IEliminarProductoCarritoSS iEliminarProductoCarritoSS, IComprarCarritoSS iComprarCarritoSS
 ) {
         this.iObtenerNumerosTarjetasPorUsuarioSS=iObtenerNumerosTarjetasPorUsuarioSS;
        this.agregarUsuarioSS=agregarUsuarioSS;
@@ -56,6 +57,7 @@ private IEliminarProductoCarritoSS iEliminarProductoCarritoSS;
        this.iAgregarProductoCarritoSS=iAgregarProductoCarritoSS;
        this.iObtenerCarritoSS=iObtenerCarritoSS;
        this.iEliminarProductoCarritoSS=iEliminarProductoCarritoSS;
+       this.iComprarCarritoSS=iComprarCarritoSS;
         initComponents();
     }
 
@@ -214,7 +216,9 @@ registrarUsuario.setVisible(true);
         this.setVisible(false);
         
         MenuPrincipal menuPrincipal = new MenuPrincipal(this, iInicioSesionSS, agregarTarjetasSS, iObtenerMaderas, buscarMaderaPorIDSS, usuarioId,iObtenerNumerosTarjetasPorUsuarioSS
-        ,iInicioSesionCVVSS,iGuardarCompraSS,iAgregarProductoCarritoSS,iObtenerCarritoSS,iEliminarProductoCarritoSS);
+        ,iInicioSesionCVVSS,iGuardarCompraSS,iAgregarProductoCarritoSS,iObtenerCarritoSS,iEliminarProductoCarritoSS,
+        iComprarCarritoSS
+        );
         menuPrincipal.setVisible(true);
     } else {
         JOptionPane.showMessageDialog(this, "Credenciales incorrectas. Intente de nuevo.", "Error de Inicio de Sesión", JOptionPane.ERROR_MESSAGE);

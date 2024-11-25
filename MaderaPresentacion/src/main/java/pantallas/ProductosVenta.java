@@ -6,6 +6,7 @@ package pantallas;
 
 import dto.MaderaDTO;
 import interfaz.IAgregarProductoCarritoSS;
+import interfaz.IComprarCarritoSS;
 import interfaz.IEliminarProductoCarritoSS;
 import interfaz.IGuardarCompraSS;
 import interfaz.IInicioSesionCVVSS;
@@ -33,12 +34,13 @@ private IGuardarCompraSS iGuardarCompraSS;
 private IAgregarProductoCarritoSS iAgregarProductoCarritoSS;
 private  IObtenerCarritoSS iObtenerCarritoSS;
 private IEliminarProductoCarritoSS iEliminarProductoCarritoSS;
+private  IComprarCarritoSS iComprarCarritoSS;
     /**
      * Creates new form ProductosVenta
      */
     public ProductosVenta(MenuPrincipal menuPrincipal, IObtenerMaderas iObtenerMaderas, IBuscarMaderaPorIDSS buscarMaderaPorIDSS,   IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS,
             String usuarioId,IInicioSesionCVVSS  iInicioSesionCVVSS,IGuardarCompraSS iGuardarCompraSS,IAgregarProductoCarritoSS iAgregarProductoCarritoSS
-, IObtenerCarritoSS iObtenerCarritoSS,IEliminarProductoCarritoSS iEliminarProductoCarritoSS
+, IObtenerCarritoSS iObtenerCarritoSS,IEliminarProductoCarritoSS iEliminarProductoCarritoSS, IComprarCarritoSS iComprarCarritoSS
     ) {
         this.menuPrincipal = menuPrincipal;
         this.iObtenerMaderas = iObtenerMaderas;
@@ -50,6 +52,7 @@ private IEliminarProductoCarritoSS iEliminarProductoCarritoSS;
         this.iAgregarProductoCarritoSS=iAgregarProductoCarritoSS;
         this.iObtenerCarritoSS=iObtenerCarritoSS;
         this.iEliminarProductoCarritoSS=iEliminarProductoCarritoSS;
+        this.iComprarCarritoSS=iComprarCarritoSS;
         initComponents();
         CargarMetodosIniciales();
     }
@@ -361,7 +364,7 @@ private IEliminarProductoCarritoSS iEliminarProductoCarritoSS;
 
         this.setVisible(false);
 DetallesProducto detallesProducto=new DetallesProducto(iObtenerMaderas, this, nombre, precio, descripcion, cantidad, iObtenerNumerosTarjetasPorUsuarioSS, usuarioId, iInicioSesionCVVSS, menuPrincipal, 
-        idMadera,iGuardarCompraSS,iAgregarProductoCarritoSS,iObtenerCarritoSS,iEliminarProductoCarritoSS);
+        idMadera,iGuardarCompraSS,iAgregarProductoCarritoSS,iObtenerCarritoSS,iEliminarProductoCarritoSS,iComprarCarritoSS);
 
         
         detallesProducto.setVisible(true);

@@ -5,6 +5,7 @@
 package pantallas;
 
 import interfaz.IAgregarProductoCarritoSS;
+import interfaz.IComprarCarritoSS;
 import interfaz.IEliminarProductoCarritoSS;
 import interfaz.IGuardarCompraSS;
 import interfaz.IInicioSesionCVVSS;
@@ -35,14 +36,14 @@ public class DetallesProducto extends javax.swing.JFrame {
     private IAgregarProductoCarritoSS iAgregarProductoCarritoSS;
     private IObtenerCarritoSS iObtenerCarritoSS;
     private IEliminarProductoCarritoSS iEliminarProductoCarritoSS;
-
+private  IComprarCarritoSS iComprarCarritoSS;
     /**
      * Creates new form DetallesProducto
      */
     public DetallesProducto(IObtenerMaderas iObtenerMaderas, ProductosVenta productosVenta, String nombre, Double precio, String descripcion, int cantidad,
             IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS, String usuarioId, IInicioSesionCVVSS iInicioSesionCVVSS, MenuPrincipal menuPrincipal1,
-             String idMadera, IGuardarCompraSS iGuardarCompraSS, IAgregarProductoCarritoSS iAgregarProductoCarritoSS, IObtenerCarritoSS iObtenerCarritoSS,
-             IEliminarProductoCarritoSS iEliminarProductoCarritoSS
+            String idMadera, IGuardarCompraSS iGuardarCompraSS, IAgregarProductoCarritoSS iAgregarProductoCarritoSS, IObtenerCarritoSS iObtenerCarritoSS,
+            IEliminarProductoCarritoSS iEliminarProductoCarritoSS, IComprarCarritoSS iComprarCarritoSS
     ) {
         this.iObtenerMaderas = iObtenerMaderas;
         this.productosVenta = productosVenta;
@@ -60,6 +61,7 @@ public class DetallesProducto extends javax.swing.JFrame {
         this.iAgregarProductoCarritoSS = iAgregarProductoCarritoSS;
         this.iObtenerCarritoSS = iObtenerCarritoSS;
         this.iEliminarProductoCarritoSS = iEliminarProductoCarritoSS;
+        this.iComprarCarritoSS=iComprarCarritoSS;
         initComponents();
         mostrarDetallesProducto();
 
@@ -318,7 +320,8 @@ public class DetallesProducto extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         iAgregarProductoCarritoSS.agregarProducto(usuarioId, idMadera, cantidad);
         this.setVisible(false);
-        MenuCarrito menuCarrito = new MenuCarrito(productosVenta, iObtenerCarritoSS, usuarioId,iEliminarProductoCarritoSS);
+        MenuCarrito menuCarrito = new MenuCarrito(productosVenta, iObtenerCarritoSS, usuarioId, iEliminarProductoCarritoSS,iObtenerNumerosTarjetasPorUsuarioSS
+        ,iInicioSesionCVVSS,iComprarCarritoSS);
         menuCarrito.setVisible(true);
 
         // TODO add your handling code here:

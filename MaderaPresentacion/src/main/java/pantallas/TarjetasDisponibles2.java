@@ -4,11 +4,8 @@
  */
 package pantallas;
 
-import dto.CarritoDTO;
 import interfaz.IComprarCarritoSS;
-import interfaz.IEliminarProductoCarritoSS;
 import interfaz.IInicioSesionCVVSS;
-import interfaz.IObtenerCarritoSS;
 import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -18,69 +15,54 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Oley
  */
-public class DetallesCarritos extends javax.swing.JFrame {
-private ProductosVenta productosVenta;
-private  IObtenerCarritoSS iObtenerCarritoSS;
-private String usuarioId;
-private IEliminarProductoCarritoSS iEliminarProductoCarritoSS;
+public class TarjetasDisponibles2 extends javax.swing.JFrame {
 private IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS;
+private String usuarioId;
 private IInicioSesionCVVSS iInicioSesionCVVSS;
 private  IComprarCarritoSS iComprarCarritoSS;
     /**
-     * Creates new form DetallesCarritos
+     * Creates new form TarjetasDisponibles2
      */
-    public DetallesCarritos( ProductosVenta productosVenta, IObtenerCarritoSS iObtenerCarritoSS,String usuarioId,IEliminarProductoCarritoSS iEliminarProductoCarritoSS
-    ,IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS,IInicioSesionCVVSS iInicioSesionCVVSS, IComprarCarritoSS iComprarCarritoSS
-    ) {
-        this.productosVenta=productosVenta;
-        this.iObtenerCarritoSS=iObtenerCarritoSS;
-        this.usuarioId=usuarioId;
-        this.iEliminarProductoCarritoSS=iEliminarProductoCarritoSS;
+    public TarjetasDisponibles2(IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS, String usuarioId,IInicioSesionCVVSS iInicioSesionCVVSS
+            , IComprarCarritoSS iComprarCarritoSS
+) {
+        
         this.iObtenerNumerosTarjetasPorUsuarioSS=iObtenerNumerosTarjetasPorUsuarioSS;
+        this.usuarioId=usuarioId;
         this.iInicioSesionCVVSS=iInicioSesionCVVSS;
         this.iComprarCarritoSS=iComprarCarritoSS;
         initComponents();
-        CargarMetodosIniciales();
+                cargarTarjetasEnTablas();
+
     }
-private void CargarMetodosIniciales(){
-    CargarCarritoEnTablas();
-}
-private void CargarCarritoEnTablas(){
-    List<CarritoDTO> carrito = iObtenerCarritoSS.obtenerCarrito(usuarioId);
+ private void cargarTarjetasEnTablas() {
+    List<String> numerosTarjetas = this.iObtenerNumerosTarjetasPorUsuarioSS.obtenerNumerosTarjetasPorUsuario(usuarioId);
 
-    if (carrito == null || carrito.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "El carrito está vacío.");
-        return;
+    if (numerosTarjetas != null && !numerosTarjetas.isEmpty()) {
+        llenarTablaTarjetas(numerosTarjetas);
+    } else {
+        JOptionPane.showMessageDialog(this, "No hay tarjetas disponibles para mostrar.", "Información", JOptionPane.INFORMATION_MESSAGE);
     }
-
-    DefaultTableModel modeloTabla = new DefaultTableModel();
-    modeloTabla.addColumn("Producto");
-    modeloTabla.addColumn("Cantidad");
-
-    double total = 0;
-    for (CarritoDTO producto : carrito) {
-        String nombreMadera = producto.getMaderasDTO().get(0).getNombre();
-        int cantidad = producto.getCantidades().get(0); 
-        double subtotal = cantidad * producto.getTotal(); 
-
-        total += subtotal;
-
-        Object[] fila = new Object[] {
-            nombreMadera,  // Mostrar el nombre de la madera
-            cantidad,
-            subtotal  // Si quieres agregar el subtotal por producto
-        };
-        modeloTabla.addRow(fila);
-    }
-
-    // Asigna el modelo a la tabla
-    jTable1.setModel(modeloTabla);
-
-    // Muestra el total en la etiqueta correspondiente
-    jLabel4.setText(String.format("%.2f", total));
 }
 
+private void llenarTablaTarjetas(List<String> numerosTarjetas) {
+    DefaultTableModel model = new DefaultTableModel(
+        new String[]{"Número de Tarjeta"}, 0
+    ) {
+        boolean[] canEdit = new boolean[]{false};
 
+        @Override
+        public boolean isCellEditable(int rowIndex, int columnIndex) {
+            return canEdit[columnIndex];
+        }
+    };
+
+    for (String numeroTarjeta : numerosTarjetas) {
+        model.addRow(new Object[]{numeroTarjeta});
+    }
+
+    jTable1.setModel(model);
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -93,13 +75,10 @@ private void CargarCarritoEnTablas(){
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -109,79 +88,63 @@ private void CargarCarritoEnTablas(){
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Madera en Linea");
-
-        jButton2.setText("Regresar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        jLabel1.setText("Madera");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(jButton2)
-                .addGap(114, 114, 114)
+                .addGap(231, 231, 231)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton2))
-                .addContainerGap(34, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(24, 24, 24))
         );
 
         jPanel3.setBackground(new java.awt.Color(153, 153, 153));
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Carrito De Compras");
+        jLabel2.setText("Tarjetas Disponibles");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(90, 90, 90)
+                .addGap(89, 89, 89)
                 .addComponent(jLabel2)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        jTable1.setBackground(new java.awt.Color(255, 204, 102));
+        jTable1.setBackground(new java.awt.Color(255, 255, 102));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null},
+                {null},
+                {null},
+                {null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Numero"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Total:");
-
-        jLabel4.setText("L");
-
         jButton1.setBackground(new java.awt.Color(51, 153, 0));
-        jButton1.setText("Comprar ahora");
+        jButton1.setText("Selecione");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -196,37 +159,28 @@ private void CargarCarritoEnTablas(){
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(111, 111, 111)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(108, 108, 108)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(256, 256, 256)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(202, 202, 202)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(44, Short.MAX_VALUE))
+                        .addGap(59, 59, 59)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(63, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(188, 188, 188))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 27, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -246,28 +200,18 @@ private void CargarCarritoEnTablas(){
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 this.setVisible(false);
-MenuDeTarjetas2 menuDeTarjetas2=new MenuDeTarjetas2(iObtenerNumerosTarjetasPorUsuarioSS,usuarioId,iInicioSesionCVVSS,iComprarCarritoSS);
-menuDeTarjetas2.setVisible(true);
-
+ConfirmarTarjeta2 confirmarTarjeta2=new ConfirmarTarjeta2( iInicioSesionCVVSS,iComprarCarritoSS,usuarioId);
+confirmarTarjeta2.setVisible(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-this.setVisible(false);
-productosVenta.setVisible(true);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
 
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

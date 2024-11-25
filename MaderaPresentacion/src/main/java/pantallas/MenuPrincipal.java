@@ -5,6 +5,7 @@
 package pantallas;
 
 import interfaz.IAgregarProductoCarritoSS;
+import interfaz.IComprarCarritoSS;
 import interfaz.IEliminarProductoCarritoSS;
 import interfaz.IGuardarCompraSS;
 import interfaz.IInicioSesionCVVSS;
@@ -32,14 +33,14 @@ private IGuardarCompraSS iGuardarCompraSS;
 private IAgregarProductoCarritoSS iAgregarProductoCarritoSS;
 private  IObtenerCarritoSS iObtenerCarritoSS;
 private IEliminarProductoCarritoSS iEliminarProductoCarritoSS;
-
+private  IComprarCarritoSS iComprarCarritoSS;
     /**
      * Creates new form MenuPrincipal
      */
     public MenuPrincipal(IniciarSesion iniciarSesion, IInicioSesionSS iInicioSesionSS, IAgregarTarjetasSS agregarTarjetasSS,IObtenerMaderas iObtenerMaderas,
      IBuscarMaderaPorIDSS buscarMaderaPorIDSS,String usuarioId,       IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS
 ,IInicioSesionCVVSS  iInicioSesionCVVSS,IGuardarCompraSS iGuardarCompraSS,IAgregarProductoCarritoSS iAgregarProductoCarritoSS
-    , IObtenerCarritoSS iObtenerCarritoSS,IEliminarProductoCarritoSS iEliminarProductoCarritoSS
+    , IObtenerCarritoSS iObtenerCarritoSS,IEliminarProductoCarritoSS iEliminarProductoCarritoSS, IComprarCarritoSS iComprarCarritoSS
     ) {
         this.usuarioId = usuarioId;
         this.iInicioSesionSS = iInicioSesionSS;
@@ -53,6 +54,7 @@ private IEliminarProductoCarritoSS iEliminarProductoCarritoSS;
         this.iAgregarProductoCarritoSS=iAgregarProductoCarritoSS;
         this.iObtenerCarritoSS=iObtenerCarritoSS;
         this.iEliminarProductoCarritoSS=iEliminarProductoCarritoSS;
+        this.iComprarCarritoSS=iComprarCarritoSS;
         initComponents();
     }
 //public void setUsuarioId(String usuarioId) {
@@ -173,7 +175,7 @@ private IEliminarProductoCarritoSS iEliminarProductoCarritoSS;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);
         ProductosVenta productosVenta = new ProductosVenta(this,iObtenerMaderas,buscarMaderaPorIDSS,iObtenerNumerosTarjetasPorUsuarioSS,usuarioId,iInicioSesionCVVSS
-       ,iGuardarCompraSS,iAgregarProductoCarritoSS,iObtenerCarritoSS,iEliminarProductoCarritoSS );
+       ,iGuardarCompraSS,iAgregarProductoCarritoSS,iObtenerCarritoSS,iEliminarProductoCarritoSS,iComprarCarritoSS );
         productosVenta.setVisible(true);
 
         // TODO add your handling code here:
