@@ -7,6 +7,7 @@ package pantallas;
 import dto.UsuarioDTO;
 import funcionalidad.ObtenerNumerosTarjetasPorUsuarioSS;
 import interfacesDTO.IUsuarioNegocio;
+import interfaz.IAgregarProductoCarritoSS;
 import interfaz.IGuardarCompraSS;
 import interfaz.IInicioSesionCVVSS;
 import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
@@ -33,10 +34,10 @@ public class IniciarSesion extends javax.swing.JFrame {
       private IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS;
 private IInicioSesionCVVSS  iInicioSesionCVVSS;
 private IGuardarCompraSS iGuardarCompraSS;
-
+private IAgregarProductoCarritoSS iAgregarProductoCarritoSS;
     public IniciarSesion(IAgregarUsuarioSS agregarUsuarioSS, IInicioSesionSS iInicioSesionSS,IAgregarTarjetasSS agregarTarjetasSS
     ,IObtenerMaderas iObtenerMaderas, IBuscarMaderaPorIDSS buscarMaderaPorIDSS,IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS
-    ,IInicioSesionCVVSS  iInicioSesionCVVSS,IGuardarCompraSS iGuardarCompraSS     
+    ,IInicioSesionCVVSS  iInicioSesionCVVSS,IGuardarCompraSS iGuardarCompraSS,IAgregarProductoCarritoSS iAgregarProductoCarritoSS    
 ) {
         this.iObtenerNumerosTarjetasPorUsuarioSS=iObtenerNumerosTarjetasPorUsuarioSS;
        this.agregarUsuarioSS=agregarUsuarioSS;
@@ -46,6 +47,7 @@ private IGuardarCompraSS iGuardarCompraSS;
        this.buscarMaderaPorIDSS=buscarMaderaPorIDSS;
        this.iInicioSesionCVVSS=iInicioSesionCVVSS;
        this.iGuardarCompraSS=iGuardarCompraSS;
+       this.iAgregarProductoCarritoSS=iAgregarProductoCarritoSS;
         initComponents();
     }
 
@@ -204,7 +206,7 @@ registrarUsuario.setVisible(true);
         this.setVisible(false);
         
         MenuPrincipal menuPrincipal = new MenuPrincipal(this, iInicioSesionSS, agregarTarjetasSS, iObtenerMaderas, buscarMaderaPorIDSS, usuarioId,iObtenerNumerosTarjetasPorUsuarioSS
-        ,iInicioSesionCVVSS,iGuardarCompraSS);
+        ,iInicioSesionCVVSS,iGuardarCompraSS,iAgregarProductoCarritoSS);
         menuPrincipal.setVisible(true);
     } else {
         JOptionPane.showMessageDialog(this, "Credenciales incorrectas. Intente de nuevo.", "Error de Inicio de Sesión", JOptionPane.ERROR_MESSAGE);

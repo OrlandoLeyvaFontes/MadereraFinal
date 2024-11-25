@@ -3,11 +3,14 @@ interfacesDTO\ITarjetasNegocio.class
 dto\UsuarioDTO.class
 negocio\TarjetasNegocio.class
 main\Main.class
+negocio\CarritoNegocio.class
 dto\CompraDTO.class
+interfacesDTO\ICarritoNegocio.class
 negocio\CompraNegocio.class
 negocio\UsuarioNegocio.class
 interfacesDTO\IUsuarioNegocio.class
 interfacesDTO\ICompraNegocio.class
 negocio\MaderaNegocio.class
 interfacesDTO\IMadereraNegocio.class
+dto\CarritoDTO.class
 dto\MaderaDTO.class

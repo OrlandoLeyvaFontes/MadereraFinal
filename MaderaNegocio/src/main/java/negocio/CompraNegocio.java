@@ -4,17 +4,25 @@
  */
 package negocio;
 
+import dao.CarritoDAO;
 import dao.CompraDAO;
 import dao.MaderaDAO;
 import dao.UsuarioDAO;
 import dto.CompraDTO;
+import dto.MaderaDTO;
+import dto.UsuarioDTO;
 import entidades.Compra;
 import entidades.Madera;
 import entidades.Usuario;
+import interfacesDAO.ICarritoDAO;
 import interfacesDAO.ICompraDAO;
 import interfacesDAO.IMaderaDAO;
 import interfacesDAO.IUsuarioDAO;
 import interfacesDTO.ICompraNegocio;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import org.bson.Document;
 import org.bson.types.ObjectId;
 
 /**
@@ -25,11 +33,13 @@ public class CompraNegocio implements ICompraNegocio{
   private ICompraDAO iCompraDAO;
     private IMaderaDAO maderaDAO;
     private IUsuarioDAO usuarioDAO;
+    private  ICarritoDAO iCarritoDAO;
 
     public CompraNegocio() {
         this.iCompraDAO = new CompraDAO();
         this.maderaDAO = new MaderaDAO();
         this.usuarioDAO = new UsuarioDAO();
+        this.iCarritoDAO=new CarritoDAO();
     }
 
     @Override
@@ -64,4 +74,55 @@ public class CompraNegocio implements ICompraNegocio{
     }
     
     }
+
+    @Override
+    public void comprarCarrito(String usuarioId) {
+     ObjectId usuarioObjectId = new ObjectId(usuarioId);
+
+    Document carritoDoc = iCarritoDAO.obtenerCarrito(usuarioObjectId);
+if (carritoDoc == null || carritoDoc.getList("maderas", Document.class).isEmpty()) {
+    throw new IllegalStateException("El carrito está vacío o no existe.");
 }
+
+List<Document> maderasCarrito = carritoDoc.getList("maderas", Document.class);
+List<CompraDTO> compras = new ArrayList<>();
+
+Usuario usuario = usuarioDAO.obtenerUsuarioPorId(usuarioObjectId);
+if (usuario == null) {
+    throw new IllegalStateException("Usuario con ID " + usuarioId + " no encontrado.");
+}
+
+UsuarioDTO usuarioDTO = new UsuarioDTO();
+usuarioDTO.setId(usuarioId);
+usuarioDTO.setNombre(usuario.getNombre());
+
+for (Document maderaDoc : maderasCarrito) {
+    ObjectId maderaId = maderaDoc.getObjectId("id");
+    int cantidad = maderaDoc.getInteger("cantidad", 0);
+
+    Madera madera = maderaDAO.obtenerMaderaPorId(maderaId);
+    if (madera == null) {
+        throw new IllegalStateException("Madera con ID " + maderaId + " no encontrada.");
+    }
+
+    MaderaDTO maderaDTO = new MaderaDTO();
+    maderaDTO.setId(maderaId.toHexString());
+    maderaDTO.setNombre(madera.getNombre());
+    maderaDTO.setPrecioUnitario(madera.getPrecioUnitario());
+
+    CompraDTO compra = new CompraDTO();
+    compra.setCantidad(cantidad);
+    compra.setUsuario(usuarioDTO);
+    compra.setFechaCompra(Calendar.getInstance());
+    compra.setMadera(maderaDTO);
+
+    compras.add(compra);
+}
+
+for (CompraDTO compra : compras) {
+    guardarCompra(compra);
+}
+
+iCarritoDAO.eliminarProducto(usuarioObjectId, null);
+System.out.println("El carrito del usuario con ID " + usuarioId + " fue comprado exitosamente.");
+}}

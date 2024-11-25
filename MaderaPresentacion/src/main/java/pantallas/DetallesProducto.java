@@ -4,6 +4,7 @@
  */
 package pantallas;
 
+import interfaz.IAgregarProductoCarritoSS;
 import interfaz.IGuardarCompraSS;
 import interfaz.IInicioSesionCVVSS;
 import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
@@ -28,12 +29,13 @@ private ProductosVenta productosVenta;
         private MenuPrincipal menuPrincipal1;
         private String idMadera;
         private IGuardarCompraSS iGuardarCompraSS;
+        private IAgregarProductoCarritoSS iAgregarProductoCarritoSS;
     /**
      * Creates new form DetallesProducto
      */
     public DetallesProducto( IObtenerMaderas iObtenerMaderas,ProductosVenta productosVenta,String nombre, Double precio, String descripcion,int cantidad,
                    IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS, String usuarioId,IInicioSesionCVVSS  iInicioSesionCVVSS,MenuPrincipal menuPrincipal1
-,String idMadera,IGuardarCompraSS iGuardarCompraSS
+,String idMadera,IGuardarCompraSS iGuardarCompraSS,IAgregarProductoCarritoSS iAgregarProductoCarritoSS
 ) {
         this.iObtenerMaderas=iObtenerMaderas;
         this.productosVenta=productosVenta;
@@ -48,6 +50,7 @@ private ProductosVenta productosVenta;
         this.menuPrincipal1=menuPrincipal1;
                         this.idMadera=idMadera;
 this.iGuardarCompraSS=iGuardarCompraSS;
+this.iAgregarProductoCarritoSS=iAgregarProductoCarritoSS;
         initComponents();
                 mostrarDetallesProducto();
 
@@ -173,6 +176,11 @@ private void mostrarDetallesProducto() {
         jButton3.setBackground(new java.awt.Color(51, 204, 0));
         jButton3.setForeground(new java.awt.Color(0, 0, 0));
         jButton3.setText("Agregar al Carrito");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(51, 204, 0));
         jButton4.setForeground(new java.awt.Color(0, 0, 0));
@@ -302,6 +310,17 @@ menuDeTarjetas.setVisible(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+iAgregarProductoCarritoSS.agregarProducto(usuarioId, idMadera, cantidad);
+this.setVisible(false);
+MenuCarrito menuCarrito=new MenuCarrito(productosVenta);
+menuCarrito.setVisible(true);
+
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
    
 

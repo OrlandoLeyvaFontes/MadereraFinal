@@ -13,6 +13,6 @@ import org.bson.types.ObjectId;
  */
 public interface ICompraDAO {
             void guardarCompra(Compra compra);
-
+public void comprarCarrito(ObjectId usuarioId);
 
 }

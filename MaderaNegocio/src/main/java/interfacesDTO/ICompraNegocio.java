@@ -13,5 +13,5 @@ import entidades.Compra;
  */
 public interface ICompraNegocio {
                 void guardarCompra(CompraDTO compraDTO);
-
+public void comprarCarrito(String usuarioId);
 }

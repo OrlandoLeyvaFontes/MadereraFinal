@@ -9,6 +9,7 @@ import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import conexion.Conexion;
 import entidades.Madera;
+import interfacesDAO.ICarritoDAO;
 import java.util.Arrays;
 import java.util.List;
 import org.bson.Document;
@@ -18,7 +19,7 @@ import org.bson.types.ObjectId;
  *
  * @author Oley
  */
-public class CarritoDAO {
+public class CarritoDAO implements  ICarritoDAO{
     private MongoCollection<Document> collection;
     private MongoCollection<Document> usuarioCollection;
     private MongoCollection<Document> maderaCollection;

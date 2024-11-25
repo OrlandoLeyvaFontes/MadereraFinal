@@ -5,6 +5,7 @@
 package pantallas;
 
 import dto.MaderaDTO;
+import interfaz.IAgregarProductoCarritoSS;
 import interfaz.IGuardarCompraSS;
 import interfaz.IInicioSesionCVVSS;
 import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
@@ -27,11 +28,12 @@ public class ProductosVenta extends javax.swing.JFrame {
      private String usuarioId;
 private IInicioSesionCVVSS  iInicioSesionCVVSS;
 private IGuardarCompraSS iGuardarCompraSS;
+private IAgregarProductoCarritoSS iAgregarProductoCarritoSS;
     /**
      * Creates new form ProductosVenta
      */
     public ProductosVenta(MenuPrincipal menuPrincipal, IObtenerMaderas iObtenerMaderas, IBuscarMaderaPorIDSS buscarMaderaPorIDSS,   IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS,
-            String usuarioId,IInicioSesionCVVSS  iInicioSesionCVVSS,IGuardarCompraSS iGuardarCompraSS
+            String usuarioId,IInicioSesionCVVSS  iInicioSesionCVVSS,IGuardarCompraSS iGuardarCompraSS,IAgregarProductoCarritoSS iAgregarProductoCarritoSS
 ) {
         this.menuPrincipal = menuPrincipal;
         this.iObtenerMaderas = iObtenerMaderas;
@@ -40,6 +42,7 @@ private IGuardarCompraSS iGuardarCompraSS;
         this.usuarioId=usuarioId;
         this.iInicioSesionCVVSS=iInicioSesionCVVSS;
         this.iGuardarCompraSS=iGuardarCompraSS;
+        this.iAgregarProductoCarritoSS=iAgregarProductoCarritoSS;
         initComponents();
         CargarMetodosIniciales();
     }
@@ -351,7 +354,7 @@ private IGuardarCompraSS iGuardarCompraSS;
 
         this.setVisible(false);
 DetallesProducto detallesProducto=new DetallesProducto(iObtenerMaderas, this, nombre, precio, descripcion, cantidad, iObtenerNumerosTarjetasPorUsuarioSS, usuarioId, iInicioSesionCVVSS, menuPrincipal, 
-        idMadera,iGuardarCompraSS);
+        idMadera,iGuardarCompraSS,iAgregarProductoCarritoSS);
 //        DetallesProducto detallesProducto = new DetallesProducto(
 //            iObtenerMaderas,
 //            this,

@@ -4,6 +4,7 @@
  */
 package pantallas;
 
+import interfaz.IAgregarProductoCarritoSS;
 import interfaz.IGuardarCompraSS;
 import interfaz.IInicioSesionCVVSS;
 import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
@@ -26,13 +27,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
        private IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS;
        private IInicioSesionCVVSS  iInicioSesionCVVSS;
 private IGuardarCompraSS iGuardarCompraSS;
-
+private IAgregarProductoCarritoSS iAgregarProductoCarritoSS;
     /**
      * Creates new form MenuPrincipal
      */
     public MenuPrincipal(IniciarSesion iniciarSesion, IInicioSesionSS iInicioSesionSS, IAgregarTarjetasSS agregarTarjetasSS,IObtenerMaderas iObtenerMaderas,
      IBuscarMaderaPorIDSS buscarMaderaPorIDSS,String usuarioId,       IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS
-,IInicioSesionCVVSS  iInicioSesionCVVSS,IGuardarCompraSS iGuardarCompraSS) {
+,IInicioSesionCVVSS  iInicioSesionCVVSS,IGuardarCompraSS iGuardarCompraSS,IAgregarProductoCarritoSS iAgregarProductoCarritoSS) {
         this.usuarioId = usuarioId;
         this.iInicioSesionSS = iInicioSesionSS;
         this.agregarTarjetasSS = agregarTarjetasSS;
@@ -42,6 +43,7 @@ private IGuardarCompraSS iGuardarCompraSS;
         this.iObtenerNumerosTarjetasPorUsuarioSS=iObtenerNumerosTarjetasPorUsuarioSS;
         this.iInicioSesionCVVSS=iInicioSesionCVVSS;
         this.iGuardarCompraSS=iGuardarCompraSS;
+        this.iAgregarProductoCarritoSS=iAgregarProductoCarritoSS;
         initComponents();
     }
 //public void setUsuarioId(String usuarioId) {
@@ -125,7 +127,7 @@ private IGuardarCompraSS iGuardarCompraSS;
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 6, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -150,9 +152,7 @@ private IGuardarCompraSS iGuardarCompraSS;
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,7 +166,7 @@ private IGuardarCompraSS iGuardarCompraSS;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);
         ProductosVenta productosVenta = new ProductosVenta(this,iObtenerMaderas,buscarMaderaPorIDSS,iObtenerNumerosTarjetasPorUsuarioSS,usuarioId,iInicioSesionCVVSS
-       ,iGuardarCompraSS );
+       ,iGuardarCompraSS,iAgregarProductoCarritoSS );
         productosVenta.setVisible(true);
 
         // TODO add your handling code here:

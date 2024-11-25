@@ -5,6 +5,7 @@ pantallas\TarjetasDisponibles$2.class
 pantallas\RegistrarUsuario$1.class
 pantallas\MenuDeTarjetas.class
 pantallas\ProductosVenta$2.class
+pantallas\DetallesCarritos$1.class
 main\Main.class
 pantallas\IniciarSesion$1.class
 pantallas\MenuDeTarjetas$2.class
@@ -14,7 +15,9 @@ pantallas\AgregarTarjeta$2.class
 pantallas\TarjetasDisponibles.class
 pantallas\RegistrarUsuario$2.class
 pantallas\IniciarSesion.class
+pantallas\MenuCarrito$1.class
 pantallas\ConfirmarTarjeta$3.class
+pantallas\DetallesCarritos.class
 pantallas\DetallesProducto$2.class
 pantallas\IniciarSesion$2.class
 pantallas\ProductosVenta.class
@@ -22,14 +25,18 @@ pantallas\DetallesProducto$3.class
 pantallas\TarjetasDisponibles$3.class
 pantallas\DetallesProducto.class
 pantallas\MenuPrincipal$1.class
+pantallas\DetallesProducto$5.class
 pantallas\ConfirmarTarjeta$1.class
 pantallas\CompraExitosa$2.class
 pantallas\AgregarTarjeta$1.class
 pantallas\ConfirmarTarjeta$2.class
+pantallas\DetallesCarritos$2.class
 pantallas\ConfirmarTarjeta.class
+pantallas\MenuCarrito$2.class
 pantallas\CompraExitosa.class
 pantallas\MenuDeTarjetas$1.class
 pantallas\DetallesProducto$1.class
 pantallas\AgregarTarjeta.class
 pantallas\TarjetasDisponibles$1.class
+pantallas\MenuCarrito.class
 pantallas\ProductosVenta$1.class
