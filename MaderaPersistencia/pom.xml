@@ -64,6 +64,11 @@
             <artifactId>mongo-java-driver</artifactId>
             <version>3.10.1</version>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>MaderaNegocio</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

@@ -14,19 +14,17 @@ import negocio.MaderaNegocio;
  *
  * @author Oley
  */
-public class ObtenerMaderasSS implements  IObtenerMaderas{
+public class ObtenerMaderasSS implements IObtenerMaderas {
+
     IMadereraNegocio iMadereraNegocio;
 
-    public ObtenerMaderasSS( ) {
+    public ObtenerMaderasSS() {
         this.iMadereraNegocio = new MaderaNegocio();
     }
 
     @Override
     public List<MaderaDTO> obtenerMaderas() {
-   return iMadereraNegocio.obtenerMaderas();
+        return iMadereraNegocio.obtenerMaderas();
+    }
 
-
-    
-    
-}
 }

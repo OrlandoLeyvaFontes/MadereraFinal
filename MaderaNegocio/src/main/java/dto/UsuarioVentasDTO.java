@@ -14,7 +14,7 @@ import org.bson.types.ObjectId;
  */
 public class UsuarioVentasDTO {
 
-    private ObjectId id;
+    private String id;
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
@@ -24,7 +24,7 @@ public class UsuarioVentasDTO {
     private List<Madera> maderas;
 
     
-    public UsuarioVentasDTO(ObjectId id, String nombre, String apellidoPaterno, String apellidoMaterno, String numero, String correo, String contraseña, List<Madera> maderas) {
+    public UsuarioVentasDTO(String id, String nombre, String apellidoPaterno, String apellidoMaterno, String numero, String correo, String contraseña, List<Madera> maderas) {
         this.id = id;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -35,7 +35,7 @@ public class UsuarioVentasDTO {
         this.maderas = maderas;
     }
 
-    public UsuarioVentasDTO(ObjectId id, String nombre, String apellidoPaterno, String apellidoMaterno, String numero, String correo, String contraseña) {
+    public UsuarioVentasDTO(String id, String nombre, String apellidoPaterno, String apellidoMaterno, String numero, String correo, String contraseña) {
         this.id = id;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -48,11 +48,11 @@ public class UsuarioVentasDTO {
     public UsuarioVentasDTO() {
     }
 
-    public ObjectId getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -111,5 +111,11 @@ public class UsuarioVentasDTO {
     public void setMaderas(List<Madera> maderas) {
         this.maderas = maderas;
     }
+
+    @Override
+    public String toString() {
+        return "UsuarioVentasDTO{" + "id=" + id + ", nombre=" + nombre + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", numero=" + numero + ", correo=" + correo + ", contrase\u00f1a=" + contraseña + ", maderas=" + maderas + '}';
+    }
+    
 
 }

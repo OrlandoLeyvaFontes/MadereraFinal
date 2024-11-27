@@ -98,31 +98,23 @@ public class MaderaNegocio implements IMadereraNegocio {
     public List<MaderaDTO> obtenerMaderasPorUsuarioVenta(String idUsuarioVenta) {
         try {
             ObjectId objectId = new ObjectId(idUsuarioVenta);
-            MaderaDAO maderaDAO = new MaderaDAO();
-            List<Madera> maderas = maderaDAO.obtenerMaderasPorUsuarioVenta(objectId);
 
+            // Buscar las maderas asociadas al vendedor
+            MaderaDAO maderaDAO = new MaderaDAO();
+            List<MaderaDTO> maderas = maderaDAO.buscarMaderaPorVendedor(Long.MIN_VALUE);
+
+            // Si no se encuentran maderas asociadas al vendedor
             if (maderas == null || maderas.isEmpty()) {
                 System.out.println("El usuario de ventas no tiene maderas asociadas.");
                 return new ArrayList<>();
             }
 
-            // Convertir la lista de entidades Madera a DTOs
-            List<MaderaDTO> maderasDTO = new ArrayList<>();
-            for (Madera madera : maderas) {
-                MaderaDTO maderaDTO = new MaderaDTO();
-                maderaDTO.setId(madera.getId().toString());
-                maderaDTO.setNombre(madera.getNombre());
-                maderaDTO.setDescripcion(madera.getDescripcion());
-                maderaDTO.setCantidad(madera.getCantidad());
-                maderaDTO.setPrecioUnitario(madera.getPrecioUnitario());
-                maderasDTO.add(maderaDTO);
-            }
+            return maderas;
 
-            return maderasDTO;
         } catch (Exception e) {
             System.err.println("Error al obtener las maderas del usuario de ventas: " + e.getMessage());
             e.printStackTrace();
-            return new ArrayList<>();
+            return new ArrayList<>(); // Retornar una lista vacía en caso de error
         }
     }
 

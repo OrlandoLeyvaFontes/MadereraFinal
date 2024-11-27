@@ -8,6 +8,7 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import conexion.Conexion;
+import dto.MaderaDTO;
 import entidades.Madera;
 import interfacesDAO.IMaderaDAO;
 import java.util.ArrayList;
@@ -104,27 +105,27 @@ public class MaderaDAO implements IMaderaDAO {
         collection.updateOne(filtro, actualizacion);
     }
 
-    // Método para obtener maderas asociadas a un usuario de ventas
-    public List<Madera> obtenerMaderasPorUsuarioVenta(ObjectId idUsuarioVenta) {
-        // Simulación de consulta a la base de datos (MongoDB)
-        List<Document> documentosMaderas = Conexion.getDatabase().getCollection("usuariosVenta")
-                .find(new Document("_id", idUsuarioVenta))
-                .projection(new Document("maderas", 1))
-                .first()
-                .getList("maderas", Document.class);
+    public List<MaderaDTO> buscarMaderaPorVendedor(Long vendedorId) {
+        List<MaderaDTO> maderaList = new ArrayList<>();
 
-        List<Madera> maderas = new ArrayList<>();
-        if (documentosMaderas != null) {
-            for (Document doc : documentosMaderas) {
-                Madera madera = new Madera();
-                madera.setId(doc.getObjectId("_id"));
-                madera.setNombre(doc.getString("nombre"));
-                madera.setDescripcion(doc.getString("tipo"));
-                madera.setCantidad(doc.getInteger("cantidad"));
-                madera.setPrecioUnitario(doc.getDouble("precio"));
-                maderas.add(madera);
-            }
+        // Obtén la colección de maderas
+        MongoCollection<Document> coleccionMadera = Conexion.getDatabase().getCollection("Madera");
+
+        // Filtra por el vendedorId
+        List<Document> maderas = coleccionMadera.find(Filters.eq("vendedorId", vendedorId)).into(new ArrayList<>());
+
+        // Convierte los documentos a DTOs
+        for (Document doc : maderas) {
+            MaderaDTO madera = new MaderaDTO();
+            madera.setId(doc.getString("id"));
+            madera.setNombre(doc.getString("nombre"));
+            madera.setDescripcion(doc.getString("descripcion"));
+            madera.setCantidad(doc.getInteger("cantidad"));
+            madera.setPrecioUnitario(doc.getDouble("precio_unitario"));
+            maderaList.add(madera);
         }
-        return maderas;
+
+        return maderaList;
     }
+
 }

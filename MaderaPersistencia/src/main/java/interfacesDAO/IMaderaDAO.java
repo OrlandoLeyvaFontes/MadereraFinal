@@ -4,8 +4,8 @@
  */
 package interfacesDAO;
 
+import dto.MaderaDTO;
 import entidades.Madera;
-import entidades.Usuario;
 import java.util.List;
 import org.bson.types.ObjectId;
 
@@ -25,5 +25,5 @@ public interface IMaderaDAO {
 
     public void actualizar(Madera madera);
 
-    public List<Madera> obtenerMaderasPorUsuarioVenta(ObjectId idUsuarioVenta);
+   public List<MaderaDTO> buscarMaderaPorVendedor(Long vendedorId);
 }

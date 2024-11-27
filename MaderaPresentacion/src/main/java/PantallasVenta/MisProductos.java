@@ -4,17 +4,61 @@
  */
 package PantallasVenta;
 
+import dto.MaderaDTO;
+import interfaz.IObtenerMaderasPorVendedorSS;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author aleja
  */
 public class MisProductos extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MisProductos
-     */
+    private MenuVendedor menuVendedor;
+    private IObtenerMaderasPorVendedorSS iObtenerMaderasPorVendedor;
+
     public MisProductos() {
         initComponents();
+    }
+
+    private void CargarMetodosIniciales() {
+        cargarMaderasEnTablas();
+    }
+
+    private void cargarMaderasEnTablas() {
+        List<MaderaDTO> maderaLista = this.iObtenerMaderasPorVendedor.obtenerMaderasPorVendedor();
+        if (maderaLista != null && !maderaLista.isEmpty()) {
+            llenarTablaMaderas(maderaLista);
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay datos disponibles para mostrar.", "Información", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    private void llenarTablaMaderas(List<MaderaDTO> maderaLista) {
+        DefaultTableModel model = new DefaultTableModel(
+                new String[]{"Nombre", "Precio", "Descripción", "Cantidad", "id"}, 0
+        ) {
+            boolean[] canEdit = new boolean[]{false, false, false, false, false};  // Hace que las celdas no sean editables.
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        };
+
+        for (MaderaDTO madera : maderaLista) {
+            model.addRow(new Object[]{
+                madera.getNombre(),
+                madera.getPrecioUnitario(),
+                madera.getDescripcion(),
+                madera.getCantidad(),
+                madera.getId()
+            });
+        }
+
+        jTable1.setModel(model);
     }
 
     /**
@@ -80,7 +124,7 @@ public class MisProductos extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTitulo)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblIniciarSesion)
                 .addGap(34, 34, 34))
         );
