@@ -17,16 +17,18 @@ private IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS;
  private String usuarioId;
 private IInicioSesionCVVSS iInicioSesionCVVSS;
 private  IComprarCarritoSS iComprarCarritoSS;
+private MenuPrincipal menuPrincipal;
     /**
      * Creates new form MenuDeTarjetas2
      */
     public MenuDeTarjetas2(IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS, String usuarioId,IInicioSesionCVVSS iInicioSesionCVVSS, 
-            IComprarCarritoSS iComprarCarritoSS
+            IComprarCarritoSS iComprarCarritoSS,MenuPrincipal menuPrincipal
 ) {
         this.iObtenerNumerosTarjetasPorUsuarioSS=iObtenerNumerosTarjetasPorUsuarioSS;
         this.usuarioId=usuarioId;
         this.iInicioSesionCVVSS=iInicioSesionCVVSS;
         this.iComprarCarritoSS=iComprarCarritoSS;
+        this.menuPrincipal=menuPrincipal;
         initComponents();
     }
 
@@ -158,7 +160,7 @@ private  IComprarCarritoSS iComprarCarritoSS;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 this.setVisible(false);
 TarjetasDisponibles2 tarjetasDisponibles=new TarjetasDisponibles2(iObtenerNumerosTarjetasPorUsuarioSS,usuarioId,
- iInicioSesionCVVSS,iComprarCarritoSS);
+ iInicioSesionCVVSS,iComprarCarritoSS,menuPrincipal);
 tarjetasDisponibles.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed

@@ -9,11 +9,12 @@ package pantallas;
  * @author Oley
  */
 public class CompraExitosa2 extends javax.swing.JFrame {
-
+private MenuPrincipal menuPrincipal;
     /**
      * Creates new form CompraExitosa2
      */
-    public CompraExitosa2() {
+    public CompraExitosa2(MenuPrincipal menuPrincipal) {
+        this.menuPrincipal=menuPrincipal;
         initComponents();
     }
 
@@ -143,6 +144,7 @@ public class CompraExitosa2 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
      this.setVisible(false);
+     menuPrincipal.setVisible(true);
 
 
 // TODO add your handling code here:

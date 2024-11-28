@@ -20,17 +20,19 @@ private IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS;
 private String usuarioId;
 private IInicioSesionCVVSS iInicioSesionCVVSS;
 private  IComprarCarritoSS iComprarCarritoSS;
+private MenuPrincipal menuPrincipal;
     /**
      * Creates new form TarjetasDisponibles2
      */
     public TarjetasDisponibles2(IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS, String usuarioId,IInicioSesionCVVSS iInicioSesionCVVSS
-            , IComprarCarritoSS iComprarCarritoSS
+            , IComprarCarritoSS iComprarCarritoSS,MenuPrincipal menuPrincipal
 ) {
         
         this.iObtenerNumerosTarjetasPorUsuarioSS=iObtenerNumerosTarjetasPorUsuarioSS;
         this.usuarioId=usuarioId;
         this.iInicioSesionCVVSS=iInicioSesionCVVSS;
         this.iComprarCarritoSS=iComprarCarritoSS;
+        this.menuPrincipal=menuPrincipal;
         initComponents();
                 cargarTarjetasEnTablas();
 
@@ -200,7 +202,7 @@ private void llenarTablaTarjetas(List<String> numerosTarjetas) {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 this.setVisible(false);
-ConfirmarTarjeta2 confirmarTarjeta2=new ConfirmarTarjeta2( iInicioSesionCVVSS,iComprarCarritoSS,usuarioId);
+ConfirmarTarjeta2 confirmarTarjeta2=new ConfirmarTarjeta2( iInicioSesionCVVSS,iComprarCarritoSS,usuarioId,menuPrincipal);
 confirmarTarjeta2.setVisible(true);
 
         // TODO add your handling code here:

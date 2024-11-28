@@ -26,11 +26,12 @@ private IEliminarProductoCarritoSS iEliminarProductoCarritoSS;
 private IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS;
 private IInicioSesionCVVSS iInicioSesionCVVSS;
 private  IComprarCarritoSS iComprarCarritoSS;
+private MenuPrincipal menuPrincipal;
     /**
      * Creates new form DetallesCarritos
      */
     public DetallesCarritos( ProductosVenta productosVenta, IObtenerCarritoSS iObtenerCarritoSS,String usuarioId,IEliminarProductoCarritoSS iEliminarProductoCarritoSS
-    ,IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS,IInicioSesionCVVSS iInicioSesionCVVSS, IComprarCarritoSS iComprarCarritoSS
+    ,IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS,IInicioSesionCVVSS iInicioSesionCVVSS, IComprarCarritoSS iComprarCarritoSS,MenuPrincipal menuPrincipal
     ) {
         this.productosVenta=productosVenta;
         this.iObtenerCarritoSS=iObtenerCarritoSS;
@@ -39,6 +40,7 @@ private  IComprarCarritoSS iComprarCarritoSS;
         this.iObtenerNumerosTarjetasPorUsuarioSS=iObtenerNumerosTarjetasPorUsuarioSS;
         this.iInicioSesionCVVSS=iInicioSesionCVVSS;
         this.iComprarCarritoSS=iComprarCarritoSS;
+        this.menuPrincipal=menuPrincipal;
         initComponents();
         CargarMetodosIniciales();
     }
@@ -123,11 +125,11 @@ private void CargarCarritoEnTablas(){
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
+                .addGap(42, 42, 42)
                 .addComponent(jButton2)
-                .addGap(114, 114, 114)
+                .addGap(125, 125, 125)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(276, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,7 +248,7 @@ private void CargarCarritoEnTablas(){
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 this.setVisible(false);
-MenuDeTarjetas2 menuDeTarjetas2=new MenuDeTarjetas2(iObtenerNumerosTarjetasPorUsuarioSS,usuarioId,iInicioSesionCVVSS,iComprarCarritoSS);
+MenuDeTarjetas2 menuDeTarjetas2=new MenuDeTarjetas2(iObtenerNumerosTarjetasPorUsuarioSS,usuarioId,iInicioSesionCVVSS,iComprarCarritoSS,menuPrincipal);
 menuDeTarjetas2.setVisible(true);
 
 
@@ -255,7 +257,7 @@ menuDeTarjetas2.setVisible(true);
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 this.setVisible(false);
-productosVenta.setVisible(true);
+menuPrincipal.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 

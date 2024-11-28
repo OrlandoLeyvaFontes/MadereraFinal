@@ -321,7 +321,7 @@ private  IComprarCarritoSS iComprarCarritoSS;
         iAgregarProductoCarritoSS.agregarProducto(usuarioId, idMadera, cantidad);
         this.setVisible(false);
         MenuCarrito menuCarrito = new MenuCarrito(productosVenta, iObtenerCarritoSS, usuarioId, iEliminarProductoCarritoSS,iObtenerNumerosTarjetasPorUsuarioSS
-        ,iInicioSesionCVVSS,iComprarCarritoSS);
+        ,iInicioSesionCVVSS,iComprarCarritoSS,menuPrincipal1);
         menuCarrito.setVisible(true);
 
         // TODO add your handling code here:

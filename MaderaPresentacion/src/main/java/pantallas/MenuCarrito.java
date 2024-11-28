@@ -22,13 +22,13 @@ private IEliminarProductoCarritoSS iEliminarProductoCarritoSS;
        private IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS;
             private IInicioSesionCVVSS iInicioSesionCVVSS;
 private  IComprarCarritoSS iComprarCarritoSS;
-
+private MenuPrincipal menuPrincipal;
     /**
      * Creates new form MenuCarrito
      */
     public MenuCarrito(ProductosVenta productosVenta, IObtenerCarritoSS iObtenerCarritoSS,String usuarioId,IEliminarProductoCarritoSS iEliminarProductoCarritoSS
     ,IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS,IInicioSesionCVVSS iInicioSesionCVVSS,
-     IComprarCarritoSS iComprarCarritoSS
+     IComprarCarritoSS iComprarCarritoSS,MenuPrincipal menuPrincipal
     ) {
         this.productosVenta=productosVenta;
         this.iObtenerCarritoSS=iObtenerCarritoSS;
@@ -37,6 +37,7 @@ private  IComprarCarritoSS iComprarCarritoSS;
         this.iObtenerNumerosTarjetasPorUsuarioSS=iObtenerNumerosTarjetasPorUsuarioSS;
         this.iInicioSesionCVVSS=iInicioSesionCVVSS;
         this.iComprarCarritoSS=iComprarCarritoSS;
+        this.menuPrincipal=menuPrincipal;
         initComponents();
     }
 
@@ -148,7 +149,7 @@ productosVenta.setVisible(true);
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 this.setVisible(false);
 DetallesCarritos detallesCarritos=new DetallesCarritos(productosVenta,iObtenerCarritoSS,usuarioId,iEliminarProductoCarritoSS,iObtenerNumerosTarjetasPorUsuarioSS
-,iInicioSesionCVVSS,iComprarCarritoSS
+,iInicioSesionCVVSS,iComprarCarritoSS,menuPrincipal
 );
 detallesCarritos.setVisible(true);
         // TODO add your handling code here:

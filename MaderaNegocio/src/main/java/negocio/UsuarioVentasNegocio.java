@@ -110,33 +110,33 @@ public class UsuarioVentasNegocio implements IUsuarioVentasNegocio {
         return null;
     }
 
-    @Override
-    public List<Document> obtenerMaderasPorUsuarioVenta(String idUsuarioVenta) {
-        try {
-            List<MaderaDTO> maderasDTO = madereraNegocio.obtenerMaderasPorUsuarioVenta(idUsuarioVenta);
-
-            if (maderasDTO.isEmpty()) {
-                System.out.println("El usuario de ventas no tiene maderas asociadas.");
-                return new ArrayList<>();
-            }
-
-            // Convertir la lista de DTOs a Documentos
-            List<Document> maderasDocs = new ArrayList<>();
-            for (MaderaDTO madera : maderasDTO) {
-                Document maderaDoc = new Document();
-                maderaDoc.put("id", madera.getId());
-                maderaDoc.put("nombre", madera.getNombre());
-                maderaDoc.put("tipo", madera.getDescripcion());
-                maderaDoc.put("cantidad", madera.getCantidad());
-                maderaDoc.put("precio", madera.getPrecioUnitario());
-                maderasDocs.add(maderaDoc);
-            }
-
-            return maderasDocs;
-        } catch (Exception e) {
-            System.err.println("Error al obtener las maderas del usuario de ventas: " + e.getMessage());
-            e.printStackTrace();
-            return new ArrayList<>();
-        }
-    }
+//    @Override
+//    public List<Document> obtenerMaderasPorUsuarioVenta(String idUsuarioVenta) {
+//        try {
+//            List<MaderaDTO> maderasDTO = madereraNegocio.obtenerMaderasPorUsuarioVenta(idUsuarioVenta);
+//
+//            if (maderasDTO.isEmpty()) {
+//                System.out.println("El usuario de ventas no tiene maderas asociadas.");
+//                return new ArrayList<>();
+//            }
+//
+//            // Convertir la lista de DTOs a Documentos
+//            List<Document> maderasDocs = new ArrayList<>();
+//            for (MaderaDTO madera : maderasDTO) {
+//                Document maderaDoc = new Document();
+//                maderaDoc.put("id", madera.getId());
+//                maderaDoc.put("nombre", madera.getNombre());
+//                maderaDoc.put("tipo", madera.getDescripcion());
+//                maderaDoc.put("cantidad", madera.getCantidad());
+//                maderaDoc.put("precio", madera.getPrecioUnitario());
+//                maderasDocs.add(maderaDoc);
+//            }
+//
+//            return maderasDocs;
+//        } catch (Exception e) {
+//            System.err.println("Error al obtener las maderas del usuario de ventas: " + e.getMessage());
+//            e.printStackTrace();
+//            return new ArrayList<>();
+//        }
+//    }
 }

@@ -20,14 +20,16 @@ public class ConfirmarTarjeta2 extends javax.swing.JFrame {
 private IInicioSesionCVVSS iInicioSesionCVVSS;
 private  IComprarCarritoSS iComprarCarritoSS;
   private String usuarioId;
+  private MenuPrincipal menuPrincipal;
 
     /**
      * Creates new form ConfirmarTarjeta2
      */
-    public ConfirmarTarjeta2(IInicioSesionCVVSS iInicioSesionCVVSS, IComprarCarritoSS iComprarCarritoSS,String usuarioId) {
+    public ConfirmarTarjeta2(IInicioSesionCVVSS iInicioSesionCVVSS, IComprarCarritoSS iComprarCarritoSS,String usuarioId,MenuPrincipal menuPrincipal) {
         this.iInicioSesionCVVSS=iInicioSesionCVVSS;
         this.iComprarCarritoSS=iComprarCarritoSS;
         this.usuarioId=usuarioId;
+        this.menuPrincipal=menuPrincipal;
         initComponents();
     }
 
@@ -151,8 +153,8 @@ String CVV = jTextField1.getText();
     }
 
     this.setVisible(false);
-//    CompraExitosa compraExitosa = new CompraExitosa(this, menuPrincipal1);
-//    compraExitosa.setVisible(true);
+    CompraExitosa2 compraExitosa = new CompraExitosa2( menuPrincipal);
+    compraExitosa.setVisible(true);
   
 
 iComprarCarritoSS.comprarCarrito( usuarioId);
