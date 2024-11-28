@@ -1,6 +1,7 @@
 C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaPersistencia\src\main\java\conexion\Conexion.java
 C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaPersistencia\src\main\java\interfacesDAO\IMaderaDAO.java
 C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaPersistencia\src\main\java\interfacesDAO\IUsuarioVentasDAO.java
+C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaPersistencia\src\main\java\dao\VentaDAO.java
 C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaPersistencia\src\main\java\entidades\Usuario.java
 C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaPersistencia\src\main\java\entidades\UsuarioVentas.java
 C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaPersistencia\src\main\java\dao\UsuarioVentasDAO.java
@@ -9,7 +10,9 @@ C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\Mader
 C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaPersistencia\src\main\java\interfacesDAO\ICarritoDAO.java
 C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaPersistencia\src\main\java\Prueba\Main.java
 C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaPersistencia\src\main\java\dao\CompraDAO.java
+C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaPersistencia\src\main\java\interfacesDAO\IVentaDAO.java
 C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaPersistencia\src\main\java\dao\CarritoDAO.java
+C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaPersistencia\src\main\java\entidades\Ventas.java
 C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaPersistencia\src\main\java\entidades\Carrito.java
 C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaPersistencia\src\main\java\dao\UsuarioDAO.java
 C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaPersistencia\src\main\java\interfacesDAO\ICompraDAO.java

@@ -7,11 +7,14 @@ package main;
 import dto.CompraDTO;
 import dto.MaderaDTO;
 import dto.UsuarioDTO;
+import dto.VentaDTO;
 import interfacesDTO.ICompraNegocio;
 import interfacesDTO.IUsuarioNegocio;
 import java.util.Calendar;
+import java.util.List;
 import negocio.CompraNegocio;
 import negocio.UsuarioNegocio;
+import negocio.VentaNegocio;
 
 /**
  *
@@ -19,21 +22,34 @@ import negocio.UsuarioNegocio;
  */
 public class Main {
     public static void main(String[] args) {
-        ICompraNegocio compraNegocio = new CompraNegocio();
+        VentaNegocio ventaNegocio = new VentaNegocio();
 
-        CompraDTO compraDTO = new CompraDTO();
-        compraDTO.setFechaCompra(Calendar.getInstance());  
-        compraDTO.setCantidad(5);  
+        List<VentaDTO> ventas = ventaNegocio.obtenerVentas();
 
-        MaderaDTO maderaDTO = new MaderaDTO();
-        maderaDTO.setId("673854a7673d5472ce4f0e80");  
-        compraDTO.setMadera(maderaDTO);
+        System.out.println("Lista de ventas:");
+        for (VentaDTO venta : ventas) {
+            System.out.println("ID Venta: " + venta.getId());
+            System.out.println("Cantidad: " + venta.getCantidad());
+            System.out.println("Precio Total: " + venta.getPrecioTotal());
+            System.out.println("Fecha Venta: " + venta.getFechaVenta());
 
-        UsuarioDTO usuarioDTO = new UsuarioDTO();
-        usuarioDTO.setId("673854b1673d5472ce4f0e84");  
-        compraDTO.setUsuario(usuarioDTO);
+            if (venta.getMadera() != null) {
+                System.out.println("Madera ID: " + venta.getMadera().getId());
+                System.out.println("Madera Nombre: " + venta.getMadera().getNombre());
+                System.out.println("Precio Unitario: " + venta.getMadera().getPrecioUnitario());
+            } else {
+                System.out.println("Madera: N/A");
+            }
 
-        compraNegocio.guardarCompra(compraDTO);
+            if (venta.getUsuario() != null) {
+                System.out.println("Usuario ID: " + venta.getUsuario().getId());
+                System.out.println("Usuario Nombre: " + venta.getUsuario().getNombre());
+            } else {
+                System.out.println("Usuario: N/A");
+            }
+
+            System.out.println("-----------------------------------");
+        }
     
     }
     

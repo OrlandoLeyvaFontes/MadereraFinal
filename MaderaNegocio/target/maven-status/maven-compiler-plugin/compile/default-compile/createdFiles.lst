@@ -2,6 +2,7 @@ dto\TarjetasDTO.class
 interfacesDTO\ITarjetasNegocio.class
 dto\UsuarioDTO.class
 dto\UsuarioVentasDTO.class
+negocio\VentaNegocio.class
 negocio\TarjetasNegocio.class
 interfacesDTO\IUsuarioVentasNegocio.class
 main\Main.class
@@ -11,9 +12,11 @@ interfacesDTO\ICarritoNegocio.class
 negocio\CompraNegocio.class
 negocio\UsuarioNegocio.class
 interfacesDTO\IUsuarioNegocio.class
+dto\VentaDTO.class
 interfacesDTO\ICompraNegocio.class
 negocio\MaderaNegocio.class
 interfacesDTO\IMadereraNegocio.class
 dto\CarritoDTO.class
 dto\MaderaDTO.class
 negocio\UsuarioVentasNegocio.class
+interfacesDTO\IVentaNegocio.class

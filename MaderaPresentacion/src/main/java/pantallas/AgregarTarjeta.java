@@ -63,8 +63,8 @@ private String usuarioId;
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Maderera en Linea");
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
 
         jButton1.setText("Regresar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -96,9 +96,9 @@ private String usuarioId;
 
         jPanel3.setBackground(new java.awt.Color(153, 153, 153));
 
+        jLabel2.setText("Añadir Tarjetas");
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Añadir Tarjetas");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -117,30 +117,30 @@ private String usuarioId;
                 .addContainerGap(7, Short.MAX_VALUE))
         );
 
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Ingresa los datos de la tarjeta");
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
 
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Nombre del titular:");
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
 
         jTextField1.setForeground(new java.awt.Color(153, 153, 153));
         jTextField1.setSelectedTextColor(new java.awt.Color(153, 153, 153));
 
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Numero:");
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
 
         jTextField2.setForeground(new java.awt.Color(153, 153, 153));
 
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("DD/MM/AA");
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
 
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("ccv:");
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
 
         jTextField4.setForeground(new java.awt.Color(153, 153, 153));
 
-        jButton2.setBackground(new java.awt.Color(51, 153, 0));
         jButton2.setText("Guardar Tarjeta");
+        jButton2.setBackground(new java.awt.Color(51, 153, 0));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);

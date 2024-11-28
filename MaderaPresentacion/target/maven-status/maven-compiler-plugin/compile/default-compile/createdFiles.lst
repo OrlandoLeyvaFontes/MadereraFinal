@@ -8,6 +8,7 @@ pantallas\MenuDeTarjetas2.class
 pantallas\DetallesCarritos$1.class
 main\Main.class
 pantallas\MenuDeTarjetas$2.class
+pantallas\SalidaCompra.class
 PantallasVenta\RegistrarUsuarioVendedor.class
 pantallas\MenuDeTarjetas2$1.class
 pantallas\DetallesCarritos.class
@@ -53,6 +54,7 @@ pantallas\AgregarTarjeta$2.class
 pantallas\TarjetasDisponibles.class
 pantallas\RegistrarUsuario$2.class
 pantallas\IniciarSesion.class
+pantallas\SalidaCompra$2.class
 pantallas\MenuCarrito$1.class
 PantallasVenta\EditarMadera$1.class
 pantallas\ConfirmarTarjeta$3.class
@@ -60,6 +62,7 @@ PantallasVenta\MisProductos$1.class
 PantallasVenta\MisProductos.class
 pantallas\DetallesProducto$3.class
 pantallas\CompraExitosa2$1.class
+pantallas\MenuPrincipal$3.class
 pantallas\ProductosVenta$3.class
 pantallas\CompraExitosa$2.class
 pantallas\ConfirmarTarjeta$2.class
@@ -67,4 +70,5 @@ pantallas\CompraExitosa.class
 pantallas\AgregarTarjeta.class
 pantallas\TarjetasDisponibles$1.class
 pantallas\TarjetasDisponibles2$1.class
+pantallas\SalidaCompra$1.class
 pantallas\MenuCarrito.class

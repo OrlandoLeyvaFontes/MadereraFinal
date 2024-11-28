@@ -14,6 +14,7 @@ import interfaz.IGuardarCompraSS;
 import interfaz.IInicioSesionCVVSS;
 import interfaz.IObtenerCarritoSS;
 import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
+import interfaz.IObtenerVentasSS;
 import interfazSS.IAgregarTarjetasSS;
 import interfazSS.IAgregarUsuarioSS;
 import interfazSS.IBuscarMaderaPorIDSS;
@@ -41,10 +42,12 @@ private IAgregarProductoCarritoSS iAgregarProductoCarritoSS;
 private  IObtenerCarritoSS iObtenerCarritoSS;
 private IEliminarProductoCarritoSS iEliminarProductoCarritoSS;
 private  IComprarCarritoSS iComprarCarritoSS;
+private IObtenerVentasSS iObtenerVentasSS;
     public IniciarSesion(IAgregarUsuarioSS agregarUsuarioSS, IInicioSesionSS iInicioSesionSS,IAgregarTarjetasSS agregarTarjetasSS
     ,IObtenerMaderas iObtenerMaderas, IBuscarMaderaPorIDSS buscarMaderaPorIDSS,IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS
     ,IInicioSesionCVVSS  iInicioSesionCVVSS,IGuardarCompraSS iGuardarCompraSS,IAgregarProductoCarritoSS iAgregarProductoCarritoSS    
-            , IObtenerCarritoSS iObtenerCarritoSS,IEliminarProductoCarritoSS iEliminarProductoCarritoSS, IComprarCarritoSS iComprarCarritoSS
+            , IObtenerCarritoSS iObtenerCarritoSS,IEliminarProductoCarritoSS iEliminarProductoCarritoSS, IComprarCarritoSS iComprarCarritoSS,
+            IObtenerVentasSS iObtenerVentasSS
 ) {
         this.iObtenerNumerosTarjetasPorUsuarioSS=iObtenerNumerosTarjetasPorUsuarioSS;
        this.agregarUsuarioSS=agregarUsuarioSS;
@@ -58,6 +61,7 @@ private  IComprarCarritoSS iComprarCarritoSS;
        this.iObtenerCarritoSS=iObtenerCarritoSS;
        this.iEliminarProductoCarritoSS=iEliminarProductoCarritoSS;
        this.iComprarCarritoSS=iComprarCarritoSS;
+       this.iObtenerVentasSS=iObtenerVentasSS;
         initComponents();
     }
 
@@ -217,7 +221,7 @@ registrarUsuario.setVisible(true);
         
         MenuPrincipal menuPrincipal = new MenuPrincipal(this, iInicioSesionSS, agregarTarjetasSS, iObtenerMaderas, buscarMaderaPorIDSS, usuarioId,iObtenerNumerosTarjetasPorUsuarioSS
         ,iInicioSesionCVVSS,iGuardarCompraSS,iAgregarProductoCarritoSS,iObtenerCarritoSS,iEliminarProductoCarritoSS,
-        iComprarCarritoSS
+        iComprarCarritoSS,iObtenerVentasSS
         );
         menuPrincipal.setVisible(true);
     } else {
