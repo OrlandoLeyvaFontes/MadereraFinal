@@ -25,5 +25,7 @@ public interface IMaderaDAO {
 
     public void actualizar(Madera madera);
 
-   public List<MaderaDTO> buscarMaderaPorVendedor(Long vendedorId);
+    public List<MaderaDTO> buscarMaderaPorCorreoVendedor(String correoUsuarioVenta);
+
+     public Madera agregarMaderaPorCorreo(String correoVendedor, Madera madera);
 }

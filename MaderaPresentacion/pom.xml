@@ -78,17 +78,12 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>InicioSesionVentaSS</artifactId>
+            <artifactId>UsuarioVentaSS</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>RegistroUsuarioVentaSS</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>ObtenerMaderasPorVendedorSS</artifactId>
+            <artifactId>MaderaVentaSS</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

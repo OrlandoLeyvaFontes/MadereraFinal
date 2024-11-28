@@ -17,8 +17,18 @@ public class MaderaDTO {
     private String descripcion;
     private int cantidad;
     private double precioUnitario;
+    private String CorreoVendedor;
 
     public MaderaDTO() {
+    }
+
+    public MaderaDTO(String id, String nombre, String descripcion, int cantidad, double precioUnitario, String CorreoVendedor) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.cantidad = cantidad;
+        this.precioUnitario = precioUnitario;
+        this.CorreoVendedor = CorreoVendedor;
     }
 
     public MaderaDTO(String nombre, String descripcion, int cantidad, double precioUnitario) {
@@ -41,7 +51,6 @@ public class MaderaDTO {
         this.id = id;
     }
 
-   
     public String getNombre() {
         return nombre;
     }
@@ -72,6 +81,14 @@ public class MaderaDTO {
 
     public void setPrecioUnitario(double precioUnitario) {
         this.precioUnitario = precioUnitario;
+    }
+
+    public String getCorreoVendedor() {
+        return CorreoVendedor;
+    }
+
+    public void setCorreoVendedor(String CorreoVendedor) {
+        this.CorreoVendedor = CorreoVendedor;
     }
 
 }

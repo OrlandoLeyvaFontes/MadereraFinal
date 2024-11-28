@@ -95,13 +95,16 @@ public class MaderaNegocio implements IMadereraNegocio {
     }
 
     @Override
-    public List<MaderaDTO> obtenerMaderasPorUsuarioVenta(String idUsuarioVenta) {
+    public List<MaderaDTO> obtenerMaderasPorCorreoUsuarioVenta(String correoUsuarioVenta) {
         try {
-            ObjectId objectId = new ObjectId(idUsuarioVenta);
+            if (correoUsuarioVenta == null || correoUsuarioVenta.isEmpty()) {
+                System.out.println("El correo del usuario vendedor no puede ser nulo o vacío.");
+                return new ArrayList<>();
+            }
 
-            // Buscar las maderas asociadas al vendedor
+            // Buscar las maderas asociadas al vendedor utilizando el correo
             MaderaDAO maderaDAO = new MaderaDAO();
-            List<MaderaDTO> maderas = maderaDAO.buscarMaderaPorVendedor(Long.MIN_VALUE);
+            List<MaderaDTO> maderas = maderaDAO.buscarMaderaPorCorreoVendedor(correoUsuarioVenta);
 
             // Si no se encuentran maderas asociadas al vendedor
             if (maderas == null || maderas.isEmpty()) {
@@ -115,6 +118,35 @@ public class MaderaNegocio implements IMadereraNegocio {
             System.err.println("Error al obtener las maderas del usuario de ventas: " + e.getMessage());
             e.printStackTrace();
             return new ArrayList<>(); // Retornar una lista vacía en caso de error
+        }
+    }
+
+    @Override
+    public MaderaDTO agregarMaderaPorCorreo(MaderaDTO maderaDTO, String correoVendedor) {
+        if (correoVendedor == null || correoVendedor.isEmpty()) {
+            throw new IllegalArgumentException("El correo del vendedor no puede ser nulo o vacío.");
+        }
+
+        Madera madera = new Madera();
+        madera.setNombre(maderaDTO.getNombre());
+        madera.setDescripcion(maderaDTO.getDescripcion());
+        madera.setCantidad(maderaDTO.getCantidad());
+        madera.setPrecioUnitario(maderaDTO.getPrecioUnitario());
+        madera.setCorreoVendedor(maderaDTO.getCorreoVendedor()); // Asociar la madera con el correo del vendedor
+
+        Madera maderaGuardada = iMaderaDAO.agregarMadera(madera);
+
+        if (maderaGuardada != null) {
+            MaderaDTO maderaDTO1 = new MaderaDTO();
+            maderaDTO1.setId(maderaGuardada.getId().toString());
+            maderaDTO1.setNombre(maderaGuardada.getNombre());
+            maderaDTO1.setDescripcion(maderaGuardada.getDescripcion());
+            maderaDTO1.setCantidad(maderaGuardada.getCantidad());
+            maderaDTO1.setPrecioUnitario(maderaGuardada.getPrecioUnitario());
+            maderaDTO1.setCorreoVendedor(maderaGuardada.getCorreoVendedor());
+            return maderaDTO1;
+        } else {
+            throw new RuntimeException("Error al agregar la madera");
         }
     }
 

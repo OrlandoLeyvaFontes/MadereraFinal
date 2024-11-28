@@ -2,8 +2,10 @@ dao\CarritoDAO.class
 dao\TarjetasDAO.class
 dao\CompraDAO.class
 Prueba\Main.class
+entidades\SesionActual.class
 dao\MaderaDAO.class
 interfacesDAO\ICompraDAO.class
+interfacesDAO\ISesionActualDAO.class
 entidades\Madera.class
 interfacesDAO\ICarritoDAO.class
 interfacesDAO\IUsuarioVentasDAO.class
@@ -17,4 +19,5 @@ interfacesDAO\IMaderaDAO.class
 conexion\Conexion.class
 entidades\Usuario.class
 entidades\UsuarioVentas.class
+dao\SesionActualDAO.class
 interfacesDAO\ITarjetasDAO.class

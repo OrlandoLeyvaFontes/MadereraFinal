@@ -4,9 +4,9 @@
  */
 package PantallasVenta;
 
+import dto.SesionActualDTO;
 import dto.UsuarioVentasDTO;
-import intefazSS.IInicioSesionVentaSS;
-import interfaz.IRegistroUsuarioVentaSS;
+import interfaz.IUsuarioVentaSS;
 import javax.swing.JOptionPane;
 import org.bson.types.ObjectId;
 
@@ -16,12 +16,10 @@ import org.bson.types.ObjectId;
  */
 public class IniciarSesionVendedor extends javax.swing.JFrame {
 
-    private IInicioSesionVentaSS iInicioSesionVentaSS;
-    private IRegistroUsuarioVentaSS iRegistroUsuarioVentaSS;
+    private IUsuarioVentaSS iUsuarioVentaSS;
 
-    public IniciarSesionVendedor(IInicioSesionVentaSS iInicioSesionVentaSS, IRegistroUsuarioVentaSS iRegistroUsuarioVentaSS) {
-        this.iInicioSesionVentaSS = iInicioSesionVentaSS;
-        this.iRegistroUsuarioVentaSS= iRegistroUsuarioVentaSS;
+    public IniciarSesionVendedor(IUsuarioVentaSS iUsuarioVentaSS) {
+        this.iUsuarioVentaSS = iUsuarioVentaSS;
         initComponents();
     }
 
@@ -190,7 +188,7 @@ public class IniciarSesionVendedor extends javax.swing.JFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         this.setVisible(false);
-        RegistrarUsuarioVendedor registrarUsuarioVendedor = new RegistrarUsuarioVendedor(iRegistroUsuarioVentaSS, this);
+        RegistrarUsuarioVendedor registrarUsuarioVendedor = new RegistrarUsuarioVendedor(iUsuarioVentaSS, this);
         registrarUsuarioVendedor.setVisible(true);
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -198,22 +196,40 @@ public class IniciarSesionVendedor extends javax.swing.JFrame {
         String correo = txtUsuario.getText();
         String contraseña = txtContraseña.getText();
 
+        // Validar que ambos campos no estén vacíos
         if (correo.isEmpty() || contraseña.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, complete ambos campos.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        UsuarioVentasDTO usuarioVentasDTO = iInicioSesionVentaSS.iniciarSesion(correo, contraseña);
+        try {
+            // Validar formato del correo
+            if (!correo.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
+                JOptionPane.showMessageDialog(this, "El formato del correo es inválido.", "Error de formato", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-        if (usuarioVentasDTO != null) {
-            String usuarioId = usuarioVentasDTO.getId();
+            // Intentar iniciar sesión con las credenciales
+            UsuarioVentasDTO usuarioVentasDTO = iUsuarioVentaSS.iniciarSesion(correo, contraseña);
 
-            this.setVisible(false);
+            if (usuarioVentasDTO != null) {
+                // Inicio de sesión exitoso
+                JOptionPane.showMessageDialog(this, "Bienvenido " + usuarioVentasDTO.getNombre() + "!", "Inicio de Sesión Exitoso", JOptionPane.INFORMATION_MESSAGE);
 
-            MenuVendedor menuVendedor = new MenuVendedor();
-            menuVendedor.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(this, "Credenciales incorrectas. Intente de nuevo.", "Error de Inicio de Sesión", JOptionPane.ERROR_MESSAGE);
+                // Ocultar la ventana actual y abrir el menú del vendedor
+                this.setVisible(false);
+
+                SesionActualDTO sesionActualDTO = iUsuarioVentaSS.guardarSesion(correo);
+                MenuVendedor menuVendedor = new MenuVendedor();
+                menuVendedor.setVisible(true);
+            } else {
+                // Credenciales incorrectas
+                JOptionPane.showMessageDialog(this, "Credenciales incorrectas. Intente de nuevo.", "Error de Inicio de Sesión", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            // Capturar cualquier error inesperado
+            JOptionPane.showMessageDialog(this, "Ocurrió un error al intentar iniciar sesión: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }    }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
 

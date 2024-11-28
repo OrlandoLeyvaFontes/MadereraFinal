@@ -7,6 +7,7 @@ package dao;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
+import static com.mongodb.client.model.Filters.eq;
 import conexion.Conexion;
 import dto.MaderaDTO;
 import entidades.Madera;
@@ -105,27 +106,65 @@ public class MaderaDAO implements IMaderaDAO {
         collection.updateOne(filtro, actualizacion);
     }
 
-    public List<MaderaDTO> buscarMaderaPorVendedor(Long vendedorId) {
-        List<MaderaDTO> maderaList = new ArrayList<>();
+    public List<MaderaDTO> buscarMaderaPorCorreoVendedor(String correoUsuarioVenta) {
+        try {
+            MongoCollection<Document> coleccionMadera = Conexion.getDatabase().getCollection("Madera");
 
-        // Obtén la colección de maderas
-        MongoCollection<Document> coleccionMadera = Conexion.getDatabase().getCollection("Madera");
+            // Buscar las maderas asociadas al correo del vendedor
+            FindIterable<Document> results = collection.find(Filters.eq("correoVendedor", correoUsuarioVenta));
 
-        // Filtra por el vendedorId
-        List<Document> maderas = coleccionMadera.find(Filters.eq("vendedorId", vendedorId)).into(new ArrayList<>());
+            List<MaderaDTO> maderas = new ArrayList<>();
+            for (Document doc : results) {
+                MaderaDTO madera = new MaderaDTO();
+                madera.setNombre(doc.getString("nombre"));
+                madera.setDescripcion(doc.getString("descripcion"));
+                madera.setCantidad(doc.getInteger("cantidad"));
+                madera.setPrecioUnitario(doc.getDouble("precioUnitario"));
+                maderas.add(madera);
+            }
 
-        // Convierte los documentos a DTOs
-        for (Document doc : maderas) {
-            MaderaDTO madera = new MaderaDTO();
-            madera.setId(doc.getString("id"));
-            madera.setNombre(doc.getString("nombre"));
-            madera.setDescripcion(doc.getString("descripcion"));
-            madera.setCantidad(doc.getInteger("cantidad"));
-            madera.setPrecioUnitario(doc.getDouble("precio_unitario"));
-            maderaList.add(madera);
+            return maderas;
+
+        } catch (Exception e) {
+            System.err.println("Error al buscar las maderas por correo del vendedor: " + e.getMessage());
+            e.printStackTrace();
+            return new ArrayList<>();
         }
+    }
 
-        return maderaList;
+    public Madera agregarMaderaPorCorreo(String correoVendedor, Madera madera) {
+        try {
+            // Buscar el vendedor por correo
+            MongoCollection<Document> usuariosCollection = Conexion.getDatabase().getCollection("usuarioVentas");
+            Document usuario = usuariosCollection.find(eq("correo", correoVendedor)).first();
+
+            if (usuario == null) {
+                throw new RuntimeException("No se encontró un vendedor con el correo proporcionado: " + correoVendedor);
+            }
+
+            // Obtener el ID del usuario vendedor
+            ObjectId idUsuarioVendedor = usuario.getObjectId("_id");
+
+            // Asignar el ID del vendedor a la madera
+            MongoCollection<Document> coleccionMadera = Conexion.getDatabase().getCollection("Madera");
+            Document maderaDoc = new Document("nombre", madera.getNombre())
+                    .append("descripcion", madera.getDescripcion())
+                    .append("cantidad", madera.getCantidad())
+                    .append("precioUnitario", madera.getPrecioUnitario())
+                    .append("idUsuarioVendedor", idUsuarioVendedor);
+
+            // Insertar la madera en la colección
+            coleccionMadera.insertOne(maderaDoc);
+
+            // Configurar el ID generado en el objeto madera y retornarlo
+            madera.setId(maderaDoc.getObjectId("_id"));
+            madera.setCorreoVendedor(correoVendedor);
+
+            return madera;
+        } catch (Exception e) {
+            System.err.println("Error al agregar la madera: " + e.getMessage());
+            throw new RuntimeException("Error al agregar la madera.", e);
+        }
     }
 
 }

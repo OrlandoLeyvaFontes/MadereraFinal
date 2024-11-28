@@ -7,9 +7,11 @@ C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaPersistencia\src\m
 C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaPersistencia\src\main\java\dao\MaderaDAO.java
 C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaPersistencia\src\main\java\entidades\Tarjetas.java
 C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaPersistencia\src\main\java\entidades\Madera.java
+C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaPersistencia\src\main\java\interfacesDAO\ISesionActualDAO.java
 C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaPersistencia\src\main\java\interfacesDAO\ICompraDAO.java
 C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaPersistencia\src\main\java\Prueba\Main.java
 C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaPersistencia\src\main\java\interfacesDAO\IMaderaDAO.java
+C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaPersistencia\src\main\java\dao\SesionActualDAO.java
 C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaPersistencia\src\main\java\entidades\Carrito.java
 C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaPersistencia\src\main\java\interfacesDAO\IUsuarioVentasDAO.java
 C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaPersistencia\src\main\java\dao\UsuarioVentasDAO.java
@@ -18,3 +20,4 @@ C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaPersistencia\src\m
 C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaPersistencia\src\main\java\dao\TarjetasDAO.java
 C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaPersistencia\src\main\java\dao\UsuarioDAO.java
 C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaPersistencia\src\main\java\entidades\Compra.java
+C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaPersistencia\src\main\java\entidades\SesionActual.java

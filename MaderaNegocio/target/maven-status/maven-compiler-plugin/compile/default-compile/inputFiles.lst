@@ -4,6 +4,8 @@ C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaNegocio\src\main\j
 C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaNegocio\src\main\java\interfacesDTO\ICarritoNegocio.java
 C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaNegocio\src\main\java\interfacesDTO\ICompraNegocio.java
 C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaNegocio\src\main\java\negocio\UsuarioNegocio.java
+C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaNegocio\src\main\java\dto\SesionActualDTO.java
+C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaNegocio\src\main\java\interfacesDTO\ISesionActualNegocio.java
 C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaNegocio\src\main\java\main\Main.java
 C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaNegocio\src\main\java\negocio\CompraNegocio.java
 C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaNegocio\src\main\java\negocio\TarjetasNegocio.java
@@ -16,4 +18,5 @@ C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaNegocio\src\main\j
 C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaNegocio\src\main\java\dto\TarjetasDTO.java
 C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaNegocio\src\main\java\interfacesDTO\IMadereraNegocio.java
 C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaNegocio\src\main\java\dto\CompraDTO.java
+C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaNegocio\src\main\java\negocio\SesionActualNegocio.java
 C:\Users\aleja\OneDrive\Documentos\GitHub\MadereraFinal\MaderaNegocio\src\main\java\interfacesDTO\ITarjetasNegocio.java

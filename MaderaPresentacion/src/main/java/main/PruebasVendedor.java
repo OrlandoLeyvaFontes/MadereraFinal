@@ -5,11 +5,9 @@
 package main;
 
 import PantallasVenta.IniciarSesionVendedor;
-import funcionalidad.InicioSesionVentaSS;
-import funcionamiento.RegistroUsuarioVentaSS;
-import intefazSS.IInicioSesionVentaSS;
+import funcionamiento.UsuarioVentaSS;
 import interfacesDTO.IUsuarioVentasNegocio;
-import interfaz.IRegistroUsuarioVentaSS;
+import interfaz.IUsuarioVentaSS;
 import negocio.UsuarioVentasNegocio;
 
 /**
@@ -22,9 +20,8 @@ public class PruebasVendedor {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        IInicioSesionVentaSS iInicioSesionVentaSS = new InicioSesionVentaSS();
-        IRegistroUsuarioVentaSS iRegistroUsuarioVentaSS = new RegistroUsuarioVentaSS();
-        IniciarSesionVendedor inicioVendedor = new IniciarSesionVendedor(iInicioSesionVentaSS, iRegistroUsuarioVentaSS);
+        IUsuarioVentaSS iUsuarioVentaSS =  new UsuarioVentaSS();
+        IniciarSesionVendedor inicioVendedor = new IniciarSesionVendedor(iUsuarioVentaSS);
         inicioVendedor.setVisible(true);
     }
 

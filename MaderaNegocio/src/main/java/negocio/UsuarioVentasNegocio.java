@@ -37,6 +37,8 @@ public class UsuarioVentasNegocio implements IUsuarioVentasNegocio {
     @Override
     public UsuarioVentasDTO agregarUsuario(UsuarioVentasDTO usuarioVentasDTO) {
         // Crear entidad UsuarioVentas
+        
+        
         UsuarioVentas usuarioVentas = new UsuarioVentas();
         usuarioVentas.setNombre(usuarioVentasDTO.getNombre());
         usuarioVentas.setApellidoMaterno(usuarioVentasDTO.getApellidoMaterno());
@@ -51,7 +53,6 @@ public class UsuarioVentasNegocio implements IUsuarioVentasNegocio {
         if (usuarioVentaGuardado != null) {
             // Convertir la entidad guardada a DTO
             UsuarioVentasDTO usuarioVentasGuardadoDTO = new UsuarioVentasDTO();
-            usuarioVentasGuardadoDTO.setId(usuarioVentaGuardado.getId().toString());
             usuarioVentasGuardadoDTO.setNombre(usuarioVentaGuardado.getNombre());
             usuarioVentasGuardadoDTO.setApellidoMaterno(usuarioVentaGuardado.getApellidoMaterno());
             usuarioVentasGuardadoDTO.setApellidoPaterno(usuarioVentaGuardado.getApellidoPaterno());
@@ -75,7 +76,6 @@ public class UsuarioVentasNegocio implements IUsuarioVentasNegocio {
 
         // Convertir la entidad de usuario en DTO
         UsuarioVentasDTO usuarioVentaDTO = new UsuarioVentasDTO();
-        usuarioVentaDTO.setId(usuarioVenta.getId().toString());
         usuarioVentaDTO.setNombre(usuarioVenta.getNombre());
         usuarioVentaDTO.setApellidoMaterno(usuarioVenta.getApellidoMaterno());
         usuarioVentaDTO.setApellidoPaterno(usuarioVenta.getApellidoPaterno());
@@ -99,7 +99,6 @@ public class UsuarioVentasNegocio implements IUsuarioVentasNegocio {
 
             // Convertir la entidad de usuario en DTO
             UsuarioVentasDTO usuarioVentaDTO = new UsuarioVentasDTO();
-            usuarioVentaDTO.setId(usuarioVenta.getId().toString());
             usuarioVentaDTO.setNombre(usuarioVenta.getNombre());
             usuarioVentaDTO.setApellidoMaterno(usuarioVenta.getApellidoMaterno());
             usuarioVentaDTO.setApellidoPaterno(usuarioVenta.getApellidoPaterno());
@@ -117,7 +116,7 @@ public class UsuarioVentasNegocio implements IUsuarioVentasNegocio {
     public List<Document> obtenerMaderasPorUsuarioVenta(String idUsuarioVenta) {
         try {
             // Obtener las maderas asociadas al usuario de ventas
-            List<MaderaDTO> maderasDTO = madereraNegocio.obtenerMaderasPorUsuarioVenta(idUsuarioVenta);
+            List<MaderaDTO> maderasDTO = madereraNegocio.obtenerMaderasPorCorreoUsuarioVenta(idUsuarioVenta);
 
             if (maderasDTO.isEmpty()) {
                 System.out.println("El usuario de ventas no tiene maderas asociadas.");

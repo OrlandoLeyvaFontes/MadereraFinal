@@ -24,8 +24,7 @@ public class UsuarioVentasDTO {
     private List<Madera> maderas;
 
     
-    public UsuarioVentasDTO(String id, String nombre, String apellidoPaterno, String apellidoMaterno, String numero, String correo, String contraseña, List<Madera> maderas) {
-        this.id = id;
+    public UsuarioVentasDTO(String nombre, String apellidoPaterno, String apellidoMaterno, String numero, String correo, String contraseña, List<Madera> maderas) {
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
@@ -35,8 +34,7 @@ public class UsuarioVentasDTO {
         this.maderas = maderas;
     }
 
-    public UsuarioVentasDTO(String id, String nombre, String apellidoPaterno, String apellidoMaterno, String numero, String correo, String contraseña) {
-        this.id = id;
+    public UsuarioVentasDTO(String nombre, String apellidoPaterno, String apellidoMaterno, String numero, String correo, String contraseña) {
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
@@ -46,14 +44,6 @@ public class UsuarioVentasDTO {
     }
 
     public UsuarioVentasDTO() {
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getNombre() {

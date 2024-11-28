@@ -5,7 +5,7 @@
 package PantallasVenta;
 
 import dto.UsuarioVentasDTO;
-import interfaz.IRegistroUsuarioVentaSS;
+import interfaz.IUsuarioVentaSS;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,11 +14,11 @@ import javax.swing.JOptionPane;
  */
 public class RegistrarUsuarioVendedor extends javax.swing.JFrame {
 
-    private IRegistroUsuarioVentaSS iRegistrarUsuarioVentaSS;
+    private IUsuarioVentaSS iUsuarioVentaSS;
     private IniciarSesionVendedor iniciarSesionVendedor;
 
-    public RegistrarUsuarioVendedor(IRegistroUsuarioVentaSS iRegistrarUsuarioVentaSS, IniciarSesionVendedor iniciarSesionVendedor) {
-        this.iRegistrarUsuarioVentaSS = iRegistrarUsuarioVentaSS;
+    public RegistrarUsuarioVendedor(IUsuarioVentaSS iUsuarioVentaSS, IniciarSesionVendedor iniciarSesionVendedor) {
+        this.iUsuarioVentaSS = iUsuarioVentaSS;
         this.iniciarSesionVendedor = iniciarSesionVendedor;
         initComponents();
     }
@@ -273,7 +273,7 @@ public class RegistrarUsuarioVendedor extends javax.swing.JFrame {
         usuarioVentaDTO.setCorreo(correo);
         usuarioVentaDTO.setContraseña(contraseña);
 
-        iRegistrarUsuarioVentaSS.agregarUsuario(usuarioVentaDTO);
+        iUsuarioVentaSS.agregarUsuario(usuarioVentaDTO);
         this.setVisible(false);
         iniciarSesionVendedor.setVisible(true);
     }//GEN-LAST:event_btnRegistrarActionPerformed

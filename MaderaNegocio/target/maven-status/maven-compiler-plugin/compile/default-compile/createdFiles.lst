@@ -1,5 +1,7 @@
+dto\SesionActualDTO.class
 dto\TarjetasDTO.class
 interfacesDTO\ITarjetasNegocio.class
+interfacesDTO\ISesionActualNegocio.class
 dto\UsuarioDTO.class
 dto\UsuarioVentasDTO.class
 negocio\TarjetasNegocio.class
@@ -14,6 +16,7 @@ interfacesDTO\IUsuarioNegocio.class
 interfacesDTO\ICompraNegocio.class
 negocio\MaderaNegocio.class
 interfacesDTO\IMadereraNegocio.class
+negocio\SesionActualNegocio.class
 dto\CarritoDTO.class
 dto\MaderaDTO.class
 negocio\UsuarioVentasNegocio.class
