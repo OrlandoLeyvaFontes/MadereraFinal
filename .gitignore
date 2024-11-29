@@ -1,3 +1,10 @@
 /MaderaNegocio/target/
 /InicioSesionSS/target/
 /AgregarTarjetasSS/target/
+/InicioSesionCVVSS/target/
+/ObtenerCarritoSS/target/
+/ComprarCarritoSS/target/
+/ObtenerNumerosTarjetasPorUsuarioSS/target/
+/ObtenerMaderasSS/target/
+/GuardarCompraSS/target/
+/EliminarProductoCarritoSS/target/

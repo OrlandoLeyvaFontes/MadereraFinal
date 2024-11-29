@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ///*
 // * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 // * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -42,6 +43,23 @@
 //public class Main {
 //
 //    public static void main(String[] args) {
+=======
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package main;
+
+
+
+/**
+ *
+ * @author Oley
+ */
+public class Main {
+
+    public static void main(String[] args) {
+>>>>>>> main
 //        IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS=new ObtenerNumerosTarjetasPorUsuarioSS();
 //        IInicioSesionSS iInicioSesionSS = new InicioDeSesionSS();
 //        IAgregarUsuarioSS agregarUsuarioSS = new AgregarUsuarioSS();
@@ -54,8 +72,13 @@
 //        IObtenerCarritoSS iObtenerCarritoSS=new ObtenerCarritoSS();
 //        IEliminarProductoCarritoSS iEliminarProductoCarritoSS=new EliminarProductoCarritoSS();
 //        IComprarCarritoSS iComprarCarritoSS=new ComprarCarritoSS();
+<<<<<<< HEAD
 //        
 //        
+=======
+//        IObtenerVentasSS iObtenerVentasSS=new ObtenerVentasSS();
+//        IMadereraNegocio  iMadereraNegocio=new MaderaNegocio();
+>>>>>>> main
 //        MaderaDTO maderaDTO1 = new MaderaDTO("Pino", "Madera de pino para construcción", 50, 120.5);
 //        agregarMaderaSS.agregarMadera(maderaDTO1);
 //IGuardarCompraSS iGuardarCompraSS=new GuardarCompraSS();
@@ -69,6 +92,7 @@
 //        agregarMaderaSS.agregarMadera(maderaDTO5);
 //        MaderaDTO maderaDTO6 = new MaderaDTO("Cerezo", "Madera de cerezo para acabados finos", 40, 420.0);
 //        agregarMaderaSS.agregarMadera(maderaDTO6);
+<<<<<<< HEAD
 //
 //        IniciarSesion inicio = new IniciarSesion(agregarUsuarioSS, iInicioSesionSS,agregarTarjetasSS,iObtenerMaderas,buscarMaderaPorIDSS,iObtenerNumerosTarjetasPorUsuarioSS
 //        ,iInicioSesionCVVSS,iGuardarCompraSS,iAgregarProductoCarritoSS,iObtenerCarritoSS,iEliminarProductoCarritoSS,iComprarCarritoSS);
@@ -76,3 +100,13 @@
 //
 //    }
 //}
+=======
+
+//        IniciarSesion inicio = new IniciarSesion(agregarUsuarioSS, iInicioSesionSS,agregarTarjetasSS,iObtenerMaderas,buscarMaderaPorIDSS,iObtenerNumerosTarjetasPorUsuarioSS
+//        ,iInicioSesionCVVSS,iGuardarCompraSS,iAgregarProductoCarritoSS,iObtenerCarritoSS,iEliminarProductoCarritoSS,iComprarCarritoSS,iObtenerVentasSS
+//,iMadereraNegocio);
+//        inicio.setVisible(true);
+
+    }
+}
+>>>>>>> main

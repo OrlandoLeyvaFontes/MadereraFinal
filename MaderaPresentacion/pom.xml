@@ -78,17 +78,44 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
+<<<<<<< HEAD
             <artifactId>UsuarioVentaSS</artifactId>
+=======
+            <artifactId>ObtenerVentasSS</artifactId>
+>>>>>>> main
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
+<<<<<<< HEAD
             <artifactId>MaderaVentaSS</artifactId>
+=======
+            <artifactId>BuscarMaderaPorNombreSS</artifactId>
+>>>>>>> main
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
+<<<<<<< HEAD
             <artifactId>MaderaNegocio</artifactId>
+=======
+            <artifactId>UsuarioSS</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>MaderaSS</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>CarritoSS</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>CompraSS</artifactId>
+>>>>>>> main
             <version>${project.version}</version>
         </dependency>
     </dependencies>

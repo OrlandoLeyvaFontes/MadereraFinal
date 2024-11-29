@@ -13,9 +13,11 @@ import dao.CompraDAO;
 import dao.MaderaDAO;
 import dao.TarjetasDAO;
 import dao.UsuarioDAO;
+import dao.VentaDAO;
 import entidades.Compra;
 import entidades.Madera;
 import entidades.Usuario;
+import entidades.Ventas;
 import java.util.Calendar;
 import java.util.List;
 import org.bson.Document;
@@ -38,33 +40,15 @@ public class Main {
         MongoDatabase database = mongoClient.getDatabase("maderera");
   
        
-      CarritoDAO carritoDAO = new CarritoDAO();
-    CompraDAO compraDAO = new CompraDAO();
+    MaderaDAO maderaDAO = new MaderaDAO();
+Madera madera = maderaDAO.buscarMaderaPorNombre("Pino");
+if (madera != null) {
+    System.out.println("Madera encontrada: " + madera.getNombre());
+} else {
+    System.out.println("No se encontró la madera.");
+}
 
-    ObjectId usuarioId = new ObjectId("6741544ce0f6e93e979548da");
-    ObjectId maderaId1 = new ObjectId("6742e93febc40c75ca70eb9e");
-    ObjectId maderaId2 = new ObjectId("6742e93febc40c75ca70eba0");
-
-//    compraDAO.comprarCarrito(usuarioId); 
-
-
-//    System.out.println("Agregando madera1 al carrito...");
-//    carritoDAO.agregarProducto(usuarioId, maderaId1, 3);
-//
-//    System.out.println("Agregando madera2 al carrito...");
-//    carritoDAO.agregarProducto(usuarioId, maderaId2, 2);
-
-    Document carrito = carritoDAO.obtenerCarrito(usuarioId);
-    System.out.println("Carrito del usuario: " + carrito.toJson());
-
-//    System.out.println("Eliminando madera1 del carrito...");
-//    carritoDAO.eliminarProducto(usuarioId, maderaId2);
-//
-//
-//
-//    carrito = carritoDAO.obtenerCarrito(usuarioId);
-//    System.out.println("Carrito después de eliminar madera1: " + carrito.toJson());
-    }
+          }
     
     }
     

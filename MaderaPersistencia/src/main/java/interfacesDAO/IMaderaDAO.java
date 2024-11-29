@@ -27,6 +27,7 @@ public interface IMaderaDAO {
 
     public void actualizar(Madera madera);
 
+<<<<<<< HEAD
     public List<MaderaDTO> buscarMaderaPorCorreoVendedor(String correoUsuarioVenta);
 
     public Madera agregarMaderaPorCorreo(String correoVendedor, Madera madera);
@@ -34,4 +35,10 @@ public interface IMaderaDAO {
     public void editarMadera(Madera madera);
     
     public boolean eliminarMadera(String id);
+=======
+    public List<Madera> obtenerMaderasPorUsuarioVenta(ObjectId idUsuarioVenta);
+    
+    public Madera buscarMaderaPorNombre(String nombre);
+
+>>>>>>> main
 }

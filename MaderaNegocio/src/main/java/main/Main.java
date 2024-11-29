@@ -7,11 +7,15 @@ package main;
 import dto.CompraDTO;
 import dto.MaderaDTO;
 import dto.UsuarioDTO;
+import dto.VentaDTO;
 import interfacesDTO.ICompraNegocio;
 import interfacesDTO.IUsuarioNegocio;
 import java.util.Calendar;
+import java.util.List;
 import negocio.CompraNegocio;
+import negocio.MaderaNegocio;
 import negocio.UsuarioNegocio;
+import negocio.VentaNegocio;
 
 /**
  *
@@ -19,21 +23,27 @@ import negocio.UsuarioNegocio;
  */
 public class Main {
     public static void main(String[] args) {
-        ICompraNegocio compraNegocio = new CompraNegocio();
-
-        CompraDTO compraDTO = new CompraDTO();
-        compraDTO.setFechaCompra(Calendar.getInstance());  
-        compraDTO.setCantidad(5);  
-
-        MaderaDTO maderaDTO = new MaderaDTO();
-        maderaDTO.setId("673854a7673d5472ce4f0e80");  
-        compraDTO.setMadera(maderaDTO);
-
-        UsuarioDTO usuarioDTO = new UsuarioDTO();
-        usuarioDTO.setId("673854b1673d5472ce4f0e84");  
-        compraDTO.setUsuario(usuarioDTO);
-
-        compraNegocio.guardarCompra(compraDTO);
+         // Crear una instancia del servicio o controlador que contiene el método buscarMaderaPorNombre
+        MaderaNegocio maderaService = new MaderaNegocio(); // O la clase donde tengas el método
+        
+        // Nombre de la madera a buscar
+        String nombreMadera = "Pino";
+        
+        // Llamar al método de búsqueda
+        MaderaDTO maderaEncontrada = maderaService.buscarMaderaPorNombre(nombreMadera);
+        
+        // Verificar y mostrar resultados
+        if (maderaEncontrada != null) {
+            System.out.println("Madera encontrada:");
+            System.out.println("ID: " + maderaEncontrada.getId());
+            System.out.println("Nombre: " + maderaEncontrada.getNombre());
+            System.out.println("Descripción: " + maderaEncontrada.getDescripcion());
+            System.out.println("Cantidad: " + maderaEncontrada.getCantidad());
+            System.out.println("Precio Unitario: " + maderaEncontrada.getPrecioUnitario());
+        } else {
+            System.out.println("No se encontró la madera con nombre: " + nombreMadera);
+        }
+    }
     
     }
     
@@ -42,7 +52,7 @@ public class Main {
         
         
         
-    }
+    
         
         
         

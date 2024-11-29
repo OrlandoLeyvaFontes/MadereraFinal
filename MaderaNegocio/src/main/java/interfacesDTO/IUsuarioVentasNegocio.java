@@ -21,5 +21,5 @@ public interface IUsuarioVentasNegocio {
 
     public UsuarioVentasDTO obtenerUsuarioPorId(String id);
 
-    public List<Document> obtenerMaderasPorUsuarioVenta(String idUsuarioVenta);
+//    public List<Document> obtenerMaderasPorUsuarioVenta(String idUsuarioVenta);
 }
