@@ -6,6 +6,7 @@ package interfacesDTO;
 
 import dto.CompraDTO;
 import entidades.Compra;
+import java.util.List;
 
 /**
  *
@@ -14,4 +15,5 @@ import entidades.Compra;
 public interface ICompraNegocio {
                 void guardarCompra(CompraDTO compraDTO);
 public void comprarCarrito(String usuarioId);
+public List<CompraDTO> obtenerHistorialCompras(String usuarioId);
 }

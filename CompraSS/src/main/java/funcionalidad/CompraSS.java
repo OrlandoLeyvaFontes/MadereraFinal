@@ -7,6 +7,7 @@ package funcionalidad;
 import dto.CompraDTO;
 import interfacesDTO.ICompraNegocio;
 import interfaz.ICompraSS;
+import java.util.List;
 import negocio.CompraNegocio;
 
 /**
@@ -28,6 +29,12 @@ iCompraNegocio.comprarCarrito(usuarioId);
     @Override
     public void guardarCompra(CompraDTO compraDTO) {
 iCompraNegocio.guardarCompra(compraDTO);
+    }
+
+    @Override
+    public List<CompraDTO> obtenerHistorialCompras(String usuarioId) {
+     return iCompraNegocio.obtenerHistorialCompras(usuarioId);   
+    
     }
   
 }

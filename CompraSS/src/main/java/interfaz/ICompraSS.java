@@ -5,6 +5,7 @@
 package interfaz;
 
 import dto.CompraDTO;
+import java.util.List;
 
 /**
  *
@@ -13,5 +14,6 @@ import dto.CompraDTO;
 public interface ICompraSS {
         public void comprarCarrito(String usuarioId);
                     void guardarCompra(CompraDTO compraDTO);
+public List<CompraDTO> obtenerHistorialCompras(String usuarioId);
 
 }

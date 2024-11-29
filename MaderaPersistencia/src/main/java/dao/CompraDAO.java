@@ -4,6 +4,7 @@
  */
 package dao;
 
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import static com.mongodb.client.model.Filters.eq;
@@ -199,5 +200,21 @@ private String obtenerNombreUsuario(ObjectId usuarioId) {
     System.out.println("Precio total del carrito: " + precioTotalCarrito);
     System.out.println("Cantidad total de productos: " + cantidadTotalCarrito);
 }
+public List<Document> obtenerHistorialCompras(ObjectId usuarioId) {
+    List<Document> historialCompras = new ArrayList<>();
+    
+    FindIterable<Document> compras = coleccionCompras.find(Filters.eq("usuarioNombre", obtenerNombreUsuario(usuarioId)));
+    
+    for (Document compraDoc : compras) {
+        historialCompras.add(compraDoc);
+    }
 
+    if (historialCompras.isEmpty()) {
+        System.out.println("No se encontraron compras para el usuario con ID: " + usuarioId);
+    } else {
+        System.out.println("Historial de compras obtenido correctamente para el usuario.");
+    }
+
+    return historialCompras;
+}
 }

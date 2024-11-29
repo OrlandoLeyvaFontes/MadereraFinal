@@ -21,6 +21,7 @@ import interfacesDAO.IUsuarioDAO;
 import interfacesDTO.ICompraNegocio;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -125,4 +126,49 @@ for (CompraDTO compra : compras) {
 
 iCarritoDAO.eliminarProducto(usuarioObjectId, null);
 System.out.println("El carrito del usuario con ID " + usuarioId + " fue comprado exitosamente.");
-}}
+}
+@Override
+public List<CompraDTO> obtenerHistorialCompras(String usuarioId) {
+    try {
+        ObjectId usuarioObjectId = new ObjectId(usuarioId);
+        Usuario usuario = usuarioDAO.obtenerUsuarioPorId(usuarioObjectId);
+        if (usuario == null) {
+            throw new IllegalStateException("Usuario con ID " + usuarioId + " no encontrado.");
+        }
+
+        List<Document> compras = iCompraDAO.obtenerHistorialCompras(usuarioObjectId);
+        List<CompraDTO> historialCompras = new ArrayList<>();
+
+        for (Document compraDoc : compras) {
+            CompraDTO compraDTO = new CompraDTO();
+            compraDTO.setId(compraDoc.getObjectId("_id").toHexString());
+            
+            Date fechaCompra = compraDoc.getDate("fechaCompra");
+            if (fechaCompra != null) {
+                Calendar fechaCompraCalendar = Calendar.getInstance();
+                fechaCompraCalendar.setTime(fechaCompra);
+                compraDTO.setFechaCompra(fechaCompraCalendar);
+            }
+
+            compraDTO.setCantidad(compraDoc.getInteger("cantidad", 0));
+            compraDTO.setPrecioTotal(compraDoc.getDouble("precioTotal"));
+
+            MaderaDTO maderaDTO = new MaderaDTO();
+            maderaDTO.setNombre(compraDoc.getString("maderaNombre"));
+            compraDTO.setMadera(maderaDTO);
+
+            UsuarioDTO usuarioDTO = new UsuarioDTO();
+            usuarioDTO.setNombre(compraDoc.getString("usuarioNombre"));
+            compraDTO.setUsuario(usuarioDTO);
+
+            historialCompras.add(compraDTO);
+        }
+
+        return historialCompras;
+    } catch (Exception e) {
+        throw new RuntimeException("Error al obtener el historial de compras para el usuario con ID " + usuarioId, e);
+    }
+}
+
+
+                }

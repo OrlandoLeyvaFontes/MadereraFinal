@@ -5,6 +5,8 @@
 package interfacesDAO;
 
 import entidades.Compra;
+import java.util.List;
+import org.bson.Document;
 import org.bson.types.ObjectId;
 
 /**
@@ -14,5 +16,5 @@ import org.bson.types.ObjectId;
 public interface ICompraDAO {
             void guardarCompra(Compra compra);
 public void comprarCarrito(ObjectId usuarioId);
-
+public List<Document> obtenerHistorialCompras(ObjectId usuarioId) ;
 }
