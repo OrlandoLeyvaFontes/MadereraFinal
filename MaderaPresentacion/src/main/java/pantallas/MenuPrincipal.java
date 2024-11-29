@@ -21,45 +21,48 @@ import interfazSS.IObtenerMaderas;
  * @author Oley
  */
 public class MenuPrincipal extends javax.swing.JFrame {
- private IObtenerMaderas iObtenerMaderas;
+
+    private IObtenerMaderas iObtenerMaderas;
     private IniciarSesion iniciarSesion;
     private IInicioSesionSS iInicioSesionSS;
     private IAgregarTarjetasSS agregarTarjetasSS;
-    private  IBuscarMaderaPorIDSS buscarMaderaPorIDSS;
+    private IBuscarMaderaPorIDSS buscarMaderaPorIDSS;
     private String usuarioId;
-       private IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS;
-       private IInicioSesionCVVSS  iInicioSesionCVVSS;
-private IGuardarCompraSS iGuardarCompraSS;
-private IAgregarProductoCarritoSS iAgregarProductoCarritoSS;
-private  IObtenerCarritoSS iObtenerCarritoSS;
-private IEliminarProductoCarritoSS iEliminarProductoCarritoSS;
-private  IComprarCarritoSS iComprarCarritoSS;
+    private IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS;
+    private IInicioSesionCVVSS iInicioSesionCVVSS;
+    private IGuardarCompraSS iGuardarCompraSS;
+    private IAgregarProductoCarritoSS iAgregarProductoCarritoSS;
+    private IObtenerCarritoSS iObtenerCarritoSS;
+    private IEliminarProductoCarritoSS iEliminarProductoCarritoSS;
+    private IComprarCarritoSS iComprarCarritoSS;
+
     /**
      * Creates new form MenuPrincipal
      */
-    public MenuPrincipal(IniciarSesion iniciarSesion, IInicioSesionSS iInicioSesionSS, IAgregarTarjetasSS agregarTarjetasSS,IObtenerMaderas iObtenerMaderas,
-     IBuscarMaderaPorIDSS buscarMaderaPorIDSS,String usuarioId,       IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS
-,IInicioSesionCVVSS  iInicioSesionCVVSS,IGuardarCompraSS iGuardarCompraSS,IAgregarProductoCarritoSS iAgregarProductoCarritoSS
-    , IObtenerCarritoSS iObtenerCarritoSS,IEliminarProductoCarritoSS iEliminarProductoCarritoSS, IComprarCarritoSS iComprarCarritoSS
+    public MenuPrincipal(IniciarSesion iniciarSesion, IInicioSesionSS iInicioSesionSS, IAgregarTarjetasSS agregarTarjetasSS, IObtenerMaderas iObtenerMaderas,
+            IBuscarMaderaPorIDSS buscarMaderaPorIDSS, String usuarioId, IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS,
+            IInicioSesionCVVSS iInicioSesionCVVSS, IGuardarCompraSS iGuardarCompraSS, IAgregarProductoCarritoSS iAgregarProductoCarritoSS,
+            IObtenerCarritoSS iObtenerCarritoSS, IEliminarProductoCarritoSS iEliminarProductoCarritoSS, IComprarCarritoSS iComprarCarritoSS
     ) {
         this.usuarioId = usuarioId;
         this.iInicioSesionSS = iInicioSesionSS;
         this.agregarTarjetasSS = agregarTarjetasSS;
         this.iniciarSesion = iniciarSesion;
-        this.iObtenerMaderas=iObtenerMaderas;
-        this.buscarMaderaPorIDSS=buscarMaderaPorIDSS;
-        this.iObtenerNumerosTarjetasPorUsuarioSS=iObtenerNumerosTarjetasPorUsuarioSS;
-        this.iInicioSesionCVVSS=iInicioSesionCVVSS;
-        this.iGuardarCompraSS=iGuardarCompraSS;
-        this.iAgregarProductoCarritoSS=iAgregarProductoCarritoSS;
-        this.iObtenerCarritoSS=iObtenerCarritoSS;
-        this.iEliminarProductoCarritoSS=iEliminarProductoCarritoSS;
-        this.iComprarCarritoSS=iComprarCarritoSS;
+        this.iObtenerMaderas = iObtenerMaderas;
+        this.buscarMaderaPorIDSS = buscarMaderaPorIDSS;
+        this.iObtenerNumerosTarjetasPorUsuarioSS = iObtenerNumerosTarjetasPorUsuarioSS;
+        this.iInicioSesionCVVSS = iInicioSesionCVVSS;
+        this.iGuardarCompraSS = iGuardarCompraSS;
+        this.iAgregarProductoCarritoSS = iAgregarProductoCarritoSS;
+        this.iObtenerCarritoSS = iObtenerCarritoSS;
+        this.iEliminarProductoCarritoSS = iEliminarProductoCarritoSS;
+        this.iComprarCarritoSS = iComprarCarritoSS;
         initComponents();
     }
 //public void setUsuarioId(String usuarioId) {
 //        this.usuarioId = usuarioId;
 //    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -97,7 +100,7 @@ private  IComprarCarritoSS iComprarCarritoSS;
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(268, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(256, 256, 256))
         );
@@ -136,11 +139,11 @@ private  IComprarCarritoSS iComprarCarritoSS;
                         .addGap(37, 37, 37)
                         .addComponent(jButton2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(274, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(259, 259, 259))
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,8 +177,8 @@ private  IComprarCarritoSS iComprarCarritoSS;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);
-        ProductosVenta productosVenta = new ProductosVenta(this,iObtenerMaderas,buscarMaderaPorIDSS,iObtenerNumerosTarjetasPorUsuarioSS,usuarioId,iInicioSesionCVVSS
-       ,iGuardarCompraSS,iAgregarProductoCarritoSS,iObtenerCarritoSS,iEliminarProductoCarritoSS,iComprarCarritoSS );
+        ProductosVenta productosVenta = new ProductosVenta(this, iObtenerMaderas, buscarMaderaPorIDSS, iObtenerNumerosTarjetasPorUsuarioSS, usuarioId, iInicioSesionCVVSS,
+                iGuardarCompraSS, iAgregarProductoCarritoSS, iObtenerCarritoSS, iEliminarProductoCarritoSS, iComprarCarritoSS);
         productosVenta.setVisible(true);
 
         // TODO add your handling code here:
@@ -183,7 +186,7 @@ private  IComprarCarritoSS iComprarCarritoSS;
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.setVisible(false);
-        AgregarTarjeta agregarTarjeta = new AgregarTarjeta(this, agregarTarjetasSS,usuarioId);
+        AgregarTarjeta agregarTarjeta = new AgregarTarjeta(this, agregarTarjetasSS, usuarioId);
         agregarTarjeta.setVisible(true);
 
         // TODO add your handling code here:

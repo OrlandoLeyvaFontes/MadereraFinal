@@ -207,14 +207,11 @@ public class CompraDAO implements ICompraDAO {
         FindIterable<Document> documentosCompras = coleccionCompras.find(eq("usuarioId", usuarioId));
 
         for (Document doc : documentosCompras) {
-            // Crear un documento para almacenar solo los datos necesarios
             Document resultado = new Document();
-
             resultado.append("fechaCompra", doc.getDate("fechaCompra"));
             resultado.append("cantidad", doc.getInteger("cantidad", 0));
             resultado.append("precioTotal", doc.getDouble("precioTotal"));
 
-            // Obtener el nombre de la madera
             ObjectId maderaId = doc.getObjectId("maderaId");
             Document maderaDoc = maderaCollection.find(eq("_id", maderaId)).first();
             if (maderaDoc != null) {

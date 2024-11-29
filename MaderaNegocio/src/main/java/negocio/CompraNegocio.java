@@ -131,30 +131,12 @@ public class CompraNegocio implements ICompraNegocio {
     @Override
     public List<Document> obtenerComprasPorUsuarioId(ObjectId usuarioId) {
         try {
-            // Usar el DAO para obtener las compras relacionadas con el usuario
-            List<Document> compras = iCompraDAO.obtenerComprasPorUsuarioId(usuarioId);
-
-            // Preparar una lista de documentos con la información que se desea mostrar
-            List<Document> comprasFormateadas = new ArrayList<>();
-
-            for (Document compra : compras) {
-                // Crear un nuevo documento con los campos deseados
-                Document compraFormateada = new Document();
-                compraFormateada.append("fechaCompra", compra.getDate("fechaCompra"));
-                compraFormateada.append("nombreMadera", compra.getString("nombreMadera"));
-                compraFormateada.append("cantidad", compra.getInteger("cantidad"));
-                compraFormateada.append("precioTotal", compra.getDouble("precioTotal"));
-
-                // Añadir a la lista de compras formateadas
-                comprasFormateadas.add(compraFormateada);
-            }
-
-            return comprasFormateadas;
-
+            return iCompraDAO.obtenerComprasPorUsuarioId(usuarioId);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error al obtener las compras del usuario.");
             return new ArrayList<>();
         }
     }
+
 }

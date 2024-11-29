@@ -4,6 +4,7 @@
  */
 package pantallas;
 
+import Funcionalidad.GenerarHistorialComprasSS;
 import dto.MaderaDTO;
 import interfaz.IAgregarProductoCarritoSS;
 import interfaz.IComprarCarritoSS;
@@ -17,6 +18,7 @@ import interfazSS.IObtenerMaderas;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -35,7 +37,11 @@ public class ProductosVenta extends javax.swing.JFrame {
     private IObtenerCarritoSS iObtenerCarritoSS;
     private IEliminarProductoCarritoSS iEliminarProductoCarritoSS;
     private IComprarCarritoSS iComprarCarritoSS;
+    
 
+    private GenerarHistorialComprasSS generarHistorialComprasSS;
+ 
+    
     /**
      * Creates new form ProductosVenta
      */
@@ -382,9 +388,15 @@ public class ProductosVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDetallesProductoActionPerformed
 
     private void btnAdministrarHistorialComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministrarHistorialComprasActionPerformed
-        dispose();
-        AdministarHistorial ah = new AdministarHistorial();
-        ah.setVisible(true);
+        // Crear la instancia de GenerarHistorialComprasSS
+        GenerarHistorialComprasSS generarHistorial = new GenerarHistorialComprasSS();
+
+        // Obtener el ID del usuario (por ejemplo, desde una variable que almacene el usuario actual)
+        String usuarioId = "64af91e7e2e77a8b7e9e06f1"; // Asegúrate de que este valor sea dinámico.
+
+        // Crear e iniciar la ventana HistorialCompras
+        HistorialCompras historial = new HistorialCompras(menuPrincipal, generarHistorialComprasSS, usuarioId);
+        historial.setVisible(true);
     }//GEN-LAST:event_btnAdministrarHistorialComprasActionPerformed
 
 

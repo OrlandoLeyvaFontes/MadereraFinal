@@ -4,17 +4,88 @@
  */
 package pantallas;
 
+import Funcionalidad.GenerarHistorialComprasSS;
+import dto.CompraDTO;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import org.bson.Document;
+import org.bson.types.ObjectId;
+
 /**
  *
  * @author rober
  */
 public class HistorialCompras extends javax.swing.JFrame {
 
+    private MenuPrincipal menuPrincipal;
+    private GenerarHistorialComprasSS generarHistorialComprasSS;
+    private ObjectId usuarioId;
+
     /**
      * Creates new form HistorialCompras
      */
-    public HistorialCompras() {
+    public HistorialCompras(MenuPrincipal menuPrincipal, GenerarHistorialComprasSS generarHistorialComprasSS, String usuarioId) {
+        this.menuPrincipal = menuPrincipal;
+
+        // Validar que generarHistorialComprasSS no sea null
+        this.generarHistorialComprasSS = (generarHistorialComprasSS != null) ? generarHistorialComprasSS : new GenerarHistorialComprasSS();
+
+        // Convertir usuarioId (String) a ObjectId
+        this.usuarioId = (usuarioId != null && !usuarioId.isEmpty()) ? new ObjectId(usuarioId) : null;
+
         initComponents();
+
+        // Cargar los datos automáticamente al abrir la ventana
+        if (this.usuarioId != null) {
+            cargarCompras();
+        } else {
+            JOptionPane.showMessageDialog(this, "ID de usuario no válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void cargarCompras() {
+        if (this.generarHistorialComprasSS == null || this.usuarioId == null) {
+            JOptionPane.showMessageDialog(this, "Error al cargar el historial de compras. Verifique la configuración.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Obtener el historial de compras
+        List<Document> listaCompras = this.generarHistorialComprasSS.obtenerHistorialCompras(usuarioId);
+
+        // Validar si hay datos
+        if (listaCompras != null && !listaCompras.isEmpty()) {
+            llenarTablaCompras(listaCompras);
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay datos disponibles para mostrar.", "Información", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    private void llenarTablaCompras(List<Document> listaCompras) {
+        // Crear un modelo de tabla con las columnas especificadas
+        DefaultTableModel model = new DefaultTableModel(
+                new Object[]{"Fecha de Compra", "Madera", "Cantidad", "Precio Total"}, 0
+        ) {
+            boolean[] canEdit = new boolean[]{false, false, false, false};
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        };
+
+        // Llenar el modelo con las filas de datos
+        for (Document compra : listaCompras) {
+            model.addRow(new Object[]{
+                compra.getDate("fechaCompra"),
+                compra.getString("nombreMadera"),
+                compra.getInteger("cantidad"),
+                compra.getDouble("precioTotal")
+            });
+        }
+
+        // Establecer el modelo en la tabla
+        tableCompras.setModel(model);
     }
 
     /**
@@ -27,7 +98,7 @@ public class HistorialCompras extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableCompras = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnVolver = new javax.swing.JButton();
@@ -36,7 +107,7 @@ public class HistorialCompras extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableCompras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -59,7 +130,7 @@ public class HistorialCompras extends javax.swing.JFrame {
                 "Fecha de Compra", "Madera", "Cantidad", "Precio Total"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableCompras);
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -124,40 +195,40 @@ public class HistorialCompras extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HistorialCompras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HistorialCompras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HistorialCompras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HistorialCompras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new HistorialCompras().setVisible(true);
-            }
-        });
-    }
+//    /**
+//     * @param args the command line arguments
+//     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(HistorialCompras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(HistorialCompras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(HistorialCompras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(HistorialCompras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new HistorialCompras().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnterior;
@@ -166,6 +237,6 @@ public class HistorialCompras extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tableCompras;
     // End of variables declaration//GEN-END:variables
 }

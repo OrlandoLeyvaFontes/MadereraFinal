@@ -4,6 +4,7 @@
  */
 package Interfaz;
 
+import dto.CompraDTO;
 import java.util.List;
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -13,5 +14,6 @@ import org.bson.types.ObjectId;
  * @author rober
  */
 public interface IGenerarHistorialComprasSS {
+
     public List<Document> obtenerHistorialCompras(ObjectId usuarioId);
 }

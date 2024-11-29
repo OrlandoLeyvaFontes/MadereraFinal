@@ -18,6 +18,6 @@ public interface ICompraNegocio {
     void guardarCompra(CompraDTO compraDTO);
 
     public void comprarCarrito(String usuarioId);
-    
+
     public List<Document> obtenerComprasPorUsuarioId(ObjectId usuarioId);
 }

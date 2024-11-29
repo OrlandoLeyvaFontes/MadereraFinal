@@ -5,6 +5,7 @@
 package Funcionalidad;
 
 import Interfaz.IGenerarHistorialComprasSS;
+import dto.CompraDTO;
 import java.util.List;
 import negocio.CompraNegocio;
 import org.bson.Document;
@@ -24,7 +25,6 @@ public class GenerarHistorialComprasSS implements IGenerarHistorialComprasSS {
 
     @Override
     public List<Document> obtenerHistorialCompras(ObjectId usuarioId) {
-        // Llamamos al método de negocio para obtener el historial de compras
         return compraNegocio.obtenerComprasPorUsuarioId(usuarioId);
     }
 
