@@ -91,4 +91,9 @@ public class MaderaDTO {
         this.CorreoVendedor = CorreoVendedor;
     }
 
+    @Override
+    public String toString() {
+        return "MaderaDTO{" + "id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", cantidad=" + cantidad + ", precioUnitario=" + precioUnitario + ", CorreoVendedor=" + CorreoVendedor + '}';
+    }
+
 }

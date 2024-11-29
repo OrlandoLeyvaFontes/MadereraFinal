@@ -4,7 +4,10 @@
  */
 package PantallasVenta;
 
+import Interfaz.IMaderaVentaSS;
+import dto.MaderaDTO;
 import funcionamiento.MaderaVentaSS;
+import interfacesDAO.IMaderaDAO;
 
 /**
  *
@@ -12,11 +15,15 @@ import funcionamiento.MaderaVentaSS;
  */
 public class MenuVendedor extends javax.swing.JFrame {
 
-    private MaderaVentaSS maderaVentaSS;
+    private IMaderaVentaSS maderaVentaSS;
+    private IMaderaDAO maderaDAO;
+    private MaderaDTO maderaDTO;
+    
     /**
      * Creates new form MenuVendedor
      */
-    public MenuVendedor() {
+    public MenuVendedor(IMaderaVentaSS maderaVentaSS) {
+        this.maderaVentaSS = maderaVentaSS;
         initComponents();
     }
 
@@ -186,7 +193,7 @@ public class MenuVendedor extends javax.swing.JFrame {
         
         
         this.setVisible(false);
-        MisProductos misProductos = new MisProductos();
+        MisProductos misProductos = new MisProductos(maderaVentaSS, maderaDAO, maderaDTO);
         misProductos.setVisible(true);
     }//GEN-LAST:event_btnProductosActionPerformed
 
@@ -203,7 +210,7 @@ public class MenuVendedor extends javax.swing.JFrame {
         
         
         this.setVisible(false);
-        AgregarMadera agregarMadera = new AgregarMadera();
+        AgregarMadera agregarMadera = new AgregarMadera(maderaVentaSS);
         agregarMadera.setVisible(true);
     }//GEN-LAST:event_btnAgregarActionPerformed
 

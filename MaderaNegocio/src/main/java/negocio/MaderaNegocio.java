@@ -51,6 +51,23 @@ public class MaderaNegocio implements IMadereraNegocio {
     }
 
     @Override
+    public void editarMadera(MaderaDTO maderaDTO) {
+        Madera madera = new Madera();
+        madera.setNombre(maderaDTO.getNombre());
+        madera.setDescripcion(maderaDTO.getDescripcion());
+        madera.setCantidad(maderaDTO.getCantidad());
+        madera.setPrecioUnitario(maderaDTO.getPrecioUnitario());
+
+        try {
+            // Llama al método del DAO para actualizar en la base de datos
+            iMaderaDAO.actualizar(madera);
+        } catch (Exception e) {
+            // Manejo de excepciones si ocurre algún error en la actualización
+            throw new RuntimeException("Error al actualizar la madera en la base de datos", e);
+        }
+    }
+
+    @Override
     public List<MaderaDTO> obtenerMaderas() {
         List<MaderaDTO> listaMaderasDTO = new ArrayList<>();
         try {
@@ -95,12 +112,35 @@ public class MaderaNegocio implements IMadereraNegocio {
     }
 
     @Override
+    public MaderaDTO buscarMaderaPorNombre(String nombre) {
+        try {
+            Madera madera = iMaderaDAO.obtenerMaderaPorNombre(nombre); // Cambié la búsqueda por nombre
+
+            if (madera != null) {
+                // Mapear los datos de la madera a un DTO
+                MaderaDTO maderaDTO = new MaderaDTO();
+                maderaDTO.setId(madera.getId().toString());
+                maderaDTO.setNombre(madera.getNombre());
+                maderaDTO.setDescripcion(madera.getDescripcion());
+                maderaDTO.setCantidad(madera.getCantidad());
+                maderaDTO.setPrecioUnitario(madera.getPrecioUnitario());
+                return maderaDTO;
+            } else {
+                throw new RuntimeException("Madera no encontrada con el nombre proporcionado");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error al buscar la madera por nombre", e);
+        }
+    }
+
+    @Override
     public List<MaderaDTO> obtenerMaderasPorCorreoUsuarioVenta(String correoUsuarioVenta) {
-        
+
         try {
             if (correoUsuarioVenta == null || correoUsuarioVenta.isEmpty()) {
                 MaderaDAO maderaDAO = new MaderaDAO();
-            List<MaderaDTO> maderas = maderaDAO.buscarMaderaPorCorreoVendedor(correoUsuarioVenta);
+                List<MaderaDTO> maderas = maderaDAO.buscarMaderaPorCorreoVendedor(correoUsuarioVenta);
             }
 
             // Buscar las maderas asociadas al vendedor utilizando el correo

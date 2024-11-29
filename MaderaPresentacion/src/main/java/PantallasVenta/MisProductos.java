@@ -4,9 +4,9 @@
  */
 package PantallasVenta;
 
+import Interfaz.IMaderaVentaSS;
 import dto.MaderaDTO;
-import dto.SesionActualDTO;
-import funcionamiento.MaderaVentaSS;
+import interfacesDAO.IMaderaDAO;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -18,22 +18,26 @@ import javax.swing.table.DefaultTableModel;
 public class MisProductos extends javax.swing.JFrame {
 
     private MenuVendedor menuVendedor;
-    private MaderaVentaSS maderaVentaSS;
+    private IMaderaVentaSS maderaVentaSS;
+    private IMaderaDAO maderaDAO;
+    private MaderaDTO maderaDTO1;
 
-    public MisProductos() {
-        this.maderaVentaSS = new MaderaVentaSS();
+    public MisProductos(IMaderaVentaSS maderaVentaSS, IMaderaDAO maderaDAO, MaderaDTO maderaDTO1) {
+        this.maderaVentaSS = maderaVentaSS;
+        this.maderaDAO = maderaDAO;
+        this.maderaDTO1 = maderaDTO1;
         initComponents();
         CargarMetodosIniciales();
+
     }
 
-     private void CargarMetodosIniciales() {
+    private void CargarMetodosIniciales() {
         cargarMaderasEnTablas();
+        getSelectedIdTableMaderas();
     }
 
     private void cargarMaderasEnTablas() {
-        SesionActualDTO sesionActualDTO = new SesionActualDTO();
-        String correo = sesionActualDTO.getCorreo();
-        List<MaderaDTO> maderaLista = this.maderaVentaSS.obtenerMaderasPorVendedor(correo);
+        List<MaderaDTO> maderaLista = this.maderaVentaSS.obtenerMaderas();
         if (maderaLista != null && !maderaLista.isEmpty()) {
             llenarTablaMaderas(maderaLista);
         } else {
@@ -41,29 +45,42 @@ public class MisProductos extends javax.swing.JFrame {
         }
     }
 
-  private void llenarTablaMaderas(List<MaderaDTO> maderaLista) {
-    DefaultTableModel model = new DefaultTableModel(
-        new String[]{"Nombre", "Precio", "Descripción", "Cantidad"}, 0
-    ) {
-        boolean[] canEdit = new boolean[]{false, false, false, false, false};  // Hace que las celdas no sean editables.
-
-        @Override
-        public boolean isCellEditable(int rowIndex, int columnIndex) {
-            return canEdit[columnIndex];
+    private String getSelectedIdTableMaderas() {
+        int selectedIndex = this.tblMaderas.getSelectedRow();
+        if (selectedIndex != -1) {
+            DefaultTableModel model = (DefaultTableModel) this.tblMaderas.getModel();
+            int idIndexRow = 0;
+            String idMadera = (String) model.getValueAt(selectedIndex, idIndexRow);
+            return idMadera;
+        } else {
+            return null;
         }
-    };
+    }
+    
+    private void llenarTablaMaderas(List<MaderaDTO> maderaLista) {
+        DefaultTableModel model = new DefaultTableModel(
+                new String[]{"Id", "Nombre", "Precio", "Descripción", "Cantidad"}, 0
+        ) {
+            boolean[] canEdit = new boolean[]{false, false, false, false, false};  // Hace que las celdas no sean editables.
 
-    for (MaderaDTO madera : maderaLista) {
-        model.addRow(new Object[]{
-            madera.getNombre(), 
-            madera.getPrecioUnitario(), 
-            madera.getDescripcion(), 
-            madera.getCantidad(), 
-        });
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        };
+
+        for (MaderaDTO madera : maderaLista) {
+            model.addRow(new Object[]{
+                madera.getId(),
+                madera.getNombre(),
+                madera.getPrecioUnitario(),
+                madera.getDescripcion(),
+                madera.getCantidad(),});
+        }
+
+        tblMaderas.setModel(model);
     }
 
-    jTable1.setModel(model);
-}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -78,7 +95,10 @@ public class MisProductos extends javax.swing.JFrame {
         lblIniciarSesion = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblMaderas = new javax.swing.JTable();
+        btnAgregar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,18 +140,34 @@ public class MisProductos extends javax.swing.JFrame {
                 .addGap(34, 34, 34))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblMaderas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "Precio Unitario", "Cantidad", "Descripción"
+                "Id", "Nombre", "Precio Unitario", "Cantidad", "Descripción"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblMaderas);
+
+        btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+
+        btnEliminar.setText("Eliminar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -139,16 +175,28 @@ public class MisProductos extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
+                .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAgregar)
+                    .addComponent(btnEditar)
+                    .addComponent(btnEliminar))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(btnAgregar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEditar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEliminar))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -166,13 +214,42 @@ public class MisProductos extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        AgregarMadera agregarMadera = new AgregarMadera(maderaVentaSS);
+        agregarMadera.setVisible(true);
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+            if (this.getSelectedIdTableMaderas() == null) {
+                JOptionPane.showMessageDialog(this, "Por favor selecciona una madera", "Información", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            MaderaDTO maderaDTO = maderaVentaSS.buscarMaderaPorId(this.getSelectedIdTableMaderas());
+            EditarMadera editarMadera = new EditarMadera(maderaDTO, maderaVentaSS);
+            editarMadera.setVisible(true);
+//        if (this.getSelectedIdTableLaboratory() == null) {
+//            return;
+//        }
+//        try {
+//            // TODO add your handling code here:
+//            LaboratoryDTO laboratory = laboratoryBO.findLaboratoryByID(this.getSelectedIdTableLaboratory());
+//            System.out.println(laboratory.getLabName());
+//        } catch (BusinessException ex) {
+//            Logger.getLogger(FrmLaboratoryManager.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        
+    }//GEN-LAST:event_btnEditarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblIniciarSesion;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JTable tblMaderas;
     // End of variables declaration//GEN-END:variables
 }

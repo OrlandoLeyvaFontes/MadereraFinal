@@ -8,6 +8,7 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import static com.mongodb.client.model.Filters.eq;
+import com.mongodb.client.result.UpdateResult;
 import conexion.Conexion;
 import dto.MaderaDTO;
 import entidades.Madera;
@@ -26,7 +27,7 @@ public class MaderaDAO implements IMaderaDAO {
 
     private final MongoCollection<Document> collection;
     private SesionActual sesionActual = new SesionActual();
-    
+
     public MaderaDAO() {
         this.collection = Conexion.getDatabase().getCollection("Madera");
         this.sesionActual = new SesionActual();
@@ -102,6 +103,16 @@ public class MaderaDAO implements IMaderaDAO {
     }
 
     @Override
+    public Madera obtenerMaderaPorNombre(String nombre) {
+        MongoCollection<Document> coleccionMadera = Conexion.getDatabase().getCollection("Madera"); // Asegúrate de obtener la base de datos correctamente
+        Document doc = coleccionMadera.find(Filters.eq("nombre", nombre)).first(); // Filtro para buscar por nombre
+        if (doc != null) {
+            return new Madera(doc.getObjectId("_id"), doc.getString("nombre"));
+        }
+        return null;
+    }
+
+    @Override
     public void actualizar(Madera madera) {
         Document filtro = new Document("_id", madera.getId());
         Document actualizacion = new Document("$set", new Document("cantidad", madera.getCantidad()));
@@ -167,6 +178,22 @@ public class MaderaDAO implements IMaderaDAO {
         } catch (Exception e) {
             System.err.println("Error al agregar la madera: " + e.getMessage());
             throw new RuntimeException("Error al agregar la madera.", e);
+        }
+    }
+
+    public void editarMadera(Madera madera) {
+        Document filtro = new Document("_id", madera.getId());
+        Document actualizacion = new Document("$set", new Document("nombre", madera.getNombre())
+                .append("descripcion", madera.getDescripcion())
+                .append("cantidad", madera.getCantidad())
+                .append("precioUnitario", madera.getPrecioUnitario()));
+
+        // Realiza la actualización en la base de datos
+        UpdateResult result = collection.updateOne(filtro, actualizacion);
+
+        // Si no se modificaron registros, lanza una excepción
+        if (result.getModifiedCount() == 0) {
+            throw new RuntimeException("No se encontró la madera para actualizar con el ID proporcionado.");
         }
     }
 

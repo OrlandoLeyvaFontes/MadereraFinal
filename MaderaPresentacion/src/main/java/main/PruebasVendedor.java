@@ -4,7 +4,9 @@
  */
 package main;
 
+import Interfaz.IMaderaVentaSS;
 import PantallasVenta.IniciarSesionVendedor;
+import funcionamiento.MaderaVentaSS;
 import funcionamiento.UsuarioVentaSS;
 import interfacesDTO.IUsuarioVentasNegocio;
 import interfaz.IUsuarioVentaSS;
@@ -21,7 +23,11 @@ public class PruebasVendedor {
      */
     public static void main(String[] args) {
         IUsuarioVentaSS iUsuarioVentaSS =  new UsuarioVentaSS();
-        IniciarSesionVendedor inicioVendedor = new IniciarSesionVendedor(iUsuarioVentaSS);
+        IMaderaVentaSS maderaVentaSS = new MaderaVentaSS();
+        IniciarSesionVendedor inicioVendedor = new IniciarSesionVendedor(iUsuarioVentaSS,maderaVentaSS);
+        
+        
+        
         inicioVendedor.setVisible(true);
     }
 

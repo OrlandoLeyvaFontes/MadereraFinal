@@ -38,6 +38,7 @@ PantallasVenta\AgregarMadera.class
 PantallasVenta\EditarMadera.class
 PantallasVenta\InventarioEntradas.class
 pantallas\ConfirmarTarjeta2.class
+PantallasVenta\MisProductos$2.class
 PantallasVenta\IniciarSesionVendedor$3.class
 pantallas\TarjetasDisponibles2$2.class
 pantallas\TarjetasDisponibles2.class
@@ -60,6 +61,7 @@ PantallasVenta\MisProductos$1.class
 PantallasVenta\MisProductos.class
 pantallas\DetallesProducto$3.class
 pantallas\CompraExitosa2$1.class
+PantallasVenta\MisProductos$3.class
 pantallas\CompraExitosa$2.class
 main\PruebasVendedor.class
 pantallas\ConfirmarTarjeta$2.class

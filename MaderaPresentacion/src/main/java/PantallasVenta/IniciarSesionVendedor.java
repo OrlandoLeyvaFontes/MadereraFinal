@@ -4,6 +4,7 @@
  */
 package PantallasVenta;
 
+import Interfaz.IMaderaVentaSS;
 import dto.SesionActualDTO;
 import dto.UsuarioVentasDTO;
 import interfaz.IUsuarioVentaSS;
@@ -17,9 +18,10 @@ import org.bson.types.ObjectId;
 public class IniciarSesionVendedor extends javax.swing.JFrame {
 
     private IUsuarioVentaSS iUsuarioVentaSS;
-
-    public IniciarSesionVendedor(IUsuarioVentaSS iUsuarioVentaSS) {
+    private IMaderaVentaSS maderaVentaSS;
+    public IniciarSesionVendedor(IUsuarioVentaSS iUsuarioVentaSS, IMaderaVentaSS maderaVentaSS) {
         this.iUsuarioVentaSS = iUsuarioVentaSS;
+        this.maderaVentaSS = maderaVentaSS;
         initComponents();
     }
 
@@ -220,7 +222,7 @@ public class IniciarSesionVendedor extends javax.swing.JFrame {
                 this.setVisible(false);
 
                 SesionActualDTO sesionActualDTO = iUsuarioVentaSS.guardarSesion(correo);
-                MenuVendedor menuVendedor = new MenuVendedor();
+                MenuVendedor menuVendedor = new MenuVendedor(maderaVentaSS);
                 menuVendedor.setVisible(true);
             } else {
                 // Credenciales incorrectas
