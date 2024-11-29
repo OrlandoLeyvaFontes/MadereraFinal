@@ -40,25 +40,13 @@ public class Main {
         MongoDatabase database = mongoClient.getDatabase("maderera");
   
        
-     VentaDAO ventasDAO = new VentaDAO();
-
-            // Llamar al método obtenerVentas
-            List<Ventas> ventas = ventasDAO.obtenerVentas();
-
-            // Mostrar resultados
-            for (Ventas venta : ventas) {
-                System.out.println("ID Venta: " + venta.getId());
-                System.out.println("Cantidad: " + venta.getCantidad());
-                System.out.println("Precio Total: " + venta.getPrecioTotal());
-                if (venta.getFechaVenta() != null) {
-                    System.out.println("Fecha Venta: " + venta.getFechaVenta().getTime());
-                } else {
-                    System.out.println("Fecha Venta: N/A");
-                }
-                System.out.println("Madera: " + (venta.getMadera() != null ? venta.getMadera().getNombre() : "N/A"));
-                System.out.println("Usuario: " + (venta.getUsuario() != null ? venta.getUsuario().getNombre() : "N/A"));
-                System.out.println("-----------------------------------");
-            }
+    MaderaDAO maderaDAO = new MaderaDAO();
+Madera madera = maderaDAO.buscarMaderaPorNombre("Pino");
+if (madera != null) {
+    System.out.println("Madera encontrada: " + madera.getNombre());
+} else {
+    System.out.println("No se encontró la madera.");
+}
 
           }
     

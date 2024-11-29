@@ -13,6 +13,7 @@ import interfacesDTO.IUsuarioNegocio;
 import java.util.Calendar;
 import java.util.List;
 import negocio.CompraNegocio;
+import negocio.MaderaNegocio;
 import negocio.UsuarioNegocio;
 import negocio.VentaNegocio;
 
@@ -22,34 +23,27 @@ import negocio.VentaNegocio;
  */
 public class Main {
     public static void main(String[] args) {
-        VentaNegocio ventaNegocio = new VentaNegocio();
-
-        List<VentaDTO> ventas = ventaNegocio.obtenerVentas();
-
-        System.out.println("Lista de ventas:");
-        for (VentaDTO venta : ventas) {
-            System.out.println("ID Venta: " + venta.getId());
-            System.out.println("Cantidad: " + venta.getCantidad());
-            System.out.println("Precio Total: " + venta.getPrecioTotal());
-            System.out.println("Fecha Venta: " + venta.getFechaVenta());
-
-            if (venta.getMadera() != null) {
-                System.out.println("Madera ID: " + venta.getMadera().getId());
-                System.out.println("Madera Nombre: " + venta.getMadera().getNombre());
-                System.out.println("Precio Unitario: " + venta.getMadera().getPrecioUnitario());
-            } else {
-                System.out.println("Madera: N/A");
-            }
-
-            if (venta.getUsuario() != null) {
-                System.out.println("Usuario ID: " + venta.getUsuario().getId());
-                System.out.println("Usuario Nombre: " + venta.getUsuario().getNombre());
-            } else {
-                System.out.println("Usuario: N/A");
-            }
-
-            System.out.println("-----------------------------------");
+         // Crear una instancia del servicio o controlador que contiene el método buscarMaderaPorNombre
+        MaderaNegocio maderaService = new MaderaNegocio(); // O la clase donde tengas el método
+        
+        // Nombre de la madera a buscar
+        String nombreMadera = "Pino";
+        
+        // Llamar al método de búsqueda
+        MaderaDTO maderaEncontrada = maderaService.buscarMaderaPorNombre(nombreMadera);
+        
+        // Verificar y mostrar resultados
+        if (maderaEncontrada != null) {
+            System.out.println("Madera encontrada:");
+            System.out.println("ID: " + maderaEncontrada.getId());
+            System.out.println("Nombre: " + maderaEncontrada.getNombre());
+            System.out.println("Descripción: " + maderaEncontrada.getDescripcion());
+            System.out.println("Cantidad: " + maderaEncontrada.getCantidad());
+            System.out.println("Precio Unitario: " + maderaEncontrada.getPrecioUnitario());
+        } else {
+            System.out.println("No se encontró la madera con nombre: " + nombreMadera);
         }
+    }
     
     }
     
@@ -58,7 +52,7 @@ public class Main {
         
         
         
-    }
+    
         
         
         

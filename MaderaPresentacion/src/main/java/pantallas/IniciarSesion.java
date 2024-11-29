@@ -6,6 +6,7 @@ package pantallas;
 
 import dto.UsuarioDTO;
 import funcionalidad.ObtenerNumerosTarjetasPorUsuarioSS;
+import interfacesDTO.IMadereraNegocio;
 import interfacesDTO.IUsuarioNegocio;
 import interfaz.IAgregarProductoCarritoSS;
 import interfaz.IComprarCarritoSS;
@@ -30,6 +31,7 @@ public class IniciarSesion extends javax.swing.JFrame {
     /**
      * Creates new form IniciarSesion
      */
+    private IMadereraNegocio  iMadereraNegocio;
     private IAgregarTarjetasSS agregarTarjetasSS;
     private  IInicioSesionSS iInicioSesionSS;
     private IAgregarUsuarioSS agregarUsuarioSS;
@@ -47,7 +49,7 @@ private IObtenerVentasSS iObtenerVentasSS;
     ,IObtenerMaderas iObtenerMaderas, IBuscarMaderaPorIDSS buscarMaderaPorIDSS,IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS
     ,IInicioSesionCVVSS  iInicioSesionCVVSS,IGuardarCompraSS iGuardarCompraSS,IAgregarProductoCarritoSS iAgregarProductoCarritoSS    
             , IObtenerCarritoSS iObtenerCarritoSS,IEliminarProductoCarritoSS iEliminarProductoCarritoSS, IComprarCarritoSS iComprarCarritoSS,
-            IObtenerVentasSS iObtenerVentasSS
+            IObtenerVentasSS iObtenerVentasSS,IMadereraNegocio  iMadereraNegocio
 ) {
         this.iObtenerNumerosTarjetasPorUsuarioSS=iObtenerNumerosTarjetasPorUsuarioSS;
        this.agregarUsuarioSS=agregarUsuarioSS;
@@ -62,6 +64,7 @@ private IObtenerVentasSS iObtenerVentasSS;
        this.iEliminarProductoCarritoSS=iEliminarProductoCarritoSS;
        this.iComprarCarritoSS=iComprarCarritoSS;
        this.iObtenerVentasSS=iObtenerVentasSS;
+       this.iMadereraNegocio=iMadereraNegocio;
         initComponents();
     }
 
@@ -221,7 +224,7 @@ registrarUsuario.setVisible(true);
         
         MenuPrincipal menuPrincipal = new MenuPrincipal(this, iInicioSesionSS, agregarTarjetasSS, iObtenerMaderas, buscarMaderaPorIDSS, usuarioId,iObtenerNumerosTarjetasPorUsuarioSS
         ,iInicioSesionCVVSS,iGuardarCompraSS,iAgregarProductoCarritoSS,iObtenerCarritoSS,iEliminarProductoCarritoSS,
-        iComprarCarritoSS,iObtenerVentasSS
+        iComprarCarritoSS,iObtenerVentasSS,iMadereraNegocio
         );
         menuPrincipal.setVisible(true);
     } else {

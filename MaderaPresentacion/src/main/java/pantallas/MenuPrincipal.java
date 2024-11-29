@@ -4,6 +4,7 @@
  */
 package pantallas;
 
+import interfacesDTO.IMadereraNegocio;
 import interfaz.IAgregarProductoCarritoSS;
 import interfaz.IComprarCarritoSS;
 import interfaz.IEliminarProductoCarritoSS;
@@ -36,6 +37,7 @@ private  IObtenerCarritoSS iObtenerCarritoSS;
 private IEliminarProductoCarritoSS iEliminarProductoCarritoSS;
 private  IComprarCarritoSS iComprarCarritoSS;
 private IObtenerVentasSS iObtenerVentasSS;
+private IMadereraNegocio  iMadereraNegocio;
     /**
      * Creates new form MenuPrincipal
      */
@@ -43,7 +45,7 @@ private IObtenerVentasSS iObtenerVentasSS;
      IBuscarMaderaPorIDSS buscarMaderaPorIDSS,String usuarioId,       IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS
 ,IInicioSesionCVVSS  iInicioSesionCVVSS,IGuardarCompraSS iGuardarCompraSS,IAgregarProductoCarritoSS iAgregarProductoCarritoSS
     , IObtenerCarritoSS iObtenerCarritoSS,IEliminarProductoCarritoSS iEliminarProductoCarritoSS, IComprarCarritoSS iComprarCarritoSS,IObtenerVentasSS iObtenerVentasSS
-    ) {
+    ,IMadereraNegocio  iMadereraNegocio) {
         this.usuarioId = usuarioId;
         this.iInicioSesionSS = iInicioSesionSS;
         this.agregarTarjetasSS = agregarTarjetasSS;
@@ -58,6 +60,7 @@ private IObtenerVentasSS iObtenerVentasSS;
         this.iEliminarProductoCarritoSS=iEliminarProductoCarritoSS;
         this.iComprarCarritoSS=iComprarCarritoSS;
         this.iObtenerVentasSS=iObtenerVentasSS;
+        this.iMadereraNegocio=iMadereraNegocio;
         initComponents();
     }
 //public void setUsuarioId(String usuarioId) {
@@ -80,6 +83,7 @@ private IObtenerVentasSS iObtenerVentasSS;
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -131,6 +135,13 @@ private IObtenerVentasSS iObtenerVentasSS;
             }
         });
 
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -148,11 +159,13 @@ private IObtenerVentasSS iObtenerVentasSS;
                         .addComponent(jButton2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(95, 95, 95)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                .addContainerGap(116, Short.MAX_VALUE)
+                .addComponent(btnBuscar)
+                .addGap(86, 86, 86)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(259, 259, 259))
+                .addGap(35, 35, 35)
+                .addComponent(jButton3)
+                .addGap(152, 152, 152))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
@@ -162,7 +175,8 @@ private IObtenerVentasSS iObtenerVentasSS;
                 .addGap(51, 51, 51)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addComponent(btnBuscar))
                 .addGap(85, 85, 85)
                 .addComponent(jLabel2)
                 .addGap(5, 5, 5)
@@ -212,8 +226,17 @@ salidaCompra.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+this.setVisible(false);
+BuscarPorNombre buscarPorNombre=new BuscarPorNombre(this);
+buscarPorNombre.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

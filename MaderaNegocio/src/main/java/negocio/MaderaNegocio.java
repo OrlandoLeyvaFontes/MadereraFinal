@@ -13,6 +13,7 @@ import interfacesDAO.IUsuarioDAO;
 import interfacesDTO.IMadereraNegocio;
 import java.util.ArrayList;
 import java.util.List;
+import org.bson.Document;
 import org.bson.types.ObjectId;
 
 /**
@@ -93,6 +94,32 @@ public class MaderaNegocio implements IMadereraNegocio {
             throw new RuntimeException("Error al buscar la madera por ID", e);
         }
     }
+    
+    
+    
+
+   
+
+    public MaderaDTO buscarMaderaPorNombre(String nombre) {
+    try {
+        Madera madera = iMaderaDAO.buscarMaderaPorNombre(nombre);
+        
+        if (madera != null) {
+            MaderaDTO maderaDTO = new MaderaDTO();
+            maderaDTO.setId(madera.getId().toString());
+            maderaDTO.setNombre(madera.getNombre());
+            maderaDTO.setDescripcion(madera.getDescripcion());
+            maderaDTO.setCantidad(madera.getCantidad());
+            maderaDTO.setPrecioUnitario(madera.getPrecioUnitario());
+            return maderaDTO;
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return null; // Retorna null si no se encuentra la madera
+}
+
+
 
 //    @Override
 //    public List<MaderaDTO> obtenerMaderasPorUsuarioVenta(String idUsuarioVenta) {

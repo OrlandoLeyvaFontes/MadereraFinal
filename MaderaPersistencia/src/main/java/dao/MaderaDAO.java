@@ -127,4 +127,34 @@ public class MaderaDAO implements IMaderaDAO {
         }
         return maderas;
     }
+    
+    @Override
+public Madera buscarMaderaPorNombre(String nombre) {
+    try {
+        Document filtro = new Document("nombre", nombre);
+        
+        Document documento = collection.find(filtro).first();
+        
+        if (documento != null) {
+            Madera madera = new Madera();
+            madera.setId(documento.getObjectId("_id"));
+            madera.setNombre(documento.getString("nombre"));
+            madera.setDescripcion(documento.getString("descripcion"));
+            madera.setCantidad(documento.getInteger("cantidad", 0));
+            madera.setPrecioUnitario(documento.getDouble("precioUnitario"));
+            return madera;
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return null; 
 }
+
+    
+}
+
+
+
+
+
+

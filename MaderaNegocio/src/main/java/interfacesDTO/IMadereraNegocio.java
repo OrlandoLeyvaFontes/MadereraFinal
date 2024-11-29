@@ -20,5 +20,8 @@ public interface IMadereraNegocio {
 
     public MaderaDTO buscarMaderaPorId(String id);
 
+    public MaderaDTO buscarMaderaPorNombre(String nombre);
+    
+    
 //    List<MaderaDTO> obtenerMaderasPorUsuarioVenta(String idUsuarioVenta);
 }
