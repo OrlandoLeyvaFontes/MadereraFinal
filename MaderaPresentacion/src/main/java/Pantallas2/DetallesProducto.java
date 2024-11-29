@@ -20,7 +20,6 @@ import interfaz.IUsuarioSS;
 import interfazSS.IInicioSesionSS;
 import interfazSS.IObtenerMaderas;
 import javax.swing.table.DefaultTableModel;
-import pantallas.MenuDeTarjetas;
 
 /**
  *
@@ -305,12 +304,11 @@ private IUsuarioSS iUsuarioSS;
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-//
-//        this.setVisible(false);
-//        MenuDeTarjetas menuDeTarjetas = new MenuDeTarjetas(this, iObtenerNumerosTarjetasPorUsuarioSS, usuarioId, iInicioSesionCVVSS, menuPrincipal1, cantidad, idMadera, iGuardarCompraSS);
-//        menuDeTarjetas.setVisible(true);
 
-        // TODO add your handling code here:
+        this.setVisible(false);
+        MenuDeTarjetas menuDeTarjetas = new MenuDeTarjetas(this, usuarioId, menuPrincipal1, cantidad, idMadera, iCompraSS, iUsuarioSS);
+        menuDeTarjetas.setVisible(true);
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

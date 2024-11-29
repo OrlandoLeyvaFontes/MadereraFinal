@@ -6,12 +6,12 @@ Pantallas2\DetallesProducto$4.class
 Pantallas2\MenuCarrito$1.class
 Pantallas2\IniciarSesion$2.class
 main\Main.class
-pantallas\MenuDeTarjetas$2.class
 pantallas\SalidaCompra.class
 Pantallas2\MenuCarrito.class
 Pantallas2\AgregarTarjeta$2.class
 Pantallas2\MenuPrincipal$5.class
 Pantallas2\TarjetasDisponibles2$1.class
+Pantallas2\MenuDeTarjetas$1.class
 Pantallas2\HistorialCompras$1.class
 PantallasVenta\RegistrarUsuarioVendedor.class
 Pantallas2\RegistrarUsuario$2.class
@@ -33,7 +33,6 @@ Pantallas2\ConfirmarTarjeta2$1.class
 Pantallas2\DetallesCarritos$2.class
 Pantallas2\DetallesProducto$1.class
 pantallas\ConfirmarTarjeta.class
-pantallas\MenuDeTarjetas$1.class
 Pantallas2\MenuPrincipal.class
 Pantallas2\HistorialCompras$2.class
 Pantallas2\TarjetasDisponibles2$2.class
@@ -44,9 +43,9 @@ Pantallas2\DetallesCarritos.class
 Pantallas2\RegistrarUsuario$1.class
 pantallas\TarjetasDisponibles$2.class
 PantallasVenta\RegistrarUsuarioVendedor$2.class
-pantallas\MenuDeTarjetas.class
 Pantallas2\ConfirmarTarjeta2.class
 PantallasVenta\AgregarMadera.class
+Pantallas2\MenuDeTarjetas.class
 PantallasVenta\EditarMadera.class
 PantallasVenta\InventarioEntradas.class
 main\Main2.class
@@ -77,6 +76,7 @@ Pantallas2\MenuPrincipal$4.class
 pantallas\CompraExitosa.class
 Pantallas2\ProductosVenta$2.class
 Pantallas2\CompraExitosa2$1.class
+Pantallas2\MenuDeTarjetas$2.class
 pantallas\TarjetasDisponibles$1.class
 Pantallas2\RegistrarUsuario.class
 pantallas\SalidaCompra$1.class

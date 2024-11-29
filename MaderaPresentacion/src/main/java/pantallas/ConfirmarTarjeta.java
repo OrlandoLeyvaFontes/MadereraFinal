@@ -8,8 +8,10 @@ import Pantallas2.MenuPrincipal;
 import dto.CompraDTO;
 import dto.MaderaDTO;
 import dto.UsuarioDTO;
+import interfaz.ICompraSS;
 import interfaz.IGuardarCompraSS;
 import interfaz.IInicioSesionCVVSS;
+import interfaz.IUsuarioSS;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 
@@ -19,25 +21,25 @@ import javax.swing.JOptionPane;
  */
 public class ConfirmarTarjeta extends javax.swing.JFrame {
 private TarjetasDisponibles tarjetasDisponibles;
-private IInicioSesionCVVSS  iInicioSesionCVVSS;
 private MenuPrincipal menuPrincipal1;
 private int cantidad;
 private String idMadera;
        private String usuarioId;
-       private IGuardarCompraSS iGuardarCompraSS;
+         private ICompraSS iCompraSS;
+    private IUsuarioSS iUsuarioSS;
 
     /**
      * Creates new form ConfirmarTarjeta
      */
-    public ConfirmarTarjeta(TarjetasDisponibles tarjetasDisponibles,IInicioSesionCVVSS  iInicioSesionCVVSS,MenuPrincipal menuPrincipal1,
-            int cantidad,String idMadera, String usuarioId,IGuardarCompraSS iGuardarCompraSS) {
+    public ConfirmarTarjeta(TarjetasDisponibles tarjetasDisponibles,MenuPrincipal menuPrincipal1,
+            int cantidad,String idMadera, String usuarioId,ICompraSS iCompraSS,IUsuarioSS iUsuarioSS) {
         this.tarjetasDisponibles=tarjetasDisponibles;
-        this.iInicioSesionCVVSS=iInicioSesionCVVSS;
         this.menuPrincipal1=menuPrincipal1;
         this.cantidad=cantidad;
         this.idMadera=idMadera;
         this.usuarioId=usuarioId;
-        this.iGuardarCompraSS=iGuardarCompraSS;
+            this.iCompraSS = iCompraSS;
+        this.iUsuarioSS = iUsuarioSS;
         initComponents();
     }
 
@@ -191,7 +193,7 @@ tarjetasDisponibles.setVisible(true);
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
  String CVV = jTextField1.getText();
 
-    if (!iInicioSesionCVVSS.iniciarSesionPorCVV(CVV)) {
+    if (!iUsuarioSS.iniciarSesionPorCVV(CVV)) {
         JOptionPane.showMessageDialog(this, "CVV incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
         return;
     }
@@ -207,13 +209,13 @@ MaderaDTO maderaDTO = new MaderaDTO();
 maderaDTO.setId(idMadera);
 compraDTO.setMadera(maderaDTO);
 
-iGuardarCompraSS.guardarCompra(compraDTO);
+iCompraSS.guardarCompra(compraDTO);
 
 UsuarioDTO usuarioDTO = new UsuarioDTO();
 usuarioDTO.setId(usuarioId);
 compraDTO.setUsuario(usuarioDTO);
 
-iGuardarCompraSS.guardarCompra(compraDTO);
+iCompraSS.guardarCompra(compraDTO);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 

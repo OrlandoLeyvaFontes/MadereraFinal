@@ -122,9 +122,9 @@ private void CargarMetodosIniciales() {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(55, 55, 55)
                 .addComponent(jButton1)
-                .addGap(42, 42, 42)
+                .addGap(81, 81, 81)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );

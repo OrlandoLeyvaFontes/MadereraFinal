@@ -2,41 +2,43 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package pantallas;
+package Pantallas2;
 
 import Pantallas2.DetallesProducto;
 import Pantallas2.MenuPrincipal;
+import interfaz.ICompraSS;
 import interfaz.IGuardarCompraSS;
 import interfaz.IInicioSesionCVVSS;
 import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
+import interfaz.IUsuarioSS;
+import pantallas.TarjetasDisponibles;
 
 /**
  *
  * @author Oley
  */
 public class MenuDeTarjetas extends javax.swing.JFrame {
-private DetallesProducto detallesProducto;
-       private IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS;
-       private String usuarioId;
-       private IInicioSesionCVVSS  iInicioSesionCVVSS;
-private MenuPrincipal menuPrincipal1;
-private int cantidad;
-private String idMadera;
-private IGuardarCompraSS iGuardarCompraSS;
+
+    private DetallesProducto detallesProducto;
+    private String usuarioId;
+    private MenuPrincipal menuPrincipal1;
+    private int cantidad;
+    private String idMadera;
+    private ICompraSS iCompraSS;
+    private IUsuarioSS iUsuarioSS;
+
     /**
      * Creates new form MenuDeTarjetas
      */
-    public MenuDeTarjetas(DetallesProducto detallesProducto,       IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS,String usuarioId,
-            IInicioSesionCVVSS  iInicioSesionCVVSS,MenuPrincipal menuPrincipal1,int cantidad,String idMadera,IGuardarCompraSS iGuardarCompraSS
-) {
-        this.iObtenerNumerosTarjetasPorUsuarioSS=iObtenerNumerosTarjetasPorUsuarioSS;
-        this.detallesProducto=detallesProducto;
-        this.usuarioId=usuarioId;
-        this.iInicioSesionCVVSS=iInicioSesionCVVSS;
-        this.menuPrincipal1=menuPrincipal1;
-        this.cantidad=cantidad;
-        this.idMadera=idMadera;
-        this.iGuardarCompraSS=iGuardarCompraSS;
+    public MenuDeTarjetas(DetallesProducto detallesProducto,String usuarioId,MenuPrincipal menuPrincipal1,int cantidad,String idMadera,ICompraSS iCompraSS,IUsuarioSS iUsuarioSS
+    ) {
+        this.detallesProducto = detallesProducto;
+        this.usuarioId = usuarioId;
+        this.menuPrincipal1 = menuPrincipal1;
+        this.cantidad = cantidad;
+        this.idMadera = idMadera;
+        this.iCompraSS = iCompraSS;
+        this.iUsuarioSS = iUsuarioSS;
         initComponents();
     }
 
@@ -179,27 +181,21 @@ private IGuardarCompraSS iGuardarCompraSS;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-this.setVisible(false);
-detallesProducto.setVisible(true);
-
-
+        this.setVisible(false);
+        detallesProducto.setVisible(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-this.setVisible(false);
-        TarjetasDisponibles tarjetasDisponibles=new TarjetasDisponibles(this,iObtenerNumerosTarjetasPorUsuarioSS,usuarioId,iInicioSesionCVVSS,
-         menuPrincipal1,cantidad,idMadera,iGuardarCompraSS);
+        this.setVisible(false);
+        TarjetasDisponibles tarjetasDisponibles = new TarjetasDisponibles(this, usuarioId, menuPrincipal1, cantidad, idMadera, iCompraSS, iUsuarioSS);
         tarjetasDisponibles.setVisible(true);
-
-
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;

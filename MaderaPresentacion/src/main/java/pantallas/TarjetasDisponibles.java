@@ -4,12 +4,15 @@
  */
 package pantallas;
 
+import Pantallas2.MenuDeTarjetas;
 import Pantallas2.MenuPrincipal;
 import dto.MaderaDTO;
 import dto.UsuarioDTO;
+import interfaz.ICompraSS;
 import interfaz.IGuardarCompraSS;
 import interfaz.IInicioSesionCVVSS;
 import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
+import interfaz.IUsuarioSS;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -20,32 +23,29 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TarjetasDisponibles extends javax.swing.JFrame {
 private MenuDeTarjetas menuDeTarjetas;
-       private IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS;
        private String usuarioId;
-       private IInicioSesionCVVSS  iInicioSesionCVVSS;
        private MenuPrincipal menuPrincipal1;
 private int cantidad;
 private String idMadera;
-private IGuardarCompraSS iGuardarCompraSS;
-    /**
+    private ICompraSS iCompraSS;
+    private IUsuarioSS iUsuarioSS;
+/**
      * Creates new form TarjetasDisponibles
      */
-    public TarjetasDisponibles(MenuDeTarjetas menuDeTarjetas,       IObtenerNumerosTarjetasPorUsuarioSS iObtenerNumerosTarjetasPorUsuarioSS,String usuarioId,IInicioSesionCVVSS  iInicioSesionCVVSS,
-            MenuPrincipal menuPrincipal1,int cantidad,String idMadera,IGuardarCompraSS iGuardarCompraSS
+    public TarjetasDisponibles(MenuDeTarjetas menuDeTarjetas,String usuarioId,MenuPrincipal menuPrincipal1,int cantidad,String idMadera, ICompraSS iCompraSS,IUsuarioSS iUsuarioSS
 ) {
         this.menuDeTarjetas=menuDeTarjetas;
-        this.iObtenerNumerosTarjetasPorUsuarioSS=iObtenerNumerosTarjetasPorUsuarioSS;
         this.usuarioId=usuarioId;
-        this.iInicioSesionCVVSS=iInicioSesionCVVSS;
         this.menuPrincipal1=menuPrincipal1;
         this.cantidad=cantidad;
         this.idMadera=idMadera;
-        this.iGuardarCompraSS=iGuardarCompraSS;
+        this.iCompraSS=iCompraSS;
+        this.iUsuarioSS=iUsuarioSS;
         initComponents();
         cargarTarjetasEnTablas();
     }
  private void cargarTarjetasEnTablas() {
-    List<String> numerosTarjetas = this.iObtenerNumerosTarjetasPorUsuarioSS.obtenerNumerosTarjetasPorUsuario(usuarioId);
+    List<String> numerosTarjetas = this.iUsuarioSS.obtenerNumerosTarjetasPorUsuario(usuarioId);
 
     if (numerosTarjetas != null && !numerosTarjetas.isEmpty()) {
         llenarTablaTarjetas(numerosTarjetas);
@@ -229,7 +229,7 @@ menuDeTarjetas.setVisible(true);
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 this.setVisible(false);
-ConfirmarTarjeta confirmarTarjeta=new ConfirmarTarjeta(this,iInicioSesionCVVSS,menuPrincipal1,cantidad,idMadera,usuarioId,iGuardarCompraSS);
+ConfirmarTarjeta confirmarTarjeta=new ConfirmarTarjeta(this, menuPrincipal1, cantidad, idMadera, usuarioId, iCompraSS, iUsuarioSS);
 confirmarTarjeta.setVisible(true);
 
 
