@@ -13,17 +13,17 @@ import negocio.CompraNegocio;
  *
  * @author Oley
  */
-public class GuardarCompraSS implements  IGuardarCompraSS{
-ICompraNegocio iCompraNegocio;
+public class GuardarCompraSS implements IGuardarCompraSS {
 
-    public GuardarCompraSS( ) {
+    ICompraNegocio iCompraNegocio;
+
+    public GuardarCompraSS() {
         this.iCompraNegocio = new CompraNegocio();
     }
 
-
     @Override
     public void guardarCompra(CompraDTO compraDTO) {
-iCompraNegocio.guardarCompra(compraDTO);
+        iCompraNegocio.guardarCompra(compraDTO);
     }
-    
+
 }

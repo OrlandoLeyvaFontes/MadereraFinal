@@ -6,6 +6,7 @@ dao\MaderaDAO.class
 interfacesDAO\ICompraDAO.class
 entidades\Madera.class
 interfacesDAO\ICarritoDAO.class
+Main.class
 interfacesDAO\IUsuarioVentasDAO.class
 entidades\Tarjetas.class
 dao\UsuarioVentasDAO.class

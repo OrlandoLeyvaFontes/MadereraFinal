@@ -7,7 +7,6 @@ package entidades;
 import java.io.Serializable;
 import org.bson.types.ObjectId;
 
-
 /**
  *
  * @author Oley
@@ -15,10 +14,10 @@ import org.bson.types.ObjectId;
 public class Madera implements Serializable {
 
     private ObjectId id;
-private String nombre;
-private String descripcion;
-private int cantidad;
-  private double precioUnitario;
+    private String nombre;
+    private String descripcion;
+    private int cantidad;
+    private double precioUnitario;
 
     public Madera() {
     }
@@ -75,10 +74,4 @@ private int cantidad;
         this.precioUnitario = precioUnitario;
     }
 
-   
-  
-  
-  
-  
-  
 }

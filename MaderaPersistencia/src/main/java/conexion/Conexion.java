@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package conexion;
+
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -10,11 +11,13 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.codecs.configuration.CodecRegistries;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
+
 /**
  *
  * @author Oley
  */
 public class Conexion {
+
     private static MongoClient mongoClient = null;
     //Si se conectaron por Atlas su URL es la que les proporciona la página
     private static final String URI = "mongodb://localhost:27017";

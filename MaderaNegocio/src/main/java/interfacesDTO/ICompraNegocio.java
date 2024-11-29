@@ -5,13 +5,19 @@
 package interfacesDTO;
 
 import dto.CompraDTO;
-import entidades.Compra;
+import java.util.List;
+import org.bson.Document;
+import org.bson.types.ObjectId;
 
 /**
  *
  * @author Oley
  */
 public interface ICompraNegocio {
-                void guardarCompra(CompraDTO compraDTO);
-public void comprarCarrito(String usuarioId);
+
+    void guardarCompra(CompraDTO compraDTO);
+
+    public void comprarCarrito(String usuarioId);
+    
+    public List<Document> obtenerComprasPorUsuarioId(ObjectId usuarioId);
 }

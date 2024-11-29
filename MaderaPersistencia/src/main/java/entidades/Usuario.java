@@ -6,29 +6,25 @@ package entidades;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import org.bson.types.ObjectId;
 
 /**
  *
  * @author Oley
  */
-
 public class Usuario implements Serializable {
-   private ObjectId id;
+
+    private ObjectId id;
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
     private String numero;
     private String correo;
     private String contraseña;
-private List<Tarjetas> tarjetas;
-    public Usuario() {}
+    private List<Tarjetas> tarjetas;
+
+    public Usuario() {
+    }
 
     public Usuario(String nombre, String apellidoPaterno, String apellidoMaterno, String numero, String correo, String contraseña) {
         this.nombre = nombre;
