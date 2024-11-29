@@ -96,10 +96,11 @@ public class MaderaNegocio implements IMadereraNegocio {
 
     @Override
     public List<MaderaDTO> obtenerMaderasPorCorreoUsuarioVenta(String correoUsuarioVenta) {
+        
         try {
             if (correoUsuarioVenta == null || correoUsuarioVenta.isEmpty()) {
-                System.out.println("El correo del usuario vendedor no puede ser nulo o vacío.");
-                return new ArrayList<>();
+                MaderaDAO maderaDAO = new MaderaDAO();
+            List<MaderaDTO> maderas = maderaDAO.buscarMaderaPorCorreoVendedor(correoUsuarioVenta);
             }
 
             // Buscar las maderas asociadas al vendedor utilizando el correo

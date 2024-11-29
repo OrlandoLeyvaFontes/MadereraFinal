@@ -11,6 +11,7 @@ import static com.mongodb.client.model.Filters.eq;
 import conexion.Conexion;
 import dto.MaderaDTO;
 import entidades.Madera;
+import entidades.SesionActual;
 import interfacesDAO.IMaderaDAO;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +25,11 @@ import org.bson.types.ObjectId;
 public class MaderaDAO implements IMaderaDAO {
 
     private final MongoCollection<Document> collection;
-
+    private SesionActual sesionActual = new SesionActual();
+    
     public MaderaDAO() {
         this.collection = Conexion.getDatabase().getCollection("Madera");
+        this.sesionActual = new SesionActual();
     }
 
     @Override
@@ -136,7 +139,7 @@ public class MaderaDAO implements IMaderaDAO {
         try {
             // Buscar el vendedor por correo
             MongoCollection<Document> usuariosCollection = Conexion.getDatabase().getCollection("usuarioVentas");
-            Document usuario = usuariosCollection.find(eq("correo", correoVendedor)).first();
+            Document usuario = usuariosCollection.find(eq("correo", sesionActual.getCorreo())).first();
 
             if (usuario == null) {
                 throw new RuntimeException("No se encontró un vendedor con el correo proporcionado: " + correoVendedor);

@@ -32,7 +32,6 @@ public class MisProductos extends javax.swing.JFrame {
 
     private void cargarMaderasEnTablas() {
         SesionActualDTO sesionActualDTO = new SesionActualDTO();
-        sesionActualDTO.setCorreo("ejemplo@ventas.com");
         String correo = sesionActualDTO.getCorreo();
         List<MaderaDTO> maderaLista = this.maderaVentaSS.obtenerMaderasPorVendedor(correo);
         if (maderaLista != null && !maderaLista.isEmpty()) {
@@ -90,7 +89,7 @@ public class MisProductos extends javax.swing.JFrame {
         lblIniciarSesion.setBackground(new java.awt.Color(255, 255, 255));
         lblIniciarSesion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
-        lblIniciarSesion.setText("Iniciar Sesión");
+        lblIniciarSesion.setText("Mis Productos");
 
         lblTitulo.setBackground(new java.awt.Color(255, 255, 255));
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -148,6 +147,7 @@ public class MisProductos extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 

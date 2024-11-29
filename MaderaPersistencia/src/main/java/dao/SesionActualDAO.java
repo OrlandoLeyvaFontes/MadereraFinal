@@ -23,6 +23,7 @@ public class SesionActualDAO {
 
     public SesionActual guardarSesion(SesionActual sesion) {
         MongoCollection<Document> collection = Conexion.getDatabase().getCollection("sesionActual");
+        collection.deleteMany(new Document());
         Document doc = new Document("correoVendedor", sesion.getCorreo());
         collection.insertOne(doc);
         try {
