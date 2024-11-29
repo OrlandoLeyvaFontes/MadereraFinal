@@ -4,6 +4,8 @@
  */
 package pantallas;
 
+import Pantallas2.MenuPrincipal;
+
 /**
  *
  * @author Oley

@@ -4,6 +4,8 @@
  */
 package pantallas;
 
+import Pantallas2.DetallesProducto;
+import Pantallas2.MenuPrincipal;
 import interfaz.IGuardarCompraSS;
 import interfaz.IInicioSesionCVVSS;
 import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;

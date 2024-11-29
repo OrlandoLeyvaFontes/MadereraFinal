@@ -4,6 +4,7 @@
  */
 package pantallas;
 
+import Pantallas2.MenuPrincipal;
 import dto.MaderaDTO;
 import dto.UsuarioDTO;
 import interfaz.IGuardarCompraSS;
