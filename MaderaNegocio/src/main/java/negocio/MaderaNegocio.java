@@ -52,18 +52,20 @@ public class MaderaNegocio implements IMadereraNegocio {
 
     @Override
     public void editarMadera(MaderaDTO maderaDTO) {
+        // Crear una entidad Madera a partir del DTO
         Madera madera = new Madera();
+        madera.setId(new ObjectId(maderaDTO.getId()));
         madera.setNombre(maderaDTO.getNombre());
         madera.setDescripcion(maderaDTO.getDescripcion());
         madera.setCantidad(maderaDTO.getCantidad());
         madera.setPrecioUnitario(maderaDTO.getPrecioUnitario());
-
+        System.out.println(maderaDTO.getId());
         try {
-            // Llama al método del DAO para actualizar en la base de datos
-            iMaderaDAO.actualizar(madera);
+            // Llama al método del DAO para editar/actualizar la madera
+            iMaderaDAO.editarMadera(madera);
         } catch (Exception e) {
             // Manejo de excepciones si ocurre algún error en la actualización
-            throw new RuntimeException("Error al actualizar la madera en la base de datos", e);
+            throw new RuntimeException("Error al editar la madera en la base de datos", e);
         }
     }
 
@@ -191,4 +193,8 @@ public class MaderaNegocio implements IMadereraNegocio {
         }
     }
 
+    // Método de negocio para eliminar madera
+    public boolean eliminarMadera(String id) {
+        return iMaderaDAO.eliminarMadera(id);
+    }
 }

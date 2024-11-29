@@ -17,6 +17,7 @@ public class EditarMadera extends javax.swing.JFrame {
 
     MaderaDTO maderaDTO;
     MaderaDAO maderaDAO;
+    MisProductos misProductos;
     private IMaderaVentaSS maderaVentaSS;
     /**
      * Creates new form EditarMadera
@@ -48,6 +49,7 @@ public class EditarMadera extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         lblIniciarSesion = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
+        btnRegresar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         lblNombre = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
@@ -73,14 +75,23 @@ public class EditarMadera extends javax.swing.JFrame {
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setText("Maderera en Linea");
 
+        btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(135, 135, 135)
+                .addContainerGap()
+                .addComponent(btnRegresar)
+                .addGap(54, 54, 54)
                 .addComponent(lblTitulo)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblIniciarSesion)
@@ -90,7 +101,9 @@ public class EditarMadera extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblTitulo)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTitulo)
+                    .addComponent(btnRegresar))
                 .addGap(18, 18, 18)
                 .addComponent(lblIniciarSesion)
                 .addGap(33, 33, 33))
@@ -221,13 +234,16 @@ public class EditarMadera extends javax.swing.JFrame {
         int cantidadInt = Integer.parseInt(cantidad);
 
         MaderaDTO maderaDTO = new MaderaDTO();
+        maderaDTO.setId(this.maderaDTO.getId());
         maderaDTO.setNombre(nombre);
         maderaDTO.setPrecioUnitario(precioUnitario);
         maderaDTO.setCantidad(cantidadInt);
         maderaDTO.setDescripcion(descripcion);
 
+//        MaderaDTO maderaDTO1= new MaderaDTO(this.maderaDTO.getId(), nombre, descripcion, cantidadInt, precioUnitario);
+        System.out.println(this.maderaDTO.getId());
         try {
-            maderaVentaSS.agregarMadera(maderaDTO);
+            maderaVentaSS.editarMadera(maderaDTO);
             JOptionPane.showMessageDialog(this, "La madera ha sido guardada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar la madera.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -236,9 +252,16 @@ public class EditarMadera extends javax.swing.JFrame {
         misProductos.setVisible(true);
     }//GEN-LAST:event_btnEditarActionPerformed
 
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        this.setVisible(false);
+        MisProductos misProductos = new MisProductos(maderaVentaSS, maderaDAO, maderaDTO);
+        misProductos.setVisible(true);
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblCantidad;

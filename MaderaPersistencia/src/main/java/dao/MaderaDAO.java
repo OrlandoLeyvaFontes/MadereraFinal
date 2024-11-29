@@ -8,6 +8,7 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import static com.mongodb.client.model.Filters.eq;
+import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
 import conexion.Conexion;
 import dto.MaderaDTO;
@@ -182,18 +183,61 @@ public class MaderaDAO implements IMaderaDAO {
     }
 
     public void editarMadera(Madera madera) {
-        Document filtro = new Document("_id", madera.getId());
-        Document actualizacion = new Document("$set", new Document("nombre", madera.getNombre())
-                .append("descripcion", madera.getDescripcion())
-                .append("cantidad", madera.getCantidad())
-                .append("precioUnitario", madera.getPrecioUnitario()));
 
-        // Realiza la actualización en la base de datos
-        UpdateResult result = collection.updateOne(filtro, actualizacion);
+        try {
 
-        // Si no se modificaron registros, lanza una excepción
-        if (result.getModifiedCount() == 0) {
-            throw new RuntimeException("No se encontró la madera para actualizar con el ID proporcionado.");
+            // Asegúrate de que el ID no sea null y que corresponda a un documento existente
+            if (madera.getId() == null) {
+                throw new IllegalArgumentException("El ID de la madera no puede ser nulo.");
+            }
+
+            // Filtro para encontrar el documento con el ID especificado
+            Document filtro = new Document("_id", madera.getId());
+
+            // Documento de actualización
+            Document actualizacion = new Document("$set", new Document("nombre", madera.getNombre())
+                    .append("descripcion", madera.getDescripcion())
+                    .append("cantidad", madera.getCantidad())
+                    .append("precioUnitario", madera.getPrecioUnitario()));
+
+            // Realiza la actualización en la base de datos
+            UpdateResult result = collection.updateOne(filtro, actualizacion);
+
+            // Verificar que se haya realizado la actualización
+            if (result.getModifiedCount() == 0) {
+                throw new RuntimeException("No se encontró la madera para actualizar con el ID proporcionado.");
+            }
+
+            // Opcional: Si deseas confirmar que se ha actualizado un registro, puedes imprimir el resultado
+            System.out.println("Se actualizó la madera con ID: " + madera.getId());
+
+        } catch (Exception e) {
+            // Manejo de errores
+            e.printStackTrace();
+            throw new RuntimeException("Error al intentar editar la madera: " + e.getMessage());
+        }
+    }
+
+    // Método para eliminar madera por ID
+    public boolean eliminarMadera(String id) {
+        try {
+            // Convertir el String ID a ObjectId
+            ObjectId objectId = new ObjectId(id);
+
+            // Crear un filtro para buscar el documento por ID
+            Document filter = new Document("_id", objectId);
+
+            // Intentar eliminar el documento
+            DeleteResult result = collection.deleteOne(filter);
+
+            // Si la cantidad de documentos eliminados es mayor a 0, la eliminación fue exitosa
+            return result.getDeletedCount() > 0;
+        } catch (IllegalArgumentException e) {
+            // Si el ID no es válido, lanzamos una excepción
+            throw new RuntimeException("El ID proporcionado no es válido: " + id, e);
+        } catch (Exception e) {
+            // Captura cualquier otro error
+            throw new RuntimeException("Error al intentar eliminar la madera", e);
         }
     }
 

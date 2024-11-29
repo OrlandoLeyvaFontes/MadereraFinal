@@ -32,4 +32,6 @@ public interface IMaderaDAO {
     public Madera agregarMaderaPorCorreo(String correoVendedor, Madera madera);
 
     public void editarMadera(Madera madera);
+    
+    public boolean eliminarMadera(String id);
 }

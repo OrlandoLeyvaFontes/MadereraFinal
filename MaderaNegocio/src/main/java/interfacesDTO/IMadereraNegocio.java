@@ -27,4 +27,6 @@ public interface IMadereraNegocio {
     public MaderaDTO buscarMaderaPorNombre(String nombre);
 
     public void editarMadera(MaderaDTO maderaDTO);
+
+    public boolean eliminarMadera(String id);
 }
