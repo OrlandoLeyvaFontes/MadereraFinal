@@ -2,9 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package pantallas;
+package Pantallas2;
 
 import Pantallas2.MenuPrincipal;
+import dto.MaderaDTO;
+import interfaz.IMaderaSS;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,15 +18,55 @@ import Pantallas2.MenuPrincipal;
  */
 public class BuscarPorNombre extends javax.swing.JFrame {
 private MenuPrincipal menuPrincipal;
+private IMaderaSS  iMaderaSS;
     /**
      * Creates new form BuscarPorNombre
      */
-    public BuscarPorNombre(MenuPrincipal menuPrincipal) {
+    public BuscarPorNombre(MenuPrincipal menuPrincipal,IMaderaSS  iMaderaSS) {
         this.menuPrincipal=menuPrincipal;
-       
+       this.iMaderaSS=iMaderaSS;
         initComponents();
     }
+ private void CargarMetodosIniciales() {
+        cargarMaderasEnTablas();
+    }
+  private void cargarMaderasEnTablas() {
+        List<MaderaDTO> maderaLista = this.iMaderaSS.obtenerMaderas();
+        if (maderaLista != null && !maderaLista.isEmpty()) {
+            llenarTablaMaderas(maderaLista);
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay datos disponibles para mostrar.", "Información", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
 
+  private void llenarTablaMaderas(List<MaderaDTO> maderaLista) {
+    DefaultTableModel model = new DefaultTableModel(
+        new String[]{"Nombre", "Precio", "Descripción", "Cantidad", "id"}, 0
+    ) {
+        boolean[] canEdit = new boolean[]{false, false, false, false, false};  // Hace que las celdas no sean editables.
+
+        @Override
+        public boolean isCellEditable(int rowIndex, int columnIndex) {
+            return canEdit[columnIndex];
+        }
+    };
+
+    for (MaderaDTO madera : maderaLista) {
+        model.addRow(new Object[]{
+            madera.getNombre(), 
+            madera.getPrecioUnitario(), 
+            madera.getDescripcion(), 
+            madera.getCantidad(), 
+            madera.getId()
+        });
+    }
+
+    jTable1.setModel(model);
+}
+ 
+ 
+ 
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -90,6 +136,11 @@ private MenuPrincipal menuPrincipal;
         jScrollPane1.setViewportView(jTable1);
 
         jButton2.setText("Buscar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -146,6 +197,35 @@ menuPrincipal.setVisible(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+   // Obtén el nombre ingresado en el campo de texto
+    String nombre = jTextField1.getText().trim();
+
+    if (nombre.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, ingresa un nombre para buscar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    // Llama al método de la capa de negocio
+    MaderaDTO madera = iMaderaSS.buscarMaderaPorNombre(nombre);
+
+    // Maneja el resultado
+    if (madera != null) {
+        // Crea una lista temporal con el resultado
+        List<MaderaDTO> maderaLista = new ArrayList<>();
+        maderaLista.add(madera);
+
+        // Llena la tabla con la lista
+        llenarTablaMaderas(maderaLista);
+    } else {
+        JOptionPane.showMessageDialog(this, "No se encontró ninguna madera con el nombre ingresado.", "Información", JOptionPane.INFORMATION_MESSAGE);
+        llenarTablaMaderas(new ArrayList<>()); // Limpia la tabla si no hay resultados
+    }
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
    
 

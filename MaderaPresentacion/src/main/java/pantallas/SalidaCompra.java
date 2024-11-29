@@ -5,6 +5,7 @@
 package pantallas;
 
 import Pantallas2.MenuPrincipal;
+import Pantallas2.MenuPrincipal;
 import dto.MaderaDTO;
 import dto.VentaDTO;
 import interfaz.IObtenerVentasSS;

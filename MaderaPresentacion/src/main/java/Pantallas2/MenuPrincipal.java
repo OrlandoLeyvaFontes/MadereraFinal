@@ -12,7 +12,6 @@ import interfaz.IMaderaSS;
 
 import interfaz.IUsuarioSS;
 
-import pantallas.BuscarPorNombre;
 
 /**
  *
@@ -201,7 +200,7 @@ private ICompraSS iCompraSS;
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         this.setVisible(false);
-        BuscarPorNombre buscarPorNombre = new BuscarPorNombre(this);
+        BuscarPorNombre buscarPorNombre = new BuscarPorNombre(this,iMaderaSS);
         buscarPorNombre.setVisible(true);
 
         // TODO add your handling code here:

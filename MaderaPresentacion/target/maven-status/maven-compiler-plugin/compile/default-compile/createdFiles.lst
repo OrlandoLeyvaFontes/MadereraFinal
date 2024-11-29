@@ -1,3 +1,4 @@
+Pantallas2\BuscarPorNombre$3.class
 PantallasVenta\AgregarMadera$2.class
 PantallasVenta\IniciarSesionVendedor$1.class
 PantallasVenta\MenuVendedor$1.class
@@ -14,10 +15,12 @@ PantallasVenta\RegistrarUsuarioVendedor.class
 Pantallas2\RegistrarUsuario$2.class
 Pantallas2\TarjetasDisponibles2.class
 Pantallas2\DetallesProducto.class
+Pantallas2\BuscarPorNombre$2.class
 PantallasVenta\RegistrarUsuarioVendedor$1.class
 Pantallas2\MenuPrincipal$2.class
 pantallas\TarjetasDisponibles$3.class
 Pantallas2\IniciarSesion.class
+Pantallas2\BuscarPorNombre.class
 Pantallas2\CompraExitosa2.class
 PantallasVenta\AgregarMadera$1.class
 pantallas\ConfirmarTarjeta$1.class
@@ -38,7 +41,6 @@ Pantallas2\DetallesCarritos.class
 Pantallas2\RegistrarUsuario$1.class
 pantallas\TarjetasDisponibles$2.class
 PantallasVenta\RegistrarUsuarioVendedor$2.class
-pantallas\BuscarPorNombre$1.class
 pantallas\MenuDeTarjetas.class
 Pantallas2\ConfirmarTarjeta2.class
 PantallasVenta\AgregarMadera.class
@@ -47,11 +49,11 @@ PantallasVenta\InventarioEntradas.class
 main\Main2.class
 PantallasVenta\IniciarSesionVendedor$3.class
 Pantallas2\MenuPrincipal$3.class
+Pantallas2\BuscarPorNombre$1.class
 PantallasVenta\IniciarSesionVendedor.class
 Pantallas2\ProductosVenta$3.class
 PantallasVenta\MenuVendedor.class
 Pantallas2\DetallesProducto$2.class
-pantallas\BuscarPorNombre.class
 pantallas\CompraExitosa$1.class
 Pantallas2\DetallesCarritos$1.class
 pantallas\TarjetasDisponibles.class
