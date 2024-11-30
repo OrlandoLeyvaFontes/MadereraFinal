@@ -8,8 +8,6 @@ import Pantallas2.IniciarSesion;
 import dto.UsuarioDTO;
 import interfacesDTO.IUsuarioNegocio;
 import interfaz.IUsuarioSS;
-import interfazSS.IAgregarUsuarioSS;
-import interfazSS.IInicioSesionSS;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,15 +15,16 @@ import javax.swing.JOptionPane;
  * @author Oley
  */
 public class RegistrarUsuario extends javax.swing.JFrame {
- private IniciarSesion iniciarSesion;
-   private IUsuarioSS iUsuarioSS;
+
+    private IniciarSesion iniciarSesion;
+    private IUsuarioSS iUsuarioSS;
 
     /**
      * Creates new form RegistrarUsuario
      */
-    public RegistrarUsuario(IniciarSesion iniciarSesion,IUsuarioSS iUsuarioSS) {
-        this.iniciarSesion=iniciarSesion;
-        this.iUsuarioSS=iUsuarioSS;
+    public RegistrarUsuario(IniciarSesion iniciarSesion, IUsuarioSS iUsuarioSS) {
+        this.iniciarSesion = iniciarSesion;
+        this.iUsuarioSS = iUsuarioSS;
         initComponents();
     }
 
@@ -228,44 +227,42 @@ public class RegistrarUsuario extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-this.setVisible(false);
-iniciarSesion.setVisible(true);
-
+        this.setVisible(false);
+        iniciarSesion.setVisible(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-  String nombre = jTextField1.getText();
-    String apellidoPaterno = jTextField2.getText();
-    String apellidoMaterno = jTextField3.getText();
-    String numero = jTextField4.getText();
-    String correo = jTextField5.getText();
-    String contraseña = jTextField6.getText();
-    
-    if (nombre.isEmpty() || apellidoPaterno.isEmpty() || apellidoMaterno.isEmpty() ||
-        numero.isEmpty() || correo.isEmpty() || contraseña.isEmpty()) {
-        
-        JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
-    
-    UsuarioDTO usuarioDTO = new UsuarioDTO();
-    usuarioDTO.setNombre(nombre);
-    usuarioDTO.setApellidoPaterno(apellidoPaterno);
-    usuarioDTO.setApellidoMaterno(apellidoMaterno);
-    usuarioDTO.setNumero(numero);
-    usuarioDTO.setCorreo(correo);
-    usuarioDTO.setContraseña(contraseña);
-    
-    iUsuarioSS.agregarUsuario(usuarioDTO);
-    this.setVisible(false);
-    iniciarSesion.setVisible(true);
+        String nombre = jTextField1.getText();
+        String apellidoPaterno = jTextField2.getText();
+        String apellidoMaterno = jTextField3.getText();
+        String numero = jTextField4.getText();
+        String correo = jTextField5.getText();
+        String contraseña = jTextField6.getText();
+
+        if (nombre.isEmpty() || apellidoPaterno.isEmpty() || apellidoMaterno.isEmpty()
+                || numero.isEmpty() || correo.isEmpty() || contraseña.isEmpty()) {
+
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        UsuarioDTO usuarioDTO = new UsuarioDTO();
+        usuarioDTO.setNombre(nombre);
+        usuarioDTO.setApellidoPaterno(apellidoPaterno);
+        usuarioDTO.setApellidoMaterno(apellidoMaterno);
+        usuarioDTO.setNumero(numero);
+        usuarioDTO.setCorreo(correo);
+        usuarioDTO.setContraseña(contraseña);
+
+        iUsuarioSS.agregarUsuario(usuarioDTO);
+        this.setVisible(false);
+        iniciarSesion.setVisible(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

@@ -4,67 +4,66 @@
  */
 package pantallas;
 
-import Pantallas2.MenuPrincipal;
-import Pantallas2.MenuPrincipal;
-import dto.MaderaDTO;
-import dto.VentaDTO;
-import interfaz.IObtenerVentasSS;
-import java.util.List;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
+//import Pantallas2.MenuPrincipal;
+//import Pantallas2.MenuPrincipal;
+//import dto.MaderaDTO;
+//import dto.VentaDTO;
+//import java.util.List;
+//import javax.swing.JOptionPane;
+//import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Oley
  */
 public class SalidaCompra extends javax.swing.JFrame {
-private MenuPrincipal menuPrincipal;
-private IObtenerVentasSS iObtenerVentasSS;
-
-    /**
-     * Creates new form SalidaCompra
-     */
-    public SalidaCompra(MenuPrincipal menuPrincipal,IObtenerVentasSS iObtenerVentasSS) {
-        this.menuPrincipal=menuPrincipal;
-        this.iObtenerVentasSS=iObtenerVentasSS;
-        initComponents();
-        CargarMetodosIniciales();
-    }
-  private void CargarMetodosIniciales() {
-        cargarMaderasEnTablas();
-    }
-  private void cargarMaderasEnTablas() {
-        List<VentaDTO> ventaDTOs = this.iObtenerVentasSS.obtenerVentas();
-        if (ventaDTOs != null && !ventaDTOs.isEmpty()) {
-            llenarTablaMaderas(ventaDTOs);
-        } else {
-            JOptionPane.showMessageDialog(this, "No hay datos disponibles para mostrar.", "Información", JOptionPane.INFORMATION_MESSAGE);
-        }
-    }
-   private void llenarTablaMaderas(List<VentaDTO> mdtos) {
-    DefaultTableModel model = new DefaultTableModel(
-        new String[]{"Nombre", "Precio", "Descripción", "Cantidad", "id"}, 0
-    ) {
-        boolean[] canEdit = new boolean[]{false, false, false, false, false};  
-
-        @Override
-        public boolean isCellEditable(int rowIndex, int columnIndex) {
-            return canEdit[columnIndex];
-        }
-    };
-
-    for (VentaDTO ventaDTO : mdtos) {
-        model.addRow(new Object[]{
-            ventaDTO.getUsuario().getNombre(),
-            ventaDTO.getMadera().getNombre(),
-            ventaDTO.getCantidad(),
-            ventaDTO.getPrecioTotal(),
-            ventaDTO.getFechaVenta(),
-        });
-    }
-
-    jTable1.setModel(model);
-}
+//private MenuPrincipal menuPrincipal;
+//private IObtenerVentasSS iObtenerVentasSS;
+//
+//    /**
+//     * Creates new form SalidaCompra
+//     */
+//    public SalidaCompra(MenuPrincipal menuPrincipal,IObtenerVentasSS iObtenerVentasSS) {
+//        this.menuPrincipal=menuPrincipal;
+//        this.iObtenerVentasSS=iObtenerVentasSS;
+//        initComponents();
+//        CargarMetodosIniciales();
+//    }
+//  private void CargarMetodosIniciales() {
+//        cargarMaderasEnTablas();
+//    }
+//  private void cargarMaderasEnTablas() {
+//        List<VentaDTO> ventaDTOs = this.iObtenerVentasSS.obtenerVentas();
+//        if (ventaDTOs != null && !ventaDTOs.isEmpty()) {
+//            llenarTablaMaderas(ventaDTOs);
+//        } else {
+//            JOptionPane.showMessageDialog(this, "No hay datos disponibles para mostrar.", "Información", JOptionPane.INFORMATION_MESSAGE);
+//        }
+//    }
+//   private void llenarTablaMaderas(List<VentaDTO> mdtos) {
+//    DefaultTableModel model = new DefaultTableModel(
+//        new String[]{"Nombre", "Precio", "Descripción", "Cantidad", "id"}, 0
+//    ) {
+//        boolean[] canEdit = new boolean[]{false, false, false, false, false};  
+//
+//        @Override
+//        public boolean isCellEditable(int rowIndex, int columnIndex) {
+//            return canEdit[columnIndex];
+//        }
+//    };
+//
+//    for (VentaDTO ventaDTO : mdtos) {
+//        model.addRow(new Object[]{
+//            ventaDTO.getUsuario().getNombre(),
+//            ventaDTO.getMadera().getNombre(),
+//            ventaDTO.getCantidad(),
+//            ventaDTO.getPrecioTotal(),
+//            ventaDTO.getFechaVenta(),
+//        });
+//    }
+//
+//    jTable1.setModel(model);
+//}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -196,8 +195,8 @@ private IObtenerVentasSS iObtenerVentasSS;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-this.setVisible(false);
-menuPrincipal.setVisible(true);
+//this.setVisible(false);
+//menuPrincipal.setVisible(true);
 
 
         // TODO add your handling code here:

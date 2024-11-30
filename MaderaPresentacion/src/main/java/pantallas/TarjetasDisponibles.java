@@ -9,9 +9,6 @@ import Pantallas2.MenuPrincipal;
 import dto.MaderaDTO;
 import dto.UsuarioDTO;
 import interfaz.ICompraSS;
-import interfaz.IGuardarCompraSS;
-import interfaz.IInicioSesionCVVSS;
-import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
 import interfaz.IUsuarioSS;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -22,56 +19,60 @@ import javax.swing.table.DefaultTableModel;
  * @author Oley
  */
 public class TarjetasDisponibles extends javax.swing.JFrame {
-private MenuDeTarjetas menuDeTarjetas;
-       private String usuarioId;
-       private MenuPrincipal menuPrincipal1;
-private int cantidad;
-private String idMadera;
+
+    private MenuDeTarjetas menuDeTarjetas;
+    private String usuarioId;
+    private MenuPrincipal menuPrincipal1;
+    private int cantidad;
+    private String idMadera;
     private ICompraSS iCompraSS;
     private IUsuarioSS iUsuarioSS;
-/**
+
+    /**
      * Creates new form TarjetasDisponibles
      */
-    public TarjetasDisponibles(MenuDeTarjetas menuDeTarjetas,String usuarioId,MenuPrincipal menuPrincipal1,int cantidad,String idMadera, ICompraSS iCompraSS,IUsuarioSS iUsuarioSS
-) {
-        this.menuDeTarjetas=menuDeTarjetas;
-        this.usuarioId=usuarioId;
-        this.menuPrincipal1=menuPrincipal1;
-        this.cantidad=cantidad;
-        this.idMadera=idMadera;
-        this.iCompraSS=iCompraSS;
-        this.iUsuarioSS=iUsuarioSS;
+    public TarjetasDisponibles(MenuDeTarjetas menuDeTarjetas, String usuarioId, MenuPrincipal menuPrincipal1, int cantidad, String idMadera, ICompraSS iCompraSS, IUsuarioSS iUsuarioSS
+    ) {
+        this.menuDeTarjetas = menuDeTarjetas;
+        this.usuarioId = usuarioId;
+        this.menuPrincipal1 = menuPrincipal1;
+        this.cantidad = cantidad;
+        this.idMadera = idMadera;
+        this.iCompraSS = iCompraSS;
+        this.iUsuarioSS = iUsuarioSS;
         initComponents();
         cargarTarjetasEnTablas();
     }
- private void cargarTarjetasEnTablas() {
-    List<String> numerosTarjetas = this.iUsuarioSS.obtenerNumerosTarjetasPorUsuario(usuarioId);
 
-    if (numerosTarjetas != null && !numerosTarjetas.isEmpty()) {
-        llenarTablaTarjetas(numerosTarjetas);
-    } else {
-        JOptionPane.showMessageDialog(this, "No hay tarjetas disponibles para mostrar.", "Información", JOptionPane.INFORMATION_MESSAGE);
-    }
-}
+    private void cargarTarjetasEnTablas() {
+        List<String> numerosTarjetas = this.iUsuarioSS.obtenerNumerosTarjetasPorUsuario(usuarioId);
 
-private void llenarTablaTarjetas(List<String> numerosTarjetas) {
-    DefaultTableModel model = new DefaultTableModel(
-        new String[]{"Número de Tarjeta"}, 0
-    ) {
-        boolean[] canEdit = new boolean[]{false};
-
-        @Override
-        public boolean isCellEditable(int rowIndex, int columnIndex) {
-            return canEdit[columnIndex];
+        if (numerosTarjetas != null && !numerosTarjetas.isEmpty()) {
+            llenarTablaTarjetas(numerosTarjetas);
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay tarjetas disponibles para mostrar.", "Información", JOptionPane.INFORMATION_MESSAGE);
         }
-    };
-
-    for (String numeroTarjeta : numerosTarjetas) {
-        model.addRow(new Object[]{numeroTarjeta});
     }
 
-    jTable1.setModel(model);
-}
+    private void llenarTablaTarjetas(List<String> numerosTarjetas) {
+        DefaultTableModel model = new DefaultTableModel(
+                new String[]{"Número de Tarjeta"}, 0
+        ) {
+            boolean[] canEdit = new boolean[]{false};
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        };
+
+        for (String numeroTarjeta : numerosTarjetas) {
+            model.addRow(new Object[]{numeroTarjeta});
+        }
+
+        jTable1.setModel(model);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -220,24 +221,20 @@ private void llenarTablaTarjetas(List<String> numerosTarjetas) {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-this.setVisible(false);
-menuDeTarjetas.setVisible(true);
-
+        this.setVisible(false);
+        menuDeTarjetas.setVisible(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-this.setVisible(false);
-ConfirmarTarjeta confirmarTarjeta=new ConfirmarTarjeta(this, menuPrincipal1, cantidad, idMadera, usuarioId, iCompraSS, iUsuarioSS);
-confirmarTarjeta.setVisible(true);
-
-
+        this.setVisible(false);
+        ConfirmarTarjeta confirmarTarjeta = new ConfirmarTarjeta(this, menuPrincipal1, cantidad, idMadera, usuarioId, iCompraSS, iUsuarioSS);
+        confirmarTarjeta.setVisible(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

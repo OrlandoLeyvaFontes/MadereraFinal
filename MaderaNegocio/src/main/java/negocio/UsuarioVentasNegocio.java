@@ -4,18 +4,14 @@
  */
 package negocio;
 
-import dao.MaderaDAO;
-import dto.MaderaDTO;
+import dao.UsuarioVentasDAO;
 import dto.UsuarioVentasDTO;
-import entidades.Madera;
 import entidades.UsuarioVentas;
 import interfacesDAO.IUsuarioVentasDAO;
 import interfacesDTO.IMadereraNegocio;
 import interfacesDTO.IUsuarioVentasNegocio;
-import java.util.ArrayList;
-import java.util.List;
-import org.bson.Document;
 import org.bson.types.ObjectId;
+
 
 /**
  *
@@ -27,9 +23,8 @@ public class UsuarioVentasNegocio implements IUsuarioVentasNegocio {
     private IMadereraNegocio madereraNegocio;
 
     public UsuarioVentasNegocio() {
-        this.usuarioVentasDAO = usuarioVentasDAO;
-        this.madereraNegocio = madereraNegocio;
-
+        this.usuarioVentasDAO = new UsuarioVentasDAO();
+        this.madereraNegocio = new MaderaNegocio();
     }
 
     @Override
@@ -41,19 +36,21 @@ public class UsuarioVentasNegocio implements IUsuarioVentasNegocio {
         usuarioVentas.setCorreo(usuarioVentasDTO.getCorreo());
         usuarioVentas.setNumero(usuarioVentasDTO.getNumero());
         usuarioVentas.setContraseña(usuarioVentasDTO.getContraseña());
+        System.out.println(usuarioVentas);
 
+        // Guardar usuario en la base de datos
         UsuarioVentas usuarioVentaGuardado = usuarioVentasDAO.agregarUsuario(usuarioVentas);
 
         if (usuarioVentaGuardado != null) {
-            UsuarioVentasDTO usuarioVentasGuardado = new UsuarioVentasDTO();
-            usuarioVentaGuardado.getId().toString();
-            usuarioVentaGuardado.getNombre();
-            usuarioVentaGuardado.getApellidoMaterno();
-            usuarioVentaGuardado.getApellidoPaterno();
-            usuarioVentaGuardado.getCorreo();
-            usuarioVentaGuardado.getContraseña();
-            usuarioVentaGuardado.getNumero();
-            return usuarioVentasGuardado;
+            // Convertir la entidad guardada a DTO
+            UsuarioVentasDTO usuarioVentasGuardadoDTO = new UsuarioVentasDTO();
+            usuarioVentasGuardadoDTO.setNombre(usuarioVentaGuardado.getNombre());
+            usuarioVentasGuardadoDTO.setApellidoMaterno(usuarioVentaGuardado.getApellidoMaterno());
+            usuarioVentasGuardadoDTO.setApellidoPaterno(usuarioVentaGuardado.getApellidoPaterno());
+            usuarioVentasGuardadoDTO.setCorreo(usuarioVentaGuardado.getCorreo());
+            usuarioVentasGuardadoDTO.setNumero(usuarioVentaGuardado.getNumero());
+            usuarioVentasGuardadoDTO.setContraseña(usuarioVentaGuardado.getContraseña());
+            return usuarioVentasGuardadoDTO;
         } else {
             throw new RuntimeException("Error al agregar el usuario de ventas. Intente más tarde.");
         }
@@ -69,7 +66,6 @@ public class UsuarioVentasNegocio implements IUsuarioVentasNegocio {
 
         if (usuarioVenta != null) {
             UsuarioVentasDTO usuarioVentaDTO = new UsuarioVentasDTO();
-            usuarioVentaDTO.getId().toString();
             usuarioVentaDTO.getNombre();
             usuarioVentaDTO.getApellidoMaterno();
             usuarioVentaDTO.getApellidoPaterno();
@@ -109,34 +105,4 @@ public class UsuarioVentasNegocio implements IUsuarioVentasNegocio {
         }
         return null;
     }
-
-//    @Override
-//    public List<Document> obtenerMaderasPorUsuarioVenta(String idUsuarioVenta) {
-//        try {
-//            List<MaderaDTO> maderasDTO = madereraNegocio.obtenerMaderasPorUsuarioVenta(idUsuarioVenta);
-//
-//            if (maderasDTO.isEmpty()) {
-//                System.out.println("El usuario de ventas no tiene maderas asociadas.");
-//                return new ArrayList<>();
-//            }
-//
-//            // Convertir la lista de DTOs a Documentos
-//            List<Document> maderasDocs = new ArrayList<>();
-//            for (MaderaDTO madera : maderasDTO) {
-//                Document maderaDoc = new Document();
-//                maderaDoc.put("id", madera.getId());
-//                maderaDoc.put("nombre", madera.getNombre());
-//                maderaDoc.put("tipo", madera.getDescripcion());
-//                maderaDoc.put("cantidad", madera.getCantidad());
-//                maderaDoc.put("precio", madera.getPrecioUnitario());
-//                maderasDocs.add(maderaDoc);
-//            }
-//
-//            return maderasDocs;
-//        } catch (Exception e) {
-//            System.err.println("Error al obtener las maderas del usuario de ventas: " + e.getMessage());
-//            e.printStackTrace();
-//            return new ArrayList<>();
-//        }
-//    }
 }

@@ -7,10 +7,7 @@ package Pantallas2;
 import Pantallas2.MenuPrincipal;
 import interfaz.ICarritoSS;
 import interfaz.ICompraSS;
-import interfaz.IComprarCarritoSS;
-import interfaz.IInicioSesionCVVSS;
 import interfaz.IMaderaSS;
-import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
 import interfaz.IUsuarioSS;
 
 /**
@@ -18,24 +15,26 @@ import interfaz.IUsuarioSS;
  * @author Oley
  */
 public class MenuDeTarjetas2 extends javax.swing.JFrame {
- private String usuarioId;
-private MenuPrincipal menuPrincipal;
-  private  IMaderaSS  iMaderaSS;
-private  ICarritoSS iCarritoSS;
-private ICompraSS iCompraSS;
-private IUsuarioSS iUsuarioSS;
+
+    private String usuarioId;
+    private MenuPrincipal menuPrincipal;
+    private IMaderaSS iMaderaSS;
+    private ICarritoSS iCarritoSS;
+    private ICompraSS iCompraSS;
+    private IUsuarioSS iUsuarioSS;
+
     /**
      * Creates new form MenuDeTarjetas2
      */
-    public MenuDeTarjetas2(String usuarioId,MenuPrincipal menuPrincipal, IMaderaSS  iMaderaSS,ICarritoSS iCarritoSS,ICompraSS iCompraSS,
+    public MenuDeTarjetas2(String usuarioId, MenuPrincipal menuPrincipal, IMaderaSS iMaderaSS, ICarritoSS iCarritoSS, ICompraSS iCompraSS,
             IUsuarioSS iUsuarioSS
-) {
-        this.usuarioId=usuarioId;
-        this.menuPrincipal=menuPrincipal;
-        this.iMaderaSS=iMaderaSS;
-        this.iCarritoSS=iCarritoSS;
-        this.iCompraSS=iCompraSS;
-        this.iUsuarioSS=iUsuarioSS;
+    ) {
+        this.usuarioId = usuarioId;
+        this.menuPrincipal = menuPrincipal;
+        this.iMaderaSS = iMaderaSS;
+        this.iCarritoSS = iCarritoSS;
+        this.iCompraSS = iCompraSS;
+        this.iUsuarioSS = iUsuarioSS;
         initComponents();
     }
 
@@ -165,13 +164,12 @@ private IUsuarioSS iUsuarioSS;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-this.setVisible(false);
-TarjetasDisponibles2 tarjetasDisponibles=new TarjetasDisponibles2(usuarioId, menuPrincipal, iUsuarioSS, iCompraSS);
-tarjetasDisponibles.setVisible(true);
+        this.setVisible(false);
+        TarjetasDisponibles2 tarjetasDisponibles = new TarjetasDisponibles2(usuarioId, menuPrincipal, iUsuarioSS, iCompraSS);
+        tarjetasDisponibles.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

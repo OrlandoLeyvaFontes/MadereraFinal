@@ -5,7 +5,6 @@
 package interfacesDTO;
 
 import dto.MaderaDTO;
-import entidades.Madera;
 import java.util.List;
 
 /**
@@ -21,7 +20,8 @@ public interface IMadereraNegocio {
     public MaderaDTO buscarMaderaPorId(String id);
 
     public MaderaDTO buscarMaderaPorNombre(String nombre);
-    
-    
-//    List<MaderaDTO> obtenerMaderasPorUsuarioVenta(String idUsuarioVenta);
+
+    public void editarMadera(MaderaDTO maderaDTO);
+
+    public boolean eliminarMadera(String id);
 }

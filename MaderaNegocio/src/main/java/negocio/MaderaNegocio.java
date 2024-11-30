@@ -94,63 +94,48 @@ public class MaderaNegocio implements IMadereraNegocio {
             throw new RuntimeException("Error al buscar la madera por ID", e);
         }
     }
-    
-    
-    
-
-   
 
     public MaderaDTO buscarMaderaPorNombre(String nombre) {
-    try {
-        Madera madera = iMaderaDAO.buscarMaderaPorNombre(nombre);
-        
-        if (madera != null) {
-            MaderaDTO maderaDTO = new MaderaDTO();
-            maderaDTO.setId(madera.getId().toString());
-            maderaDTO.setNombre(madera.getNombre());
-            maderaDTO.setDescripcion(madera.getDescripcion());
-            maderaDTO.setCantidad(madera.getCantidad());
-            maderaDTO.setPrecioUnitario(madera.getPrecioUnitario());
-            return maderaDTO;
+        try {
+            Madera madera = iMaderaDAO.buscarMaderaPorNombre(nombre);
+
+            if (madera != null) {
+                MaderaDTO maderaDTO = new MaderaDTO();
+                maderaDTO.setId(madera.getId().toString());
+                maderaDTO.setNombre(madera.getNombre());
+                maderaDTO.setDescripcion(madera.getDescripcion());
+                maderaDTO.setCantidad(madera.getCantidad());
+                maderaDTO.setPrecioUnitario(madera.getPrecioUnitario());
+                return maderaDTO;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-    } catch (Exception e) {
-        e.printStackTrace();
+        return null; // Retorna null si no se encuentra la madera
     }
-    return null; // Retorna null si no se encuentra la madera
-}
 
+    @Override
+    public void editarMadera(MaderaDTO maderaDTO) {
+        // Crear una entidad Madera a partir del DTO
+        Madera madera = new Madera();
+        madera.setId(new ObjectId(maderaDTO.getId()));
+        madera.setNombre(maderaDTO.getNombre());
+        madera.setDescripcion(maderaDTO.getDescripcion());
+        madera.setCantidad(maderaDTO.getCantidad());
+        madera.setPrecioUnitario(maderaDTO.getPrecioUnitario());
+        System.out.println(maderaDTO.getId());
+        try {
+            // Llama al método del DAO para editar/actualizar la madera
+            iMaderaDAO.editarMadera(madera);
+        } catch (Exception e) {
+            // Manejo de excepciones si ocurre algún error en la actualización
+            throw new RuntimeException("Error al editar la madera en la base de datos", e);
+        }
+    }
 
-
-//    @Override
-//    public List<MaderaDTO> obtenerMaderasPorUsuarioVenta(String idUsuarioVenta) {
-//        try {
-//            ObjectId objectId = new ObjectId(idUsuarioVenta);
-//            MaderaDAO maderaDAO = new MaderaDAO();
-//            List<Madera> maderas = maderaDAO.obtenerMaderasPorUsuarioVenta(objectId);
-//
-//            if (maderas == null || maderas.isEmpty()) {
-//                System.out.println("El usuario de ventas no tiene maderas asociadas.");
-//                return new ArrayList<>();
-//            }
-//
-//            // Convertir la lista de entidades Madera a DTOs
-//            List<MaderaDTO> maderasDTO = new ArrayList<>();
-//            for (Madera madera : maderas) {
-//                MaderaDTO maderaDTO = new MaderaDTO();
-//                maderaDTO.setId(madera.getId().toString());
-//                maderaDTO.setNombre(madera.getNombre());
-//                maderaDTO.setDescripcion(madera.getDescripcion());
-//                maderaDTO.setCantidad(madera.getCantidad());
-//                maderaDTO.setPrecioUnitario(madera.getPrecioUnitario());
-//                maderasDTO.add(maderaDTO);
-//            }
-//
-//            return maderasDTO;
-//        } catch (Exception e) {
-//            System.err.println("Error al obtener las maderas del usuario de ventas: " + e.getMessage());
-//            e.printStackTrace();
-//            return new ArrayList<>();
-//        }
-//    }
+    @Override
+    public boolean eliminarMadera(String id) {
+        return iMaderaDAO.eliminarMadera(id);
+    }
 
 }

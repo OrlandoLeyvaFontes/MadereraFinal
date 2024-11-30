@@ -12,5 +12,6 @@ import java.util.List;
  * @author Oley
  */
 public interface IVentaDAO {
+
     public List<Ventas> obtenerVentas();
 }

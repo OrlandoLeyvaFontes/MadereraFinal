@@ -4,7 +4,6 @@
  */
 package dao;
 
-
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
@@ -25,23 +24,24 @@ import org.bson.types.ObjectId;
  *
  * @author Oley
  */
-public class UsuarioDAO implements  IUsuarioDAO{
-  private final MongoCollection<Document> collection;
+public class UsuarioDAO implements IUsuarioDAO {
+
+    private final MongoCollection<Document> collection;
 
     public UsuarioDAO() {
         this.collection = Conexion.getDatabase().getCollection("usuarios");
     }
 
-  @Override
+    @Override
     public Usuario agregarUsuario(Usuario usuario) {
         try {
             Document document = new Document("nombre", usuario.getNombre())
-                .append("apellidoPaterno", usuario.getApellidoPaterno())
-                .append("apellidoMaterno", usuario.getApellidoMaterno())
-                .append("numero", usuario.getNumero())
-                .append("correo", usuario.getCorreo())
-                .append("contraseña", usuario.getContraseña())
-                .append("tarjetas", new ArrayList<>()); 
+                    .append("apellidoPaterno", usuario.getApellidoPaterno())
+                    .append("apellidoMaterno", usuario.getApellidoMaterno())
+                    .append("numero", usuario.getNumero())
+                    .append("correo", usuario.getCorreo())
+                    .append("contraseña", usuario.getContraseña())
+                    .append("tarjetas", new ArrayList<>());
 
             collection.insertOne(document);
 
@@ -56,13 +56,13 @@ public class UsuarioDAO implements  IUsuarioDAO{
     public boolean agregarTarjeta(ObjectId usuarioId, Tarjetas tarjeta) {
         try {
             Document tarjetaDoc = new Document("nombre", tarjeta.getNombre())
-                .append("numero", tarjeta.getNumero())
-                .append("fechaVencimiento", tarjeta.getFehcaVencimiento().getTime())
-                .append("CVV", tarjeta.getCVV());
+                    .append("numero", tarjeta.getNumero())
+                    .append("fechaVencimiento", tarjeta.getFehcaVencimiento().getTime())
+                    .append("CVV", tarjeta.getCVV());
 
             collection.updateOne(
-                Filters.eq("_id", usuarioId),
-                Updates.push("tarjetas", tarjetaDoc)
+                    Filters.eq("_id", usuarioId),
+                    Updates.push("tarjetas", tarjetaDoc)
             );
 
             return true;
@@ -108,7 +108,7 @@ public class UsuarioDAO implements  IUsuarioDAO{
                 }
                 return usuario;
             } else {
-                return null; 
+                return null;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -118,54 +118,52 @@ public class UsuarioDAO implements  IUsuarioDAO{
 
     @Override
     public List<String> obtenerNumerosTarjetasPorUsuario(ObjectId idUsuario) {
-    
-     try {
-        Document usuario = collection.find(Filters.eq("_id", idUsuario)).first();
-        if (usuario == null) {
-            System.out.println("Usuario no encontrado");
+
+        try {
+            Document usuario = collection.find(Filters.eq("_id", idUsuario)).first();
+            if (usuario == null) {
+                System.out.println("Usuario no encontrado");
+                return new ArrayList<>();
+            }
+
+            List<Document> tarjetas = (List<Document>) usuario.get("tarjetas");
+            if (tarjetas == null || tarjetas.isEmpty()) {
+                System.out.println("El usuario no tiene tarjetas asociadas");
+                return new ArrayList<>();
+            }
+
+            System.out.println("Tarjetas encontradas: " + tarjetas);
+
+            return tarjetas.stream()
+                    .map(tarjeta -> tarjeta.getString("numero"))
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            e.printStackTrace();
             return new ArrayList<>();
+
         }
-
-        List<Document> tarjetas = (List<Document>) usuario.get("tarjetas");
-        if (tarjetas == null || tarjetas.isEmpty()) {
-            System.out.println("El usuario no tiene tarjetas asociadas");
-            return new ArrayList<>();
-        }
-
-        System.out.println("Tarjetas encontradas: " + tarjetas);
-
-        return tarjetas.stream()
-                .map(tarjeta -> tarjeta.getString("numero"))
-                .collect(Collectors.toList());
-    } catch (Exception e) {
-        e.printStackTrace();
-        return new ArrayList<>();
-    
-}
     }
 
     @Override
     public Usuario obtenerUsuarioPorId(ObjectId id) {
-  MongoCollection<Document> coleccionUsuarios = Conexion.getDatabase().getCollection("usuarios"); // Asegúrate de obtener la base de datos correctamente
-    Document doc = coleccionUsuarios.find(Filters.eq("_id", id)).first();
-    if (doc != null) {
-        return new Usuario(doc.getObjectId("_id"), doc.getString("nombre"));
-    }
-    return null;
+        MongoCollection<Document> coleccionUsuarios = Conexion.getDatabase().getCollection("usuarios"); // Asegúrate de obtener la base de datos correctamente
+        Document doc = coleccionUsuarios.find(Filters.eq("_id", id)).first();
+        if (doc != null) {
+            return new Usuario(doc.getObjectId("_id"), doc.getString("nombre"));
         }
-    public boolean iniciarSesionPorCVV(String cvv) {
-       try {
-        Document query = new Document("tarjetas.CVV", cvv);
-        Document usuarioEncontrado = collection.find(query).first();
+        return null;
+    }
 
-        return usuarioEncontrado != null; 
-    } catch (Exception e) {
-        e.printStackTrace();
-        return false;
-    
+    public boolean iniciarSesionPorCVV(String cvv) {
+        try {
+            Document query = new Document("tarjetas.CVV", cvv);
+            Document usuarioEncontrado = collection.find(query).first();
+
+            return usuarioEncontrado != null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+
         }
     }
 }
-    
-
-

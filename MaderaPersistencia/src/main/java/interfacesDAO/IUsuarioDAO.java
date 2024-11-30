@@ -14,12 +14,17 @@ import org.bson.types.ObjectId;
  * @author Oley
  */
 public interface IUsuarioDAO {
-    public Usuario agregarUsuario(Usuario usuario);
-     public Usuario iniciarSesion(String correo, String contrasena);
-     public boolean agregarTarjeta(ObjectId usuarioId, Tarjetas tarjeta);
-public List<String> obtenerNumerosTarjetasPorUsuario(ObjectId idUsuario);
-public Usuario obtenerUsuarioPorId(ObjectId id);
-    public boolean iniciarSesionPorCVV(String cvv);
 
+    public Usuario agregarUsuario(Usuario usuario);
+
+    public Usuario iniciarSesion(String correo, String contrasena);
+
+    public boolean agregarTarjeta(ObjectId usuarioId, Tarjetas tarjeta);
+
+    public List<String> obtenerNumerosTarjetasPorUsuario(ObjectId idUsuario);
+
+    public Usuario obtenerUsuarioPorId(ObjectId id);
+
+    public boolean iniciarSesionPorCVV(String cvv);
 
 }

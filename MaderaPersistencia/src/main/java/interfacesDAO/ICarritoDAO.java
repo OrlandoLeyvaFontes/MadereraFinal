@@ -13,7 +13,10 @@ import org.bson.types.ObjectId;
  * @author Oley
  */
 public interface ICarritoDAO {
+
     public void agregarProducto(ObjectId usuarioId, ObjectId maderaId, int cantidad);
- public Document obtenerCarrito(ObjectId usuarioId);
-public void eliminarProducto(ObjectId usuarioId, ObjectId maderaId);
+
+    public Document obtenerCarrito(ObjectId usuarioId);
+
+    public void eliminarProducto(ObjectId usuarioId, ObjectId maderaId);
 }

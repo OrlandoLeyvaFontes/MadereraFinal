@@ -6,9 +6,6 @@ package Pantallas2;
 
 import Pantallas2.MenuPrincipal;
 import interfaz.ICompraSS;
-import interfaz.IComprarCarritoSS;
-import interfaz.IInicioSesionCVVSS;
-import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
 import interfaz.IUsuarioSS;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -19,52 +16,56 @@ import javax.swing.table.DefaultTableModel;
  * @author Oley
  */
 public class TarjetasDisponibles2 extends javax.swing.JFrame {
-private String usuarioId;
-private MenuPrincipal menuPrincipal;
-private IUsuarioSS iUsuarioSS;
-private ICompraSS iCompraSS;
+
+    private String usuarioId;
+    private MenuPrincipal menuPrincipal;
+    private IUsuarioSS iUsuarioSS;
+    private ICompraSS iCompraSS;
+
     /**
      * Creates new form TarjetasDisponibles2
      */
-    public TarjetasDisponibles2(String usuarioId, MenuPrincipal menuPrincipal,IUsuarioSS iUsuarioSS,ICompraSS iCompraSS
-) {
-        
-        this.usuarioId=usuarioId;
-        this.menuPrincipal=menuPrincipal;
-        this.iUsuarioSS=iUsuarioSS;
-        this.iCompraSS=iCompraSS;
-        initComponents();
-                cargarTarjetasEnTablas();
-
-    }
- private void cargarTarjetasEnTablas() {
-    List<String> numerosTarjetas = this.iUsuarioSS.obtenerNumerosTarjetasPorUsuario(usuarioId);
-
-    if (numerosTarjetas != null && !numerosTarjetas.isEmpty()) {
-        llenarTablaTarjetas(numerosTarjetas);
-    } else {
-        JOptionPane.showMessageDialog(this, "No hay tarjetas disponibles para mostrar.", "Información", JOptionPane.INFORMATION_MESSAGE);
-    }
-}
-
-private void llenarTablaTarjetas(List<String> numerosTarjetas) {
-    DefaultTableModel model = new DefaultTableModel(
-        new String[]{"Número de Tarjeta"}, 0
+    public TarjetasDisponibles2(String usuarioId, MenuPrincipal menuPrincipal, IUsuarioSS iUsuarioSS, ICompraSS iCompraSS
     ) {
-        boolean[] canEdit = new boolean[]{false};
 
-        @Override
-        public boolean isCellEditable(int rowIndex, int columnIndex) {
-            return canEdit[columnIndex];
-        }
-    };
+        this.usuarioId = usuarioId;
+        this.menuPrincipal = menuPrincipal;
+        this.iUsuarioSS = iUsuarioSS;
+        this.iCompraSS = iCompraSS;
+        initComponents();
+        cargarTarjetasEnTablas();
 
-    for (String numeroTarjeta : numerosTarjetas) {
-        model.addRow(new Object[]{numeroTarjeta});
     }
 
-    jTable1.setModel(model);
-}
+    private void cargarTarjetasEnTablas() {
+        List<String> numerosTarjetas = this.iUsuarioSS.obtenerNumerosTarjetasPorUsuario(usuarioId);
+
+        if (numerosTarjetas != null && !numerosTarjetas.isEmpty()) {
+            llenarTablaTarjetas(numerosTarjetas);
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay tarjetas disponibles para mostrar.", "Información", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    private void llenarTablaTarjetas(List<String> numerosTarjetas) {
+        DefaultTableModel model = new DefaultTableModel(
+                new String[]{"Número de Tarjeta"}, 0
+        ) {
+            boolean[] canEdit = new boolean[]{false};
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        };
+
+        for (String numeroTarjeta : numerosTarjetas) {
+            model.addRow(new Object[]{numeroTarjeta});
+        }
+
+        jTable1.setModel(model);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -201,14 +202,13 @@ private void llenarTablaTarjetas(List<String> numerosTarjetas) {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-this.setVisible(false);
-ConfirmarTarjeta2 confirmarTarjeta2=new ConfirmarTarjeta2(iUsuarioSS, iCompraSS, usuarioId, menuPrincipal);
-confirmarTarjeta2.setVisible(true);
+        this.setVisible(false);
+        ConfirmarTarjeta2 confirmarTarjeta2 = new ConfirmarTarjeta2(iUsuarioSS, iCompraSS, usuarioId, menuPrincipal);
+        confirmarTarjeta2.setVisible(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

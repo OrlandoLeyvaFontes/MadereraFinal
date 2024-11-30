@@ -8,12 +8,7 @@ import Pantallas2.ProductosVenta;
 import Pantallas2.MenuPrincipal;
 import interfaz.ICarritoSS;
 import interfaz.ICompraSS;
-import interfaz.IComprarCarritoSS;
-import interfaz.IEliminarProductoCarritoSS;
-import interfaz.IInicioSesionCVVSS;
 import interfaz.IMaderaSS;
-import interfaz.IObtenerCarritoSS;
-import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
 import interfaz.IUsuarioSS;
 
 /**
@@ -21,26 +16,28 @@ import interfaz.IUsuarioSS;
  * @author Oley
  */
 public class MenuCarrito extends javax.swing.JFrame {
-private ProductosVenta productosVenta;
-private String usuarioId;
-private MenuPrincipal menuPrincipal;
-    private  IMaderaSS  iMaderaSS;
-private  ICarritoSS iCarritoSS;
-private ICompraSS iCompraSS;
-private IUsuarioSS iUsuarioSS;
+
+    private ProductosVenta productosVenta;
+    private String usuarioId;
+    private MenuPrincipal menuPrincipal;
+    private IMaderaSS iMaderaSS;
+    private ICarritoSS iCarritoSS;
+    private ICompraSS iCompraSS;
+    private IUsuarioSS iUsuarioSS;
+
     /**
      * Creates new form MenuCarrito
      */
-    public MenuCarrito(ProductosVenta productosVenta,String usuarioId,MenuPrincipal menuPrincipal,IMaderaSS  iMaderaSS,ICarritoSS iCarritoSS
-            ,ICompraSS iCompraSS,IUsuarioSS iUsuarioSS
+    public MenuCarrito(ProductosVenta productosVenta, String usuarioId, MenuPrincipal menuPrincipal, IMaderaSS iMaderaSS, ICarritoSS iCarritoSS,
+             ICompraSS iCompraSS, IUsuarioSS iUsuarioSS
     ) {
-        this.productosVenta=productosVenta;
-        this.usuarioId=usuarioId;
-        this.menuPrincipal=menuPrincipal;
-        this.iMaderaSS=iMaderaSS;
-        this.iCarritoSS=iCarritoSS;
-        this.iCompraSS=iCompraSS;
-        this.iUsuarioSS=iUsuarioSS;
+        this.productosVenta = productosVenta;
+        this.usuarioId = usuarioId;
+        this.menuPrincipal = menuPrincipal;
+        this.iMaderaSS = iMaderaSS;
+        this.iCarritoSS = iCarritoSS;
+        this.iCompraSS = iCompraSS;
+        this.iUsuarioSS = iUsuarioSS;
         initComponents();
     }
 
@@ -143,20 +140,19 @@ private IUsuarioSS iUsuarioSS;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-this.setVisible(false);
-productosVenta.setVisible(true);
+        this.setVisible(false);
+        productosVenta.setVisible(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-this.setVisible(false);
-DetallesCarritos detallesCarritos=new DetallesCarritos(productosVenta, usuarioId, menuPrincipal, iMaderaSS, iCarritoSS, iCompraSS,iUsuarioSS);
-detallesCarritos.setVisible(true);
+        this.setVisible(false);
+        DetallesCarritos detallesCarritos = new DetallesCarritos(productosVenta, usuarioId, menuPrincipal, iMaderaSS, iCarritoSS, iCompraSS, iUsuarioSS);
+        detallesCarritos.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package dao;
+
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
@@ -18,14 +19,12 @@ import java.util.List;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
-
-
-
 /**
  *
  * @author Oley
  */
-public class VentaDAO implements  IVentaDAO{
+public class VentaDAO implements IVentaDAO {
+
     private final MongoCollection<Document> coleccionCompras;
     private final MongoCollection<Document> maderaCollection;
     private final MongoCollection<Document> usuarioCollection;
@@ -37,18 +36,18 @@ public class VentaDAO implements  IVentaDAO{
     }
 
     public List<Ventas> obtenerVentas() {
-       List<Ventas> ventas = new ArrayList<>();
-        
+        List<Ventas> ventas = new ArrayList<>();
+
         try {
             FindIterable<Document> documentos = coleccionCompras.find();
-            
+
             for (Document doc : documentos) {
                 Ventas venta = new Ventas();
-                
+
                 venta.setId(doc.getObjectId("_id"));
                 venta.setCantidad(doc.getInteger("cantidad"));
                 venta.setPrecioTotal(doc.getDouble("precioTotal"));
-                
+
                 // Cambio clave aquí: manejar diferentes tipos de fecha
                 Object fechaObj = doc.get("fechaCompra");
                 Calendar fechaVenta = Calendar.getInstance();
@@ -58,7 +57,7 @@ public class VentaDAO implements  IVentaDAO{
                     fechaVenta.setTimeInMillis((Long) fechaObj);
                 }
                 venta.setFechaVenta(fechaVenta);
-                
+
                 String maderaNombre = doc.getString("maderaNombre");
                 Document maderaDoc = maderaCollection.find(Filters.eq("nombre", maderaNombre)).first();
                 if (maderaDoc != null) {
@@ -68,7 +67,7 @@ public class VentaDAO implements  IVentaDAO{
                     madera.setPrecioUnitario(maderaDoc.getDouble("precioUnitario"));
                     venta.setMadera(madera);
                 }
-                
+
                 String usuarioNombre = doc.getString("usuarioNombre");
                 Document usuarioDoc = usuarioCollection.find(Filters.eq("nombre", usuarioNombre)).first();
                 if (usuarioDoc != null) {
@@ -77,13 +76,13 @@ public class VentaDAO implements  IVentaDAO{
                     usuario.setNombre(usuarioNombre);
                     venta.setUsuario(usuario);
                 }
-                
+
                 ventas.add(venta);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return ventas;
     }
 }

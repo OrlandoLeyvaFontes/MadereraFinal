@@ -18,7 +18,6 @@ import org.bson.types.ObjectId;
  */
 public class Tarjetas implements Serializable {
 
- 
     private ObjectId id;
     private String nombre;
     private String numero;
@@ -75,5 +74,4 @@ public class Tarjetas implements Serializable {
         this.CVV = CVV;
     }
 
-  
 }

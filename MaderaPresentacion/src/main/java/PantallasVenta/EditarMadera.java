@@ -4,17 +4,38 @@
  */
 package PantallasVenta;
 
+import dao.MaderaDAO;
+import dto.MaderaDTO;
+import interfaz.IMaderaVentaSS;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author aleja
  */
 public class EditarMadera extends javax.swing.JFrame {
 
+    MaderaDTO maderaDTO;
+    MaderaDAO maderaDAO;
+    MisProductos misProductos;
+    private IMaderaVentaSS maderaVentaSS;
+
     /**
      * Creates new form EditarMadera
      */
-    public EditarMadera() {
+    public EditarMadera(MaderaDTO maderaDTO, IMaderaVentaSS maderaVentaSS) {
         initComponents();
+        this.maderaDTO = maderaDTO;
+        this.maderaVentaSS = maderaVentaSS;
+        fillFields();
+    }
+
+    private void fillFields() {
+        txtNombre.setText(maderaDTO.getNombre());
+        txtPrecio.setText(String.valueOf(maderaDTO.getPrecioUnitario()));
+        txtCantidad.setText(String.valueOf(maderaDTO.getCantidad()));
+        txtDescripcion.setText(maderaDTO.getDescripcion());
+
     }
 
     /**
@@ -29,7 +50,7 @@ public class EditarMadera extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         lblIniciarSesion = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        btnRegresar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         lblNombre = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
@@ -55,8 +76,12 @@ public class EditarMadera extends javax.swing.JFrame {
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setText("Maderera en Linea");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/flecha-izquierda.png"))); // NOI18N
-        jLabel2.setText("jLabel2");
+        btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -64,10 +89,10 @@ public class EditarMadera extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(92, 92, 92)
+                .addComponent(btnRegresar)
+                .addGap(54, 54, 54)
                 .addComponent(lblTitulo)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblIniciarSesion)
@@ -77,9 +102,9 @@ public class EditarMadera extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTitulo)
-                    .addComponent(jLabel2))
+                    .addComponent(btnRegresar))
                 .addGap(18, 18, 18)
                 .addComponent(lblIniciarSesion)
                 .addGap(33, 33, 33))
@@ -93,10 +118,10 @@ public class EditarMadera extends javax.swing.JFrame {
         lblNombre.setText("Nombre:");
 
         txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtNombre.setForeground(new java.awt.Color(255, 255, 255));
+        txtNombre.setForeground(new java.awt.Color(0, 0, 0));
 
         txtPrecio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtPrecio.setForeground(new java.awt.Color(255, 255, 255));
+        txtPrecio.setForeground(new java.awt.Color(0, 0, 0));
 
         lblPrecio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblPrecio.setForeground(new java.awt.Color(255, 255, 255));
@@ -107,27 +132,32 @@ public class EditarMadera extends javax.swing.JFrame {
         lblCantidad.setText("Cantidad:");
 
         txtCantidad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtCantidad.setForeground(new java.awt.Color(255, 255, 255));
+        txtCantidad.setForeground(new java.awt.Color(0, 0, 0));
 
         txtDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtDescripcion.setForeground(new java.awt.Color(255, 255, 255));
+        txtDescripcion.setForeground(new java.awt.Color(0, 0, 0));
 
         lblDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblDescripcion.setForeground(new java.awt.Color(255, 255, 255));
         lblDescripcion.setText("Descripción:");
 
         btnEditar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnEditar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditar.setForeground(new java.awt.Color(0, 0, 0));
         btnEditar.setText("Continuar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(185, 185, 185)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnEditar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(168, 168, 168))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(80, 80, 80)
@@ -147,7 +177,7 @@ public class EditarMadera extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(197, Short.MAX_VALUE)
+                .addContainerGap(202, Short.MAX_VALUE)
                 .addComponent(btnEditar)
                 .addGap(20, 20, 20))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,51 +213,55 @@ public class EditarMadera extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditarMadera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditarMadera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditarMadera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditarMadera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        String nombre = txtNombre.getText();
+        String precio = txtPrecio.getText();
+        String descripcion = txtDescripcion.getText();
+        String cantidad = txtCantidad.getText();
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new EditarMadera().setVisible(true);
-            }
-        });
-    }
+        if (nombre.isEmpty() || descripcion.isEmpty() || precio == null || cantidad.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        double precioUnitario = Double.parseDouble(precio);
+        int cantidadInt = Integer.parseInt(cantidad);
+
+        MaderaDTO maderaDTO = new MaderaDTO();
+        maderaDTO.setId(this.maderaDTO.getId());
+        maderaDTO.setNombre(nombre);
+        maderaDTO.setPrecioUnitario(precioUnitario);
+        maderaDTO.setCantidad(cantidadInt);
+        maderaDTO.setDescripcion(descripcion);
+
+        //        MaderaDTO maderaDTO1= new MaderaDTO(this.maderaDTO.getId(), nombre, descripcion, cantidadInt, precioUnitario);
+        System.out.println(this.maderaDTO.getId());
+        try {
+            maderaVentaSS.editarMadera(maderaDTO);
+            JOptionPane.showMessageDialog(this, "La madera ha sido editada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar la madera.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        MisProductos misProductos = new MisProductos(maderaVentaSS, maderaDAO, maderaDTO);
+        misProductos.setVisible(true);
+
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        this.setVisible(false);
+        MisProductos misProductos = new MisProductos(maderaVentaSS, maderaDAO, maderaDTO);
+        misProductos.setVisible(true);    }//GEN-LAST:event_btnRegresarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblCantidad;

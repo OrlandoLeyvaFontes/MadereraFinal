@@ -4,16 +4,23 @@
  */
 package PantallasVenta;
 
+import dto.MaderaDTO;
+import interfacesDAO.IMaderaDAO;
+import interfaz.IMaderaVentaSS;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author aleja
  */
 public class AgregarMadera extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AgregarMadera
-     */
-    public AgregarMadera() {
+    private IMaderaVentaSS maderaVentaSS;
+    private IMaderaDAO maderaDAO;
+    private MaderaDTO maderaDTO;
+
+    public AgregarMadera(IMaderaVentaSS maderaVentaSS) {
+        this.maderaVentaSS = maderaVentaSS;
         initComponents();
     }
 
@@ -30,7 +37,6 @@ public class AgregarMadera extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         lblAgregarProducto = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
         lblPrecio = new javax.swing.JLabel();
         lblCantidad = new javax.swing.JLabel();
@@ -57,17 +63,12 @@ public class AgregarMadera extends javax.swing.JFrame {
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setText("Maderera en Linea");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/flecha-izquierda.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(92, 92, 92)
+                .addGap(135, 135, 135)
                 .addComponent(lblTitulo)
                 .addContainerGap(131, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -79,9 +80,7 @@ public class AgregarMadera extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTitulo)
-                    .addComponent(jLabel1))
+                .addComponent(lblTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblAgregarProducto)
                 .addGap(12, 12, 12))
@@ -104,19 +103,19 @@ public class AgregarMadera extends javax.swing.JFrame {
         lblDescripcion.setText("Descripción:");
 
         txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtNombre.setForeground(new java.awt.Color(255, 255, 255));
+        txtNombre.setForeground(new java.awt.Color(0, 0, 0));
 
         txtPrecio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtPrecio.setForeground(new java.awt.Color(255, 255, 255));
+        txtPrecio.setForeground(new java.awt.Color(0, 0, 0));
 
         txtCantidad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtCantidad.setForeground(new java.awt.Color(255, 255, 255));
+        txtCantidad.setForeground(new java.awt.Color(0, 0, 0));
 
         txtDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtDescripcion.setForeground(new java.awt.Color(255, 255, 255));
+        txtDescripcion.setForeground(new java.awt.Color(0, 0, 0));
 
         btnAgregar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar.setForeground(new java.awt.Color(0, 0, 0));
         btnAgregar.setText("Continuar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,47 +192,37 @@ public class AgregarMadera extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregarActionPerformed
+        String nombre = txtNombre.getText();
+        String precio = txtPrecio.getText();
+        String descripcion = txtDescripcion.getText();
+        String cantidad = txtCantidad.getText();
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AgregarMadera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AgregarMadera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AgregarMadera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AgregarMadera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        if (nombre.isEmpty() || descripcion.isEmpty() || precio == null || cantidad.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
+            return;
         }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AgregarMadera().setVisible(true);
-            }
-        });
-    }
+        double precioUnitario = Double.parseDouble(precio);
+        int cantidadInt = Integer.parseInt(cantidad);
+
+        MaderaDTO maderaDTO = new MaderaDTO();
+        maderaDTO.setNombre(nombre);
+        maderaDTO.setPrecioUnitario(precioUnitario);
+        maderaDTO.setCantidad(cantidadInt);
+        maderaDTO.setDescripcion(descripcion);
+
+        try {
+            maderaVentaSS.agregarMadera(maderaDTO);
+            JOptionPane.showMessageDialog(this, "La madera ha sido guardada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar la madera.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        MisProductos misProductos = new MisProductos(maderaVentaSS, maderaDAO, maderaDTO);
+        misProductos.setVisible(true);
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblAgregarProducto;

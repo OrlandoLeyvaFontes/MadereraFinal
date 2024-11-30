@@ -7,7 +7,6 @@ package Pantallas2;
 import Pantallas2.MenuPrincipal;
 import dto.TarjetasDTO;
 import interfaz.IUsuarioSS;
-import interfazSS.IAgregarTarjetasSS;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -19,14 +18,15 @@ import javax.swing.JOptionPane;
  * @author Oley
  */
 public class AgregarTarjeta extends javax.swing.JFrame {
-    
+
     private MenuPrincipal menuPrincipal;
     private IUsuarioSS iUsuarioSS;
-private String usuarioId;
+    private String usuarioId;
+
     /**
      * Creates new form AgregarTarjeta
      */
-    public AgregarTarjeta(MenuPrincipal menuPrincipal, IUsuarioSS iUsuarioSS,String usuarioId) {
+    public AgregarTarjeta(MenuPrincipal menuPrincipal, IUsuarioSS iUsuarioSS, String usuarioId) {
         this.menuPrincipal = menuPrincipal;
         this.iUsuarioSS = iUsuarioSS;
         this.usuarioId = usuarioId;
@@ -237,35 +237,35 @@ private String usuarioId;
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-   String nombre = jTextField1.getText();
-    String numero = jTextField2.getText();
-    LocalDate fechaVencimiento = datePickerBloqueo.getDate(); 
-    String ccv = jTextField4.getText();
+        String nombre = jTextField1.getText();
+        String numero = jTextField2.getText();
+        LocalDate fechaVencimiento = datePickerBloqueo.getDate();
+        String ccv = jTextField4.getText();
 
-    if (nombre.isEmpty() || numero.isEmpty() || fechaVencimiento == null || ccv.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
+        if (nombre.isEmpty() || numero.isEmpty() || fechaVencimiento == null || ccv.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 
-    TarjetasDTO tarjetasDTO = new TarjetasDTO();
-    tarjetasDTO.setNombre(nombre);
-    tarjetasDTO.setNumero(numero);
+        TarjetasDTO tarjetasDTO = new TarjetasDTO();
+        tarjetasDTO.setNombre(nombre);
+        tarjetasDTO.setNumero(numero);
 
-    Calendar fechaVencimientoCalendar = Calendar.getInstance();
-    fechaVencimientoCalendar.set(fechaVencimiento.getYear(), fechaVencimiento.getMonthValue() - 1, fechaVencimiento.getDayOfMonth());
-    tarjetasDTO.setFehcaVencimiento(fechaVencimientoCalendar);
+        Calendar fechaVencimientoCalendar = Calendar.getInstance();
+        fechaVencimientoCalendar.set(fechaVencimiento.getYear(), fechaVencimiento.getMonthValue() - 1, fechaVencimiento.getDayOfMonth());
+        tarjetasDTO.setFehcaVencimiento(fechaVencimientoCalendar);
 
-    tarjetasDTO.setCVV(ccv);
+        tarjetasDTO.setCVV(ccv);
 
-    try {
-        iUsuarioSS.agregarTarjeta(usuarioId, tarjetasDTO);  // Pasamos el usuarioId aquí
-        JOptionPane.showMessageDialog(this, "La tarjeta ha sido guardada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar la tarjeta.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
+        try {
+            iUsuarioSS.agregarTarjeta(usuarioId, tarjetasDTO);  // Pasamos el usuarioId aquí
+            JOptionPane.showMessageDialog(this, "La tarjeta ha sido guardada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar la tarjeta.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
-    this.setVisible(false);
-    menuPrincipal.setVisible(true);
+        this.setVisible(false);
+        menuPrincipal.setVisible(true);
 
     }//GEN-LAST:event_jButton2ActionPerformed
 

@@ -7,9 +7,6 @@ package Pantallas2;
 import Pantallas2.DetallesProducto;
 import Pantallas2.MenuPrincipal;
 import interfaz.ICompraSS;
-import interfaz.IGuardarCompraSS;
-import interfaz.IInicioSesionCVVSS;
-import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
 import interfaz.IUsuarioSS;
 import pantallas.TarjetasDisponibles;
 
@@ -30,7 +27,7 @@ public class MenuDeTarjetas extends javax.swing.JFrame {
     /**
      * Creates new form MenuDeTarjetas
      */
-    public MenuDeTarjetas(DetallesProducto detallesProducto,String usuarioId,MenuPrincipal menuPrincipal1,int cantidad,String idMadera,ICompraSS iCompraSS,IUsuarioSS iUsuarioSS
+    public MenuDeTarjetas(DetallesProducto detallesProducto, String usuarioId, MenuPrincipal menuPrincipal1, int cantidad, String idMadera, ICompraSS iCompraSS, IUsuarioSS iUsuarioSS
     ) {
         this.detallesProducto = detallesProducto;
         this.usuarioId = usuarioId;

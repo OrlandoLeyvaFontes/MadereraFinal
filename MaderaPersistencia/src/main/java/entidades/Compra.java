@@ -20,7 +20,7 @@ import org.bson.types.ObjectId;
  */
 public class Compra implements Serializable {
 
-      private ObjectId id;
+    private ObjectId id;
     private Calendar fechaCompra;
     private double precioTotal;
     private int cantidad;
@@ -30,7 +30,7 @@ public class Compra implements Serializable {
     public Compra() {
     }
 
-    public Compra( Calendar fechaCompra, double precioTotal, int cantidad) {
+    public Compra(Calendar fechaCompra, double precioTotal, int cantidad) {
         this.fechaCompra = fechaCompra;
         this.precioTotal = precioTotal;
         this.cantidad = cantidad;
@@ -83,10 +83,5 @@ public class Compra implements Serializable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-   
-   
-   
-   
-       
-       
+
 }

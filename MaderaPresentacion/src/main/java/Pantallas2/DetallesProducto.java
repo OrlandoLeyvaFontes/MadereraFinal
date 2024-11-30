@@ -6,19 +6,10 @@ package Pantallas2;
 
 import Pantallas2.ProductosVenta;
 import Pantallas2.MenuPrincipal;
-import interfaz.IAgregarProductoCarritoSS;
 import interfaz.ICarritoSS;
 import interfaz.ICompraSS;
-import interfaz.IComprarCarritoSS;
-import interfaz.IEliminarProductoCarritoSS;
-import interfaz.IGuardarCompraSS;
-import interfaz.IInicioSesionCVVSS;
 import interfaz.IMaderaSS;
-import interfaz.IObtenerCarritoSS;
-import interfaz.IObtenerNumerosTarjetasPorUsuarioSS;
 import interfaz.IUsuarioSS;
-import interfazSS.IInicioSesionSS;
-import interfazSS.IObtenerMaderas;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -35,16 +26,17 @@ public class DetallesProducto extends javax.swing.JFrame {
     private String usuarioId;
     private MenuPrincipal menuPrincipal1;
     private String idMadera;
-    private  IMaderaSS  iMaderaSS;
-private  ICarritoSS iCarritoSS;
-private ICompraSS iCompraSS;
-private IUsuarioSS iUsuarioSS;
+    private IMaderaSS iMaderaSS;
+    private ICarritoSS iCarritoSS;
+    private ICompraSS iCompraSS;
+    private IUsuarioSS iUsuarioSS;
+
     /**
      * Creates new form DetallesProducto
      */
-    public DetallesProducto(ProductosVenta productosVenta,String nombreProducto, Double precioProducto, String descripcionProducto
-           , int cantidad,String usuarioId,MenuPrincipal menuPrincipal1,String idMadera, IMaderaSS  iMaderaSS,ICarritoSS iCarritoSS
-            ,ICompraSS iCompraSS,IUsuarioSS iUsuarioSS
+    public DetallesProducto(ProductosVenta productosVenta, String nombreProducto, Double precioProducto, String descripcionProducto,
+             int cantidad, String usuarioId, MenuPrincipal menuPrincipal1, String idMadera, IMaderaSS iMaderaSS, ICarritoSS iCarritoSS,
+             ICompraSS iCompraSS, IUsuarioSS iUsuarioSS
     ) {
         this.productosVenta = productosVenta;
         this.nombreProducto = nombreProducto;
@@ -54,17 +46,17 @@ private IUsuarioSS iUsuarioSS;
         this.usuarioId = usuarioId;
         this.menuPrincipal1 = menuPrincipal1;
         this.idMadera = idMadera;
-        this.iMaderaSS=iMaderaSS;
-        this.iCarritoSS=iCarritoSS;
-        this.iCompraSS=iCompraSS;
-        this.iUsuarioSS=iUsuarioSS;
+        this.iMaderaSS = iMaderaSS;
+        this.iCarritoSS = iCarritoSS;
+        this.iCompraSS = iCompraSS;
+        this.iUsuarioSS = iUsuarioSS;
         initComponents();
         mostrarDetallesProducto();
 
     }
 
     private void mostrarDetallesProducto() {
-     
+
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0); // Limpiar tabla
 
@@ -314,7 +306,7 @@ private IUsuarioSS iUsuarioSS;
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         iCarritoSS.agregarProducto(usuarioId, idMadera, cantidad);
         this.setVisible(false);
-        MenuCarrito menuCarrito = new MenuCarrito(productosVenta, usuarioId, menuPrincipal1, iMaderaSS, iCarritoSS, iCompraSS,iUsuarioSS);
+        MenuCarrito menuCarrito = new MenuCarrito(productosVenta, usuarioId, menuPrincipal1, iMaderaSS, iCarritoSS, iCompraSS, iUsuarioSS);
         menuCarrito.setVisible(true);
 
         // TODO add your handling code here:

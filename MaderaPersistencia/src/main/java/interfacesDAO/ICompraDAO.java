@@ -14,7 +14,10 @@ import org.bson.types.ObjectId;
  * @author Oley
  */
 public interface ICompraDAO {
-            void guardarCompra(Compra compra);
-public void comprarCarrito(ObjectId usuarioId);
-public List<Document> obtenerHistorialCompras(ObjectId usuarioId) ;
+
+    void guardarCompra(Compra compra);
+
+    public void comprarCarrito(ObjectId usuarioId);
+
+    public List<Document> obtenerHistorialCompras(ObjectId usuarioId);
 }

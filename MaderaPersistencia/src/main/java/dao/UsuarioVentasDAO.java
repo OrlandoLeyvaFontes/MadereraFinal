@@ -7,8 +7,6 @@ package dao;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import conexion.Conexion;
-import entidades.Tarjetas;
-import entidades.Usuario;
 import entidades.UsuarioVentas;
 import java.util.ArrayList;
 import java.util.Calendar;

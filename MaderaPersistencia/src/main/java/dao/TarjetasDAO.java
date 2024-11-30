@@ -15,16 +15,12 @@ import org.bson.Document;
  *
  * @author Oley
  */
-public class TarjetasDAO implements ITarjetasDAO{
-  private final MongoCollection<Document> collection;
+public class TarjetasDAO implements ITarjetasDAO {
+
+    private final MongoCollection<Document> collection;
 
     public TarjetasDAO() {
         this.collection = Conexion.getDatabase().getCollection("tarjetas");
     }
 
-
-
-        
-    
 }
-

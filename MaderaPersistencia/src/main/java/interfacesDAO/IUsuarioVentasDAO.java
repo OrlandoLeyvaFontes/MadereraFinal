@@ -20,6 +20,6 @@ public interface IUsuarioVentasDAO {
     public UsuarioVentas iniciarSesion(String correo, String contrasena);
 
     public UsuarioVentas obtenerUsuarioPorId(ObjectId id);
-    
+
     public List<Document> obtenerMaderasPorUsuarioVenta(ObjectId idUsuarioVenta);
 }

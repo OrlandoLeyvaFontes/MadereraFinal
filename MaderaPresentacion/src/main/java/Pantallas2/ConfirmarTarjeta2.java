@@ -10,7 +10,6 @@ import dto.MaderaDTO;
 import dto.UsuarioDTO;
 import interfaz.ICompraSS;
 import interfaz.IComprarCarritoSS;
-import interfaz.IInicioSesionCVVSS;
 import interfaz.IUsuarioSS;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
@@ -20,19 +19,20 @@ import javax.swing.JOptionPane;
  * @author Oley
  */
 public class ConfirmarTarjeta2 extends javax.swing.JFrame {
-private IUsuarioSS iUsuarioSS;
-private ICompraSS iCompraSS;
-  private String usuarioId;
-  private MenuPrincipal menuPrincipal;
+
+    private IUsuarioSS iUsuarioSS;
+    private ICompraSS iCompraSS;
+    private String usuarioId;
+    private MenuPrincipal menuPrincipal;
 
     /**
      * Creates new form ConfirmarTarjeta2
      */
-    public ConfirmarTarjeta2(IUsuarioSS iUsuarioSS, ICompraSS iCompraSS,String usuarioId,MenuPrincipal menuPrincipal) {
-        this.iUsuarioSS=iUsuarioSS;
-        this.iCompraSS=iCompraSS;
-        this.usuarioId=usuarioId;
-        this.menuPrincipal=menuPrincipal;
+    public ConfirmarTarjeta2(IUsuarioSS iUsuarioSS, ICompraSS iCompraSS, String usuarioId, MenuPrincipal menuPrincipal) {
+        this.iUsuarioSS = iUsuarioSS;
+        this.iCompraSS = iCompraSS;
+        this.usuarioId = usuarioId;
+        this.menuPrincipal = menuPrincipal;
         initComponents();
     }
 
@@ -144,28 +144,22 @@ private ICompraSS iCompraSS;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-String CVV = jTextField1.getText();
+        String CVV = jTextField1.getText();
 
-    if (!iUsuarioSS.iniciarSesionPorCVV(CVV)) {
-        JOptionPane.showMessageDialog(this, "CVV incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
+        if (!iUsuarioSS.iniciarSesionPorCVV(CVV)) {
+            JOptionPane.showMessageDialog(this, "CVV incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-    this.setVisible(false);
-    CompraExitosa2 compraExitosa = new CompraExitosa2( menuPrincipal);
-    compraExitosa.setVisible(true);
-  
+        this.setVisible(false);
+        CompraExitosa2 compraExitosa = new CompraExitosa2(menuPrincipal);
+        compraExitosa.setVisible(true);
 
-iCompraSS.comprarCarrito( usuarioId);
-
-
-
-
+        iCompraSS.comprarCarrito(usuarioId);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

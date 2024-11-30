@@ -1,5 +1,5 @@
 Pantallas2\BuscarPorNombre$3.class
-PantallasVenta\AgregarMadera$2.class
+PantallasVenta\EditarMadera$2.class
 PantallasVenta\IniciarSesionVendedor$1.class
 PantallasVenta\MenuVendedor$1.class
 Pantallas2\DetallesProducto$4.class
@@ -9,12 +9,14 @@ main\Main.class
 pantallas\SalidaCompra.class
 Pantallas2\MenuCarrito.class
 Pantallas2\AgregarTarjeta$2.class
+PantallasVenta\MisProductos$4.class
 Pantallas2\MenuPrincipal$5.class
 Pantallas2\TarjetasDisponibles2$1.class
 Pantallas2\MenuDeTarjetas$1.class
 Pantallas2\HistorialCompras$1.class
 PantallasVenta\RegistrarUsuarioVendedor.class
 Pantallas2\RegistrarUsuario$2.class
+main\MainVentas.class
 Pantallas2\TarjetasDisponibles2.class
 Pantallas2\DetallesProducto.class
 Pantallas2\BuscarPorNombre$2.class
@@ -49,6 +51,7 @@ Pantallas2\MenuDeTarjetas.class
 PantallasVenta\EditarMadera.class
 PantallasVenta\InventarioEntradas.class
 main\Main2.class
+PantallasVenta\MisProductos$2.class
 PantallasVenta\IniciarSesionVendedor$3.class
 Pantallas2\MenuPrincipal$3.class
 Pantallas2\BuscarPorNombre$1.class
@@ -59,7 +62,6 @@ Pantallas2\DetallesProducto$2.class
 pantallas\CompraExitosa$1.class
 Pantallas2\DetallesCarritos$1.class
 pantallas\TarjetasDisponibles.class
-pantallas\SalidaCompra$2.class
 Pantallas2\DetallesProducto$5.class
 PantallasVenta\EditarMadera$1.class
 pantallas\ConfirmarTarjeta$3.class
@@ -69,6 +71,7 @@ Pantallas2\IniciarSesion$1.class
 PantallasVenta\MisProductos.class
 Pantallas2\ProductosVenta.class
 Pantallas2\MenuDeTarjetas2$1.class
+PantallasVenta\MisProductos$3.class
 pantallas\CompraExitosa$2.class
 Pantallas2\DetallesProducto$3.class
 pantallas\ConfirmarTarjeta$2.class
@@ -76,9 +79,11 @@ Pantallas2\MenuPrincipal$4.class
 pantallas\CompraExitosa.class
 Pantallas2\ProductosVenta$2.class
 Pantallas2\CompraExitosa2$1.class
+PantallasVenta\RegistrarUsuarioVendedor$3.class
 Pantallas2\MenuDeTarjetas$2.class
 pantallas\TarjetasDisponibles$1.class
 Pantallas2\RegistrarUsuario.class
 pantallas\SalidaCompra$1.class
 Pantallas2\MenuDeTarjetas2.class
 Pantallas2\MenuPrincipal$1.class
+PantallasVenta\MenuVendedor$2.class

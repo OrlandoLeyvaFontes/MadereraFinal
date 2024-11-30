@@ -5,7 +5,6 @@
 package interfacesDTO;
 
 import dto.TarjetasDTO;
-import entidades.Tarjetas;
 
 /**
  *

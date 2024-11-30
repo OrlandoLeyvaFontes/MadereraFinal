@@ -18,11 +18,12 @@ import org.bson.types.ObjectId;
  * @author Oley
  */
 public class Carrito implements Serializable {
-   private ObjectId id;
-    private Usuario usuario; 
-    private List<Madera> maderas; 
-    private List<Integer> cantidades; 
-    private double total; 
+
+    private ObjectId id;
+    private Usuario usuario;
+    private List<Madera> maderas;
+    private List<Integer> cantidades;
+    private double total;
 
     public Carrito() {
         this.maderas = new ArrayList<>();
@@ -73,5 +74,4 @@ public class Carrito implements Serializable {
         return total;
     }
 
-    
 }
