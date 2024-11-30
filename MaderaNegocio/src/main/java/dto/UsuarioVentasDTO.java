@@ -112,4 +112,10 @@ public class UsuarioVentasDTO {
         this.maderas = maderas;
     }
 
+    @Override
+    public String toString() {
+        return "UsuarioVentasDTO{" + "nombre=" + nombre + '}';
+    }
+
+    
 }
