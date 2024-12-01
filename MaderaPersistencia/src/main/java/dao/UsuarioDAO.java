@@ -154,16 +154,17 @@ public class UsuarioDAO implements IUsuarioDAO {
         return null;
     }
 
-    public boolean iniciarSesionPorCVV(String cvv) {
-        try {
-            Document query = new Document("tarjetas.CVV", cvv);
-            Document usuarioEncontrado = collection.find(query).first();
-
-            return usuarioEncontrado != null;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-
-        }
+   public boolean iniciarSesionPorCVV(String numero, String cvv) {
+    try {
+        Document query = new Document("tarjetas.numero", numero)
+                .append("tarjetas.CVV", cvv);
+        
+        Document usuarioEncontrado = collection.find(query).first();
+        
+        return usuarioEncontrado != null;
+    } catch (Exception e) {
+        e.printStackTrace();
+        return false;
     }
+}
 }

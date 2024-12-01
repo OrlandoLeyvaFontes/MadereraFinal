@@ -56,14 +56,15 @@ public class UsuarioSS implements IUsuarioSS {
         return iUsuarioNegocio.agregarTarjeta(usuarioId, tarjetasDTO);
     }
 
-    @Override
-    public boolean iniciarSesionPorCVV(String cvv) {
-return iUsuarioNegocio.iniciarSesionPorCVV(cvv);
-    }
+
 
     @Override
     public List<String> obtenerNumerosTarjetasPorUsuario(String idUsuario) {
  return iUsuarioNegocio.obtenerNumerosTarjetasPorUsuario(idUsuario);
     }
+
+    @Override
+    public boolean iniciarSesionPorCVV(String numeroTarjeta, String cvv) {
+return iUsuarioNegocio.iniciarSesionPorCVV(numeroTarjeta, cvv);    }
 
 }

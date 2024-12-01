@@ -24,6 +24,6 @@ public interface IUsuarioNegocio {
 
     public List<String> obtenerNumerosTarjetasPorUsuario(String idUsuario);
 
-    public boolean iniciarSesionPorCVV(String cvv);
+  boolean iniciarSesionPorCVV(String numeroTarjeta, String cvv);
 
 }

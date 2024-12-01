@@ -25,6 +25,5 @@ public interface IUsuarioDAO {
 
     public Usuario obtenerUsuarioPorId(ObjectId id);
 
-    public boolean iniciarSesionPorCVV(String cvv);
-
+ public boolean iniciarSesionPorCVV(String numero, String cvv);
 }

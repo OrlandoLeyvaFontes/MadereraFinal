@@ -11,6 +11,8 @@ import dto.MaderaDTO;
 import dto.UsuarioDTO;
 import interfaz.ICompraSS;
 import interfaz.IUsuarioSS;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -73,6 +75,7 @@ public class TarjetasDisponibles extends javax.swing.JFrame {
 
         jTable1.setModel(model);
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -155,10 +158,16 @@ public class TarjetasDisponibles extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int selectedRow = jTable1.getSelectedRow();
+    if (selectedRow != -1) {
+        String numeroTarjeta = (String) jTable1.getValueAt(selectedRow, 0);
+        
         this.setVisible(false);
-        ConfirmarTarjeta confirmarTarjeta = new ConfirmarTarjeta(this, menuPrincipal1, cantidad, idMadera, usuarioId, iCompraSS, iUsuarioSS);
+        ConfirmarTarjeta confirmarTarjeta = new ConfirmarTarjeta(this, menuPrincipal1, cantidad, idMadera, usuarioId, iCompraSS, iUsuarioSS,numeroTarjeta);
         confirmarTarjeta.setVisible(true);
-
+    } else {
+        JOptionPane.showMessageDialog(this, "Por favor, seleccione una tarjeta.", "Selección Requerida", JOptionPane.WARNING_MESSAGE);
+    }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 

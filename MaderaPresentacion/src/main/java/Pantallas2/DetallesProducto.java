@@ -6,15 +6,17 @@ package Pantallas2;
 
 import Pantallas2.ProductosVenta;
 import Pantallas2.MenuPrincipal;
+import dto.MaderaDTO;
 import interfaz.ICarritoSS;
 import interfaz.ICompraSS;
 import interfaz.IMaderaSS;
 import interfaz.IUsuarioSS;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Itson
+ * @author Oley
  */
 public class DetallesProducto extends javax.swing.JFrame {
 
@@ -184,20 +186,35 @@ public class DetallesProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        if (jComboBox1.getSelectedIndex() != -1) {
-        // Obtener la cantidad seleccionada desde el ComboBox
+     if (jComboBox1.getSelectedIndex() != -1) {
         String cantidadStr = (String) jComboBox1.getSelectedItem();
-        this.cantidad = Integer.parseInt(cantidadStr);  // Guardar la cantidad seleccionada
+        this.cantidad = Integer.parseInt(cantidadStr); 
 
-        // Calcular el total
-        double precioProducto = this.precioProducto;
-        double total = cantidad * precioProducto;
+        if (this.cantidad == 0) {
+            JOptionPane.showMessageDialog(this, "No puedes seleccionar una cantidad de 0.", "Error", JOptionPane.ERROR_MESSAGE);
 
-        // Actualizar el total en la interfaz, solo el valor numérico
-        jLabel4.setText(String.format("%.2f", total));  // Solo el valor numérico, sin el "Total: $"
-    jLabel4.setFont(new java.awt.Font("Tahoma", java.awt.Font.BOLD, 24));  // Fuente más grande, en este caso 24
+            jButton3.setEnabled(false);  
+            jButton4.setEnabled(false);  
+        } else {
+            MaderaDTO madera = iMaderaSS.buscarMaderaPorId(idMadera);  
 
+            if (this.cantidad <= madera.getCantidad()) {
+                double precioProducto = this.precioProducto;
+                double total = cantidad * precioProducto;
+
+                jLabel4.setText(String.format("%.2f", total)); 
+                jLabel4.setFont(new java.awt.Font("Tahoma", java.awt.Font.BOLD, 24)); 
+
+                jButton3.setEnabled(true);  
+                jButton4.setEnabled(true);  
+            } else {
+                JOptionPane.showMessageDialog(this, "No hay suficiente cantidad disponible.", "Error", JOptionPane.ERROR_MESSAGE);
+
+                jButton3.setEnabled(false);  
+                jButton4.setEnabled(false);  
+            }
         }
+    }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed

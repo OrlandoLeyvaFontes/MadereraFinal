@@ -115,8 +115,15 @@ public class UsuarioNegocio implements IUsuarioNegocio {
     }    }
 
     @Override
-    public boolean iniciarSesionPorCVV(String cvv) {
-        return iusuarioDAO.iniciarSesionPorCVV(cvv);
-    }
+    public boolean iniciarSesionPorCVV(String numeroTarjeta, String cvv) {
+try {
+        return iusuarioDAO.iniciarSesionPorCVV(numeroTarjeta, cvv);
+    } catch (Exception e) {
+        System.err.println("Error al intentar iniciar sesión por CVV: " + e.getMessage());
+        e.printStackTrace();
+        return false;
+    }    }
+
+    
 
 }

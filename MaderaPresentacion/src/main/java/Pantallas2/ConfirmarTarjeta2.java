@@ -26,16 +26,18 @@ public class ConfirmarTarjeta2 extends javax.swing.JFrame {
     private String usuarioId;
     private MenuPrincipal menuPrincipal;
     private ICarritoSS iCarritoSS;
+    private  String numeroTarjeta;
 
     /**
      * Creates new form ConfirmarTarjeta2
      */
-    public ConfirmarTarjeta2(IUsuarioSS iUsuarioSS, ICompraSS iCompraSS, String usuarioId, MenuPrincipal menuPrincipal,ICarritoSS iCarritoSS) {
+    public ConfirmarTarjeta2(IUsuarioSS iUsuarioSS, ICompraSS iCompraSS, String usuarioId, MenuPrincipal menuPrincipal,ICarritoSS iCarritoSS,String numeroTarjeta) {
         this.iUsuarioSS = iUsuarioSS;
         this.iCompraSS = iCompraSS;
         this.usuarioId = usuarioId;
         this.menuPrincipal = menuPrincipal;
         this.iCarritoSS=iCarritoSS;
+        this.numeroTarjeta=numeroTarjeta;
         initComponents();
     }
 
@@ -92,7 +94,7 @@ public class ConfirmarTarjeta2 extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String CVV = jTextField1.getText();
 
-        if (!iUsuarioSS.iniciarSesionPorCVV(CVV)) {
+        if (!iUsuarioSS.iniciarSesionPorCVV(numeroTarjeta,CVV)) {
             JOptionPane.showMessageDialog(this, "CVV incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }

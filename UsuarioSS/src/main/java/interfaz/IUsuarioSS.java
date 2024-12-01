@@ -16,7 +16,7 @@ public interface IUsuarioSS {
             public UsuarioDTO iniciarSesion(String correo, String contrasena);
             public UsuarioDTO agregarUsuario(UsuarioDTO usuarioDTO);
                  public boolean agregarTarjeta(String usuarioId, TarjetasDTO tarjetasDTO);
-        public boolean iniciarSesionPorCVV(String cvv);
+  boolean iniciarSesionPorCVV(String numeroTarjeta, String cvv);
         public List<String> obtenerNumerosTarjetasPorUsuario(String idUsuario);
 
 

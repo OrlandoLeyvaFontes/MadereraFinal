@@ -180,11 +180,16 @@ private ICompraSS iCompraSS;
         int cantidad = (int) jTable1.getValueAt(row, 3);
         String idMadera = (String) jTable1.getValueAt(row, 4);
 
-        this.setVisible(false);
-DetallesProducto detallesProducto=new DetallesProducto(this, nombre, precio, descripcion, cantidad, usuarioId, menuPrincipal, idMadera, iMaderaSS, iCarritoSS, iCompraSS,iUsuarioSS);
-
-        
-        detallesProducto.setVisible(true);
+        if (cantidad == 0) {
+            JOptionPane.showMessageDialog(this, "La madera no está disponible", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            this.setVisible(false);
+            DetallesProducto detallesProducto = new DetallesProducto(
+                this, nombre, precio, descripcion, cantidad, usuarioId, 
+                menuPrincipal, idMadera, iMaderaSS, iCarritoSS, iCompraSS, iUsuarioSS
+            );
+            detallesProducto.setVisible(true);
+        }
     } else {
         JOptionPane.showMessageDialog(this,
             "Por favor, seleccione un producto de la tabla.",

@@ -134,10 +134,16 @@ public class TarjetasDisponibles2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      int selectedRow = jTable1.getSelectedRow();
+    if (selectedRow != -1) {
+        String numeroTarjeta = (String) jTable1.getValueAt(selectedRow, 0);
+        
         this.setVisible(false);
-        ConfirmarTarjeta2 confirmarTarjeta2 = new ConfirmarTarjeta2(iUsuarioSS, iCompraSS, usuarioId, menuPrincipal,iCarritoSS);
+        ConfirmarTarjeta2 confirmarTarjeta2 = new ConfirmarTarjeta2(iUsuarioSS, iCompraSS, usuarioId, menuPrincipal, iCarritoSS,numeroTarjeta);
         confirmarTarjeta2.setVisible(true);
-
+    } else {
+        JOptionPane.showMessageDialog(this, "Por favor, seleccione una tarjeta.", "Selección Requerida", JOptionPane.WARNING_MESSAGE);
+    }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
