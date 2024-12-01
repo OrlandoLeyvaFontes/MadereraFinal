@@ -27,11 +27,11 @@ public class Main2 {
         ICompraSS iCompraSS=new CompraSS();
         
         
-//        
-//           MaderaDTO maderaDTO2 = new MaderaDTO("Roble", "Madera de roble para muebles", 30, 250.75);
-//        iMaderaSS.agregarMadera(maderaDTO2);
-//        MaderaDTO maderaDTO3 = new MaderaDTO("Cedro", "Madera de cedro para decoración", 100, 350.0);
-//        iMaderaSS.agregarMadera(maderaDTO3);
+        
+           MaderaDTO maderaDTO2 = new MaderaDTO("Roble", "Madera de roble para muebles", 30, 250.75);
+        iMaderaSS.agregarMadera(maderaDTO2);
+        MaderaDTO maderaDTO3 = new MaderaDTO("Cedro", "Madera de cedro para decoración", 100, 350.0);
+        iMaderaSS.agregarMadera(maderaDTO3);
         
         
         IniciarSesion iniciarSesion=new IniciarSesion(iUsuarioSS, iMaderaSS,iCarritoSS,iCompraSS);
