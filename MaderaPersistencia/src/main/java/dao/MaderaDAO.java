@@ -188,27 +188,21 @@ public class MaderaDAO implements IMaderaDAO {
         }
     }
 
-    // Método para eliminar madera por ID
     public boolean eliminarMadera(String id) {
         try {
-            // Convertir el String ID a ObjectId
             ObjectId objectId = new ObjectId(id);
 
-            // Crear un filtro para buscar el documento por ID
             Document filter = new Document("_id", objectId);
 
-            // Intentar eliminar el documento
             DeleteResult result = collection.deleteOne(filter);
 
-            // Si la cantidad de documentos eliminados es mayor a 0, la eliminación fue exitosa
             return result.getDeletedCount() > 0;
         } catch (IllegalArgumentException e) {
-            // Si el ID no es válido, lanzamos una excepción
             throw new RuntimeException("El ID proporcionado no es válido: " + id, e);
         } catch (Exception e) {
-            // Captura cualquier otro error
             throw new RuntimeException("Error al intentar eliminar la madera", e);
         }
     }
+    
 
 }

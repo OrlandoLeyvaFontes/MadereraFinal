@@ -5,6 +5,7 @@
 package Pantallas2;
 
 import Pantallas2.MenuPrincipal;
+import interfaz.ICarritoSS;
 import interfaz.ICompraSS;
 import interfaz.IUsuarioSS;
 import java.util.List;
@@ -21,17 +22,20 @@ public class TarjetasDisponibles2 extends javax.swing.JFrame {
     private MenuPrincipal menuPrincipal;
     private IUsuarioSS iUsuarioSS;
     private ICompraSS iCompraSS;
+        private ICarritoSS iCarritoSS;
+
 
     /**
      * Creates new form TarjetasDisponibles2
      */
-    public TarjetasDisponibles2(String usuarioId, MenuPrincipal menuPrincipal, IUsuarioSS iUsuarioSS, ICompraSS iCompraSS
+    public TarjetasDisponibles2(String usuarioId, MenuPrincipal menuPrincipal, IUsuarioSS iUsuarioSS, ICompraSS iCompraSS,ICarritoSS iCarritoSS
     ) {
 
         this.usuarioId = usuarioId;
         this.menuPrincipal = menuPrincipal;
         this.iUsuarioSS = iUsuarioSS;
         this.iCompraSS = iCompraSS;
+        this.iCarritoSS=iCarritoSS;
         initComponents();
         cargarTarjetasEnTablas();
 
@@ -203,7 +207,7 @@ public class TarjetasDisponibles2 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);
-        ConfirmarTarjeta2 confirmarTarjeta2 = new ConfirmarTarjeta2(iUsuarioSS, iCompraSS, usuarioId, menuPrincipal);
+        ConfirmarTarjeta2 confirmarTarjeta2 = new ConfirmarTarjeta2(iUsuarioSS, iCompraSS, usuarioId, menuPrincipal,iCarritoSS);
         confirmarTarjeta2.setVisible(true);
 
         // TODO add your handling code here:

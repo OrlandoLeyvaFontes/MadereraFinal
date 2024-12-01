@@ -31,29 +31,30 @@ public class Main {
 //                try {
 
     
-    /*
-    Clase que sirve para probar metodos
-    */
-   CarritoDAO carritoDAO = new CarritoDAO();
-
-        // ObjectId del usuario cuyo carrito deseas vaciar
-        ObjectId usuarioId = new ObjectId("674a562c0367d20b3710d9b6"); // Reemplaza con un ID válido en tu base de datos
-
-        // Llamar al método para vaciar el carrito
-        try {
-            carritoDAO.vaciarCarrito(usuarioId);
-            System.out.println("El carrito del usuario ha sido eliminado exitosamente.");
-        } catch (Exception e) {
-            System.err.println("Error al vaciar el carrito: " + e.getMessage());
-        }
-    }
-
-          }
+//    /*
+//    Clase que sirve para probar metodos
+//    */
+//   CarritoDAO carritoDAO = new CarritoDAO();
+//
+//        // ObjectId del usuario cuyo carrito deseas vaciar
+//        ObjectId usuarioId = new ObjectId("674bd6656dc3474361df724e"); // Reemplaza con un ID válido en tu base de datos
+//
+//        // Llamar al método para vaciar el carrito
+//        try {
+//            carritoDAO.calcularTotalCarrito(usuarioId);
+//            System.out.println("El carrito del usuario ha sido eliminado exitosamente.");
+//        } catch (Exception e) {
+//            System.err.println("Error al vaciar el carrito: " + e.getMessage());
+//        }
+//    }
+//
+//          }
+    
+    
+    
     
     }
-    
-    
-
+}
     
 
 

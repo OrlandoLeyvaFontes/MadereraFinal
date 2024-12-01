@@ -8,6 +8,7 @@ import Pantallas2.MenuPrincipal;
 import dto.CompraDTO;
 import dto.MaderaDTO;
 import dto.UsuarioDTO;
+import interfaz.ICarritoSS;
 import interfaz.ICompraSS;
 import interfaz.IComprarCarritoSS;
 import interfaz.IUsuarioSS;
@@ -24,15 +25,17 @@ public class ConfirmarTarjeta2 extends javax.swing.JFrame {
     private ICompraSS iCompraSS;
     private String usuarioId;
     private MenuPrincipal menuPrincipal;
+    private ICarritoSS iCarritoSS;
 
     /**
      * Creates new form ConfirmarTarjeta2
      */
-    public ConfirmarTarjeta2(IUsuarioSS iUsuarioSS, ICompraSS iCompraSS, String usuarioId, MenuPrincipal menuPrincipal) {
+    public ConfirmarTarjeta2(IUsuarioSS iUsuarioSS, ICompraSS iCompraSS, String usuarioId, MenuPrincipal menuPrincipal,ICarritoSS iCarritoSS) {
         this.iUsuarioSS = iUsuarioSS;
         this.iCompraSS = iCompraSS;
         this.usuarioId = usuarioId;
         this.menuPrincipal = menuPrincipal;
+        this.iCarritoSS=iCarritoSS;
         initComponents();
     }
 
@@ -156,8 +159,7 @@ public class ConfirmarTarjeta2 extends javax.swing.JFrame {
         compraExitosa.setVisible(true);
 
         iCompraSS.comprarCarrito(usuarioId);
-
-        // TODO add your handling code here:
+iCarritoSS.vaciarCarrito(usuarioId);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

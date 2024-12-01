@@ -8,7 +8,6 @@ import Pantallas2.DetallesProducto;
 import Pantallas2.MenuPrincipal;
 import interfaz.ICompraSS;
 import interfaz.IUsuarioSS;
-import pantallas.TarjetasDisponibles;
 
 /**
  *

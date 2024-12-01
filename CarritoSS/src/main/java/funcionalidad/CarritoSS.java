@@ -14,26 +14,32 @@ import negocio.CarritoNegocio;
  *
  * @author Oley
  */
-public class CarritoSS implements  ICarritoSS{
-    ICarritoNegocio iCarritoNegocio; 
+public class CarritoSS implements ICarritoSS {
 
-    public CarritoSS( ) {
+    ICarritoNegocio iCarritoNegocio;    
+    
+    public CarritoSS() {
         this.iCarritoNegocio = new CarritoNegocio();
     }
-
+    
     @Override
     public void agregarProducto(String usuarioId, String maderaId, int cantidad) {
-iCarritoNegocio.agregarProducto(usuarioId, maderaId, cantidad);;
+        iCarritoNegocio.agregarProducto(usuarioId, maderaId, cantidad);;
     }
-
+    
     @Override
     public void eliminarProducto(String usuarioId, String maderaId) {
         iCarritoNegocio.eliminarProducto(usuarioId, maderaId);
     }
-
+    
     @Override
     public List<CarritoDTO> obtenerCarrito(String usuarioId) {
- return iCarritoNegocio.obtenerCarrito(usuarioId);
+        return iCarritoNegocio.obtenerCarrito(usuarioId);
     }
-
+    
+    @Override
+    public void vaciarCarrito(String usuarioId) {
+        iCarritoNegocio.vaciarCarrito(usuarioId);
+    }
+    
 }

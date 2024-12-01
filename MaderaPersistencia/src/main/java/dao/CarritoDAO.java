@@ -108,8 +108,15 @@ public class CarritoDAO implements ICarritoDAO {
         Document madera = maderaCollection.find(Filters.eq("_id", maderaId)).first();
         return madera != null ? madera.getString("nombre") : "Desconocida";
     }
-    public void vaciarCarrito(ObjectId usuarioId) {
-    collection.deleteOne(Filters.eq("usuarioId", usuarioId));
+public void vaciarCarrito(ObjectId usuarioId) {
+    Document carrito = collection.find(Filters.eq("usuarioId", usuarioId)).first();
+    if (carrito != null) {
+        collection.deleteOne(Filters.eq("_id", carrito.getObjectId("_id")));
+        System.out.println("Carrito eliminado: " + carrito.toJson());
+    } else {
+        System.out.println("No se encontró el carrito para el usuario: " + usuarioId);
+    }
 }
+
 
 }

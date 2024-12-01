@@ -15,5 +15,6 @@ public interface ICarritoSS {
                 public void agregarProducto(String usuarioId, String maderaId, int cantidad);
     public void eliminarProducto(String usuarioId, String maderaId);
 public List<CarritoDTO> obtenerCarrito(String usuarioId);
+public void vaciarCarrito(String usuarioId);
 
 }

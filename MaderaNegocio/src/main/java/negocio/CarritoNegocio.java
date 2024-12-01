@@ -101,7 +101,20 @@ public List<CarritoDTO> obtenerCarrito(String usuarioId) {
         ObjectId maderaObjectId = new ObjectId(maderaId);
         iCarritoDAO.eliminarProducto(usuarioObjectId, maderaObjectId);    }
 
-  
+    
+    
+  public void vaciarCarrito(String usuarioId) {
+        if (usuarioId == null || usuarioId.isEmpty()) {
+            throw new IllegalArgumentException("El ID del usuario no puede ser nulo o vacío.");
+        }
+
+        ObjectId usuarioObjectId = new ObjectId(usuarioId);
+
+        iCarritoDAO.vaciarCarrito(usuarioObjectId);
+
+        System.out.println("El carrito del usuario ha sido vaciado en la capa de negocio.");
+    }
+
     
     
 }
