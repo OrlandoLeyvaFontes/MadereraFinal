@@ -19,4 +19,7 @@ public interface ICarritoDAO {
     public Document obtenerCarrito(ObjectId usuarioId);
 
     public void eliminarProducto(ObjectId usuarioId, ObjectId maderaId);
+
+    public void vaciarCarrito(ObjectId usuarioId);
+
 }

@@ -34,19 +34,19 @@ public class Main {
     /*
     Clase que sirve para probar metodos
     */
-        
-        String uri = "mongodb://localhost:27017"; 
-        var mongoClient = MongoClients.create(uri);
-        MongoDatabase database = mongoClient.getDatabase("maderera");
-  
-       
-    MaderaDAO maderaDAO = new MaderaDAO();
-Madera madera = maderaDAO.buscarMaderaPorNombre("Pino");
-if (madera != null) {
-    System.out.println("Madera encontrada: " + madera.getNombre());
-} else {
-    System.out.println("No se encontró la madera.");
-}
+   CarritoDAO carritoDAO = new CarritoDAO();
+
+        // ObjectId del usuario cuyo carrito deseas vaciar
+        ObjectId usuarioId = new ObjectId("674a562c0367d20b3710d9b6"); // Reemplaza con un ID válido en tu base de datos
+
+        // Llamar al método para vaciar el carrito
+        try {
+            carritoDAO.vaciarCarrito(usuarioId);
+            System.out.println("El carrito del usuario ha sido eliminado exitosamente.");
+        } catch (Exception e) {
+            System.err.println("Error al vaciar el carrito: " + e.getMessage());
+        }
+    }
 
           }
     
