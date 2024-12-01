@@ -29,7 +29,7 @@ public class MaderaSS implements IMaderaSS {
 
     @Override
     public MaderaDTO agregarMadera(MaderaDTO maderaDTO) {
-  try {
+        try {
             MaderaDTO maderaDTO1 = iMadereraNegocio.agregarMadera(maderaDTO);
             if (maderaDTO1 != null) {
                 return maderaDTO1;
@@ -42,7 +42,8 @@ public class MaderaSS implements IMaderaSS {
             e.printStackTrace();
             throw new RuntimeException("Ocurrió un error al intentar agregar la madera: " + e.getMessage());
 
-        }    }
+        }
+    }
 
     @Override
     public MaderaDTO buscarMaderaPorId(String id) {
