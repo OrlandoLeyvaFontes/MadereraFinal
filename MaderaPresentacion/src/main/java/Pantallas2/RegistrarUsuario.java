@@ -72,23 +72,23 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         jTextField6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 410, 250, 40));
 
-        jButton1.setBackground(new java.awt.Color(0, 153, 0));
+        jButton1.setBackground(new java.awt.Color(255, 0, 0));
         jButton1.setText("Regresar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 500, 140, 50));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 490, 140, 50));
 
-        jButton2.setBackground(new java.awt.Color(255, 0, 0));
+        jButton2.setBackground(new java.awt.Color(0, 153, 0));
         jButton2.setText("Registrar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 500, 140, 50));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 490, 140, 50));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/RegistroUsuario.png"))); // NOI18N
         jLabel9.setText("jLabel9");
