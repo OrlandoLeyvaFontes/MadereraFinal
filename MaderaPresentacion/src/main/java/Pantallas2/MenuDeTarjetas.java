@@ -7,6 +7,7 @@ package Pantallas2;
 import Pantallas2.DetallesProducto;
 import Pantallas2.MenuPrincipal;
 import interfaz.ICompraSS;
+import interfaz.ISalidaSS;
 import interfaz.IUsuarioSS;
 
 /**
@@ -22,11 +23,12 @@ public class MenuDeTarjetas extends javax.swing.JFrame {
     private String idMadera;
     private ICompraSS iCompraSS;
     private IUsuarioSS iUsuarioSS;
+    private ISalidaSS  iSalidaSS;
 
     /**
      * Creates new form MenuDeTarjetas
      */
-    public MenuDeTarjetas(DetallesProducto detallesProducto, String usuarioId, MenuPrincipal menuPrincipal1, int cantidad, String idMadera, ICompraSS iCompraSS, IUsuarioSS iUsuarioSS
+    public MenuDeTarjetas(DetallesProducto detallesProducto, String usuarioId, MenuPrincipal menuPrincipal1, int cantidad, String idMadera, ICompraSS iCompraSS, IUsuarioSS iUsuarioSS,ISalidaSS  iSalidaSS
     ) {
         this.detallesProducto = detallesProducto;
         this.usuarioId = usuarioId;
@@ -35,6 +37,7 @@ public class MenuDeTarjetas extends javax.swing.JFrame {
         this.idMadera = idMadera;
         this.iCompraSS = iCompraSS;
         this.iUsuarioSS = iUsuarioSS;
+        this.iSalidaSS=iSalidaSS;
         initComponents();
     }
 
@@ -105,7 +108,7 @@ public class MenuDeTarjetas extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
         this.setVisible(false);
-        TarjetasDisponibles tarjetasDisponibles = new TarjetasDisponibles(this, usuarioId, menuPrincipal1, cantidad, idMadera, iCompraSS, iUsuarioSS);
+        TarjetasDisponibles tarjetasDisponibles = new TarjetasDisponibles(this, usuarioId, menuPrincipal1, cantidad, idMadera, iCompraSS, iUsuarioSS,iSalidaSS);
         tarjetasDisponibles.setVisible(true);
 
         // TODO add your handling code here:

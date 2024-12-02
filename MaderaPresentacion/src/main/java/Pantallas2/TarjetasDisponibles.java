@@ -10,6 +10,7 @@ import Pantallas2.MenuPrincipal;
 import dto.MaderaDTO;
 import dto.UsuarioDTO;
 import interfaz.ICompraSS;
+import interfaz.ISalidaSS;
 import interfaz.IUsuarioSS;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -30,11 +31,11 @@ public class TarjetasDisponibles extends javax.swing.JFrame {
     private String idMadera;
     private ICompraSS iCompraSS;
     private IUsuarioSS iUsuarioSS;
-
+private ISalidaSS  iSalidaSS;
     /**
      * Creates new form TarjetasDisponibles
      */
-    public TarjetasDisponibles(MenuDeTarjetas menuDeTarjetas, String usuarioId, MenuPrincipal menuPrincipal1, int cantidad, String idMadera, ICompraSS iCompraSS, IUsuarioSS iUsuarioSS
+    public TarjetasDisponibles(MenuDeTarjetas menuDeTarjetas, String usuarioId, MenuPrincipal menuPrincipal1, int cantidad, String idMadera, ICompraSS iCompraSS, IUsuarioSS iUsuarioSS,ISalidaSS  iSalidaSS
     ) {
         this.menuDeTarjetas = menuDeTarjetas;
         this.usuarioId = usuarioId;
@@ -43,6 +44,7 @@ public class TarjetasDisponibles extends javax.swing.JFrame {
         this.idMadera = idMadera;
         this.iCompraSS = iCompraSS;
         this.iUsuarioSS = iUsuarioSS;
+        this.iSalidaSS=iSalidaSS;
         initComponents();
         cargarTarjetasEnTablas();
     }
@@ -163,7 +165,7 @@ public class TarjetasDisponibles extends javax.swing.JFrame {
         String numeroTarjeta = (String) jTable1.getValueAt(selectedRow, 0);
         
         this.setVisible(false);
-        ConfirmarTarjeta confirmarTarjeta = new ConfirmarTarjeta(this, menuPrincipal1, cantidad, idMadera, usuarioId, iCompraSS, iUsuarioSS,numeroTarjeta);
+        ConfirmarTarjeta confirmarTarjeta = new ConfirmarTarjeta(this, menuPrincipal1, cantidad, idMadera, usuarioId, iCompraSS, iUsuarioSS,numeroTarjeta,iSalidaSS);
         confirmarTarjeta.setVisible(true);
     } else {
         JOptionPane.showMessageDialog(this, "Por favor, seleccione una tarjeta.", "Selección Requerida", JOptionPane.WARNING_MESSAGE);

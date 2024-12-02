@@ -9,6 +9,7 @@ import interfaz.ICarritoSS;
 import interfaz.ICompraSS;
 
 import interfaz.IMaderaSS;
+import interfaz.ISalidaSS;
 
 import interfaz.IUsuarioSS;
 
@@ -24,15 +25,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
 private  IMaderaSS  iMaderaSS;
 private  ICarritoSS iCarritoSS;
 private ICompraSS iCompraSS;
+private ISalidaSS  iSalidaSS;
     /**
      * Creates new form MenuPrincipal
      */
-    public MenuPrincipal(String usuarioId, IUsuarioSS iUsuarioSS, IMaderaSS  iMaderaSS, ICarritoSS iCarritoSS,ICompraSS iCompraSS) {
+    public MenuPrincipal(String usuarioId, IUsuarioSS iUsuarioSS, IMaderaSS  iMaderaSS, ICarritoSS iCarritoSS,ICompraSS iCompraSS,ISalidaSS  iSalidaSS) {
         this.usuarioId = usuarioId;
         this.iUsuarioSS = iUsuarioSS;
         this.iMaderaSS=iMaderaSS;
         this.iCarritoSS=iCarritoSS;
        this.iCompraSS=iCompraSS;
+       this.iSalidaSS=iSalidaSS;
         initComponents();
     }
 //public void setUsuarioId(String usuarioId) {
@@ -126,7 +129,7 @@ private ICompraSS iCompraSS;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);
-        ProductosVenta productosVenta = new ProductosVenta(this, usuarioId,iMaderaSS,iCarritoSS,iCompraSS,iUsuarioSS);
+        ProductosVenta productosVenta = new ProductosVenta(this, usuarioId,iMaderaSS,iCarritoSS,iCompraSS,iUsuarioSS,iSalidaSS);
         productosVenta.setVisible(true);
 
         // TODO add your handling code here:

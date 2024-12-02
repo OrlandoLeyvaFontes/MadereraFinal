@@ -10,6 +10,7 @@ import dto.MaderaDTO;
 import interfaz.ICarritoSS;
 import interfaz.ICompraSS;
 import interfaz.IMaderaSS;
+import interfaz.ISalidaSS;
 import interfaz.IUsuarioSS;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -32,13 +33,13 @@ public class DetallesProducto extends javax.swing.JFrame {
     private ICarritoSS iCarritoSS;
     private ICompraSS iCompraSS;
     private IUsuarioSS iUsuarioSS;
-
+private ISalidaSS  iSalidaSS;
     /**
      * Creates new form DetallesProducto
      */
     public DetallesProducto(ProductosVenta productosVenta, String nombreProducto, Double precioProducto, String descripcionProducto,
              int cantidad, String usuarioId, MenuPrincipal menuPrincipal1, String idMadera, IMaderaSS iMaderaSS, ICarritoSS iCarritoSS,
-             ICompraSS iCompraSS, IUsuarioSS iUsuarioSS
+             ICompraSS iCompraSS, IUsuarioSS iUsuarioSS,ISalidaSS  iSalidaSS
     ) {
         this.productosVenta = productosVenta;
         this.nombreProducto = nombreProducto;
@@ -52,6 +53,7 @@ public class DetallesProducto extends javax.swing.JFrame {
         this.iCarritoSS = iCarritoSS;
         this.iCompraSS = iCompraSS;
         this.iUsuarioSS = iUsuarioSS;
+        this.iSalidaSS=iSalidaSS;
         initComponents();
         mostrarDetallesProducto();
 
@@ -222,7 +224,7 @@ public class DetallesProducto extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
         this.setVisible(false);
-        MenuDeTarjetas menuDeTarjetas = new MenuDeTarjetas(this, usuarioId, menuPrincipal1, cantidad, idMadera, iCompraSS, iUsuarioSS);
+        MenuDeTarjetas menuDeTarjetas = new MenuDeTarjetas(this, usuarioId, menuPrincipal1, cantidad, idMadera, iCompraSS, iUsuarioSS,iSalidaSS);
         menuDeTarjetas.setVisible(true);
 
     }//GEN-LAST:event_jButton4ActionPerformed

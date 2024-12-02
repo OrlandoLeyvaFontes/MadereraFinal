@@ -20,4 +20,6 @@ public interface ICompraDAO {
     public void comprarCarrito(ObjectId usuarioId);
 
     public List<Document> obtenerHistorialCompras(ObjectId usuarioId);
+
+public Document obtenerCompraPorId(String compraId) ;
 }

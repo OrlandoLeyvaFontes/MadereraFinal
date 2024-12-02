@@ -13,6 +13,7 @@ import interfaz.IUsuarioSS;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 import Pantallas2.CompraExitosa;
+import interfaz.ISalidaSS;
 
 /**
  *
@@ -28,12 +29,13 @@ public class ConfirmarTarjeta extends javax.swing.JFrame {
     private ICompraSS iCompraSS;
     private IUsuarioSS iUsuarioSS;
     private String numeroTarjeta;
+    private ISalidaSS  iSalidaSS;
 
     /**
      * Creates new form ConfirmarTarjeta
      */
     public ConfirmarTarjeta(TarjetasDisponibles tarjetasDisponibles, MenuPrincipal menuPrincipal1,
-            int cantidad, String idMadera, String usuarioId, ICompraSS iCompraSS, IUsuarioSS iUsuarioSS,String numeroTarjeta) {
+            int cantidad, String idMadera, String usuarioId, ICompraSS iCompraSS, IUsuarioSS iUsuarioSS,String numeroTarjeta,ISalidaSS  iSalidaSS) {
         this.tarjetasDisponibles = tarjetasDisponibles;
         this.menuPrincipal1 = menuPrincipal1;
         this.cantidad = cantidad;
@@ -42,6 +44,7 @@ public class ConfirmarTarjeta extends javax.swing.JFrame {
         this.iCompraSS = iCompraSS;
         this.iUsuarioSS = iUsuarioSS;
         this.numeroTarjeta=numeroTarjeta;
+        this.iSalidaSS=iSalidaSS;
         initComponents();
     }
 
@@ -150,10 +153,17 @@ public class ConfirmarTarjeta extends javax.swing.JFrame {
     usuarioDTO.setId(usuarioId);
     compraDTO.setUsuario(usuarioDTO);
 
-    iCompraSS.guardarCompra(compraDTO);
+// String idCompra=   iCompraSS.guardarCompra(compraDTO);
+String idCompra = iCompraSS.guardarCompra(compraDTO);
 
+
+
+ String tipoMovimiento="Venta";
+iSalidaSS.crearSalidaDesdeCompra(idCompra, tipoMovimiento);
         
-        
+   
+    
+    
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

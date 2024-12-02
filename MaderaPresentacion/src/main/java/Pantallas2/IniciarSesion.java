@@ -8,6 +8,7 @@ import dto.UsuarioDTO;
 import interfaz.ICarritoSS;
 import interfaz.ICompraSS;
 import interfaz.IMaderaSS;
+import interfaz.ISalidaSS;
 
 import interfaz.IUsuarioSS;
 
@@ -25,12 +26,13 @@ public class IniciarSesion extends javax.swing.JFrame {
  private  IMaderaSS  iMaderaSS;
  private  ICarritoSS iCarritoSS;
  private ICompraSS iCompraSS;
- 
-    public IniciarSesion(IUsuarioSS iUsuarioSS, IMaderaSS  iMaderaSS, ICarritoSS iCarritoSS,ICompraSS iCompraSS) {
+ private ISalidaSS  iSalidaSS;
+    public IniciarSesion(IUsuarioSS iUsuarioSS, IMaderaSS  iMaderaSS, ICarritoSS iCarritoSS,ICompraSS iCompraSS,ISalidaSS  iSalidaSS) {
     this.iUsuarioSS=iUsuarioSS;
     this.iMaderaSS=iMaderaSS;
     this.iCarritoSS=iCarritoSS;
     this.iCompraSS=iCompraSS;
+    this.iSalidaSS=iSalidaSS;
         initComponents();
     }
 
@@ -127,7 +129,7 @@ registrarUsuario.setVisible(true);
 
         this.setVisible(false);
         
-        MenuPrincipal menuPrincipal = new MenuPrincipal(usuarioId, iUsuarioSS, iMaderaSS,iCarritoSS,iCompraSS);
+        MenuPrincipal menuPrincipal = new MenuPrincipal(usuarioId, iUsuarioSS, iMaderaSS,iCarritoSS,iCompraSS,iSalidaSS);
         menuPrincipal.setVisible(true);
 System.out.println("Credenciales correctas");
     } else {

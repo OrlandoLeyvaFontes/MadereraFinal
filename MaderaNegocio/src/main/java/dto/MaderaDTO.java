@@ -33,6 +33,10 @@ public class MaderaDTO {
         this.precioUnitario = precioUnitario;
     }
 
+    public MaderaDTO(String nombre) {
+        this.nombre = nombre;
+    }
+
     public String getId() {
         return id;
     }

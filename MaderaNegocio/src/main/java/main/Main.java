@@ -6,6 +6,7 @@ package main;
 
 import dto.CompraDTO;
 import dto.MaderaDTO;
+import dto.SalidaDTO;
 import dto.UsuarioDTO;
 import entidades.Madera;
 import entidades.Usuario;
@@ -15,6 +16,7 @@ import java.util.Calendar;
 import java.util.List;
 import negocio.CompraNegocio;
 import negocio.MaderaNegocio;
+import negocio.SalidaNegocio;
 import negocio.UsuarioNegocio;
 
 /**
@@ -23,45 +25,31 @@ import negocio.UsuarioNegocio;
  */
 public class Main {
     public static void main(String[] args) {
-//         // Crear una instancia del servicio o controlador que contiene el método buscarMaderaPorNombre
-//        MaderaNegocio maderaService = new MaderaNegocio(); // O la clase donde tengas el método
-//        IUsuarioNegocio iUsuarioNegocio=new UsuarioNegocio();
-//        
-//        String numeroTarjeta = "e"; // Número de tarjeta a probar
-//        String cvv = "e"; // CVV correspondiente
-//
-//        // Probar el método de inicio de sesión por CVV
-//        boolean sesionIniciada = iUsuarioNegocio.iniciarSesionPorCVV(numeroTarjeta, cvv);
-//
-//        // Mostrar el resultado
-//        if (sesionIniciada) {
-//            System.out.println("Inicio de sesión exitoso.");
-//        } else {
-//            System.out.println("Inicio de sesión fallido. Verifica los datos.");
-//        }
-//    }
-//        
-        
+  SalidaNegocio salidaNegocio = new SalidaNegocio();
+
+        // Crear una salida
+        String compraId = "674c1afbee9dc27969b9a79e"; 
+        String tipoMovimiento = "venta";
+
+        String salidaId = salidaNegocio.crearSalidaDesdeCompra(compraId, tipoMovimiento);
+        System.out.println("ID de la salida creada: " + salidaId);
+
+        SalidaDTO salidaDTO = salidaNegocio.obtenerSalida(salidaId);
+        if (salidaDTO != null) {
+            System.out.println("Salida encontrada:");
+            System.out.println("Compra ID: " + salidaDTO.getCompraId());
+            System.out.println("Tipo de movimiento: " + salidaDTO.getTipoMovimiento());
+            System.out.println("Madera: " + salidaDTO.getMadera());
+            System.out.println("Fecha: " + salidaDTO.getFecha());
+            System.out.println("Cantidad: " + salidaDTO.getCantidad());
+            System.out.println("Usuario: " + salidaDTO.getUsuario());
+        } else {
+            System.out.println("No se encontró la salida con ID: " + salidaId);
+        }
     }
+    
         
-//        // Nombre de la madera a buscar
-//        String nombreMadera = "Pino";
-//        
-//        // Llamar al método de búsqueda
-//        MaderaDTO maderaEncontrada = maderaService.buscarMaderaPorNombre(nombreMadera);
-//        
-//        // Verificar y mostrar resultados
-//        if (maderaEncontrada != null) {
-//            System.out.println("Madera encontrada:");
-//            System.out.println("ID: " + maderaEncontrada.getId());
-//            System.out.println("Nombre: " + maderaEncontrada.getNombre());
-//            System.out.println("Descripción: " + maderaEncontrada.getDescripcion());
-//            System.out.println("Cantidad: " + maderaEncontrada.getCantidad());
-//            System.out.println("Precio Unitario: " + maderaEncontrada.getPrecioUnitario());
-//        } else {
-//            System.out.println("No se encontró la madera con nombre: " + nombreMadera);
-//        }
-//    }
+    
     
     }
     

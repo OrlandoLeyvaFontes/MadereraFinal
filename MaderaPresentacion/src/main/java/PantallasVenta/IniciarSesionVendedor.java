@@ -11,6 +11,7 @@ import interfaz.ICompraSS;
 import interfaz.IEntradaSS;
 import interfaz.IMaderaSS;
 import interfaz.IMaderaVentaSS;
+import interfaz.ISalidaSS;
 import interfaz.IUsuarioSS;
 import interfaz.IUsuarioVentaSS;
 import javax.swing.JOptionPane;
@@ -28,7 +29,7 @@ public class IniciarSesionVendedor extends javax.swing.JFrame {
     private IMaderaSS iMaderaSS;
     private ICarritoSS iCarritoSS;
     private ICompraSS iCompraSS;
-
+private ISalidaSS  iSalidaSS;
     public IniciarSesionVendedor(IUsuarioVentaSS iUsuarioVentaSS, IMaderaVentaSS maderaVentaSS, IEntradaSS iEntradaSS) {
         this.iUsuarioVentaSS = iUsuarioVentaSS;
         this.maderaVentaSS = maderaVentaSS;
@@ -258,7 +259,7 @@ public class IniciarSesionVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        AdminYusario admin = new AdminYusario(iUsuarioSS, iMaderaSS, iCarritoSS, iCompraSS, iUsuarioVentaSS, maderaVentaSS, iEntradaSS);
+        AdminYusario admin = new AdminYusario(iUsuarioSS, iMaderaSS, iCarritoSS, iCompraSS, iUsuarioVentaSS, maderaVentaSS, iEntradaSS,iSalidaSS);
         admin.setVisible(true);
     }//GEN-LAST:event_btnRegresarActionPerformed
 

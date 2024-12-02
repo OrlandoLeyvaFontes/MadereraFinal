@@ -10,6 +10,7 @@ import Pantallas2.AdminYusario;
 import funcionalidad.CarritoSS;
 import funcionalidad.CompraSS;
 import funcionalidad.MaderaSS;
+import funcionalidad.SalidaSS;
 import funcionalidad.UsuarioSS;
 import funcionamiento.MaderaVentaSS;
 import interfaz.ICarritoSS;
@@ -17,6 +18,7 @@ import interfaz.ICompraSS;
 import interfaz.IEntradaSS;
 import interfaz.IMaderaSS;
 import interfaz.IMaderaVentaSS;
+import interfaz.ISalidaSS;
 import interfaz.IUsuarioSS;
 import interfaz.IUsuarioVentaSS;
 
@@ -34,8 +36,8 @@ public class MainPrincipal {
         ICarritoSS iCarritoSS = new CarritoSS();
         ICompraSS iCompraSS = new CompraSS();
         IEntradaSS iEntradaSS = new EntradaSS();
-
-        AdminYusario adminYusario = new AdminYusario(iUsuarioSS, iMaderaSS, iCarritoSS, iCompraSS, iUsuarioVentaSS, maderaVentaSS, iEntradaSS);
+        ISalidaSS  iSalidaSS=new SalidaSS();
+        AdminYusario adminYusario = new AdminYusario(iUsuarioSS, iMaderaSS, iCarritoSS, iCompraSS, iUsuarioVentaSS, maderaVentaSS, iEntradaSS,iSalidaSS);
         adminYusario.setVisible(true);
     }
 }

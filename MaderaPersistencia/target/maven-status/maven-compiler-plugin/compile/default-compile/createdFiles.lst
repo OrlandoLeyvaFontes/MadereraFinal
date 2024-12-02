@@ -15,6 +15,7 @@ interfacesDAO\ITarjetasDAO.class
 dao\CompraDAO.class
 entidades\Salida.class
 dao\MaderaDAO.class
+interfacesDAO\ISalidaDAO.class
 dao\SalidaDAO.class
 interfacesDAO\ICompraDAO.class
 entidades\Madera.class
