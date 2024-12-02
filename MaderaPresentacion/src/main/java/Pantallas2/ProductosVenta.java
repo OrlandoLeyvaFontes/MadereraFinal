@@ -10,6 +10,7 @@ import interfaz.ICarritoSS;
 import interfaz.ICompraSS;
 
 import interfaz.IMaderaSS;
+import interfaz.ISalidaSS;
 import interfaz.IUsuarioSS;
 
 import java.util.List;
@@ -28,11 +29,12 @@ private  IMaderaSS  iMaderaSS;
 private  ICarritoSS iCarritoSS;
 private ICompraSS iCompraSS;
      private IUsuarioSS iUsuarioSS;
+     private ISalidaSS  iSalidaSS;
 
     /**
      * Creates new form ProductosVenta
      */
-    public ProductosVenta(MenuPrincipal menuPrincipal,String usuarioId, IMaderaSS  iMaderaSS, ICarritoSS iCarritoSS,ICompraSS iCompraSS,IUsuarioSS iUsuarioSS
+    public ProductosVenta(MenuPrincipal menuPrincipal,String usuarioId, IMaderaSS  iMaderaSS, ICarritoSS iCarritoSS,ICompraSS iCompraSS,IUsuarioSS iUsuarioSS,ISalidaSS  iSalidaSS
     ) {
         this.menuPrincipal = menuPrincipal;
         this.usuarioId=usuarioId;
@@ -40,6 +42,7 @@ private ICompraSS iCompraSS;
         this.iCarritoSS=iCarritoSS;
         this.iCompraSS=iCompraSS;
         this.iUsuarioSS=iUsuarioSS;
+        this.iSalidaSS=iSalidaSS;
         initComponents();
         CargarMetodosIniciales();
     }
@@ -187,6 +190,7 @@ private ICompraSS iCompraSS;
             DetallesProducto detallesProducto = new DetallesProducto(
                 this, nombre, precio, descripcion, cantidad, usuarioId, 
                 menuPrincipal, idMadera, iMaderaSS, iCarritoSS, iCompraSS, iUsuarioSS
+                    ,iSalidaSS
             );
             detallesProducto.setVisible(true);
         }

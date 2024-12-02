@@ -13,6 +13,7 @@ import dto.UsuarioDTO;
 import entidades.Salida;
 import interfacesDAO.ICompraDAO;
 import interfacesDAO.ISalidaDAO;
+import interfacesDTO.ISalidaNegocio;
 import java.util.Calendar;
 import java.util.Date;
 import org.bson.Document;
@@ -22,7 +23,7 @@ import org.bson.types.ObjectId;
  *
  * @author Oley
  */
-public class SalidaNegocio {
+public class SalidaNegocio implements ISalidaNegocio {
 
       private final ISalidaDAO salidaDAO;
     private final ICompraDAO compraDAO;

@@ -45,36 +45,35 @@ public class CompraNegocio implements ICompraNegocio {
     }
 
     @Override
-    public void guardarCompra(CompraDTO compraDTO) {
-        try {
-            Madera madera = maderaDAO.obtenerMaderaPorId(new ObjectId(compraDTO.getMadera().getId()));
-            Usuario usuario = usuarioDAO.obtenerUsuarioPorId(new ObjectId(compraDTO.getUsuario().getId()));
-
-            if (madera == null) {
-                System.out.println("Madera no encontrada.");
-                return;
-            }
-            if (usuario == null) {
-                System.out.println("Usuario no encontrado.");
-                return;
-            }
-
-            Compra compra = new Compra();
-            compra.setId(new ObjectId());
-            compra.setFechaCompra(compraDTO.getFechaCompra());
-            compra.setCantidad(compraDTO.getCantidad());
-            compra.setMadera(madera);
-            compra.setUsuario(usuario);
-
-            iCompraDAO.guardarCompra(compra);
-
-            System.out.println("Compra procesada correctamente.");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error al procesar la compra.");
+    public String guardarCompra(CompraDTO compraDTO) {
+         try {
+        Madera madera = maderaDAO.obtenerMaderaPorId(new ObjectId(compraDTO.getMadera().getId()));
+        Usuario usuario = usuarioDAO.obtenerUsuarioPorId(new ObjectId(compraDTO.getUsuario().getId()));
+        if (madera == null) {
+            System.out.println("Madera no encontrada.");
+            return null;
         }
-
+        if (usuario == null) {
+            System.out.println("Usuario no encontrado.");
+            return null;
+        }
+        Compra compra = new Compra();
+        compra.setId(new ObjectId());
+        compra.setFechaCompra(compraDTO.getFechaCompra());
+        compra.setCantidad(compraDTO.getCantidad());
+        compra.setMadera(madera);
+        compra.setUsuario(usuario);
+        iCompraDAO.guardarCompra(compra);
+        System.out.println("Compra procesada correctamente.");
+        
+        // Devolver el ID que generaste
+        return compra.getId().toString();
+        
+    } catch (Exception e) {
+        e.printStackTrace();
+        System.out.println("Error al procesar la compra.");
+        return null;
+    }
     }
 
     @Override

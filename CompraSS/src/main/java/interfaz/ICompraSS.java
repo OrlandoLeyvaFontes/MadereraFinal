@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface ICompraSS {
         public void comprarCarrito(String usuarioId);
-                    void guardarCompra(CompraDTO compraDTO);
+                    String guardarCompra(CompraDTO compraDTO);
 public List<CompraDTO> obtenerHistorialCompras(String usuarioId);
 
 }

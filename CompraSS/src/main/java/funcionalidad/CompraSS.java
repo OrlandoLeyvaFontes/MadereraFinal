@@ -27,8 +27,8 @@ iCompraNegocio.comprarCarrito(usuarioId);
     }
 
     @Override
-    public void guardarCompra(CompraDTO compraDTO) {
-iCompraNegocio.guardarCompra(compraDTO);
+    public String guardarCompra(CompraDTO compraDTO) {
+return iCompraNegocio.guardarCompra(compraDTO);
     }
 
     @Override

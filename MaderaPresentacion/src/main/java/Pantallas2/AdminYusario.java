@@ -10,6 +10,7 @@ import interfaz.ICompraSS;
 import interfaz.IEntradaSS;
 import interfaz.IMaderaSS;
 import interfaz.IMaderaVentaSS;
+import interfaz.ISalidaSS;
 import interfaz.IUsuarioSS;
 import interfaz.IUsuarioVentaSS;
 
@@ -26,11 +27,11 @@ public class AdminYusario extends javax.swing.JFrame {
     private IUsuarioVentaSS iUsuarioVentaSS;
     private IMaderaVentaSS maderaVentaSS;
     private IEntradaSS iEntradaSS;
-
+private ISalidaSS  iSalidaSS;
     /**
      * Creates new form AdminYusario
      */
-    public AdminYusario(IUsuarioSS iUsuarioSS, IMaderaSS iMaderaSS, ICarritoSS iCarritoSS, ICompraSS iCompraSS, IUsuarioVentaSS iUsuarioVentaSS, IMaderaVentaSS maderaVentaSS, IEntradaSS iEntradaSS) {
+    public AdminYusario(IUsuarioSS iUsuarioSS, IMaderaSS iMaderaSS, ICarritoSS iCarritoSS, ICompraSS iCompraSS, IUsuarioVentaSS iUsuarioVentaSS, IMaderaVentaSS maderaVentaSS, IEntradaSS iEntradaSS,ISalidaSS  iSalidaSS) {
         this.iUsuarioSS = iUsuarioSS;
         this.iMaderaSS = iMaderaSS;
         this.iCarritoSS = iCarritoSS;
@@ -38,6 +39,7 @@ public class AdminYusario extends javax.swing.JFrame {
         this.iUsuarioVentaSS = iUsuarioVentaSS;
         this.maderaVentaSS = maderaVentaSS;
         this.iEntradaSS = iEntradaSS;
+        this.iSalidaSS=iSalidaSS;
         initComponents();
     }
 
@@ -111,7 +113,7 @@ public class AdminYusario extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
         this.setVisible(false);
-        IniciarSesion iniciarSesion = new IniciarSesion(iUsuarioSS, iMaderaSS, iCarritoSS, iCompraSS);
+        IniciarSesion iniciarSesion = new IniciarSesion(iUsuarioSS, iMaderaSS, iCarritoSS, iCompraSS,iSalidaSS);
         iniciarSesion.setVisible(true);
 
         // TODO add your handling code here:

@@ -9,10 +9,12 @@ import dto.MaderaDTO;
 import funcionalidad.CarritoSS;
 import funcionalidad.CompraSS;
 import funcionalidad.MaderaSS;
+import funcionalidad.SalidaSS;
 import funcionalidad.UsuarioSS;
 import interfaz.ICarritoSS;
 import interfaz.ICompraSS;
 import interfaz.IMaderaSS;
+import interfaz.ISalidaSS;
 import interfaz.IUsuarioSS;
 
 /**
@@ -25,7 +27,7 @@ public class Main2 {
         IMaderaSS  iMaderaSS=new MaderaSS();
         ICarritoSS iCarritoSS=new CarritoSS();
         ICompraSS iCompraSS=new CompraSS();
-        
+        ISalidaSS iSalidaSS=new SalidaSS();
         
         
            MaderaDTO maderaDTO2 = new MaderaDTO("Roble", "Madera de roble para muebles", 30, 250.75);
@@ -34,7 +36,7 @@ public class Main2 {
         iMaderaSS.agregarMadera(maderaDTO3);
         
         
-        IniciarSesion iniciarSesion=new IniciarSesion(iUsuarioSS, iMaderaSS,iCarritoSS,iCompraSS);
+        IniciarSesion iniciarSesion=new IniciarSesion(iUsuarioSS, iMaderaSS,iCarritoSS,iCompraSS,iSalidaSS);
         iniciarSesion.setVisible(true);
     }
 }
