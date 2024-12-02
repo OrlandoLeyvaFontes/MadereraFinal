@@ -5,6 +5,7 @@
 package interfaz;
 
 import dto.EntradasDTO;
+import java.util.List;
 
 /**
  *
@@ -12,5 +13,7 @@ import dto.EntradasDTO;
  */
 public interface IEntradaSS {
 
-    public EntradasDTO agregarMadera(EntradasDTO entradasDTO);
+    public EntradasDTO registrarEntrada(EntradasDTO entradasDTO);
+
+    public List<EntradasDTO> obtenerMaderas();
 }

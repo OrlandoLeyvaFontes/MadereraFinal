@@ -4,8 +4,14 @@
  */
 package PantallasVenta;
 
+import Pantallas2.AdminYusario;
 import dto.UsuarioVentasDTO;
+import interfaz.ICarritoSS;
+import interfaz.ICompraSS;
+import interfaz.IEntradaSS;
+import interfaz.IMaderaSS;
 import interfaz.IMaderaVentaSS;
+import interfaz.IUsuarioSS;
 import interfaz.IUsuarioVentaSS;
 import javax.swing.JOptionPane;
 
@@ -17,10 +23,16 @@ public class IniciarSesionVendedor extends javax.swing.JFrame {
 
     private IUsuarioVentaSS iUsuarioVentaSS;
     private IMaderaVentaSS maderaVentaSS;
+    private IEntradaSS iEntradaSS;
+    private IUsuarioSS iUsuarioSS;
+    private IMaderaSS iMaderaSS;
+    private ICarritoSS iCarritoSS;
+    private ICompraSS iCompraSS;
 
-    public IniciarSesionVendedor(IUsuarioVentaSS iUsuarioVentaSS, IMaderaVentaSS maderaVentaSS) {
+    public IniciarSesionVendedor(IUsuarioVentaSS iUsuarioVentaSS, IMaderaVentaSS maderaVentaSS, IEntradaSS iEntradaSS) {
         this.iUsuarioVentaSS = iUsuarioVentaSS;
         this.maderaVentaSS = maderaVentaSS;
+        this.iEntradaSS = iEntradaSS;
         initComponents();
     }
 
@@ -37,6 +49,7 @@ public class IniciarSesionVendedor extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         lblIniciarSesion = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
+        btnRegresar = new javax.swing.JButton();
         lblUsuario = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
         lblContraseña = new javax.swing.JLabel();
@@ -60,12 +73,21 @@ public class IniciarSesionVendedor extends javax.swing.JFrame {
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setText("Maderera en Linea");
 
+        btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(135, 135, 135)
+                .addContainerGap()
+                .addComponent(btnRegresar)
+                .addGap(54, 54, 54)
                 .addComponent(lblTitulo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -77,7 +99,9 @@ public class IniciarSesionVendedor extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblTitulo)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTitulo)
+                    .addComponent(btnRegresar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblIniciarSesion)
                 .addGap(12, 12, 12))
@@ -189,7 +213,7 @@ public class IniciarSesionVendedor extends javax.swing.JFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         this.setVisible(false);
-        RegistrarUsuarioVendedor registrarUsuarioVendedor = new RegistrarUsuarioVendedor(iUsuarioVentaSS, this);
+        RegistrarUsuarioVendedor registrarUsuarioVendedor = new RegistrarUsuarioVendedor(iUsuarioVentaSS, this, iEntradaSS, maderaVentaSS);
         registrarUsuarioVendedor.setVisible(true);
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -216,11 +240,11 @@ public class IniciarSesionVendedor extends javax.swing.JFrame {
             if (usuarioVentasDTO != null) {
                 // Inicio de sesión exitoso
                 System.out.println(usuarioVentasDTO);
-                JOptionPane.showMessageDialog(this, "Bienvenido " +  "!", "Inicio de Sesión Exitoso", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Bienvenido " + "!", "Inicio de Sesión Exitoso", JOptionPane.INFORMATION_MESSAGE);
                 // Ocultar la ventana actual y abrir el menú del vendedor
                 this.setVisible(false);
 
-                MenuVendedor menuVendedor = new MenuVendedor(maderaVentaSS);
+                MenuVendedor menuVendedor = new MenuVendedor(maderaVentaSS, iEntradaSS);
                 menuVendedor.setVisible(true);
             } else {
                 // Credenciales incorrectas
@@ -233,9 +257,15 @@ public class IniciarSesionVendedor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        AdminYusario admin = new AdminYusario(iUsuarioSS, iMaderaSS, iCarritoSS, iCompraSS, iUsuarioVentaSS, maderaVentaSS, iEntradaSS);
+        admin.setVisible(true);
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciarSesion;
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblContraseña;

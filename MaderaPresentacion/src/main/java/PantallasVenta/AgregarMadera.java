@@ -4,9 +4,12 @@
  */
 package PantallasVenta;
 
+import dto.EntradasDTO;
 import dto.MaderaDTO;
 import interfacesDAO.IMaderaDAO;
+import interfaz.IEntradaSS;
 import interfaz.IMaderaVentaSS;
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,9 +21,11 @@ public class AgregarMadera extends javax.swing.JFrame {
     private IMaderaVentaSS maderaVentaSS;
     private IMaderaDAO maderaDAO;
     private MaderaDTO maderaDTO;
+    private IEntradaSS iEntradaSS;
 
-    public AgregarMadera(IMaderaVentaSS maderaVentaSS) {
+    public AgregarMadera(IMaderaVentaSS maderaVentaSS, IEntradaSS iEntradaSS) {
         this.maderaVentaSS = maderaVentaSS;
+        this.iEntradaSS = iEntradaSS;
         initComponents();
     }
 
@@ -37,6 +42,7 @@ public class AgregarMadera extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         lblAgregarProducto = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
+        btnAtras = new javax.swing.JButton();
         lblNombre = new javax.swing.JLabel();
         lblPrecio = new javax.swing.JLabel();
         lblCantidad = new javax.swing.JLabel();
@@ -63,12 +69,21 @@ public class AgregarMadera extends javax.swing.JFrame {
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setText("Maderera en Linea");
 
+        btnAtras.setText("Atras");
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(135, 135, 135)
+                .addContainerGap()
+                .addComponent(btnAtras)
+                .addGap(54, 54, 54)
                 .addComponent(lblTitulo)
                 .addContainerGap(131, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -80,7 +95,9 @@ public class AgregarMadera extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblTitulo)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTitulo)
+                    .addComponent(btnAtras))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblAgregarProducto)
                 .addGap(12, 12, 12))
@@ -216,16 +233,30 @@ public class AgregarMadera extends javax.swing.JFrame {
 
         try {
             maderaVentaSS.agregarMadera(maderaDTO);
+            EntradasDTO entradaDTO = new EntradasDTO();
+            entradaDTO.setTipoEntrada("Compra a Provedor");
+            entradaDTO.setTipoMadera(nombre);
+            entradaDTO.setCantidad(cantidadInt);
+            entradaDTO.setFechaEntrada(LocalDate.now());
+            // Llamar al método para guardar la entrada
+            iEntradaSS.registrarEntrada(entradaDTO);
             JOptionPane.showMessageDialog(this, "La madera ha sido guardada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar la madera.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        MisProductos misProductos = new MisProductos(maderaVentaSS, maderaDAO, maderaDTO);
+        MisProductos misProductos = new MisProductos(maderaVentaSS, maderaDAO, maderaDTO, iEntradaSS);
         misProductos.setVisible(true);
     }//GEN-LAST:event_btnAgregarActionPerformed
 
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        this.setVisible(false);
+        MisProductos misProductos = new MisProductos(maderaVentaSS, maderaDAO, maderaDTO, iEntradaSS);
+        misProductos.setVisible(true);
+    }//GEN-LAST:event_btnAtrasActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnAtras;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblAgregarProducto;

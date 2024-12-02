@@ -4,6 +4,7 @@
  */
 package main;
 
+import Funcionamiento.EntradaSS;
 import Funcionamiento.UsuarioVentaSS;
 import Pantallas2.AdminYusario;
 import funcionalidad.CarritoSS;
@@ -13,6 +14,7 @@ import funcionalidad.UsuarioSS;
 import funcionamiento.MaderaVentaSS;
 import interfaz.ICarritoSS;
 import interfaz.ICompraSS;
+import interfaz.IEntradaSS;
 import interfaz.IMaderaSS;
 import interfaz.IMaderaVentaSS;
 import interfaz.IUsuarioSS;
@@ -23,16 +25,17 @@ import interfaz.IUsuarioVentaSS;
  * @author Oley
  */
 public class MainPrincipal {
-        
-        public static void main(String[] args) {
-          IUsuarioVentaSS iUsuarioVentaSS = new UsuarioVentaSS();
+
+    public static void main(String[] args) {
+        IUsuarioVentaSS iUsuarioVentaSS = new UsuarioVentaSS();
         IMaderaVentaSS maderaVentaSS = new MaderaVentaSS();
-         IUsuarioSS iUsuarioSS=new UsuarioSS();
-        IMaderaSS  iMaderaSS=new MaderaSS();
-        ICarritoSS iCarritoSS=new CarritoSS();
-        ICompraSS iCompraSS=new CompraSS();
-        
-        AdminYusario adminYusario=new AdminYusario(iUsuarioSS, iMaderaSS, iCarritoSS, iCompraSS, iUsuarioVentaSS, maderaVentaSS);
+        IUsuarioSS iUsuarioSS = new UsuarioSS();
+        IMaderaSS iMaderaSS = new MaderaSS();
+        ICarritoSS iCarritoSS = new CarritoSS();
+        ICompraSS iCompraSS = new CompraSS();
+        IEntradaSS iEntradaSS = new EntradaSS();
+
+        AdminYusario adminYusario = new AdminYusario(iUsuarioSS, iMaderaSS, iCarritoSS, iCompraSS, iUsuarioVentaSS, maderaVentaSS, iEntradaSS);
         adminYusario.setVisible(true);
     }
 }

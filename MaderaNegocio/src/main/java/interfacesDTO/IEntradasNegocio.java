@@ -5,6 +5,8 @@
 package interfacesDTO;
 
 import dto.EntradasDTO;
+import entidades.Entradas;
+import java.util.List;
 
 /**
  *
@@ -13,4 +15,6 @@ import dto.EntradasDTO;
 public interface IEntradasNegocio {
     
      public EntradasDTO agregarEntrada(EntradasDTO entradaDTO);
+     
+     public List<EntradasDTO> obtenerMaderas();
 }

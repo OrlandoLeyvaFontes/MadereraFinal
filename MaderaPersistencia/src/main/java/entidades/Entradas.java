@@ -13,6 +13,7 @@ import org.bson.types.ObjectId;
  * @author aleja
  */
 public class Entradas implements Serializable {
+
     private ObjectId id;
     private String tipoEntrada;
     private String tipoMadera;
@@ -27,10 +28,6 @@ public class Entradas implements Serializable {
         this.fechaEntrada = fechaEntrada;
     }
 
-    
-
-    
-
     public Entradas() {
     }
 
@@ -41,8 +38,6 @@ public class Entradas implements Serializable {
     public void setId(ObjectId id) {
         this.id = id;
     }
-    
-    
 
     public String getTipoEntrada() {
         return tipoEntrada;
@@ -76,9 +71,4 @@ public class Entradas implements Serializable {
         this.fechaEntrada = fechaEntrada;
     }
 
-    
-
-    
-
-    
 }

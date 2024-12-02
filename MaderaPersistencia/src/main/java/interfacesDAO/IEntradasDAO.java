@@ -5,13 +5,15 @@
 package interfacesDAO;
 
 import entidades.Entradas;
+import java.util.List;
 
 /**
  *
  * @author aleja
  */
 public interface IEntradasDAO {
-    
-     public Entradas guardarEntrada(Entradas entrada);
-     
+
+    public Entradas guardarEntrada(Entradas entrada);
+
+    public List<Entradas> obtenerMaderas();
 }

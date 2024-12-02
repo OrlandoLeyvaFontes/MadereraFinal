@@ -6,6 +6,7 @@ package PantallasVenta;
 
 import dto.MaderaDTO;
 import interfacesDAO.IMaderaDAO;
+import interfaz.IEntradaSS;
 import interfaz.IMaderaVentaSS;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -21,11 +22,13 @@ public class MisProductos extends javax.swing.JFrame {
     private IMaderaVentaSS maderaVentaSS;
     private IMaderaDAO maderaDAO;
     private MaderaDTO maderaDTO1;
+    private IEntradaSS iEntradaSS;
 
-    public MisProductos(IMaderaVentaSS maderaVentaSS, IMaderaDAO maderaDAO, MaderaDTO maderaDTO1) {
+    public MisProductos(IMaderaVentaSS maderaVentaSS, IMaderaDAO maderaDAO, MaderaDTO maderaDTO1, IEntradaSS iEntradaSS) {
         this.maderaVentaSS = maderaVentaSS;
         this.maderaDAO = maderaDAO;
         this.maderaDTO1 = maderaDTO1;
+        this.iEntradaSS = iEntradaSS;
         initComponents();
         CargarMetodosIniciales();
 
@@ -94,6 +97,7 @@ public class MisProductos extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         lblIniciarSesion = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
+        btnMenu = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMaderas = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
@@ -116,6 +120,13 @@ public class MisProductos extends javax.swing.JFrame {
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setText("Maderera en Linea");
 
+        btnMenu.setText("Menu");
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -125,7 +136,9 @@ public class MisProductos extends javax.swing.JFrame {
                 .addComponent(lblIniciarSesion)
                 .addGap(237, 237, 237))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(189, 189, 189)
+                .addContainerGap()
+                .addComponent(btnMenu)
+                .addGap(108, 108, 108)
                 .addComponent(lblTitulo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -133,7 +146,9 @@ public class MisProductos extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblTitulo)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTitulo)
+                    .addComponent(btnMenu))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblIniciarSesion)
                 .addContainerGap(20, Short.MAX_VALUE))
@@ -221,7 +236,7 @@ public class MisProductos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        AgregarMadera agregarMadera = new AgregarMadera(maderaVentaSS);
+        AgregarMadera agregarMadera = new AgregarMadera(maderaVentaSS, iEntradaSS);
         agregarMadera.setVisible(true);
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -231,7 +246,7 @@ public class MisProductos extends javax.swing.JFrame {
             return;
         }
         MaderaDTO maderaDTO = maderaVentaSS.buscarMaderaPorId(this.getSelectedIdTableMaderas());
-        EditarMadera editarMadera = new EditarMadera(maderaDTO, maderaVentaSS);
+        EditarMadera editarMadera = new EditarMadera(maderaDTO, maderaVentaSS, iEntradaSS);
         editarMadera.setVisible(true);
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -244,10 +259,16 @@ public class MisProductos extends javax.swing.JFrame {
         cargarMaderasEnTablas();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        MenuVendedor menuVendedor = new MenuVendedor(maderaVentaSS, iEntradaSS);
+        menuVendedor.setVisible(true);
+    }//GEN-LAST:event_btnMenuActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnMenu;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
