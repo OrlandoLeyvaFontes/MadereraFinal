@@ -7,7 +7,8 @@ package main;
 import dto.CompraDTO;
 import dto.MaderaDTO;
 import dto.UsuarioDTO;
-import dto.VentaDTO;
+import entidades.Madera;
+import entidades.Usuario;
 import interfacesDTO.ICompraNegocio;
 import interfacesDTO.IUsuarioNegocio;
 import java.util.Calendar;
@@ -15,7 +16,6 @@ import java.util.List;
 import negocio.CompraNegocio;
 import negocio.MaderaNegocio;
 import negocio.UsuarioNegocio;
-import negocio.VentaNegocio;
 
 /**
  *
@@ -23,25 +23,26 @@ import negocio.VentaNegocio;
  */
 public class Main {
     public static void main(String[] args) {
-         // Crear una instancia del servicio o controlador que contiene el método buscarMaderaPorNombre
-        MaderaNegocio maderaService = new MaderaNegocio(); // O la clase donde tengas el método
-        IUsuarioNegocio iUsuarioNegocio=new UsuarioNegocio();
+//         // Crear una instancia del servicio o controlador que contiene el método buscarMaderaPorNombre
+//        MaderaNegocio maderaService = new MaderaNegocio(); // O la clase donde tengas el método
+//        IUsuarioNegocio iUsuarioNegocio=new UsuarioNegocio();
+//        
+//        String numeroTarjeta = "e"; // Número de tarjeta a probar
+//        String cvv = "e"; // CVV correspondiente
+//
+//        // Probar el método de inicio de sesión por CVV
+//        boolean sesionIniciada = iUsuarioNegocio.iniciarSesionPorCVV(numeroTarjeta, cvv);
+//
+//        // Mostrar el resultado
+//        if (sesionIniciada) {
+//            System.out.println("Inicio de sesión exitoso.");
+//        } else {
+//            System.out.println("Inicio de sesión fallido. Verifica los datos.");
+//        }
+//    }
+//        
         
-        String numeroTarjeta = "e"; // Número de tarjeta a probar
-        String cvv = "e"; // CVV correspondiente
-
-        // Probar el método de inicio de sesión por CVV
-        boolean sesionIniciada = iUsuarioNegocio.iniciarSesionPorCVV(numeroTarjeta, cvv);
-
-        // Mostrar el resultado
-        if (sesionIniciada) {
-            System.out.println("Inicio de sesión exitoso.");
-        } else {
-            System.out.println("Inicio de sesión fallido. Verifica los datos.");
-        }
     }
-        
-        
         
 //        // Nombre de la madera a buscar
 //        String nombreMadera = "Pino";
