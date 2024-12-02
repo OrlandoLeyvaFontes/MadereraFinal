@@ -11,6 +11,7 @@ import conexion.Conexion;
 import entidades.Madera;
 import entidades.Salida;
 import entidades.Usuario;
+import interfacesDAO.ISalidaDAO;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -22,7 +23,7 @@ import org.bson.types.ObjectId;
  *
  * @author Oley
  */
-public class SalidaDAO {
+public class SalidaDAO implements  ISalidaDAO{
        private final MongoCollection<Document> collection;
     private final MongoCollection<Document> coleccionCompras;
 
@@ -38,24 +39,21 @@ public ObjectId crearSalidaDesdeCompra(ObjectId compraId, String nuevoTipoMovimi
         throw new IllegalArgumentException("No se encontró la compra con el ID proporcionado");
     }
 
-    // Imprimir el documento para ver su estructura
     System.out.println("Documento de compra: " + compraDoc.toJson());
 
-    // Obtener la fecha de compra
     Date fechaCompra = compraDoc.getDate("fechaCompra");
     if (fechaCompra == null) {
         System.out.println("La fechaCompra es nula para la compra con ID: " + compraId);
-        fechaCompra = new Date(); // Usar la fecha actual si la fechaCompra es nula
+        fechaCompra = new Date(); 
     }
 
-    // Creamos el documento de salida con la información de la compra
     Document salidaDoc = new Document()
         .append("compraId", compraId)
         .append("tipoMovimiento", nuevoTipoMovimiento)
-        .append("madera", compraDoc.getString("maderaNombre"))  // Ajustado el nombre del campo
-        .append("calendar", fechaCompra)        // Ajustado el nombre del campo
+        .append("madera", compraDoc.getString("maderaNombre"))  
+        .append("calendar", fechaCompra)        
         .append("cantidad", compraDoc.getInteger("cantidad"))
-        .append("usuario", compraDoc.getString("usuarioNombre")); // Ajustado el nombre del campo
+        .append("usuario", compraDoc.getString("usuarioNombre")); 
 
     // Insertamos la nueva salida
     collection.insertOne(salidaDoc);
@@ -65,7 +63,6 @@ public ObjectId crearSalidaDesdeCompra(ObjectId compraId, String nuevoTipoMovimi
 }
 
 
-    // Método para obtener la salida creada
   public Salida obtenerSalida(ObjectId salidaId) {
     Document doc = collection.find(Filters.eq("_id", salidaId)).first();
     
@@ -80,7 +77,7 @@ public ObjectId crearSalidaDesdeCompra(ObjectId compraId, String nuevoTipoMovimi
             calendar.setTime(date);
         } else {
             System.out.println("La fecha es nula para la salida con ID: " + salidaId);
-            calendar.setTime(new Date()); // Set default current date
+            calendar.setTime(new Date());
         }
         
         int cantidad = doc.getInteger("cantidad");
@@ -92,4 +89,15 @@ public ObjectId crearSalidaDesdeCompra(ObjectId compraId, String nuevoTipoMovimi
     }
     return null;
 }
+//   public Document obtenerCompraPorId(String compraId) {
+//        return collection.find(Filters.eq("_id", new ObjectId(compraId))).first();
+//    }
+//    public String crearSalida(Document salidaDoc) {
+//        collection.insertOne(salidaDoc);
+//        return salidaDoc.getObjectId("_id").toString();
+//    }
+//
+//    public Document obtenerSalidaPorId(String salidaId) {
+//        return collection.find(Filters.eq("_id", new ObjectId(salidaId))).first();
+//    }
 }

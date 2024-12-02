@@ -216,4 +216,7 @@ public class CompraDAO implements ICompraDAO {
 
         return historialCompras;
     }
+     public Document obtenerCompraPorId(String compraId) {
+        return collection.find(Filters.eq("_id", new ObjectId(compraId))).first();
+    }
 }

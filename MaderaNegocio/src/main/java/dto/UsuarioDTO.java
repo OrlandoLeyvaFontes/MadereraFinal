@@ -35,6 +35,10 @@ public class UsuarioDTO {
         this.contraseña = contraseña;
     }
 
+    public UsuarioDTO(String nombre) {
+        this.nombre = nombre;
+    }
+
     public String getId() {
         return id;
     }

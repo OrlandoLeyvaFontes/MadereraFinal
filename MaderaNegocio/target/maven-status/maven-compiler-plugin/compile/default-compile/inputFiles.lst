@@ -3,6 +3,7 @@ C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\Mader
 C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaNegocio\src\main\java\interfacesDTO\IUsuarioVentasNegocio.java
 C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaNegocio\src\main\java\dto\CarritoDTO.java
 C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaNegocio\src\main\java\interfacesDTO\IEntradasNegocio.java
+C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaNegocio\src\main\java\dto\SalidaDTO.java
 C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaNegocio\src\main\java\negocio\TarjetasNegocio.java
 C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaNegocio\src\main\java\negocio\CompraNegocio.java
 C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaNegocio\src\main\java\negocio\MaderaNegocio.java
@@ -15,6 +16,7 @@ C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\Mader
 C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaNegocio\src\main\java\negocio\UsuarioNegocio.java
 C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaNegocio\src\main\java\dto\TarjetasDTO.java
 C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaNegocio\src\main\java\interfacesDTO\ICompraNegocio.java
+C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaNegocio\src\main\java\negocio\SalidaNegocio.java
 C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaNegocio\src\main\java\negocio\CarritoNegocio.java
 C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaNegocio\src\main\java\dto\CompraDTO.java
 C:\Users\Oley\Documents\GitHub\ProyectoDS\BaseDatos2024_2025\MadereraFinal\MaderaNegocio\src\main\java\negocio\EntradasNegocio.java
