@@ -15,5 +15,9 @@ public interface IEntradasDAO {
 
     public Entradas guardarEntrada(Entradas entrada);
 
-    public List<Entradas> obtenerMaderas();
+    public List<Entradas> obtenerEntradas();
+
+    public List<Entradas> obtenerEntradasPorTipo(String tipoEntrada);
+
+    public List<String> obtenerTiposEntrada();
 }

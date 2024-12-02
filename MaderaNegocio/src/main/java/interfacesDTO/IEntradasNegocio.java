@@ -13,8 +13,12 @@ import java.util.List;
  * @author aleja
  */
 public interface IEntradasNegocio {
-    
-     public EntradasDTO agregarEntrada(EntradasDTO entradaDTO);
-     
-     public List<EntradasDTO> obtenerMaderas();
+
+    public EntradasDTO agregarEntrada(EntradasDTO entradaDTO);
+
+    public List<EntradasDTO> obtenerEntradas();
+
+    public List<EntradasDTO> obtenerEntradasPorTipo(String tipoEntrada);
+
+    public List<String> obtenerTiposEntrada();
 }

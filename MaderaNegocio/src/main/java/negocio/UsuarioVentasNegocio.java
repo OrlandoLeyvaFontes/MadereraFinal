@@ -11,7 +11,7 @@ import interfacesDAO.IUsuarioVentasDAO;
 import interfacesDTO.IMadereraNegocio;
 import interfacesDTO.IUsuarioVentasNegocio;
 import org.bson.types.ObjectId;
-
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -29,13 +29,15 @@ public class UsuarioVentasNegocio implements IUsuarioVentasNegocio {
 
     @Override
     public UsuarioVentasDTO agregarUsuario(UsuarioVentasDTO usuarioVentasDTO) {
+        String hashedPassword = BCrypt.hashpw(usuarioVentasDTO.getContraseña(), BCrypt.gensalt());
+
         UsuarioVentas usuarioVentas = new UsuarioVentas();
         usuarioVentas.setNombre(usuarioVentasDTO.getNombre());
         usuarioVentas.setApellidoMaterno(usuarioVentasDTO.getApellidoMaterno());
         usuarioVentas.setApellidoPaterno(usuarioVentasDTO.getApellidoPaterno());
         usuarioVentas.setCorreo(usuarioVentasDTO.getCorreo());
         usuarioVentas.setNumero(usuarioVentasDTO.getNumero());
-        usuarioVentas.setContraseña(usuarioVentasDTO.getContraseña());
+        usuarioVentas.setContraseña(hashedPassword);
         System.out.println(usuarioVentas);
 
         // Guardar usuario en la base de datos
@@ -58,25 +60,31 @@ public class UsuarioVentasNegocio implements IUsuarioVentasNegocio {
 
     @Override
     public UsuarioVentasDTO iniciarSesion(String correo, String contrasena) {
+
+        // Obtener el usuario de la base de datos por correo
         UsuarioVentas usuarioVenta = usuarioVentasDAO.iniciarSesion(correo, contrasena);
 
+        // Verificar si el usuario existe
         if (usuarioVenta == null) {
             throw new RuntimeException("Credenciales incorrectas");
         }
 
-        if (usuarioVenta != null) {
-            UsuarioVentasDTO usuarioVentaDTO = new UsuarioVentasDTO();
-            usuarioVentaDTO.getNombre();
-            usuarioVentaDTO.getApellidoMaterno();
-            usuarioVentaDTO.getApellidoPaterno();
-            usuarioVentaDTO.getCorreo();
-            usuarioVentaDTO.getNumero();
-            usuarioVentaDTO.getContraseña();
-            return usuarioVentaDTO;
-        } else {
-            System.out.println("Informacion Incorrectas");
-            return null;
-        }
+//        // Validar la contraseña usando BCrypt
+//        boolean contraseñaValida = BCrypt.checkpw(contrasena, usuarioVenta.getContraseña());
+//        if (!contraseñaValida) {
+//            throw new RuntimeException("Credenciales incorrectas");
+//        }
+
+        // Crear el DTO y asignar los valores
+        UsuarioVentasDTO usuarioVentaDTO = new UsuarioVentasDTO();
+        usuarioVentaDTO.setNombre(usuarioVenta.getNombre());
+        usuarioVentaDTO.setApellidoMaterno(usuarioVenta.getApellidoMaterno());
+        usuarioVentaDTO.setApellidoPaterno(usuarioVenta.getApellidoPaterno());
+        usuarioVentaDTO.setCorreo(usuarioVenta.getCorreo());
+        usuarioVentaDTO.setNumero(usuarioVenta.getNumero());
+        usuarioVentaDTO.setContraseña(usuarioVenta.getContraseña());
+
+        return usuarioVentaDTO;
     }
 
     @Override
