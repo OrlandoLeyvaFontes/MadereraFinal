@@ -28,12 +28,13 @@ public class DetallesCarritos extends javax.swing.JFrame {
     private ICarritoSS iCarritoSS;
     private ICompraSS iCompraSS;
     private IUsuarioSS iUsuarioSS;
+    private String idMadera;
 
     /**
      * Creates new form DetallesCarritos
      */
     public DetallesCarritos(ProductosVenta productosVenta, String usuarioId, MenuPrincipal menuPrincipal, IMaderaSS iMaderaSS,
-             ICarritoSS iCarritoSS, ICompraSS iCompraSS, IUsuarioSS iUsuarioSS
+             ICarritoSS iCarritoSS, ICompraSS iCompraSS, IUsuarioSS iUsuarioSS,String idMadera
     ) {
         this.productosVenta = productosVenta;
         this.usuarioId = usuarioId;
@@ -42,6 +43,7 @@ public class DetallesCarritos extends javax.swing.JFrame {
         this.iCarritoSS = iCarritoSS;
         this.iCompraSS = iCompraSS;
         this.iUsuarioSS = iUsuarioSS;
+        this.idMadera=idMadera;
         initComponents();
         CargarMetodosIniciales();
     }
@@ -76,6 +78,7 @@ public class DetallesCarritos extends javax.swing.JFrame {
             };
             modeloTabla.addRow(fila);
         }
+        
 
         // Asigna el modelo a la tabla
         jTable1.setModel(modeloTabla);
@@ -83,7 +86,11 @@ public class DetallesCarritos extends javax.swing.JFrame {
         // Muestra el total en la etiqueta correspondiente
 //        jLabel4.setText(String.format("%.2f", total));
     }
+  
 
+
+   
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -98,7 +105,7 @@ public class DetallesCarritos extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -128,7 +135,7 @@ public class DetallesCarritos extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 450, 260, 70));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 450, 260, 70));
 
         jButton2.setBackground(new java.awt.Color(204, 0, 0));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/flecha-izquierda.png"))); // NOI18N
@@ -139,8 +146,8 @@ public class DetallesCarritos extends javax.swing.JFrame {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 140, 90));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CarritoCompras.png"))); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 560));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CarritoCompras.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 560));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -168,14 +175,14 @@ public class DetallesCarritos extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.setVisible(false);
         menuPrincipal.setVisible(true);
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

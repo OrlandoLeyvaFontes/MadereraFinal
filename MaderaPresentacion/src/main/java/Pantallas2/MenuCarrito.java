@@ -24,12 +24,13 @@ public class MenuCarrito extends javax.swing.JFrame {
     private ICarritoSS iCarritoSS;
     private ICompraSS iCompraSS;
     private IUsuarioSS iUsuarioSS;
+    private String idMadera;
 
     /**
      * Creates new form MenuCarrito
      */
     public MenuCarrito(ProductosVenta productosVenta, String usuarioId, MenuPrincipal menuPrincipal, IMaderaSS iMaderaSS, ICarritoSS iCarritoSS,
-             ICompraSS iCompraSS, IUsuarioSS iUsuarioSS
+             ICompraSS iCompraSS, IUsuarioSS iUsuarioSS,String idMadera
     ) {
         this.productosVenta = productosVenta;
         this.usuarioId = usuarioId;
@@ -38,6 +39,7 @@ public class MenuCarrito extends javax.swing.JFrame {
         this.iCarritoSS = iCarritoSS;
         this.iCompraSS = iCompraSS;
         this.iUsuarioSS = iUsuarioSS;
+        this.idMadera=idMadera;
         initComponents();
     }
 
@@ -108,7 +110,7 @@ public class MenuCarrito extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.setVisible(false);
-        DetallesCarritos detallesCarritos = new DetallesCarritos(productosVenta, usuarioId, menuPrincipal, iMaderaSS, iCarritoSS, iCompraSS, iUsuarioSS);
+        DetallesCarritos detallesCarritos = new DetallesCarritos(productosVenta, usuarioId, menuPrincipal, iMaderaSS, iCarritoSS, iCompraSS, iUsuarioSS,idMadera);
         detallesCarritos.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed

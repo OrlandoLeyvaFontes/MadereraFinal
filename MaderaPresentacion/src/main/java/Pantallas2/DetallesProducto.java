@@ -230,7 +230,7 @@ public class DetallesProducto extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         iCarritoSS.agregarProducto(usuarioId, idMadera, cantidad);
         this.setVisible(false);
-        MenuCarrito menuCarrito = new MenuCarrito(productosVenta, usuarioId, menuPrincipal1, iMaderaSS, iCarritoSS, iCompraSS, iUsuarioSS);
+        MenuCarrito menuCarrito = new MenuCarrito(productosVenta, usuarioId, menuPrincipal1, iMaderaSS, iCarritoSS, iCompraSS, iUsuarioSS,idMadera);
         menuCarrito.setVisible(true);
 
         // TODO add your handling code here:
