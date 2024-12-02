@@ -10,7 +10,9 @@ import entidades.Entradas;
 import interfacesDAO.IEntradasDAO;
 import interfacesDTO.IEntradasNegocio;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -48,4 +50,28 @@ public class EntradasNegocio implements IEntradasNegocio {
             throw new RuntimeException("Error al agregar la entrada.");
         }
     }
+
+    @Override
+    public List<EntradasDTO> obtenerMaderas() {
+        List<EntradasDTO> listaMaderasDTO = new ArrayList<>();
+        try {
+            List<Entradas> listaEntradas = iEntradasDAO.obtenerMaderas();
+            for (Entradas entradas : listaEntradas) {
+                EntradasDTO entradasDTO = new EntradasDTO();
+                entradasDTO.setId(entradas.getId().toString());
+                entradasDTO.setTipoEntrada(entradas.getTipoEntrada());
+                entradasDTO.setTipoMadera(entradas.getTipoMadera());
+                entradasDTO.setCantidad(entradas.getCantidad());
+                if (entradas.getFechaEntrada() != null) {
+                    entradasDTO.setFechaEntrada(entradas.getFechaEntrada());
+                }
+                listaMaderasDTO.add(entradasDTO);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error al obtener las maderas", e);
+        }
+        return listaMaderasDTO;
+    }
+
 }

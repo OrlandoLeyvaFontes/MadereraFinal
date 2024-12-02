@@ -5,8 +5,11 @@
 package PantallasVenta;
 
 import dao.MaderaDAO;
+import dto.EntradasDTO;
 import dto.MaderaDTO;
+import interfaz.IEntradaSS;
 import interfaz.IMaderaVentaSS;
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,14 +22,16 @@ public class EditarMadera extends javax.swing.JFrame {
     MaderaDAO maderaDAO;
     MisProductos misProductos;
     private IMaderaVentaSS maderaVentaSS;
+    private IEntradaSS iEntradaSS;
 
     /**
      * Creates new form EditarMadera
      */
-    public EditarMadera(MaderaDTO maderaDTO, IMaderaVentaSS maderaVentaSS) {
+    public EditarMadera(MaderaDTO maderaDTO, IMaderaVentaSS maderaVentaSS, IEntradaSS iEntradaSS) {
         initComponents();
         this.maderaDTO = maderaDTO;
         this.maderaVentaSS = maderaVentaSS;
+        this.iEntradaSS= iEntradaSS;
         fillFields();
     }
 
@@ -221,19 +226,26 @@ public class EditarMadera extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        // Obtener la cantidad actual antes de la edición
+        int entrada = this.maderaDTO.getCantidad();
+
+        // Capturar los datos del formulario
         String nombre = txtNombre.getText();
         String precio = txtPrecio.getText();
         String descripcion = txtDescripcion.getText();
         String cantidad = txtCantidad.getText();
 
+        // Validar campos vacíos
         if (nombre.isEmpty() || descripcion.isEmpty() || precio == null || cantidad.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
+        // Convertir los valores ingresados
         double precioUnitario = Double.parseDouble(precio);
         int cantidadInt = Integer.parseInt(cantidad);
 
+        // Crear un nuevo objeto MaderaDTO con los valores editados
         MaderaDTO maderaDTO = new MaderaDTO();
         maderaDTO.setId(this.maderaDTO.getId());
         maderaDTO.setNombre(nombre);
@@ -241,22 +253,55 @@ public class EditarMadera extends javax.swing.JFrame {
         maderaDTO.setCantidad(cantidadInt);
         maderaDTO.setDescripcion(descripcion);
 
-        //        MaderaDTO maderaDTO1= new MaderaDTO(this.maderaDTO.getId(), nombre, descripcion, cantidadInt, precioUnitario);
         System.out.println(this.maderaDTO.getId());
+
+        // Verificar si la cantidad ha cambiado
+        if (entrada != cantidadInt) {
+            int diferencia = cantidadInt - entrada;
+
+            if (diferencia > 0) {
+                // Es una entrada
+                JOptionPane.showMessageDialog(this, "Se ha registrado una ENTRADA de " + diferencia + " unidades.", "Entrada", JOptionPane.INFORMATION_MESSAGE);
+
+                // Registrar la entrada (puedes añadir lógica para guardar en base de datos si es necesario)
+                EntradasDTO entradaDTO = new EntradasDTO();
+                entradaDTO.setTipoEntrada("Devolucion");
+                entradaDTO.setTipoMadera(nombre);
+                entradaDTO.setCantidad(diferencia);
+                entradaDTO.setFechaEntrada(LocalDate.now());
+                // Llamar al método para guardar la entrada
+                iEntradaSS.registrarEntrada(entradaDTO);
+            } else {
+                // Es una salida
+                JOptionPane.showMessageDialog(this, "Se ha registrado una SALIDA de " + Math.abs(diferencia) + " unidades.", "Salida", JOptionPane.INFORMATION_MESSAGE);
+
+                // Registrar la salida (puedes añadir lógica para guardar en base de datos si es necesario)
+                EntradasDTO salidaDTO = new EntradasDTO();
+                salidaDTO.setTipoEntrada("Salida");
+                salidaDTO.setTipoMadera(nombre);
+                salidaDTO.setCantidad(Math.abs(diferencia));
+                salidaDTO.setFechaEntrada(LocalDate.now());
+                // Llamar al método para guardar la salida
+                iEntradaSS.registrarEntrada(salidaDTO);
+            }
+        }
+
+        // Actualizar la madera en la base de datos
         try {
             maderaVentaSS.editarMadera(maderaDTO);
             JOptionPane.showMessageDialog(this, "La madera ha sido editada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar la madera.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        MisProductos misProductos = new MisProductos(maderaVentaSS, maderaDAO, maderaDTO);
-        misProductos.setVisible(true);
 
+        // Volver a la vista de productos
+        MisProductos misProductos = new MisProductos(maderaVentaSS, maderaDAO, maderaDTO, iEntradaSS);
+        misProductos.setVisible(true);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         this.setVisible(false);
-        MisProductos misProductos = new MisProductos(maderaVentaSS, maderaDAO, maderaDTO);
+        MisProductos misProductos = new MisProductos(maderaVentaSS, maderaDAO, maderaDTO, iEntradaSS);
         misProductos.setVisible(true);    }//GEN-LAST:event_btnRegresarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

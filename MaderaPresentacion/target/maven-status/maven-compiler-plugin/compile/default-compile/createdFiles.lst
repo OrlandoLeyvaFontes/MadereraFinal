@@ -5,7 +5,9 @@ PantallasVenta\IniciarSesionVendedor$1.class
 PantallasVenta\MenuVendedor$1.class
 Pantallas2\DetallesProducto$4.class
 Pantallas2\IniciarSesion$2.class
+PantallasVenta\InventarioEntradas$4.class
 Pantallas2\MenuCarrito.class
+PantallasVenta\IniciarSesionVendedor$4.class
 Pantallas2\MenuPrincipal$5.class
 Pantallas2\MenuDeTarjetas$1.class
 Pantallas2\HistorialCompras$1.class
@@ -24,11 +26,13 @@ Pantallas2\DetallesProducto$1.class
 Pantallas2\AdminYusario.class
 Pantallas2\CompraExitosa$1.class
 Pantallas2\TarjetasDisponibles.class
+PantallasVenta\MisProductos$5.class
 Pantallas2\TarjetasDisponibles2$2.class
 Pantallas2\AgregarTarjeta$1.class
 Pantallas2\AgregarTarjeta.class
 PantallasVenta\InventarioEntradas$1.class
 Pantallas2\RegistrarUsuario$1.class
+PantallasVenta\InventarioEntradas$2.class
 Pantallas2\MenuDeTarjetas.class
 PantallasVenta\EditarMadera.class
 PantallasVenta\IniciarSesionVendedor$3.class
@@ -46,6 +50,7 @@ Pantallas2\TarjetasDisponibles$1.class
 Pantallas2\IniciarSesion$1.class
 PantallasVenta\MisProductos.class
 Pantallas2\ProductosVenta.class
+PantallasVenta\InventarioEntradas$3.class
 main\MainPrincipal.class
 Pantallas2\DetallesProducto$3.class
 Pantallas2\MenuPrincipal$4.class
@@ -54,11 +59,13 @@ Pantallas2\ProductosVenta$2.class
 Pantallas2\TarjetasDisponibles$2.class
 Pantallas2\MenuDeTarjetas$2.class
 Pantallas2\BuscarPorNombre$3.class
+PantallasVenta\AgregarMadera$2.class
 Pantallas2\MenuCarrito$1.class
 Pantallas2\AgregarTarjeta$2.class
 PantallasVenta\MisProductos$4.class
 Pantallas2\TarjetasDisponibles2$1.class
 Pantallas2\ConfirmarTarjeta$3.class
+PantallasVenta\RegistrarUsuarioVendedor$4.class
 PantallasVenta\RegistrarUsuarioVendedor.class
 Pantallas2\TarjetasDisponibles2.class
 PantallasVenta\RegistrarUsuarioVendedor$1.class
@@ -80,6 +87,7 @@ main\Main2.class
 PantallasVenta\MisProductos$2.class
 PantallasVenta\IniciarSesionVendedor.class
 Pantallas2\CompraExitosa.class
+PantallasVenta\MenuVendedor$3.class
 PantallasVenta\MenuVendedor.class
 Pantallas2\DetallesProducto$5.class
 Pantallas2\HistorialCompras$3.class

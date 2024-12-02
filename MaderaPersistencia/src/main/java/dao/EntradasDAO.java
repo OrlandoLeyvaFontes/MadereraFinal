@@ -4,17 +4,23 @@
  */
 package dao;
 
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import conexion.Conexion;
 import entidades.Entradas;
 import interfacesDAO.IEntradasDAO;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import org.bson.Document;
 
 /**
  *
  * @author aleja
  */
-public class EntradasDAO implements IEntradasDAO{
+public class EntradasDAO implements IEntradasDAO {
 
     private final MongoCollection<Document> collection;
 
@@ -40,5 +46,31 @@ public class EntradasDAO implements IEntradasDAO{
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public List<Entradas> obtenerMaderas() {
+        List<Entradas> listaMaderas = new ArrayList<>();
+        try {
+            FindIterable<Document> documentos = collection.find();
+            for (Document documento : documentos) {
+                Entradas entrada = new Entradas();
+                entrada.setId(documento.getObjectId("_id"));
+                entrada.setTipoEntrada(documento.getString("Entradas"));
+                entrada.setTipoMadera(documento.getString("tipoMadera"));
+                entrada.setCantidad(documento.getInteger("cantidad"));
+                Date fechaMongo = documento.getDate("fechaEntrada");
+                if (fechaMongo != null) {
+                    entrada.setFechaEntrada(fechaMongo.toInstant()
+                            .atZone(ZoneId.systemDefault())
+                            .toLocalDate());
+                }
+
+                listaMaderas.add(entrada);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listaMaderas;
     }
 }

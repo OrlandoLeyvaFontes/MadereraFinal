@@ -7,6 +7,7 @@ package Funcionamiento;
 import dto.EntradasDTO;
 import interfacesDTO.IEntradasNegocio;
 import interfaz.IEntradaSS;
+import java.util.List;
 import negocio.EntradasNegocio;
 
 /**
@@ -22,7 +23,7 @@ public class EntradaSS implements IEntradaSS {
     }
 
     @Override
-    public EntradasDTO agregarMadera(EntradasDTO entradasDTO) {
+    public EntradasDTO registrarEntrada(EntradasDTO entradasDTO) {
         try {
             EntradasDTO entradasDTO1 = iEntradaNegocio.agregarEntrada(entradasDTO);
             if (entradasDTO1 != null) {
@@ -36,6 +37,20 @@ public class EntradaSS implements IEntradaSS {
             e.printStackTrace();
             throw new RuntimeException("Ocurrió un error al intentar agregar la entrada: " + e.getMessage());
 
+        }
+    }
+
+    public List<EntradasDTO> obtenerMaderas() {
+        try {
+            List<EntradasDTO> entradasDTO1 = iEntradaNegocio.obtenerMaderas();
+            if (entradasDTO1 != null) {
+                return entradasDTO1;
+            } else {
+                throw new RuntimeException("Error al imprimir las entradas: ");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Ocurrio un error al intentar imprimir las entradas: " + e.getMessage());
         }
     }
 

@@ -7,6 +7,7 @@ package Pantallas2;
 import PantallasVenta.IniciarSesionVendedor;
 import interfaz.ICarritoSS;
 import interfaz.ICompraSS;
+import interfaz.IEntradaSS;
 import interfaz.IMaderaSS;
 import interfaz.IMaderaVentaSS;
 import interfaz.IUsuarioSS;
@@ -17,23 +18,26 @@ import interfaz.IUsuarioVentaSS;
  * @author Oley
  */
 public class AdminYusario extends javax.swing.JFrame {
-  private IUsuarioSS iUsuarioSS;
-private  IMaderaSS  iMaderaSS;
-private  ICarritoSS iCarritoSS;
-private ICompraSS iCompraSS;
- private IUsuarioVentaSS iUsuarioVentaSS;
+
+    private IUsuarioSS iUsuarioSS;
+    private IMaderaSS iMaderaSS;
+    private ICarritoSS iCarritoSS;
+    private ICompraSS iCompraSS;
+    private IUsuarioVentaSS iUsuarioVentaSS;
     private IMaderaVentaSS maderaVentaSS;
+    private IEntradaSS iEntradaSS;
 
     /**
      * Creates new form AdminYusario
      */
-    public AdminYusario( IUsuarioSS iUsuarioSS, IMaderaSS  iMaderaSS, ICarritoSS iCarritoSS,ICompraSS iCompraSS,IUsuarioVentaSS iUsuarioVentaSS, IMaderaVentaSS maderaVentaSS) {
-          this.iUsuarioSS = iUsuarioSS;
-        this.iMaderaSS=iMaderaSS;
-        this.iCarritoSS=iCarritoSS;
-       this.iCompraSS=iCompraSS;
+    public AdminYusario(IUsuarioSS iUsuarioSS, IMaderaSS iMaderaSS, ICarritoSS iCarritoSS, ICompraSS iCompraSS, IUsuarioVentaSS iUsuarioVentaSS, IMaderaVentaSS maderaVentaSS, IEntradaSS iEntradaSS) {
+        this.iUsuarioSS = iUsuarioSS;
+        this.iMaderaSS = iMaderaSS;
+        this.iCarritoSS = iCarritoSS;
+        this.iCompraSS = iCompraSS;
         this.iUsuarioVentaSS = iUsuarioVentaSS;
         this.maderaVentaSS = maderaVentaSS;
+        this.iEntradaSS = iEntradaSS;
         initComponents();
     }
 
@@ -97,24 +101,22 @@ private ICompraSS iCompraSS;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-       this.setVisible(false);
-IniciarSesionVendedor iniciarSesionVendedor=new IniciarSesionVendedor(iUsuarioVentaSS, maderaVentaSS);
-iniciarSesionVendedor.setVisible(true);
+        this.setVisible(false);
+        IniciarSesionVendedor iniciarSesionVendedor = new IniciarSesionVendedor(iUsuarioVentaSS, maderaVentaSS, iEntradaSS);
+        iniciarSesionVendedor.setVisible(true);
 
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-this.setVisible(false);
-IniciarSesion iniciarSesion=new IniciarSesion(iUsuarioSS, iMaderaSS, iCarritoSS, iCompraSS);
-iniciarSesion.setVisible(true);
-
+        this.setVisible(false);
+        IniciarSesion iniciarSesion = new IniciarSesion(iUsuarioSS, iMaderaSS, iCarritoSS, iCompraSS);
+        iniciarSesion.setVisible(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
