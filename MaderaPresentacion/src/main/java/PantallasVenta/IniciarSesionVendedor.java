@@ -241,7 +241,7 @@ private ISalidaSS  iSalidaSS;
             if (usuarioVentasDTO != null) {
                 // Inicio de sesión exitoso
                 System.out.println(usuarioVentasDTO);
-                JOptionPane.showMessageDialog(this, "Bienvenido " + "!", "Inicio de Sesión Exitoso", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Bienvenido " + usuarioVentasDTO.getNombre() + " " + usuarioVentasDTO.getApellidoPaterno() + "!", "Inicio de Sesión Exitoso", JOptionPane.INFORMATION_MESSAGE);
                 // Ocultar la ventana actual y abrir el menú del vendedor
                 this.setVisible(false);
 

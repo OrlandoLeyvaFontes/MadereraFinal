@@ -8,6 +8,9 @@ import dto.EntradasDTO;
 import interfaz.IEntradaSS;
 import interfaz.IMaderaVentaSS;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,19 +30,41 @@ public class InventarioEntradas extends javax.swing.JFrame {
         this.iEntradaSS = iEntradaSS;
         this.maderaVentaSS = maderaVentaSS;
         initComponents();
-        CargarMetodosIniciales();
+        llenarComboBoxTipoEntrada(comboTipoEntrada);
+
     }
 
-    private void CargarMetodosIniciales() {
-        cargarMaderasEnTablas();
+    private void llenarComboBoxTipoEntrada(JComboBox<String> comboTipoEntrada) {
+        try {
+            List<String> tiposEntrada = iEntradaSS.obtenerTiposEntrada();
+
+            comboTipoEntrada.removeAllItems();
+
+            for (String tipo : tiposEntrada) {
+                comboTipoEntrada.addItem(tipo);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al cargar los tipos de entradas", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
-    private void cargarMaderasEnTablas() {
-        List<EntradasDTO> maderaLista = this.iEntradaSS.obtenerMaderas();
+    // Método para cargar entradas filtradas por tipo
+    private void cargarEntradasPorTipo(String tipoEntrada) {
+        List<EntradasDTO> entradasFiltradas = this.iEntradaSS.obtenerEntradasPorTipo(tipoEntrada);
+        if (entradasFiltradas != null && !entradasFiltradas.isEmpty()) {
+            llenarTablaMaderas(entradasFiltradas);
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay entradas disponibles para el tipo ingresado.", "Información", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    private void cargarTodasLasEntradas() {
+        List<EntradasDTO> maderaLista = this.iEntradaSS.obtenerEntradas();
         if (maderaLista != null && !maderaLista.isEmpty()) {
             llenarTablaMaderas(maderaLista);
         } else {
-            JOptionPane.showMessageDialog(this, "No hay datos disponibles para mostrar.", "Información", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No hay entradas disponibles para mostrar.", "Información", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
@@ -54,7 +79,7 @@ public class InventarioEntradas extends javax.swing.JFrame {
                 return canEdit[columnIndex];
             }
         };
-        
+
         for (EntradasDTO entrada : entradaLista) {
             model.addRow(new Object[]{
                 entrada.getTipoEntrada(),
@@ -83,8 +108,10 @@ public class InventarioEntradas extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblEntradas = new javax.swing.JTable();
-        txtEntrada = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        btnEntradasTotales = new javax.swing.JButton();
+        comboTipoEntrada = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -140,22 +167,13 @@ public class InventarioEntradas extends javax.swing.JFrame {
         tblEntradas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tblEntradas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Tipo Entrada", "Tipo Madera", "Cantidad", "Fecha"
             }
         ));
         jScrollPane1.setViewportView(tblEntradas);
-
-        txtEntrada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEntradaActionPerformed(evt);
-            }
-        });
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -164,31 +182,61 @@ public class InventarioEntradas extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Entradas Totales");
+
+        btnEntradasTotales.setText("Traer");
+        btnEntradasTotales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntradasTotalesActionPerformed(evt);
+            }
+        });
+
+        comboTipoEntrada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        comboTipoEntrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboTipoEntradaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(177, 177, 177)
-                .addComponent(txtEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
-                .addComponent(btnBuscar)
-                .addContainerGap(147, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(43, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(217, 217, 217)
+                        .addComponent(comboTipoEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnBuscar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(263, 263, 263)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(278, 278, 278)
+                        .addComponent(btnEntradasTotales)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar))
+                    .addComponent(btnBuscar)
+                    .addComponent(comboTipoEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnEntradasTotales)
+                .addGap(14, 14, 14))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -215,23 +263,35 @@ public class InventarioEntradas extends javax.swing.JFrame {
         menuVendedor.setVisible(true);
     }//GEN-LAST:event_btnMisProductosActionPerformed
 
-    private void txtEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEntradaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEntradaActionPerformed
-
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        String tipoEntrada = (String) comboTipoEntrada.getSelectedItem();
+        if (!tipoEntrada.isEmpty()) {
+            cargarEntradasPorTipo(tipoEntrada);
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese un tipo de entrada.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
 
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void btnEntradasTotalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntradasTotalesActionPerformed
+        cargarTodasLasEntradas();
+    }//GEN-LAST:event_btnEntradasTotalesActionPerformed
+
+    private void comboTipoEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoEntradaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboTipoEntradaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnEntradasTotales;
     private javax.swing.JButton btnMisProductos;
+    private javax.swing.JComboBox<String> comboTipoEntrada;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblIniciarSesion;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTable tblEntradas;
-    private javax.swing.JTextField txtEntrada;
     // End of variables declaration//GEN-END:variables
 }

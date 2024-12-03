@@ -52,10 +52,10 @@ public class EntradasNegocio implements IEntradasNegocio {
     }
 
     @Override
-    public List<EntradasDTO> obtenerMaderas() {
+    public List<EntradasDTO> obtenerEntradas() {
         List<EntradasDTO> listaMaderasDTO = new ArrayList<>();
         try {
-            List<Entradas> listaEntradas = iEntradasDAO.obtenerMaderas();
+            List<Entradas> listaEntradas = iEntradasDAO.obtenerEntradas();
             for (Entradas entradas : listaEntradas) {
                 EntradasDTO entradasDTO = new EntradasDTO();
                 entradasDTO.setId(entradas.getId().toString());
@@ -74,4 +74,40 @@ public class EntradasNegocio implements IEntradasNegocio {
         return listaMaderasDTO;
     }
 
+    public List<EntradasDTO> obtenerEntradasPorTipo(String tipoEntrada) {
+        List<EntradasDTO> listaEntradasDTO = new ArrayList<>();
+        try {
+            // Obtener las entradas filtradas por tipo
+            List<Entradas> listaEntradas = iEntradasDAO.obtenerEntradasPorTipo(tipoEntrada);
+
+            for (Entradas entradas : listaEntradas) {
+                EntradasDTO entradasDTO = new EntradasDTO();
+                entradasDTO.setId(entradas.getId().toString());
+                entradasDTO.setTipoEntrada(entradas.getTipoEntrada());
+                entradasDTO.setTipoMadera(entradas.getTipoMadera());
+                entradasDTO.setCantidad(entradas.getCantidad());
+                if (entradas.getFechaEntrada() != null) {
+                    entradasDTO.setFechaEntrada(entradas.getFechaEntrada());
+                }
+                listaEntradasDTO.add(entradasDTO);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error al obtener las entradas por tipo", e);
+        }
+        return listaEntradasDTO;
+    }
+
+    public List<String> obtenerTiposEntrada() {
+        List<String> tiposEntrada = new ArrayList<>();
+        try {
+            // Obtener los tipos de entrada desde el DAO
+            tiposEntrada = iEntradasDAO.obtenerTiposEntrada();  // Llamar al método DAO que obtiene los tipos únicos
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error al obtener los tipos de entrada", e);
+        }
+        return tiposEntrada;
+    }
 }

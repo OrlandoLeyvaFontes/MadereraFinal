@@ -15,5 +15,9 @@ public interface IEntradaSS {
 
     public EntradasDTO registrarEntrada(EntradasDTO entradasDTO);
 
-    public List<EntradasDTO> obtenerMaderas();
+    public List<EntradasDTO> obtenerEntradas();
+    
+    public List<EntradasDTO> obtenerEntradasPorTipo(String tipoEntrada);
+    
+    public List<String> obtenerTiposEntrada();
 }

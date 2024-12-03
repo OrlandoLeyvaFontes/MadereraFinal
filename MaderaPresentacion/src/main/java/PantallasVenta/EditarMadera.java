@@ -31,7 +31,7 @@ public class EditarMadera extends javax.swing.JFrame {
         initComponents();
         this.maderaDTO = maderaDTO;
         this.maderaVentaSS = maderaVentaSS;
-        this.iEntradaSS= iEntradaSS;
+        this.iEntradaSS = iEntradaSS;
         fillFields();
     }
 
@@ -282,7 +282,7 @@ public class EditarMadera extends javax.swing.JFrame {
                 salidaDTO.setCantidad(Math.abs(diferencia));
                 salidaDTO.setFechaEntrada(LocalDate.now());
                 // Llamar al método para guardar la salida
-                iEntradaSS.registrarEntrada(salidaDTO);
+
             }
         }
 

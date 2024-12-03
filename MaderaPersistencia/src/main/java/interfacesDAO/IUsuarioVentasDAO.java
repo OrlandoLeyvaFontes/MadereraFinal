@@ -17,7 +17,7 @@ public interface IUsuarioVentasDAO {
 
     public UsuarioVentas agregarUsuario(UsuarioVentas usuarioVentas);
 
-    public UsuarioVentas iniciarSesion(String correo, String contrasena);
+    public UsuarioVentas iniciarSesion(String correo);
 
     public UsuarioVentas obtenerUsuarioPorId(ObjectId id);
 
