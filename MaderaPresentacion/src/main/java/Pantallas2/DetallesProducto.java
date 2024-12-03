@@ -223,18 +223,24 @@ private ISalidaSS  iSalidaSS;
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
+    if (jComboBox1.getSelectedIndex() == 0) {
+        JOptionPane.showMessageDialog(this, "Debes seleccionar una cantidad mayor que 0.", "Error", JOptionPane.ERROR_MESSAGE);
+    } else {
         this.setVisible(false);
         MenuDeTarjetas menuDeTarjetas = new MenuDeTarjetas(this, usuarioId, menuPrincipal1, cantidad, idMadera, iCompraSS, iUsuarioSS,iSalidaSS);
         menuDeTarjetas.setVisible(true);
-
+    }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    if (jComboBox1.getSelectedIndex() == 0) {
+        JOptionPane.showMessageDialog(this, "Debes seleccionar una cantidad mayor que 0.", "Error", JOptionPane.ERROR_MESSAGE);
+    } else {
         iCarritoSS.agregarProducto(usuarioId, idMadera, cantidad);
         this.setVisible(false);
         MenuCarrito menuCarrito = new MenuCarrito(productosVenta, usuarioId, menuPrincipal1, iMaderaSS, iCarritoSS, iCompraSS, iUsuarioSS,idMadera,iSalidaSS);
         menuCarrito.setVisible(true);
-
+    }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
