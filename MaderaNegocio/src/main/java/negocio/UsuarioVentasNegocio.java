@@ -29,6 +29,7 @@ public class UsuarioVentasNegocio implements IUsuarioVentasNegocio {
 
     @Override
     public UsuarioVentasDTO agregarUsuario(UsuarioVentasDTO usuarioVentasDTO) {
+        // Encriptar la contraseña
         String hashedPassword = BCrypt.hashpw(usuarioVentasDTO.getContraseña(), BCrypt.gensalt());
 
         UsuarioVentas usuarioVentas = new UsuarioVentas();
@@ -37,7 +38,7 @@ public class UsuarioVentasNegocio implements IUsuarioVentasNegocio {
         usuarioVentas.setApellidoPaterno(usuarioVentasDTO.getApellidoPaterno());
         usuarioVentas.setCorreo(usuarioVentasDTO.getCorreo());
         usuarioVentas.setNumero(usuarioVentasDTO.getNumero());
-        usuarioVentas.setContraseña(hashedPassword);
+        usuarioVentas.setContraseña(hashedPassword); // Almacenar la contraseña encriptada
         System.out.println(usuarioVentas);
 
         // Guardar usuario en la base de datos
@@ -60,20 +61,26 @@ public class UsuarioVentasNegocio implements IUsuarioVentasNegocio {
 
     @Override
     public UsuarioVentasDTO iniciarSesion(String correo, String contrasena) {
-
         // Obtener el usuario de la base de datos por correo
-        UsuarioVentas usuarioVenta = usuarioVentasDAO.iniciarSesion(correo, contrasena);
+        UsuarioVentas usuarioVenta = usuarioVentasDAO.iniciarSesion(correo);
 
         // Verificar si el usuario existe
         if (usuarioVenta == null) {
             throw new RuntimeException("Credenciales incorrectas");
         }
 
-//        // Validar la contraseña usando BCrypt
-//        boolean contraseñaValida = BCrypt.checkpw(contrasena, usuarioVenta.getContraseña());
-//        if (!contraseñaValida) {
-//            throw new RuntimeException("Credenciales incorrectas");
-//        }
+        // Imprimir contraseñas para depuración
+        System.out.println("Contraseña ingresada: " + contrasena);
+        System.out.println("Contraseña almacenada (hash): " + usuarioVenta.getContraseña());
+
+        // Validar la contraseña usando BCrypt
+        boolean contraseñaValida = BCrypt.checkpw(contrasena, usuarioVenta.getContraseña());
+        if (contraseñaValida) {
+            System.out.println("Inicio de sesión exitoso");
+        } else {
+            System.out.println("Contraseña incorrecta");
+            throw new RuntimeException("Credenciales incorrectas");
+        }
 
         // Crear el DTO y asignar los valores
         UsuarioVentasDTO usuarioVentaDTO = new UsuarioVentasDTO();

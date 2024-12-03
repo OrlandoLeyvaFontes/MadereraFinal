@@ -30,7 +30,9 @@ public class UsuarioVentasDAO implements IUsuarioVentasDAO {
 
     @Override
     public UsuarioVentas agregarUsuario(UsuarioVentas usuarioVentas) {
+
         try {
+
             Document document = new Document("nombre", usuarioVentas.getNombre())
                     .append("apellidoPaterno", usuarioVentas.getApellidoPaterno())
                     .append("apellidoMaterno", usuarioVentas.getApellidoMaterno())
@@ -49,9 +51,9 @@ public class UsuarioVentasDAO implements IUsuarioVentasDAO {
     }
 
     @Override
-    public UsuarioVentas iniciarSesion(String correo, String contrasena) {
+    public UsuarioVentas iniciarSesion(String correo) {
         try {
-            Document query = new Document("correo", correo).append("contraseña", contrasena);
+            Document query = new Document("correo", correo);
             Document result = collection.find(query).first();
 
             if (result != null) {
@@ -63,6 +65,7 @@ public class UsuarioVentasDAO implements IUsuarioVentasDAO {
                 usuarioVentas.setNumero(result.getString("numero"));
                 usuarioVentas.setCorreo(result.getString("correo"));
                 usuarioVentas.setContraseña(result.getString("contraseña"));
+
                 return usuarioVentas;
             } else {
                 return null;
