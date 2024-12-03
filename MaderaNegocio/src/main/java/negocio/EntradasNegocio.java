@@ -15,17 +15,31 @@ import java.util.Date;
 import java.util.List;
 
 /**
- *
- * @author aleja
+ * Clase que maneja la lógica de negocio de las entradas en el sistema.
+ * Interactúa con el DAO de Entradas para realizar operaciones CRUD sobre las
+ * entradas y devolver los resultados en forma de objetos DTO.
  */
 public class EntradasNegocio implements IEntradasNegocio {
 
+    // Instancia del DAO de entradas
     private IEntradasDAO iEntradasDAO;
 
+    /**
+     * Constructor que inicializa la instancia del DAO de Entradas.
+     */
     public EntradasNegocio() {
         this.iEntradasDAO = new EntradasDAO();
     }
 
+    /**
+     * Agrega una nueva entrada al sistema. Convierte el DTO a la entidad
+     * Entradas y luego la guarda utilizando el DAO.
+     *
+     * @param entradaDTO El DTO que contiene la información de la entrada a
+     * agregar.
+     * @return El DTO de la entrada agregada, con la información actualizada,
+     * incluyendo su ID.
+     */
     @Override
     public EntradasDTO agregarEntrada(EntradasDTO entradaDTO) {
         // Convertir el DTO a la entidad
@@ -51,12 +65,19 @@ public class EntradasNegocio implements IEntradasNegocio {
         }
     }
 
+    /**
+     * Obtiene todas las entradas del sistema.
+     *
+     * @return Una lista de DTOs que representan las entradas en el sistema.
+     */
     @Override
     public List<EntradasDTO> obtenerEntradas() {
         List<EntradasDTO> listaMaderasDTO = new ArrayList<>();
         try {
+            // Obtener todas las entradas desde el DAO
             List<Entradas> listaEntradas = iEntradasDAO.obtenerEntradas();
             for (Entradas entradas : listaEntradas) {
+                // Convertir cada entidad a su DTO correspondiente
                 EntradasDTO entradasDTO = new EntradasDTO();
                 entradasDTO.setId(entradas.getId().toString());
                 entradasDTO.setTipoEntrada(entradas.getTipoEntrada());
@@ -74,6 +95,13 @@ public class EntradasNegocio implements IEntradasNegocio {
         return listaMaderasDTO;
     }
 
+    /**
+     * Obtiene las entradas filtradas por tipo de entrada.
+     *
+     * @param tipoEntrada El tipo de entrada para filtrar las entradas.
+     * @return Una lista de DTOs de entradas que coinciden con el tipo
+     * especificado.
+     */
     public List<EntradasDTO> obtenerEntradasPorTipo(String tipoEntrada) {
         List<EntradasDTO> listaEntradasDTO = new ArrayList<>();
         try {
@@ -98,12 +126,16 @@ public class EntradasNegocio implements IEntradasNegocio {
         return listaEntradasDTO;
     }
 
+    /**
+     * Obtiene la lista de tipos de entrada disponibles.
+     *
+     * @return Una lista de los tipos únicos de entradas en el sistema.
+     */
     public List<String> obtenerTiposEntrada() {
         List<String> tiposEntrada = new ArrayList<>();
         try {
             // Obtener los tipos de entrada desde el DAO
             tiposEntrada = iEntradasDAO.obtenerTiposEntrada();  // Llamar al método DAO que obtiene los tipos únicos
-
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Error al obtener los tipos de entrada", e);
