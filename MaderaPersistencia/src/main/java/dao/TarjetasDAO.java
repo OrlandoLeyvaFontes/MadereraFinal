@@ -15,10 +15,16 @@ import org.bson.Document;
  *
  * @author Oley
  */
+/**
+ * Implementación de la interfaz ITarjetasDAO para MongoDB. No se uso la verdad
+ */
 public class TarjetasDAO implements ITarjetasDAO {
+    /** Colección de tarjetas en MongoDB */
 
     private final MongoCollection<Document> collection;
-
+/**
+     * Constructor que inicializa la conexión a la colección de tarjetas.
+     */
     public TarjetasDAO() {
         this.collection = Conexion.getDatabase().getCollection("tarjetas");
     }

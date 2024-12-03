@@ -23,14 +23,36 @@ import org.bson.types.ObjectId;
  *
  * @author Oley
  */
+/**
+ * Implementación de la interfaz ICompraDAO para MongoDB. Maneja las operaciones
+ * de compras y su procesamiento en la base de datos.
+ */
 public class CompraDAO implements ICompraDAO {
 
+    /**
+     * Colección de carritos en MongoDB
+     */
+
     private MongoCollection<Document> collection;
+    /**
+     * Colección de compras en MongoDB
+     */
 
     private final MongoCollection<Document> coleccionCompras;
+    /**
+     * Colección de productos de madera en MongoDB
+     */
+
     private final MongoCollection<Document> maderaCollection;
+    /**
+     * Colección de usuarios en MongoDB
+     */
+
     private final MongoCollection<Document> usuarioCollection;
 
+    /**
+     * Constructor que inicializa las conexiones a las colecciones necesarias.
+     */
     public CompraDAO() {
         this.collection = Conexion.getDatabase().getCollection("Carrito");
 
@@ -38,7 +60,12 @@ public class CompraDAO implements ICompraDAO {
         this.maderaCollection = Conexion.getDatabase().getCollection("Madera");
         this.usuarioCollection = Conexion.getDatabase().getCollection("usuarios");
     }
-
+/**
+     * Guarda una nueva compra en la base de datos y actualiza el inventario.
+     * Verifica disponibilidad de stock y actualiza las cantidades correspondientes.
+     * 
+     * @param compra Objeto Compra a guardar
+     */
     @Override
     public void guardarCompra(Compra compra) {
         ObjectId maderaId = compra.getMadera().getId();
@@ -95,16 +122,31 @@ public class CompraDAO implements ICompraDAO {
         System.out.println("Precio total: " + precioTotal);
         System.out.println("Comprador: " + usuarioNombre);
     }
-
+  /**
+     * Obtiene un documento de madera por su ID.
+     * 
+     * @param maderaId ID de la madera
+     * @return Document con la información de la madera
+     */
     private Document obtenerMadera(ObjectId maderaId) {
         return maderaCollection.find(Filters.eq("_id", maderaId)).first();
     }
-
+ /**
+     * Obtiene el nombre de un usuario por su ID.
+     * 
+     * @param usuarioId ID del usuario
+     * @return Nombre del usuario o "Desconocido" si no se encuentra
+     */
     private String obtenerNombreUsuario(ObjectId usuarioId) {
         Document usuarioDoc = usuarioCollection.find(Filters.eq("_id", usuarioId)).first();
         return usuarioDoc != null ? usuarioDoc.getString("nombre") : "Desconocido";
     }
-
+ /**
+     * Procesa la compra de todos los productos en el carrito de un usuario.
+     * Verifica stock, actualiza inventario y genera registros de compra individuales.
+     * 
+     * @param usuarioId ID del usuario que realiza la compra
+     */
     public void comprarCarrito(ObjectId usuarioId) {
         Document carritoDoc = collection.find(Filters.eq("usuarioId", usuarioId)).first();
 
@@ -198,7 +240,12 @@ public class CompraDAO implements ICompraDAO {
         System.out.println("Precio total del carrito: " + precioTotalCarrito);
         System.out.println("Cantidad total de productos: " + cantidadTotalCarrito);
     }
-
+/**
+     * Obtiene el historial de compras de un usuario.
+     * 
+     * @param usuarioId ID del usuario
+     * @return Lista de Documents con las compras del usuario
+     */
     public List<Document> obtenerHistorialCompras(ObjectId usuarioId) {
         List<Document> historialCompras = new ArrayList<>();
 
@@ -216,7 +263,13 @@ public class CompraDAO implements ICompraDAO {
 
         return historialCompras;
     }
-     public Document obtenerCompraPorId(String compraId) {
+/**
+     * Obtiene una compra específica por su ID.
+     * 
+     * @param compraId ID de la compra en formato String
+     * @return Document con la información de la compra
+     */
+    public Document obtenerCompraPorId(String compraId) {
         return collection.find(Filters.eq("_id", new ObjectId(compraId))).first();
     }
 }

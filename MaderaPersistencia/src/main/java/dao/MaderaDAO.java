@@ -21,14 +21,26 @@ import org.bson.types.ObjectId;
  *
  * @author Oley
  */
+/**
+ * Implementación de la interfaz IMaderaDAO para MongoDB.
+ * Maneja las operaciones CRUD y consultas específicas para productos de madera.
+ */
 public class MaderaDAO implements IMaderaDAO {
+    /** Colección de productos de madera en MongoDB */
 
     private final MongoCollection<Document> collection;
-
+/**
+     * Constructor que inicializa la conexión a la colección de Madera.
+     */
     public MaderaDAO() {
         this.collection = Conexion.getDatabase().getCollection("Madera");
     }
-
+ /**
+     * Agrega un nuevo producto de madera a la base de datos.
+     * 
+     * @param madera Objeto Madera a agregar
+     * @return Madera agregada con su ID asignado, o null si ocurre un error
+     */
     @Override
     public Madera agregarMadera(Madera madera) {
         try {
@@ -45,7 +57,11 @@ public class MaderaDAO implements IMaderaDAO {
             return null;
         }
     }
-
+ /**
+     * Obtiene todos los productos de madera disponibles.
+     * 
+     * @return Lista de todas las maderas en el sistema
+     */
     @Override
     public List<Madera> obtenerMaderas() {
         List<Madera> listaMaderas = new ArrayList<>();
@@ -65,7 +81,12 @@ public class MaderaDAO implements IMaderaDAO {
         }
         return listaMaderas;
     }
-
+ /**
+     * Busca un producto de madera por su ID en formato String.
+     * 
+     * @param id ID del producto en formato String
+     * @return Madera encontrada o null si no existe
+     */
     @Override
     public Madera buscarMaderaPorId(String id) {
         try {
@@ -87,7 +108,12 @@ public class MaderaDAO implements IMaderaDAO {
         }
         return null;
     }
-
+ /**
+     * Obtiene un producto de madera por su ObjectId.
+     * 
+     * @param id ObjectId del producto
+     * @return Madera encontrada o null si no existe
+     */
     @Override
     public Madera obtenerMaderaPorId(ObjectId id) {
         MongoCollection<Document> coleccionMadera = Conexion.getDatabase().getCollection("Madera"); // Asegúrate de obtener la base de datos correctamente
@@ -97,7 +123,11 @@ public class MaderaDAO implements IMaderaDAO {
         }
         return null;
     }
-
+/**
+     * Actualiza la cantidad de un producto de madera.
+     * 
+     * @param madera Objeto Madera con la nueva cantidad
+     */
     @Override
     public void actualizar(Madera madera) {
         Document filtro = new Document("_id", madera.getId());
@@ -105,10 +135,13 @@ public class MaderaDAO implements IMaderaDAO {
 
         collection.updateOne(filtro, actualizacion);
     }
-
-    // Método para obtener maderas asociadas a un usuario de ventas
+ /**
+     * Obtiene la lista de productos de madera asociados a un vendedor.
+     * 
+     * @param idUsuarioVenta ID del usuario vendedor
+     * @return Lista de productos de madera del vendedor
+     */
     public List<Madera> obtenerMaderasPorUsuarioVenta(ObjectId idUsuarioVenta) {
-        // Simulación de consulta a la base de datos (MongoDB)
         List<Document> documentosMaderas = Conexion.getDatabase().getCollection("usuariosVenta")
                 .find(new Document("_id", idUsuarioVenta))
                 .projection(new Document("maderas", 1))
@@ -129,7 +162,12 @@ public class MaderaDAO implements IMaderaDAO {
         }
         return maderas;
     }
-
+ /**
+     * Busca un producto de madera por su nombre.
+     * 
+     * @param nombre Nombre del producto
+     * @return Madera encontrada o null si no existe
+     */
     @Override
     public Madera buscarMaderaPorNombre(String nombre) {
         try {
@@ -151,34 +189,34 @@ public class MaderaDAO implements IMaderaDAO {
         }
         return null;
     }
-
+ /**
+     * Actualiza todos los campos de un producto de madera.
+     * 
+     * @param madera Objeto Madera con la información actualizada
+     * @throws IllegalArgumentException si el ID es nulo
+     * @throws RuntimeException si ocurre un error durante la actualización
+     */
     public void editarMadera(Madera madera) {
 
         try {
 
-            // Asegúrate de que el ID no sea null y que corresponda a un documento existente
             if (madera.getId() == null) {
                 throw new IllegalArgumentException("El ID de la madera no puede ser nulo.");
             }
 
-            // Filtro para encontrar el documento con el ID especificado
             Document filtro = new Document("_id", madera.getId());
 
-            // Documento de actualización
             Document actualizacion = new Document("$set", new Document("nombre", madera.getNombre())
                     .append("descripcion", madera.getDescripcion())
                     .append("cantidad", madera.getCantidad())
                     .append("precioUnitario", madera.getPrecioUnitario()));
 
-            // Realiza la actualización en la base de datos
             UpdateResult result = collection.updateOne(filtro, actualizacion);
 
-            // Verificar que se haya realizado la actualización
             if (result.getModifiedCount() == 0) {
                 throw new RuntimeException("No se encontró la madera para actualizar con el ID proporcionado.");
             }
 
-            // Opcional: Si deseas confirmar que se ha actualizado un registro, puedes imprimir el resultado
             System.out.println("Se actualizó la madera con ID: " + madera.getId());
 
         } catch (Exception e) {
@@ -187,7 +225,13 @@ public class MaderaDAO implements IMaderaDAO {
             throw new RuntimeException("Error al intentar editar la madera: " + e.getMessage());
         }
     }
-
+ /**
+     * Elimina un producto de madera por su ID.
+     * 
+     * @param id ID del producto a eliminar
+     * @return true si se eliminó correctamente, false en caso contrario
+     * @throws RuntimeException si el ID no es válido o ocurre un error
+     */
     public boolean eliminarMadera(String id) {
         try {
             ObjectId objectId = new ObjectId(id);
