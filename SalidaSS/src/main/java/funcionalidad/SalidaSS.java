@@ -14,34 +14,28 @@ import negocio.SalidaNegocio;
  *
  * @author Oley
  */
-public class SalidaSS implements  ISalidaSS{
-    ISalidaNegocio  iSalidaNegocio;
+public class SalidaSS implements ISalidaSS {
 
-    public SalidaSS( ) {
+    ISalidaNegocio iSalidaNegocio;
+
+    public SalidaSS() {
         this.iSalidaNegocio = new SalidaNegocio();
     }
 
     @Override
     public String crearSalidaDesdeCompra(String compraId, String tipoMovimiento) {
- return iSalidaNegocio.crearSalidaDesdeCompra(compraId, tipoMovimiento);
+        return iSalidaNegocio.crearSalidaDesdeCompra(compraId, tipoMovimiento);
     }
 
     @Override
     public SalidaDTO obtenerSalida(String salidaId) {
-return iSalidaNegocio.obtenerSalida(salidaId);
+        return iSalidaNegocio.obtenerSalida(salidaId);
 
     }
 
     @Override
     public List<SalidaDTO> obtenerTodasLasSalidas() {
-return iSalidaNegocio.obtenerTodasLasSalidas();
+        return iSalidaNegocio.obtenerTodasLasSalidas();
     }
-    
-    
-    
-    
-    
-    
-    
-    
+
 }

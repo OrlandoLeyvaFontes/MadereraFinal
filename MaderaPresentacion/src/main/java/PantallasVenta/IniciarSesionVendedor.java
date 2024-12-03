@@ -21,7 +21,8 @@ import javax.swing.JOptionPane;
  * @author aleja
  */
 public class IniciarSesionVendedor extends javax.swing.JFrame {
-private AdminYusario adminYusario;
+
+    private AdminYusario adminYusario;
     private IUsuarioVentaSS iUsuarioVentaSS;
     private IMaderaVentaSS maderaVentaSS;
     private IEntradaSS iEntradaSS;
@@ -29,12 +30,13 @@ private AdminYusario adminYusario;
     private IMaderaSS iMaderaSS;
     private ICarritoSS iCarritoSS;
     private ICompraSS iCompraSS;
-private ISalidaSS  iSalidaSS;
+    private ISalidaSS iSalidaSS;
+
     public IniciarSesionVendedor(IUsuarioVentaSS iUsuarioVentaSS, IMaderaVentaSS maderaVentaSS, IEntradaSS iEntradaSS, AdminYusario adminYusario) {
         this.iUsuarioVentaSS = iUsuarioVentaSS;
         this.maderaVentaSS = maderaVentaSS;
         this.iEntradaSS = iEntradaSS;
-        this.adminYusario=adminYusario;
+        this.adminYusario = adminYusario;
         initComponents();
     }
 
@@ -215,6 +217,7 @@ private ISalidaSS  iSalidaSS;
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         this.setVisible(false);
+        dispose();
         RegistrarUsuarioVendedor registrarUsuarioVendedor = new RegistrarUsuarioVendedor(iUsuarioVentaSS, this, iEntradaSS, maderaVentaSS);
         registrarUsuarioVendedor.setVisible(true);
     }//GEN-LAST:event_btnRegistrarActionPerformed
@@ -241,11 +244,10 @@ private ISalidaSS  iSalidaSS;
 
             if (usuarioVentasDTO != null) {
                 // Inicio de sesión exitoso
-                System.out.println(usuarioVentasDTO);
                 JOptionPane.showMessageDialog(this, "Bienvenido " + usuarioVentasDTO.getNombre() + " " + usuarioVentasDTO.getApellidoPaterno() + "!", "Inicio de Sesión Exitoso", JOptionPane.INFORMATION_MESSAGE);
                 // Ocultar la ventana actual y abrir el menú del vendedor
                 this.setVisible(false);
-
+                dispose();
                 MenuVendedor menuVendedor = new MenuVendedor(maderaVentaSS, iEntradaSS);
                 menuVendedor.setVisible(true);
             } else {
@@ -253,17 +255,16 @@ private ISalidaSS  iSalidaSS;
                 JOptionPane.showMessageDialog(this, "Credenciales incorrectas. Intente de nuevo.", "Error de Inicio de Sesión", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
-            // Capturar cualquier error inesperado
-            JOptionPane.showMessageDialog(this, "Ocurrió un error al intentar iniciar sesión: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Ocurrió un error al intentar iniciar sesión. Por favor, contacte al administrador.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-       this.setVisible(false);
+        this.setVisible(false);
+        dispose();
         adminYusario.setVisible(true);
-        
-        
+
+
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
