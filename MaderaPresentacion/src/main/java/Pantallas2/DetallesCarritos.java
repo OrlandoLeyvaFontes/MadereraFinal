@@ -10,6 +10,7 @@ import dto.CarritoDTO;
 import interfaz.ICarritoSS;
 import interfaz.ICompraSS;
 import interfaz.IMaderaSS;
+import interfaz.ISalidaSS;
 import interfaz.IUsuarioSS;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -29,12 +30,12 @@ public class DetallesCarritos extends javax.swing.JFrame {
     private ICompraSS iCompraSS;
     private IUsuarioSS iUsuarioSS;
     private String idMadera;
-
+private ISalidaSS  iSalidaSS;
     /**
      * Creates new form DetallesCarritos
      */
     public DetallesCarritos(ProductosVenta productosVenta, String usuarioId, MenuPrincipal menuPrincipal, IMaderaSS iMaderaSS,
-             ICarritoSS iCarritoSS, ICompraSS iCompraSS, IUsuarioSS iUsuarioSS,String idMadera
+             ICarritoSS iCarritoSS, ICompraSS iCompraSS, IUsuarioSS iUsuarioSS,String idMadera,ISalidaSS  iSalidaSS
     ) {
         this.productosVenta = productosVenta;
         this.usuarioId = usuarioId;
@@ -44,6 +45,7 @@ public class DetallesCarritos extends javax.swing.JFrame {
         this.iCompraSS = iCompraSS;
         this.iUsuarioSS = iUsuarioSS;
         this.idMadera=idMadera;
+        this.iSalidaSS=iSalidaSS;
         initComponents();
         CargarMetodosIniciales();
     }
@@ -166,7 +168,7 @@ public class DetallesCarritos extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);
-        MenuDeTarjetas2 menuDeTarjetas2 = new MenuDeTarjetas2(usuarioId, menuPrincipal, iMaderaSS, iCarritoSS, iCompraSS, iUsuarioSS,this);
+        MenuDeTarjetas2 menuDeTarjetas2 = new MenuDeTarjetas2(usuarioId, menuPrincipal, iMaderaSS, iCarritoSS, iCompraSS, iUsuarioSS,this,iSalidaSS);
         menuDeTarjetas2.setVisible(true);
 
         // TODO add your handling code here:

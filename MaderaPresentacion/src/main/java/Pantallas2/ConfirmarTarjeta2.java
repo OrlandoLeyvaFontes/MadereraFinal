@@ -11,6 +11,7 @@ import dto.UsuarioDTO;
 import interfaz.ICarritoSS;
 import interfaz.ICompraSS;
 import interfaz.IComprarCarritoSS;
+import interfaz.ISalidaSS;
 import interfaz.IUsuarioSS;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
@@ -28,11 +29,12 @@ public class ConfirmarTarjeta2 extends javax.swing.JFrame {
     private ICarritoSS iCarritoSS;
     private  String numeroTarjeta;
     private TarjetasDisponibles2 tarjetasDisponibles2;
+    private ISalidaSS  iSalidaSS;
 
     /**
      * Creates new form ConfirmarTarjeta2
      */
-    public ConfirmarTarjeta2(IUsuarioSS iUsuarioSS, ICompraSS iCompraSS, String usuarioId, MenuPrincipal menuPrincipal,ICarritoSS iCarritoSS,String numeroTarjeta,TarjetasDisponibles2 tarjetasDisponibles2) {
+    public ConfirmarTarjeta2(IUsuarioSS iUsuarioSS, ICompraSS iCompraSS, String usuarioId, MenuPrincipal menuPrincipal,ICarritoSS iCarritoSS,String numeroTarjeta,TarjetasDisponibles2 tarjetasDisponibles2,ISalidaSS  iSalidaSS) {
         this.iUsuarioSS = iUsuarioSS;
         this.iCompraSS = iCompraSS;
         this.usuarioId = usuarioId;
@@ -40,6 +42,7 @@ public class ConfirmarTarjeta2 extends javax.swing.JFrame {
         this.iCarritoSS=iCarritoSS;
         this.numeroTarjeta=numeroTarjeta;
         this.tarjetasDisponibles2=tarjetasDisponibles2;
+        this.iSalidaSS=iSalidaSS;
         initComponents();
     }
 
@@ -115,7 +118,9 @@ public class ConfirmarTarjeta2 extends javax.swing.JFrame {
         CompraExitosa2 compraExitosa = new CompraExitosa2(menuPrincipal);
         compraExitosa.setVisible(true);
 
-        iCompraSS.comprarCarrito(usuarioId);
+    String idCompra=   iCompraSS.comprarCarrito(usuarioId);
+        String tipoMovimiento="Venta";
+        iSalidaSS.crearSalidaDesdeCompra(idCompra, tipoMovimiento);
 iCarritoSS.vaciarCarrito(usuarioId);
     }//GEN-LAST:event_jButton1ActionPerformed
 

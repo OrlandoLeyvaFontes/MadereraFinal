@@ -232,7 +232,7 @@ private ISalidaSS  iSalidaSS;
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         iCarritoSS.agregarProducto(usuarioId, idMadera, cantidad);
         this.setVisible(false);
-        MenuCarrito menuCarrito = new MenuCarrito(productosVenta, usuarioId, menuPrincipal1, iMaderaSS, iCarritoSS, iCompraSS, iUsuarioSS,idMadera);
+        MenuCarrito menuCarrito = new MenuCarrito(productosVenta, usuarioId, menuPrincipal1, iMaderaSS, iCarritoSS, iCompraSS, iUsuarioSS,idMadera,iSalidaSS);
         menuCarrito.setVisible(true);
 
         // TODO add your handling code here:

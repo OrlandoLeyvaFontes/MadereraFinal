@@ -22,8 +22,8 @@ public class CompraSS implements ICompraSS{
     }
 
     @Override
-    public void comprarCarrito(String usuarioId) {
-iCompraNegocio.comprarCarrito(usuarioId);
+    public String comprarCarrito(String usuarioId) {
+return iCompraNegocio.comprarCarrito(usuarioId);
     }
 
     @Override

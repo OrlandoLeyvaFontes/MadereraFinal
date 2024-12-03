@@ -12,7 +12,7 @@ import java.util.List;
  * @author Oley
  */
 public interface ICompraSS {
-        public void comprarCarrito(String usuarioId);
+        public String comprarCarrito(String usuarioId);
                     String guardarCompra(CompraDTO compraDTO);
 public List<CompraDTO> obtenerHistorialCompras(String usuarioId);
 

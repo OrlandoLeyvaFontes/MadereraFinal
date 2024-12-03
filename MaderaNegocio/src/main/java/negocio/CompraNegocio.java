@@ -77,7 +77,7 @@ public class CompraNegocio implements ICompraNegocio {
     }
 
     @Override
-    public void comprarCarrito(String usuarioId) {
+    public String comprarCarrito(String usuarioId) {
         ObjectId usuarioObjectId = new ObjectId(usuarioId);
 
         Document carritoDoc = iCarritoDAO.obtenerCarrito(usuarioObjectId);
@@ -125,7 +125,8 @@ public class CompraNegocio implements ICompraNegocio {
         }
 
         iCarritoDAO.eliminarProducto(usuarioObjectId, null);
-        System.out.println("El carrito del usuario con ID " + usuarioId + " fue comprado exitosamente.");
+    return "El carrito del usuario con ID " + usuarioId + " fue comprado exitosamente.";
+        
     }
 
     @Override

@@ -45,6 +45,7 @@ public class CarritoDAO implements ICarritoDAO {
         }
     }
 
+
     private void agregarOActualizarProductoEnCarrito(Document carrito, ObjectId maderaId, int cantidad) {
         List<Document> maderas = carrito.getList("maderas", Document.class);
         if (maderas != null) {

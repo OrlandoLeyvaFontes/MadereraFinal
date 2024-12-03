@@ -9,6 +9,7 @@ import Pantallas2.MenuPrincipal;
 import interfaz.ICarritoSS;
 import interfaz.ICompraSS;
 import interfaz.IMaderaSS;
+import interfaz.ISalidaSS;
 import interfaz.IUsuarioSS;
 
 /**
@@ -25,12 +26,12 @@ public class MenuCarrito extends javax.swing.JFrame {
     private ICompraSS iCompraSS;
     private IUsuarioSS iUsuarioSS;
     private String idMadera;
-
+private ISalidaSS  iSalidaSS;
     /**
      * Creates new form MenuCarrito
      */
     public MenuCarrito(ProductosVenta productosVenta, String usuarioId, MenuPrincipal menuPrincipal, IMaderaSS iMaderaSS, ICarritoSS iCarritoSS,
-             ICompraSS iCompraSS, IUsuarioSS iUsuarioSS,String idMadera
+             ICompraSS iCompraSS, IUsuarioSS iUsuarioSS,String idMadera,ISalidaSS  iSalidaSS
     ) {
         this.productosVenta = productosVenta;
         this.usuarioId = usuarioId;
@@ -40,6 +41,7 @@ public class MenuCarrito extends javax.swing.JFrame {
         this.iCompraSS = iCompraSS;
         this.iUsuarioSS = iUsuarioSS;
         this.idMadera=idMadera;
+        this.iSalidaSS=iSalidaSS;
         initComponents();
     }
 
@@ -110,7 +112,7 @@ public class MenuCarrito extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.setVisible(false);
-        DetallesCarritos detallesCarritos = new DetallesCarritos(productosVenta, usuarioId, menuPrincipal, iMaderaSS, iCarritoSS, iCompraSS, iUsuarioSS,idMadera);
+        DetallesCarritos detallesCarritos = new DetallesCarritos(productosVenta, usuarioId, menuPrincipal, iMaderaSS, iCarritoSS, iCompraSS, iUsuarioSS,idMadera,iSalidaSS);
         detallesCarritos.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
