@@ -259,6 +259,7 @@ public class InventarioEntradas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMisProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMisProductosActionPerformed
+        dispose();
         MenuVendedor menuVendedor = new MenuVendedor(maderaVentaSS, iEntradaSS);
         menuVendedor.setVisible(true);
     }//GEN-LAST:event_btnMisProductosActionPerformed
