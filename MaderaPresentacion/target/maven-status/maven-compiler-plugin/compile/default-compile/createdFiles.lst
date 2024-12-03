@@ -12,7 +12,6 @@ Pantallas2\MenuPrincipal$5.class
 Pantallas2\MenuDeTarjetas$1.class
 Pantallas2\HistorialCompras$1.class
 Pantallas2\RegistrarUsuario$2.class
-main\MainVentas.class
 Pantallas2\DetallesProducto.class
 Pantallas2\BuscarPorNombre$2.class
 Pantallas2\MenuPrincipal$2.class
@@ -87,7 +86,6 @@ Pantallas2\ConfirmarTarjeta2.class
 Pantallas2\TarjetasDisponibles2$3.class
 PantallasVenta\AgregarMadera.class
 PantallasVenta\InventarioEntradas.class
-main\Main2.class
 PantallasVenta\MisProductos$2.class
 Pantallas2\SalidaCompra$3.class
 PantallasVenta\IniciarSesionVendedor.class

@@ -113,35 +113,63 @@ public class AgregarTarjeta extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        String nombre = jTextField1.getText();
-        String numero = jTextField2.getText();
-        LocalDate fechaVencimiento = datePickerBloqueo.getDate();
-        String ccv = jTextField4.getText();
+    String nombre = jTextField1.getText();
+    String numero = jTextField2.getText();
+    LocalDate fechaVencimiento = datePickerBloqueo.getDate();
+    String ccv = jTextField4.getText();
 
-        if (nombre.isEmpty() || numero.isEmpty() || fechaVencimiento == null || ccv.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
+    // Validación de campos vacíos
+    if (nombre.isEmpty() || numero.isEmpty() || fechaVencimiento == null || ccv.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
 
-        TarjetasDTO tarjetasDTO = new TarjetasDTO();
-        tarjetasDTO.setNombre(nombre);
-        tarjetasDTO.setNumero(numero);
+    // Validar que el nombre solo contenga letras
+    if (!nombre.matches("[a-zA-Z]+")) {
+        JOptionPane.showMessageDialog(this, "El nombre debe contener solo letras.", "Error en el nombre", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
 
-        Calendar fechaVencimientoCalendar = Calendar.getInstance();
-        fechaVencimientoCalendar.set(fechaVencimiento.getYear(), fechaVencimiento.getMonthValue() - 1, fechaVencimiento.getDayOfMonth());
-        tarjetasDTO.setFehcaVencimiento(fechaVencimientoCalendar);
+    // Validar que el número solo contenga dígitos
+    if (!numero.matches("[0-9]+")) {
+        JOptionPane.showMessageDialog(this, "El número debe contener solo dígitos.", "Error en el número", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
 
-        tarjetasDTO.setCVV(ccv);
+    // Validar que la fecha no sea editable
+    if (fechaVencimiento == null) {
+        JOptionPane.showMessageDialog(this, "La fecha de vencimiento es obligatoria.", "Error en la fecha", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
 
-        try {
-            iUsuarioSS.agregarTarjeta(usuarioId, tarjetasDTO);  // Pasamos el usuarioId aquí
-            JOptionPane.showMessageDialog(this, "La tarjeta ha sido guardada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar la tarjeta.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+    // Validar que el CVV contenga solo 3 dígitos
+    if (!ccv.matches("[0-9]{3}")) {
+        JOptionPane.showMessageDialog(this, "El CVV debe contener solo 3 dígitos.", "Error en el CVV", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
 
-        this.setVisible(false);
-        menuPrincipal.setVisible(true);
+    // Crear y guardar la tarjeta
+    TarjetasDTO tarjetasDTO = new TarjetasDTO();
+    tarjetasDTO.setNombre(nombre);
+    tarjetasDTO.setNumero(numero);
+
+    Calendar fechaVencimientoCalendar = Calendar.getInstance();
+    fechaVencimientoCalendar.set(fechaVencimiento.getYear(), fechaVencimiento.getMonthValue() - 1, fechaVencimiento.getDayOfMonth());
+    tarjetasDTO.setFehcaVencimiento(fechaVencimientoCalendar);
+
+    tarjetasDTO.setCVV(ccv);
+
+    try {
+        iUsuarioSS.agregarTarjeta(usuarioId, tarjetasDTO);  // Pasamos el usuarioId aquí
+        JOptionPane.showMessageDialog(this, "La tarjeta ha sido guardada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar la tarjeta.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    this.setVisible(false);
+    menuPrincipal.setVisible(true);
+
+
 
     }//GEN-LAST:event_jButton2ActionPerformed
 

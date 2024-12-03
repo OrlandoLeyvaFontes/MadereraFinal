@@ -118,33 +118,104 @@ public class RegistrarUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String nombre = jTextField1.getText();
-        String apellidoPaterno = jTextField2.getText();
-        String apellidoMaterno = jTextField3.getText();
-        String numero = jTextField4.getText();
-        String correo = jTextField5.getText();
-        String contraseña = jTextField6.getText();
+//        String nombre = jTextField1.getText();
+//        String apellidoPaterno = jTextField2.getText();
+//        String apellidoMaterno = jTextField3.getText();
+//        String numero = jTextField4.getText();
+//        String correo = jTextField5.getText();
+//        String contraseña = jTextField6.getText();
+//
+//        if (nombre.isEmpty() || apellidoPaterno.isEmpty() || apellidoMaterno.isEmpty()
+//                || numero.isEmpty() || correo.isEmpty() || contraseña.isEmpty()) {
+//
+//            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
+//            return;
+//        }
+//
+//        UsuarioDTO usuarioDTO = new UsuarioDTO();
+//        usuarioDTO.setNombre(nombre);
+//        usuarioDTO.setApellidoPaterno(apellidoPaterno);
+//        usuarioDTO.setApellidoMaterno(apellidoMaterno);
+//        usuarioDTO.setNumero(numero);
+//        usuarioDTO.setCorreo(correo);
+//        usuarioDTO.setContraseña(contraseña);
+//
+//        iUsuarioSS.agregarUsuario(usuarioDTO);
+//        this.setVisible(false);
+//        iniciarSesion.setVisible(true);
 
-        if (nombre.isEmpty() || apellidoPaterno.isEmpty() || apellidoMaterno.isEmpty()
-                || numero.isEmpty() || correo.isEmpty() || contraseña.isEmpty()) {
+  
+ String nombre = jTextField1.getText();
+    String apellidoPaterno = jTextField2.getText();
+    String apellidoMaterno = jTextField3.getText();
+    String numero = jTextField4.getText();
+    String correo = jTextField5.getText();
+    String contraseña = jTextField6.getText();
 
-            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
+    if (nombre.isEmpty() || apellidoPaterno.isEmpty() || apellidoMaterno.isEmpty()
+            || numero.isEmpty() || correo.isEmpty() || contraseña.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
 
-        UsuarioDTO usuarioDTO = new UsuarioDTO();
-        usuarioDTO.setNombre(nombre);
-        usuarioDTO.setApellidoPaterno(apellidoPaterno);
-        usuarioDTO.setApellidoMaterno(apellidoMaterno);
-        usuarioDTO.setNumero(numero);
-        usuarioDTO.setCorreo(correo);
-        usuarioDTO.setContraseña(contraseña);
+    // Validar que el nombre y apellidos solo contengan letras
+    if (!nombre.matches("[a-zA-Z]+")) {
+        JOptionPane.showMessageDialog(this, "El nombre debe contener solo letras.", "Error en el nombre", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    if (!apellidoPaterno.matches("[a-zA-Z]+")) {
+        JOptionPane.showMessageDialog(this, "El apellido paterno debe contener solo letras.", "Error en el apellido paterno", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    if (!apellidoMaterno.matches("[a-zA-Z]+")) {
+        JOptionPane.showMessageDialog(this, "El apellido materno debe contener solo letras.", "Error en el apellido materno", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
 
-        iUsuarioSS.agregarUsuario(usuarioDTO);
-        this.setVisible(false);
-        iniciarSesion.setVisible(true);
+    // Validar que el numero solo contenga números
+    if (!numero.matches("[0-9]+")) {
+        JOptionPane.showMessageDialog(this, "El número debe contener solo dígitos.", "Error en el número", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
 
-        // TODO add your handling code here:
+    // Validar que el correo contenga un dominio válido
+    if (!(correo.endsWith("@gmail.com") || correo.endsWith("@hotmail.com"))) {
+        JOptionPane.showMessageDialog(this, "El correo debe ser de dominio @gmail.com o @hotmail.com.", "Error en el correo", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Validar que la contraseña contenga al menos una mayúscula y un número
+    if (!contraseña.matches(".*[A-Z].*") || !contraseña.matches(".*[0-9].*")) {
+        JOptionPane.showMessageDialog(this, "La contraseña debe contener al menos una mayúscula y un número.", "Error en la contraseña", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    UsuarioDTO usuarioDTO = new UsuarioDTO();
+    usuarioDTO.setNombre(nombre);
+    usuarioDTO.setApellidoPaterno(apellidoPaterno);
+    usuarioDTO.setApellidoMaterno(apellidoMaterno);
+    usuarioDTO.setNumero(numero);
+    usuarioDTO.setCorreo(correo);
+    usuarioDTO.setContraseña(contraseña);
+
+    iUsuarioSS.agregarUsuario(usuarioDTO);
+    this.setVisible(false);
+    iniciarSesion.setVisible(true);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
