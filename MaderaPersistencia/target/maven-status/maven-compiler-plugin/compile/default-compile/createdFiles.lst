@@ -1,7 +1,6 @@
 dao\CarritoDAO.class
 dao\TarjetasDAO.class
 entidades\Entradas.class
-Prueba\Main.class
 interfacesDAO\ICarritoDAO.class
 dao\EntradasDAO.class
 entidades\Tarjetas.class
