@@ -5,6 +5,7 @@
 package Pantallas2;
 
 import Pantallas2.MenuPrincipal;
+import dto.CarritoDTO;
 import dto.CompraDTO;
 import dto.MaderaDTO;
 import dto.UsuarioDTO;
@@ -14,7 +15,9 @@ import interfaz.IComprarCarritoSS;
 import interfaz.ISalidaSS;
 import interfaz.IUsuarioSS;
 import java.util.Calendar;
+import java.util.List;
 import javax.swing.JOptionPane;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -107,21 +110,37 @@ public class ConfirmarTarjeta2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String CVV = jTextField1.getText();
-
-        if (!iUsuarioSS.iniciarSesionPorCVV(numeroTarjeta,CVV)) {
-            JOptionPane.showMessageDialog(this, "CVV incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
+     String CVV = jTextField1.getText();
+    
+    if (!iUsuarioSS.iniciarSesionPorCVV(numeroTarjeta,CVV)) {
+        JOptionPane.showMessageDialog(this, "CVV incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    try {
+        // 1. Procesar la compra y obtener los IDs de todas las compras
+        List<String> compraIds = iCompraSS.comprarCarrito(usuarioId);
+        
+        // 2. Mostrar ventana de éxito
         this.setVisible(false);
         CompraExitosa2 compraExitosa = new CompraExitosa2(menuPrincipal);
         compraExitosa.setVisible(true);
+        
+        // 3. Crear una salida para cada compra
+        String tipoMovimiento = "Venta";
+        for (String compraId : compraIds) {
+            iSalidaSS.crearSalidaDesdeCompra(compraId, tipoMovimiento);
+        }
+        
+        // 4. Vaciar el carrito
+        iCarritoSS.vaciarCarrito(usuarioId);
+        
+    } catch (Exception e) {
+        System.err.println("Error en el proceso de compra: " + e.getMessage());
+        e.printStackTrace();
+    }
 
-    String idCompra=   iCompraSS.comprarCarrito(usuarioId);
-        String tipoMovimiento="Venta";
-        iSalidaSS.crearSalidaDesdeCompra(idCompra, tipoMovimiento);
-iCarritoSS.vaciarCarrito(usuarioId);
+  
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

@@ -76,58 +76,112 @@ public class CompraNegocio implements ICompraNegocio {
     }
     }
 
-    @Override
-    public String comprarCarrito(String usuarioId) {
-        ObjectId usuarioObjectId = new ObjectId(usuarioId);
-
-        Document carritoDoc = iCarritoDAO.obtenerCarrito(usuarioObjectId);
-        if (carritoDoc == null || carritoDoc.getList("maderas", Document.class).isEmpty()) {
-            throw new IllegalStateException("El carrito está vacío o no existe.");
-        }
-
-        List<Document> maderasCarrito = carritoDoc.getList("maderas", Document.class);
-        List<CompraDTO> compras = new ArrayList<>();
-
-        Usuario usuario = usuarioDAO.obtenerUsuarioPorId(usuarioObjectId);
-        if (usuario == null) {
-            throw new IllegalStateException("Usuario con ID " + usuarioId + " no encontrado.");
-        }
-
-        UsuarioDTO usuarioDTO = new UsuarioDTO();
-        usuarioDTO.setId(usuarioId);
-        usuarioDTO.setNombre(usuario.getNombre());
-
-        for (Document maderaDoc : maderasCarrito) {
-            ObjectId maderaId = maderaDoc.getObjectId("id");
-            int cantidad = maderaDoc.getInteger("cantidad", 0);
-
-            Madera madera = maderaDAO.obtenerMaderaPorId(maderaId);
-            if (madera == null) {
-                throw new IllegalStateException("Madera con ID " + maderaId + " no encontrada.");
-            }
-
-            MaderaDTO maderaDTO = new MaderaDTO();
-            maderaDTO.setId(maderaId.toHexString());
-            maderaDTO.setNombre(madera.getNombre());
-            maderaDTO.setPrecioUnitario(madera.getPrecioUnitario());
-
-            CompraDTO compra = new CompraDTO();
-            compra.setCantidad(cantidad);
-            compra.setUsuario(usuarioDTO);
-            compra.setFechaCompra(Calendar.getInstance());
-            compra.setMadera(maderaDTO);
-
-            compras.add(compra);
-        }
-
-        for (CompraDTO compra : compras) {
-            guardarCompra(compra);
-        }
-
-        iCarritoDAO.eliminarProducto(usuarioObjectId, null);
-    return "El carrito del usuario con ID " + usuarioId + " fue comprado exitosamente.";
-        
+    public List<String> comprarCarrito(String usuarioId) {
+    ObjectId usuarioObjectId = new ObjectId(usuarioId);
+    Document carritoDoc = iCarritoDAO.obtenerCarrito(usuarioObjectId);
+    if (carritoDoc == null || carritoDoc.getList("maderas", Document.class).isEmpty()) {
+        throw new IllegalStateException("El carrito está vacío o no existe.");
     }
+    List<Document> maderasCarrito = carritoDoc.getList("maderas", Document.class);
+    List<CompraDTO> compras = new ArrayList<>();
+    Usuario usuario = usuarioDAO.obtenerUsuarioPorId(usuarioObjectId);
+    if (usuario == null) {
+        throw new IllegalStateException("Usuario con ID " + usuarioId + " no encontrado.");
+    }
+    
+    UsuarioDTO usuarioDTO = new UsuarioDTO();
+    usuarioDTO.setId(usuarioId);
+    usuarioDTO.setNombre(usuario.getNombre());
+    
+    List<String> idsCompras = new ArrayList<>(); // Lista para guardar todos los IDs
+    
+    for (Document maderaDoc : maderasCarrito) {
+        ObjectId maderaId = maderaDoc.getObjectId("id");
+        int cantidad = maderaDoc.getInteger("cantidad", 0);
+        Madera madera = maderaDAO.obtenerMaderaPorId(maderaId);
+        if (madera == null) {
+            throw new IllegalStateException("Madera con ID " + maderaId + " no encontrada.");
+        }
+        
+        MaderaDTO maderaDTO = new MaderaDTO();
+        maderaDTO.setId(maderaId.toHexString());
+        maderaDTO.setNombre(madera.getNombre());
+        maderaDTO.setPrecioUnitario(madera.getPrecioUnitario());
+        
+        CompraDTO compra = new CompraDTO();
+        compra.setCantidad(cantidad);
+        compra.setUsuario(usuarioDTO);
+        compra.setFechaCompra(Calendar.getInstance());
+        compra.setMadera(maderaDTO);
+        compras.add(compra);
+        
+        // Guardar la compra y añadir su ID a la lista
+        String idCompra = guardarCompra(compra);
+        idsCompras.add(idCompra);
+    }
+    
+    iCarritoDAO.eliminarProducto(usuarioObjectId, null);
+    
+    // Devolver todos los IDs de las compras realizadas
+    return idsCompras;
+}
+    
+    
+    
+    
+
+//    @Override
+//    public String comprarCarrito(String usuarioId) {
+//        ObjectId usuarioObjectId = new ObjectId(usuarioId);
+//
+//        Document carritoDoc = iCarritoDAO.obtenerCarrito(usuarioObjectId);
+//        if (carritoDoc == null || carritoDoc.getList("maderas", Document.class).isEmpty()) {
+//            throw new IllegalStateException("El carrito está vacío o no existe.");
+//        }
+//
+//        List<Document> maderasCarrito = carritoDoc.getList("maderas", Document.class);
+//        List<CompraDTO> compras = new ArrayList<>();
+//
+//        Usuario usuario = usuarioDAO.obtenerUsuarioPorId(usuarioObjectId);
+//        if (usuario == null) {
+//            throw new IllegalStateException("Usuario con ID " + usuarioId + " no encontrado.");
+//        }
+//
+//        UsuarioDTO usuarioDTO = new UsuarioDTO();
+//        usuarioDTO.setId(usuarioId);
+//        usuarioDTO.setNombre(usuario.getNombre());
+//
+//        for (Document maderaDoc : maderasCarrito) {
+//            ObjectId maderaId = maderaDoc.getObjectId("id");
+//            int cantidad = maderaDoc.getInteger("cantidad", 0);
+//
+//            Madera madera = maderaDAO.obtenerMaderaPorId(maderaId);
+//            if (madera == null) {
+//                throw new IllegalStateException("Madera con ID " + maderaId + " no encontrada.");
+//            }
+//
+//            MaderaDTO maderaDTO = new MaderaDTO();
+//            maderaDTO.setId(maderaId.toHexString());
+//            maderaDTO.setNombre(madera.getNombre());
+//            maderaDTO.setPrecioUnitario(madera.getPrecioUnitario());
+//
+//            CompraDTO compra = new CompraDTO();
+//            compra.setCantidad(cantidad);
+//            compra.setUsuario(usuarioDTO);
+//            compra.setFechaCompra(Calendar.getInstance());
+//            compra.setMadera(maderaDTO);
+//
+//            compras.add(compra);
+//        }
+//
+//        for (CompraDTO compra : compras) {
+//            guardarCompra(compra);
+//        }
+//
+//        iCarritoDAO.eliminarProducto(usuarioObjectId, null);
+//    return "El carrito del usuario con ID " + usuarioId + " fue comprado exitosamente.";
+//        
+//    }
 
     @Override
     public List<CompraDTO> obtenerHistorialCompras(String usuarioId) {

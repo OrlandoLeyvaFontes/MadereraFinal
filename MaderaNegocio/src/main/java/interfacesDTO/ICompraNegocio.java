@@ -14,6 +14,7 @@ import java.util.List;
  */
 public interface ICompraNegocio {
                 String guardarCompra(CompraDTO compraDTO);
-public String comprarCarrito(String usuarioId);
+//public String comprarCarrito(String usuarioId);
+                public List<String> comprarCarrito(String usuarioId);
 public List<CompraDTO> obtenerHistorialCompras(String usuarioId);
 }

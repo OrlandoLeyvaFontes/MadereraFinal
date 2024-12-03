@@ -21,10 +21,10 @@ public class CompraSS implements ICompraSS{
         this.iCompraNegocio = new CompraNegocio();
     }
 
-    @Override
-    public String comprarCarrito(String usuarioId) {
-return iCompraNegocio.comprarCarrito(usuarioId);
-    }
+//    @Override
+//    public String comprarCarrito(String usuarioId) {
+//return iCompraNegocio.comprarCarrito(usuarioId);
+//    }
 
     @Override
     public String guardarCompra(CompraDTO compraDTO) {
@@ -36,5 +36,9 @@ return iCompraNegocio.guardarCompra(compraDTO);
      return iCompraNegocio.obtenerHistorialCompras(usuarioId);   
     
     }
+
+    @Override
+    public List<String> comprarCarrito(String usuarioId) {
+return iCompraNegocio.comprarCarrito(usuarioId);    }
   
 }
