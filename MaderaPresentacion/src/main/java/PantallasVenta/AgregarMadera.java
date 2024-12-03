@@ -212,19 +212,51 @@ public class AgregarMadera extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        String nombre = txtNombre.getText();
-        String precio = txtPrecio.getText();
-        String descripcion = txtDescripcion.getText();
-        String cantidad = txtCantidad.getText();
+        String nombre = txtNombre.getText().trim();
+        String precio = txtPrecio.getText().trim();
+        String descripcion = txtDescripcion.getText().trim();
+        String cantidad = txtCantidad.getText().trim();
 
-        if (nombre.isEmpty() || descripcion.isEmpty() || precio == null || cantidad.isEmpty()) {
+        // Validar que los campos no estén vacíos
+        if (nombre.isEmpty() || descripcion.isEmpty() || precio.isEmpty() || cantidad.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        double precioUnitario = Double.parseDouble(precio);
-        int cantidadInt = Integer.parseInt(cantidad);
+        // Validar que el nombre solo contenga letras y espacios
+        if (!nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
+            JOptionPane.showMessageDialog(this, "El nombre solo puede contener letras y espacios.", "Formato inválido", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 
+        double precioUnitario;
+        int cantidadInt;
+
+        // Validación del precio
+        try {
+            precioUnitario = Double.parseDouble(precio);
+            if (precioUnitario <= 0) {
+                JOptionPane.showMessageDialog(this, "El precio debe ser mayor a 0.", "Valor inválido", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El precio debe ser un número válido.", "Formato incorrecto", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Validación de la cantidad
+        try {
+            cantidadInt = Integer.parseInt(cantidad);
+            if (cantidadInt <= 0) {
+                JOptionPane.showMessageDialog(this, "La cantidad debe ser mayor a 0.", "Valor inválido", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "La cantidad debe ser un número entero válido.", "Formato incorrecto", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Crear y configurar el DTO de madera
         MaderaDTO maderaDTO = new MaderaDTO();
         maderaDTO.setNombre(nombre);
         maderaDTO.setPrecioUnitario(precioUnitario);
@@ -232,24 +264,33 @@ public class AgregarMadera extends javax.swing.JFrame {
         maderaDTO.setDescripcion(descripcion);
 
         try {
+            // Guardar la madera
             maderaVentaSS.agregarMadera(maderaDTO);
+
+            // Crear y configurar el DTO de entrada
             EntradasDTO entradaDTO = new EntradasDTO();
-            entradaDTO.setTipoEntrada("Compra a Provedor");
+            entradaDTO.setTipoEntrada("Compra a Proveedor");
             entradaDTO.setTipoMadera(nombre);
             entradaDTO.setCantidad(cantidadInt);
             entradaDTO.setFechaEntrada(LocalDate.now());
-            // Llamar al método para guardar la entrada
+
+            // Registrar la entrada
             iEntradaSS.registrarEntrada(entradaDTO);
+
             JOptionPane.showMessageDialog(this, "La madera ha sido guardada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar la madera.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar la madera: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+
+        // Cerrar la ventana actual y abrir MisProductos
+        dispose();
         MisProductos misProductos = new MisProductos(maderaVentaSS, maderaDAO, maderaDTO, iEntradaSS);
         misProductos.setVisible(true);
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
         this.setVisible(false);
+        dispose();
         MisProductos misProductos = new MisProductos(maderaVentaSS, maderaDAO, maderaDTO, iEntradaSS);
         misProductos.setVisible(true);
     }//GEN-LAST:event_btnAtrasActionPerformed

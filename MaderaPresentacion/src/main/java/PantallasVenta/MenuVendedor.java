@@ -19,6 +19,7 @@ public class MenuVendedor extends javax.swing.JFrame {
     private IMaderaDAO maderaDAO;
     private MaderaDTO maderaDTO;
     private IEntradaSS iEntradaSS;
+
     /**
      * Creates new form MenuVendedor
      */
@@ -197,15 +198,19 @@ public class MenuVendedor extends javax.swing.JFrame {
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
         this.setVisible(false);
+        dispose();
         MisProductos misProductos = new MisProductos(maderaVentaSS, maderaDAO, maderaDTO, iEntradaSS);
         misProductos.setVisible(true);    }//GEN-LAST:event_btnProductosActionPerformed
 
     private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioActionPerformed
         this.setVisible(false);
+        dispose();
         AgregarMadera agregarMadera = new AgregarMadera(maderaVentaSS, iEntradaSS);
         agregarMadera.setVisible(true);    }//GEN-LAST:event_btnInventarioActionPerformed
 
     private void btnEntradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntradasActionPerformed
+        this.setVisible(false);
+        dispose();
         InventarioEntradas invEntradas = new InventarioEntradas(iEntradaSS, maderaVentaSS);
         invEntradas.setVisible(true);
     }//GEN-LAST:event_btnEntradasActionPerformed

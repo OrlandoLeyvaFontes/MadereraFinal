@@ -260,6 +260,8 @@ public class MisProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        this.setVisible(false);
+        dispose();
         MenuVendedor menuVendedor = new MenuVendedor(maderaVentaSS, iEntradaSS);
         menuVendedor.setVisible(true);
     }//GEN-LAST:event_btnMenuActionPerformed

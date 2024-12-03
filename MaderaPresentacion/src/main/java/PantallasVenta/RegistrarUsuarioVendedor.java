@@ -270,6 +270,31 @@ public class RegistrarUsuarioVendedor extends javax.swing.JFrame {
             return;
         }
 
+        // Validar que el número de teléfono contenga solo dígitos
+        if (!numero.matches("\\d+")) {
+            JOptionPane.showMessageDialog(this, "El número de teléfono debe contener solo números.", "Formato inválido", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Validar que los campos de nombre y apellidos no contengan números
+        if (!nombre.matches("[a-zA-ZÁÉÍÓÚáéíóúñÑ ]+") || !apellidoPaterno.matches("[a-zA-ZÁÉÍÓÚáéíóúñÑ ]+")
+                || !apellidoMaterno.matches("[a-zA-ZÁÉÍÓÚáéíóúñÑ ]+")) {
+            JOptionPane.showMessageDialog(this, "El nombre y apellidos no deben contener números ni caracteres especiales.", "Formato inválido", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Validar que el correo tenga un formato válido
+        if (!correo.matches("^[\\w.-]+@[a-zA-Z\\d.-]+\\.[a-zA-Z]{2,}$")) {
+            JOptionPane.showMessageDialog(this, "El correo electrónico no tiene un formato válido.", "Formato inválido", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Validar que la contraseña no contenga espacios
+        if (contraseña.contains(" ")) {
+            JOptionPane.showMessageDialog(this, "La contraseña no debe contener espacios.", "Formato inválido", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         UsuarioVentasDTO usuarioVentaDTO = new UsuarioVentasDTO();
         usuarioVentaDTO.setNombre(nombre);
         usuarioVentaDTO.setApellidoPaterno(apellidoPaterno);
@@ -277,16 +302,18 @@ public class RegistrarUsuarioVendedor extends javax.swing.JFrame {
         usuarioVentaDTO.setNumero(numero);
         usuarioVentaDTO.setCorreo(correo);
         usuarioVentaDTO.setContraseña(contraseña);
-        
+
         iUsuarioVentaSS.agregarUsuario(usuarioVentaDTO);
         this.setVisible(false);
+        dispose();
         iniciarSesionVendedor.setVisible(true);
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-this.setVisible(false);
-iniciarSesionVendedor.setVisible(true);
+        this.setVisible(false);
+        dispose();
+        iniciarSesionVendedor.setVisible(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
