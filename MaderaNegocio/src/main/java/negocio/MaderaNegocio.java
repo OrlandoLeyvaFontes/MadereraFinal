@@ -20,14 +20,29 @@ import org.bson.types.ObjectId;
  *
  * @author Oley
  */
+/**
+ * Implementación de la lógica de negocio para los productos de madera.
+ * Esta clase maneja la transformación entre DTOs y entidades del dominio,
+ * y coordina las operaciones con la capa de datos.
+ */
 public class MaderaNegocio implements IMadereraNegocio {
+    /** DAO para operaciones con productos de madera */
 
     private IMaderaDAO iMaderaDAO;
-
+/**
+     * Constructor que inicializa la referencia al DAO de madera.
+     */
     public MaderaNegocio() {
         this.iMaderaDAO = new MaderaDAO();
     }
-
+ /**
+     * Agrega un nuevo producto de madera al sistema.
+     * Convierte el DTO a entidad para su almacenamiento y viceversa para la respuesta.
+     * 
+     * @param maderaDTO DTO con la información del nuevo producto
+     * @return MaderaDTO con la información del producto guardado
+     * @throws RuntimeException si ocurre un error durante el proceso
+     */
     @Override
     public MaderaDTO agregarMadera(MaderaDTO maderaDTO) {
         Madera madera = new Madera();
@@ -50,7 +65,13 @@ public class MaderaNegocio implements IMadereraNegocio {
         }
 
     }
-
+ /**
+     * Obtiene la lista completa de productos de madera.
+     * Convierte las entidades a DTOs para la capa de presentación.
+     * 
+     * @return Lista de MaderaDTO con todos los productos
+     * @throws RuntimeException si ocurre un error durante la obtención
+     */
     @Override
     public List<MaderaDTO> obtenerMaderas() {
         List<MaderaDTO> listaMaderasDTO = new ArrayList<>();
@@ -71,7 +92,13 @@ public class MaderaNegocio implements IMadereraNegocio {
         }
         return listaMaderasDTO;
     }
-
+  /**
+     * Busca un producto de madera por su ID.
+     * 
+     * @param id ID del producto en formato String
+     * @return MaderaDTO con la información del producto encontrado
+     * @throws RuntimeException si no se encuentra el producto o ocurre un error
+     */
     @Override
     public MaderaDTO buscarMaderaPorId(String id) {
         try {
@@ -95,6 +122,13 @@ public class MaderaNegocio implements IMadereraNegocio {
         }
     }
 
+    /**
+     * Busca un producto de madera por su nombre.
+     *
+     * @param nombre Nombre del producto a buscar
+     * @return MaderaDTO con la información del producto o null si no se
+     * encuentra
+     */
     public MaderaDTO buscarMaderaPorNombre(String nombre) {
         try {
             Madera madera = iMaderaDAO.buscarMaderaPorNombre(nombre);
@@ -114,6 +148,12 @@ public class MaderaNegocio implements IMadereraNegocio {
         return null; // Retorna null si no se encuentra la madera
     }
 
+    /**
+     * Actualiza la información de un producto de madera.
+     *
+     * @param maderaDTO DTO con la información actualizada
+     * @throws RuntimeException si ocurre un error durante la actualización
+     */
     @Override
     public void editarMadera(MaderaDTO maderaDTO) {
         // Crear una entidad Madera a partir del DTO
@@ -133,6 +173,12 @@ public class MaderaNegocio implements IMadereraNegocio {
         }
     }
 
+    /**
+     * Elimina un producto de madera del sistema.
+     *
+     * @param id ID del producto a eliminar
+     * @return true si se eliminó correctamente, false en caso contrario
+     */
     @Override
     public boolean eliminarMadera(String id) {
         return iMaderaDAO.eliminarMadera(id);

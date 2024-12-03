@@ -30,20 +30,40 @@ import org.bson.types.ObjectId;
  *
  * @author Oley
  */
+/**
+ * Implementación de la lógica de negocio para las compras.
+ * Esta clase coordina las operaciones entre la capa de presentación y la capa de datos,
+ * manejando las transacciones de compra y el historial de las mismas.
+ */
 public class CompraNegocio implements ICompraNegocio {
+    /** DAO para operaciones de compra */
 
     private ICompraDAO iCompraDAO;
-    private IMaderaDAO maderaDAO;
-    private IUsuarioDAO usuarioDAO;
-    private ICarritoDAO iCarritoDAO;
+        /** DAO para operaciones con productos de madera */
 
+    private IMaderaDAO maderaDAO;
+        /** DAO para operaciones con usuarios */
+
+    private IUsuarioDAO usuarioDAO;
+        /** DAO para operaciones con el carrito */
+
+    private ICarritoDAO iCarritoDAO;
+/**
+     * Constructor que inicializa todas las referencias a los DAOs necesarios.
+     */
     public CompraNegocio() {
         this.iCompraDAO = new CompraDAO();
         this.maderaDAO = new MaderaDAO();
         this.usuarioDAO = new UsuarioDAO();
         this.iCarritoDAO = new CarritoDAO();
     }
-
+ /**
+     * Guarda una nueva compra en el sistema.
+     * Valida la existencia del producto y usuario antes de procesar la compra.
+     * 
+     * @param compraDTO DTO con la información de la compra
+     * @return String ID de la compra generada, o null si ocurre un error
+     */
     @Override
     public String guardarCompra(CompraDTO compraDTO) {
          try {
@@ -75,7 +95,14 @@ public class CompraNegocio implements ICompraNegocio {
         return null;
     }
     }
-
+ /**
+     * Procesa la compra de todos los productos en el carrito de un usuario.
+     * Convierte cada item del carrito en una compra individual.
+     * 
+     * @param usuarioId ID del usuario en formato String
+     * @return List<String> Lista de IDs de las compras generadas
+     * @throws IllegalStateException si el carrito está vacío o hay productos no disponibles
+     */
     public List<String> comprarCarrito(String usuarioId) {
     ObjectId usuarioObjectId = new ObjectId(usuarioId);
     Document carritoDoc = iCarritoDAO.obtenerCarrito(usuarioObjectId);
@@ -126,62 +153,14 @@ public class CompraNegocio implements ICompraNegocio {
     return idsCompras;
 }
     
-    
-    
-    
-
-//    @Override
-//    public String comprarCarrito(String usuarioId) {
-//        ObjectId usuarioObjectId = new ObjectId(usuarioId);
-//
-//        Document carritoDoc = iCarritoDAO.obtenerCarrito(usuarioObjectId);
-//        if (carritoDoc == null || carritoDoc.getList("maderas", Document.class).isEmpty()) {
-//            throw new IllegalStateException("El carrito está vacío o no existe.");
-//        }
-//
-//        List<Document> maderasCarrito = carritoDoc.getList("maderas", Document.class);
-//        List<CompraDTO> compras = new ArrayList<>();
-//
-//        Usuario usuario = usuarioDAO.obtenerUsuarioPorId(usuarioObjectId);
-//        if (usuario == null) {
-//            throw new IllegalStateException("Usuario con ID " + usuarioId + " no encontrado.");
-//        }
-//
-//        UsuarioDTO usuarioDTO = new UsuarioDTO();
-//        usuarioDTO.setId(usuarioId);
-//        usuarioDTO.setNombre(usuario.getNombre());
-//
-//        for (Document maderaDoc : maderasCarrito) {
-//            ObjectId maderaId = maderaDoc.getObjectId("id");
-//            int cantidad = maderaDoc.getInteger("cantidad", 0);
-//
-//            Madera madera = maderaDAO.obtenerMaderaPorId(maderaId);
-//            if (madera == null) {
-//                throw new IllegalStateException("Madera con ID " + maderaId + " no encontrada.");
-//            }
-//
-//            MaderaDTO maderaDTO = new MaderaDTO();
-//            maderaDTO.setId(maderaId.toHexString());
-//            maderaDTO.setNombre(madera.getNombre());
-//            maderaDTO.setPrecioUnitario(madera.getPrecioUnitario());
-//
-//            CompraDTO compra = new CompraDTO();
-//            compra.setCantidad(cantidad);
-//            compra.setUsuario(usuarioDTO);
-//            compra.setFechaCompra(Calendar.getInstance());
-//            compra.setMadera(maderaDTO);
-//
-//            compras.add(compra);
-//        }
-//
-//        for (CompraDTO compra : compras) {
-//            guardarCompra(compra);
-//        }
-//
-//        iCarritoDAO.eliminarProducto(usuarioObjectId, null);
-//    return "El carrito del usuario con ID " + usuarioId + " fue comprado exitosamente.";
-//        
-//    }
+/**
+     * Obtiene el historial de compras de un usuario.
+     * Convierte los documentos de la base de datos a DTOs para la presentación.
+     * 
+     * @param usuarioId ID del usuario en formato String
+     * @return List<CompraDTO> Lista de compras del usuario
+     * @throws RuntimeException si ocurre un error durante la obtención
+     */
 
     @Override
     public List<CompraDTO> obtenerHistorialCompras(String usuarioId) {
