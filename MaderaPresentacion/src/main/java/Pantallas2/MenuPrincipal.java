@@ -26,16 +26,18 @@ private  IMaderaSS  iMaderaSS;
 private  ICarritoSS iCarritoSS;
 private ICompraSS iCompraSS;
 private ISalidaSS  iSalidaSS;
+private IniciarSesion iniciarSesion;
     /**
      * Creates new form MenuPrincipal
      */
-    public MenuPrincipal(String usuarioId, IUsuarioSS iUsuarioSS, IMaderaSS  iMaderaSS, ICarritoSS iCarritoSS,ICompraSS iCompraSS,ISalidaSS  iSalidaSS) {
+    public MenuPrincipal(String usuarioId, IUsuarioSS iUsuarioSS, IMaderaSS  iMaderaSS, ICarritoSS iCarritoSS,ICompraSS iCompraSS,ISalidaSS  iSalidaSS,IniciarSesion iniciarSesion) {
         this.usuarioId = usuarioId;
         this.iUsuarioSS = iUsuarioSS;
         this.iMaderaSS=iMaderaSS;
         this.iCarritoSS=iCarritoSS;
        this.iCompraSS=iCompraSS;
        this.iSalidaSS=iSalidaSS;
+       this.iniciarSesion=iniciarSesion;
         initComponents();
     }
 //public void setUsuarioId(String usuarioId) {
@@ -57,7 +59,8 @@ private ISalidaSS  iSalidaSS;
         jButton3 = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -109,8 +112,17 @@ private ISalidaSS  iSalidaSS;
         });
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, -1, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/MenuPrincipal.png"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 420));
+        jButton5.setBackground(new java.awt.Color(255, 0, 0));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/flecha-izquierda.png"))); // NOI18N
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 80, 70));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/MenuPrincipal.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 420));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -167,6 +179,14 @@ historialCompras.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+this.setVisible(false);
+iniciarSesion.setVisible(true);
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
@@ -174,7 +194,8 @@ historialCompras.setVisible(true);
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

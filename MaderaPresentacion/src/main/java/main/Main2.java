@@ -36,7 +36,7 @@ public class Main2 {
         iMaderaSS.agregarMadera(maderaDTO3);
         
         
-        IniciarSesion iniciarSesion=new IniciarSesion(iUsuarioSS, iMaderaSS,iCarritoSS,iCompraSS,iSalidaSS);
-        iniciarSesion.setVisible(true);
+//        IniciarSesion iniciarSesion=new IniciarSesion(iUsuarioSS, iMaderaSS,iCarritoSS,iCompraSS,iSalidaSS);
+//        iniciarSesion.setVisible(true);
     }
 }

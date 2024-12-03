@@ -79,6 +79,7 @@ Pantallas2\ConfirmarTarjeta.class
 Pantallas2\MenuPrincipal.class
 Pantallas2\AdminYusario$1.class
 Pantallas2\HistorialCompras$2.class
+Pantallas2\MenuPrincipal$6.class
 Pantallas2\DetallesCarritos.class
 Pantallas2\MenuDeTarjetas2$2.class
 PantallasVenta\RegistrarUsuarioVendedor$2.class
@@ -99,6 +100,7 @@ Pantallas2\SalidaCompra$2.class
 Pantallas2\HistorialCompras$3.class
 Pantallas2\MenuDeTarjetas2$1.class
 PantallasVenta\MisProductos$3.class
+Pantallas2\IniciarSesion$4.class
 Pantallas2\CompraExitosa2$1.class
 PantallasVenta\RegistrarUsuarioVendedor$3.class
 Pantallas2\RegistrarUsuario.class

@@ -113,7 +113,7 @@ private ISalidaSS  iSalidaSS;
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
         this.setVisible(false);
-        IniciarSesion iniciarSesion = new IniciarSesion(iUsuarioSS, iMaderaSS, iCarritoSS, iCompraSS,iSalidaSS);
+        IniciarSesion iniciarSesion = new IniciarSesion(iUsuarioSS, iMaderaSS, iCarritoSS, iCompraSS,iSalidaSS,this);
         iniciarSesion.setVisible(true);
 
         // TODO add your handling code here:
