@@ -22,12 +22,13 @@ public class MenuDeTarjetas2 extends javax.swing.JFrame {
     private ICarritoSS iCarritoSS;
     private ICompraSS iCompraSS;
     private IUsuarioSS iUsuarioSS;
+    private DetallesCarritos detallesCarritos;
 
     /**
      * Creates new form MenuDeTarjetas2
      */
     public MenuDeTarjetas2(String usuarioId, MenuPrincipal menuPrincipal, IMaderaSS iMaderaSS, ICarritoSS iCarritoSS, ICompraSS iCompraSS,
-            IUsuarioSS iUsuarioSS
+            IUsuarioSS iUsuarioSS,DetallesCarritos detallesCarritos
     ) {
         this.usuarioId = usuarioId;
         this.menuPrincipal = menuPrincipal;
@@ -35,6 +36,7 @@ public class MenuDeTarjetas2 extends javax.swing.JFrame {
         this.iCarritoSS = iCarritoSS;
         this.iCompraSS = iCompraSS;
         this.iUsuarioSS = iUsuarioSS;
+        this.detallesCarritos=detallesCarritos;
         initComponents();
     }
 
@@ -49,7 +51,8 @@ public class MenuDeTarjetas2 extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,10 +66,19 @@ public class MenuDeTarjetas2 extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, 200, 100));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 230, 130));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/MetodoPago.png"))); // NOI18N
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 680));
+        jButton2.setBackground(new java.awt.Color(255, 0, 0));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/flecha-izquierda.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 80, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/MetodoPago.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 680));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,15 +97,23 @@ public class MenuDeTarjetas2 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);
-        TarjetasDisponibles2 tarjetasDisponibles = new TarjetasDisponibles2(usuarioId, menuPrincipal, iUsuarioSS, iCompraSS,iCarritoSS);
+        TarjetasDisponibles2 tarjetasDisponibles = new TarjetasDisponibles2(usuarioId, menuPrincipal, iUsuarioSS, iCompraSS,iCarritoSS,this);
         tarjetasDisponibles.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+this.setVisible(false);
+detallesCarritos.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

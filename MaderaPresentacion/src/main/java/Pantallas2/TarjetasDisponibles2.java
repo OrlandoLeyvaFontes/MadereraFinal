@@ -23,12 +23,13 @@ public class TarjetasDisponibles2 extends javax.swing.JFrame {
     private IUsuarioSS iUsuarioSS;
     private ICompraSS iCompraSS;
         private ICarritoSS iCarritoSS;
+        private MenuDeTarjetas2 menuDeTarjetas2;
 
 
     /**
      * Creates new form TarjetasDisponibles2
      */
-    public TarjetasDisponibles2(String usuarioId, MenuPrincipal menuPrincipal, IUsuarioSS iUsuarioSS, ICompraSS iCompraSS,ICarritoSS iCarritoSS
+    public TarjetasDisponibles2(String usuarioId, MenuPrincipal menuPrincipal, IUsuarioSS iUsuarioSS, ICompraSS iCompraSS,ICarritoSS iCarritoSS,MenuDeTarjetas2 menuDeTarjetas2
     ) {
 
         this.usuarioId = usuarioId;
@@ -36,6 +37,7 @@ public class TarjetasDisponibles2 extends javax.swing.JFrame {
         this.iUsuarioSS = iUsuarioSS;
         this.iCompraSS = iCompraSS;
         this.iCarritoSS=iCarritoSS;
+        this.menuDeTarjetas2=menuDeTarjetas2;
         initComponents();
         cargarTarjetasEnTablas();
 
@@ -83,7 +85,8 @@ public class TarjetasDisponibles2 extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,8 +118,17 @@ public class TarjetasDisponibles2 extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 540, 210, 80));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/TarjetasDisponibles.png"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 650));
+        jButton2.setBackground(new java.awt.Color(204, 0, 0));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/flecha-izquierda.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 110, 90));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/TarjetasDisponibles.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 650));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -139,7 +151,7 @@ public class TarjetasDisponibles2 extends javax.swing.JFrame {
         String numeroTarjeta = (String) jTable1.getValueAt(selectedRow, 0);
         
         this.setVisible(false);
-        ConfirmarTarjeta2 confirmarTarjeta2 = new ConfirmarTarjeta2(iUsuarioSS, iCompraSS, usuarioId, menuPrincipal, iCarritoSS,numeroTarjeta);
+        ConfirmarTarjeta2 confirmarTarjeta2 = new ConfirmarTarjeta2(iUsuarioSS, iCompraSS, usuarioId, menuPrincipal, iCarritoSS,numeroTarjeta,this);
         confirmarTarjeta2.setVisible(true);
     } else {
         JOptionPane.showMessageDialog(this, "Por favor, seleccione una tarjeta.", "Selección Requerida", JOptionPane.WARNING_MESSAGE);
@@ -147,10 +159,17 @@ public class TarjetasDisponibles2 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+this.setVisible(false);
+menuDeTarjetas2.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

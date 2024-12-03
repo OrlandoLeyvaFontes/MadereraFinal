@@ -5,6 +5,7 @@
 package interfacesDAO;
 
 import entidades.Salida;
+import java.util.List;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
@@ -15,6 +16,7 @@ import org.bson.types.ObjectId;
 public interface ISalidaDAO {
    public ObjectId crearSalidaDesdeCompra(ObjectId compraId, String nuevoTipoMovimiento);
    public Salida obtenerSalida(ObjectId salidaId) ;
+   public List<Salida> obtenerTodasLasSalidas();
 //    public String crearSalida(Document salidaDoc);
 //    public Document obtenerSalidaPorId(String salidaId);
 //}

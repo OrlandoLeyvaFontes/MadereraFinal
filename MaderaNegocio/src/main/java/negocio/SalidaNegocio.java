@@ -14,8 +14,10 @@ import entidades.Salida;
 import interfacesDAO.ICompraDAO;
 import interfacesDAO.ISalidaDAO;
 import interfacesDTO.ISalidaNegocio;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
@@ -70,5 +72,27 @@ public class SalidaNegocio implements ISalidaNegocio {
         }
         return null;
     }
+    public List<SalidaDTO> obtenerTodasLasSalidas() {
+    List<SalidaDTO> salidaDTOs = new ArrayList<>();
+    try {
+        List<Salida> salidas = salidaDAO.obtenerTodasLasSalidas();
+
+        for (Salida salida : salidas) {
+            SalidaDTO salidaDTO = new SalidaDTO();
+            salidaDTO.setId(salida.getId().toString());
+            salidaDTO.setCompraId(salida.getCompraId().toString());
+            salidaDTO.setTipoMovimiento(salida.getTipoMovimiento());
+            salidaDTO.setMadera(salida.getMadera());
+            salidaDTO.setFecha(salida.getFecha());
+            salidaDTO.setCantidad(salida.getCantidad());
+            salidaDTO.setUsuario(salida.getUsuario());
+
+            salidaDTOs.add(salidaDTO);
+        }
+    } catch (Exception e) {
+        System.err.println("Error obteniendo todas las salidas: " + e.getMessage());
+    }
+    return salidaDTOs;
+}
 }
 

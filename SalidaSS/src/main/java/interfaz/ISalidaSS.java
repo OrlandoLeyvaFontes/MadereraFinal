@@ -5,6 +5,7 @@
 package interfaz;
 
 import dto.SalidaDTO;
+import java.util.List;
 
 /**
  *
@@ -13,4 +14,6 @@ import dto.SalidaDTO;
 public interface ISalidaSS {
      public String crearSalidaDesdeCompra(String compraId, String tipoMovimiento);  
    public SalidaDTO obtenerSalida(String salidaId) ;
+       public List<SalidaDTO> obtenerTodasLasSalidas();
+
 }

@@ -89,15 +89,36 @@ public ObjectId crearSalidaDesdeCompra(ObjectId compraId, String nuevoTipoMovimi
     }
     return null;
 }
-//   public Document obtenerCompraPorId(String compraId) {
-//        return collection.find(Filters.eq("_id", new ObjectId(compraId))).first();
-//    }
-//    public String crearSalida(Document salidaDoc) {
-//        collection.insertOne(salidaDoc);
-//        return salidaDoc.getObjectId("_id").toString();
-//    }
-//
-//    public Document obtenerSalidaPorId(String salidaId) {
-//        return collection.find(Filters.eq("_id", new ObjectId(salidaId))).first();
-//    }
+
+  public List<Salida> obtenerTodasLasSalidas() {
+    List<Salida> salidas = new ArrayList<>();
+    FindIterable<Document> documentos = collection.find();
+
+    for (Document doc : documentos) {
+        ObjectId salidaId = doc.getObjectId("_id");
+        ObjectId compraId = doc.getObjectId("compraId");
+        String tipoMovimiento = doc.getString("tipoMovimiento");
+        String madera = doc.getString("madera");
+
+        Calendar calendar = Calendar.getInstance();
+        Date date = doc.getDate("calendar");
+        if (date != null) {
+            calendar.setTime(date);
+        } else {
+            calendar.setTime(new Date());
+        }
+
+        int cantidad = doc.getInteger("cantidad", 0); // Default 0 si cantidad es nulo
+        String usuario = doc.getString("usuario");
+
+        Salida salida = new Salida(tipoMovimiento, madera, calendar, cantidad, usuario, compraId);
+        salida.setId(salidaId);
+        salidas.add(salida);
+    }
+
+    return salidas;
+}
+  
+  
+  
 }

@@ -7,6 +7,7 @@ package funcionalidad;
 import dto.SalidaDTO;
 import interfacesDTO.ISalidaNegocio;
 import interfaz.ISalidaSS;
+import java.util.List;
 import negocio.SalidaNegocio;
 
 /**
@@ -29,6 +30,11 @@ public class SalidaSS implements  ISalidaSS{
     public SalidaDTO obtenerSalida(String salidaId) {
 return iSalidaNegocio.obtenerSalida(salidaId);
 
+    }
+
+    @Override
+    public List<SalidaDTO> obtenerTodasLasSalidas() {
+return iSalidaNegocio.obtenerTodasLasSalidas();
     }
     
     

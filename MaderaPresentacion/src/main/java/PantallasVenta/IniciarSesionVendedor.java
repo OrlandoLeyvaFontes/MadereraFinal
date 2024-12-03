@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  * @author aleja
  */
 public class IniciarSesionVendedor extends javax.swing.JFrame {
-
+private AdminYusario adminYusario;
     private IUsuarioVentaSS iUsuarioVentaSS;
     private IMaderaVentaSS maderaVentaSS;
     private IEntradaSS iEntradaSS;
@@ -30,10 +30,11 @@ public class IniciarSesionVendedor extends javax.swing.JFrame {
     private ICarritoSS iCarritoSS;
     private ICompraSS iCompraSS;
 private ISalidaSS  iSalidaSS;
-    public IniciarSesionVendedor(IUsuarioVentaSS iUsuarioVentaSS, IMaderaVentaSS maderaVentaSS, IEntradaSS iEntradaSS) {
+    public IniciarSesionVendedor(IUsuarioVentaSS iUsuarioVentaSS, IMaderaVentaSS maderaVentaSS, IEntradaSS iEntradaSS, AdminYusario adminYusario) {
         this.iUsuarioVentaSS = iUsuarioVentaSS;
         this.maderaVentaSS = maderaVentaSS;
         this.iEntradaSS = iEntradaSS;
+        this.adminYusario=adminYusario;
         initComponents();
     }
 
@@ -259,8 +260,10 @@ private ISalidaSS  iSalidaSS;
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        AdminYusario admin = new AdminYusario(iUsuarioSS, iMaderaSS, iCarritoSS, iCompraSS, iUsuarioVentaSS, maderaVentaSS, iEntradaSS,iSalidaSS);
-        admin.setVisible(true);
+       this.setVisible(false);
+        adminYusario.setVisible(true);
+        
+        
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

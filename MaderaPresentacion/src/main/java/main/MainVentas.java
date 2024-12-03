@@ -22,11 +22,11 @@ public class MainVentas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        IUsuarioVentaSS iUsuarioVentaSS = new UsuarioVentaSS();
-        IMaderaVentaSS maderaVentaSS = new MaderaVentaSS();
-        IEntradaSS iEntradaSS = new EntradaSS();
-        IniciarSesionVendedor inicioVendedor = new IniciarSesionVendedor(iUsuarioVentaSS, maderaVentaSS, iEntradaSS);
-        inicioVendedor.setVisible(true);
+//        IUsuarioVentaSS iUsuarioVentaSS = new UsuarioVentaSS();
+//        IMaderaVentaSS maderaVentaSS = new MaderaVentaSS();
+//        IEntradaSS iEntradaSS = new EntradaSS();
+//        IniciarSesionVendedor inicioVendedor = new IniciarSesionVendedor(iUsuarioVentaSS, maderaVentaSS, iEntradaSS,adminYusario);
+//        inicioVendedor.setVisible(true);
     }
     
 }

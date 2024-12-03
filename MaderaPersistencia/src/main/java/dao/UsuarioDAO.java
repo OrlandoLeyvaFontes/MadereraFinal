@@ -7,6 +7,7 @@ package dao;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import static com.mongodb.client.model.Filters.eq;
 import com.mongodb.client.model.Updates;
 import conexion.Conexion;
 import entidades.Tarjetas;
@@ -167,4 +168,30 @@ public class UsuarioDAO implements IUsuarioDAO {
         return false;
     }
 }
+ @Override
+public Usuario buscarPorCorreo(String correo) {
+   try {
+        Document query = new Document("correo", correo);
+        Document result = collection.find(query).first();
+
+        if (result != null) {
+            Usuario usuario = new Usuario();
+            usuario.setId(result.getObjectId("_id"));
+            usuario.setNombre(result.getString("nombre"));
+            usuario.setApellidoPaterno(result.getString("apellidoPaterno"));
+            usuario.setApellidoMaterno(result.getString("apellidoMaterno"));
+            usuario.setNumero(result.getString("numero"));
+            usuario.setCorreo(result.getString("correo"));
+            usuario.setContraseña(result.getString("contraseña"));
+            return usuario;
+        } else {
+            System.out.println("Usuario no encontrado");
+            return null;
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        return null;
+    }
 }
+    }
+    

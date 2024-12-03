@@ -104,7 +104,7 @@ private ISalidaSS  iSalidaSS;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         this.setVisible(false);
-        IniciarSesionVendedor iniciarSesionVendedor = new IniciarSesionVendedor(iUsuarioVentaSS, maderaVentaSS, iEntradaSS);
+        IniciarSesionVendedor iniciarSesionVendedor = new IniciarSesionVendedor(iUsuarioVentaSS, maderaVentaSS, iEntradaSS,this);
         iniciarSesionVendedor.setVisible(true);
 
 // TODO add your handling code here:

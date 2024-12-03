@@ -27,30 +27,25 @@ public class Main {
     public static void main(String[] args) {
   SalidaNegocio salidaNegocio = new SalidaNegocio();
 
-        // Crear una salida
-        String compraId = "674c1afbee9dc27969b9a79e"; 
-        String tipoMovimiento = "venta";
+        List<SalidaDTO> salidas = salidaNegocio.obtenerTodasLasSalidas();
 
-        String salidaId = salidaNegocio.crearSalidaDesdeCompra(compraId, tipoMovimiento);
-        System.out.println("ID de la salida creada: " + salidaId);
-
-        SalidaDTO salidaDTO = salidaNegocio.obtenerSalida(salidaId);
-        if (salidaDTO != null) {
-            System.out.println("Salida encontrada:");
-            System.out.println("Compra ID: " + salidaDTO.getCompraId());
-            System.out.println("Tipo de movimiento: " + salidaDTO.getTipoMovimiento());
-            System.out.println("Madera: " + salidaDTO.getMadera());
-            System.out.println("Fecha: " + salidaDTO.getFecha());
-            System.out.println("Cantidad: " + salidaDTO.getCantidad());
-            System.out.println("Usuario: " + salidaDTO.getUsuario());
+        if (salidas != null && !salidas.isEmpty()) {
+            System.out.println("Salidas obtenidas:");
+            for (SalidaDTO salida : salidas) {
+                System.out.println("ID: " + salida.getId());
+                System.out.println("Compra ID: " + salida.getCompraId());
+                System.out.println("Tipo Movimiento: " + salida.getTipoMovimiento());
+                System.out.println("Madera: " + salida.getMadera());
+                System.out.println("Fecha: " + salida.getFecha().getTime());
+                System.out.println("Cantidad: " + salida.getCantidad());
+                System.out.println("Usuario: " + salida.getUsuario());
+                System.out.println("=================================");
+            }
         } else {
-            System.out.println("No se encontró la salida con ID: " + salidaId);
-        }
+            System.out.println("No se encontraron salidas.");
+        }  
+    
     }
-    
-        
-    
-    
     }
     
    

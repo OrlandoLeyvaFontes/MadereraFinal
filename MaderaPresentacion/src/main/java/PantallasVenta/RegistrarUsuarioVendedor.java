@@ -21,7 +21,6 @@ public class RegistrarUsuarioVendedor extends javax.swing.JFrame {
     private IniciarSesionVendedor iniciarSesionVendedor;
     private IEntradaSS iEntradaSS;
     private IMaderaVentaSS maderaVentaSS;
-    
 
     public RegistrarUsuarioVendedor(IUsuarioVentaSS iUsuarioVentaSS, IniciarSesionVendedor iniciarSesionVendedor, IEntradaSS iEntradaSS, IMaderaVentaSS maderaVentaSS) {
         this.iUsuarioVentaSS = iUsuarioVentaSS;
@@ -44,7 +43,7 @@ public class RegistrarUsuarioVendedor extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         lblRegistrar = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
-        btnRegresar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         lblNombre = new javax.swing.JLabel();
         lblApellidoPaterno = new javax.swing.JLabel();
         lblApellidoMaterno = new javax.swing.JLabel();
@@ -75,10 +74,10 @@ public class RegistrarUsuarioVendedor extends javax.swing.JFrame {
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setText("Maderera en Linea");
 
-        btnRegresar.setText("Regresar");
-        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Regresar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegresarActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -87,9 +86,9 @@ public class RegistrarUsuarioVendedor extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnRegresar)
-                .addGap(54, 54, 54)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(42, 42, 42)
                 .addComponent(lblTitulo)
                 .addContainerGap(136, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -101,9 +100,9 @@ public class RegistrarUsuarioVendedor extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTitulo)
-                    .addComponent(btnRegresar))
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblRegistrar)
                 .addGap(12, 12, 12))
@@ -284,13 +283,17 @@ public class RegistrarUsuarioVendedor extends javax.swing.JFrame {
         iniciarSesionVendedor.setVisible(true);
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
-    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-IniciarSesionVendedor inicioVendedor = new IniciarSesionVendedor(iUsuarioVentaSS, maderaVentaSS, iEntradaSS);
-        inicioVendedor.setVisible(true);    }//GEN-LAST:event_btnRegresarActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+this.setVisible(false);
+iniciarSesionVendedor.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrar;
-    private javax.swing.JButton btnRegresar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblApellidoMaterno;

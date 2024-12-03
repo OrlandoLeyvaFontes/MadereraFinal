@@ -27,17 +27,19 @@ public class ConfirmarTarjeta2 extends javax.swing.JFrame {
     private MenuPrincipal menuPrincipal;
     private ICarritoSS iCarritoSS;
     private  String numeroTarjeta;
+    private TarjetasDisponibles2 tarjetasDisponibles2;
 
     /**
      * Creates new form ConfirmarTarjeta2
      */
-    public ConfirmarTarjeta2(IUsuarioSS iUsuarioSS, ICompraSS iCompraSS, String usuarioId, MenuPrincipal menuPrincipal,ICarritoSS iCarritoSS,String numeroTarjeta) {
+    public ConfirmarTarjeta2(IUsuarioSS iUsuarioSS, ICompraSS iCompraSS, String usuarioId, MenuPrincipal menuPrincipal,ICarritoSS iCarritoSS,String numeroTarjeta,TarjetasDisponibles2 tarjetasDisponibles2) {
         this.iUsuarioSS = iUsuarioSS;
         this.iCompraSS = iCompraSS;
         this.usuarioId = usuarioId;
         this.menuPrincipal = menuPrincipal;
         this.iCarritoSS=iCarritoSS;
         this.numeroTarjeta=numeroTarjeta;
+        this.tarjetasDisponibles2=tarjetasDisponibles2;
         initComponents();
     }
 
@@ -53,7 +55,8 @@ public class ConfirmarTarjeta2 extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,8 +76,17 @@ public class ConfirmarTarjeta2 extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 400, 190, 70));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cvvConfirmar.png"))); // NOI18N
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 610));
+        jButton2.setBackground(new java.awt.Color(255, 0, 0));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/flecha-izquierda.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 110, 70));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cvvConfirmar.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 610));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -107,10 +119,19 @@ public class ConfirmarTarjeta2 extends javax.swing.JFrame {
 iCarritoSS.vaciarCarrito(usuarioId);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+this.setVisible(false);
+tarjetasDisponibles2.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables

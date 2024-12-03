@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import org.bson.types.ObjectId;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -28,38 +29,47 @@ public class UsuarioNegocio implements IUsuarioNegocio {
         this.iusuarioDAO = new UsuarioDAO();
     }
 
-    @Override
-    public UsuarioDTO agregarUsuario(UsuarioDTO usuarioDTO) {
-        Usuario usuario = new Usuario();
-        usuario.setNombre(usuarioDTO.getNombre());
-        usuario.setApellidoPaterno(usuarioDTO.getApellidoPaterno());
-        usuario.setApellidoMaterno(usuarioDTO.getApellidoMaterno());
-        usuario.setNumero(usuarioDTO.getNumero());
-        usuario.setCorreo(usuarioDTO.getCorreo());
-        usuario.setContraseña(usuarioDTO.getContraseña());
+  public UsuarioDTO agregarUsuario(UsuarioDTO usuarioDTO) {
+    // Encriptar la contraseña
+    String hashedPassword = BCrypt.hashpw(usuarioDTO.getContraseña(), BCrypt.gensalt());
 
-        Usuario usuarioGuardado = iusuarioDAO.agregarUsuario(usuario);
+    // Crear la entidad Usuario y asignar los valores
+    Usuario usuario = new Usuario();
+    usuario.setNombre(usuarioDTO.getNombre());
+    usuario.setApellidoPaterno(usuarioDTO.getApellidoPaterno());
+    usuario.setApellidoMaterno(usuarioDTO.getApellidoMaterno());
+    usuario.setNumero(usuarioDTO.getNumero());
+    usuario.setCorreo(usuarioDTO.getCorreo());
+    usuario.setContraseña(hashedPassword); // Guardar contraseña encriptada
 
-        if (usuarioGuardado != null) {
-            UsuarioDTO usuarioDTOResponse = new UsuarioDTO();
-            usuarioDTOResponse.setId(usuarioGuardado.getId().toString());
-            usuarioDTOResponse.setNombre(usuarioGuardado.getNombre());
-            usuarioDTOResponse.setApellidoPaterno(usuarioGuardado.getApellidoPaterno());
-            usuarioDTOResponse.setApellidoMaterno(usuarioGuardado.getApellidoMaterno());
-            usuarioDTOResponse.setNumero(usuarioGuardado.getNumero());
-            usuarioDTOResponse.setCorreo(usuarioGuardado.getCorreo());
-            usuarioDTOResponse.setContraseña(usuarioGuardado.getContraseña());
-            return usuarioDTOResponse;
-        } else {
-            throw new RuntimeException("Error al agregar el usuario, intentelo más tarde");
-        }
+    // Guardar usuario en la base de datos
+    Usuario usuarioGuardado = iusuarioDAO.agregarUsuario(usuario);
+
+    if (usuarioGuardado != null) {
+        // Crear y devolver el DTO con los valores guardados
+        UsuarioDTO usuarioDTOResponse = new UsuarioDTO();
+        usuarioDTOResponse.setId(usuarioGuardado.getId().toString());
+        usuarioDTOResponse.setNombre(usuarioGuardado.getNombre());
+        usuarioDTOResponse.setApellidoPaterno(usuarioGuardado.getApellidoPaterno());
+        usuarioDTOResponse.setApellidoMaterno(usuarioGuardado.getApellidoMaterno());
+        usuarioDTOResponse.setNumero(usuarioGuardado.getNumero());
+        usuarioDTOResponse.setCorreo(usuarioGuardado.getCorreo());
+        usuarioDTOResponse.setContraseña(usuarioGuardado.getContraseña());
+        return usuarioDTOResponse;
+    } else {
+        throw new RuntimeException("Error al agregar el usuario, intentelo más tarde");
     }
+}
 
     @Override
     public UsuarioDTO iniciarSesion(String correo, String contrasena) {
-        Usuario usuario = iusuarioDAO.iniciarSesion(correo, contrasena);
+     // Buscar al usuario por correo
+    Usuario usuario = iusuarioDAO.buscarPorCorreo(correo);
 
-        if (usuario != null) {
+    if (usuario != null) {
+        // Validar la contraseña con BCrypt
+        if (BCrypt.checkpw(contrasena, usuario.getContraseña())) {
+            // Si es válida, retornar el DTO
             UsuarioDTO usuarioDTO = new UsuarioDTO();
             usuarioDTO.setId(usuario.getId().toString());
             usuarioDTO.setNombre(usuario.getNombre());
@@ -72,6 +82,10 @@ public class UsuarioNegocio implements IUsuarioNegocio {
             System.out.println("Credenciales incorrectas");
             return null;
         }
+    } else {
+        System.out.println("Usuario no encontrado");
+        return null;
+    }
     }
 
     @Override
