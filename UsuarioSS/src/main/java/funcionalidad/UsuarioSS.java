@@ -15,14 +15,35 @@ import negocio.UsuarioNegocio;
  *
  * @author Oley
  */
+/**
+ * Clase UsuarioSS
+ *
+ * Implementa la interfaz IUsuarioSS y actúa como la capa de servicio para
+ * gestionar las operaciones relacionadas con los usuarios. Esta clase
+ * interactúa con la capa de negocio (IUsuarioNegocio) para realizar las tareas
+ * correspondientes.
+ */
 public class UsuarioSS implements IUsuarioSS {
 
     IUsuarioNegocio iUsuarioNegocio;
 
+    /**
+     * Constructor por defecto. Inicializa la instancia de IUsuarioNegocio con
+     * una nueva instancia de UsuarioNegocio.
+     */
     public UsuarioSS() {
         this.iUsuarioNegocio = new UsuarioNegocio();
     }
 
+    /**
+     * Permite iniciar sesión utilizando el correo electrónico y la contraseña
+     * del usuario.
+     *
+     * @param correo Correo electrónico del usuario.
+     * @param contrasena Contraseña del usuario.
+     * @return Un objeto UsuarioDTO con los datos del usuario si las
+     * credenciales son válidas, o null si las credenciales son incorrectas.
+     */
     @Override
     public UsuarioDTO iniciarSesion(String correo, String contrasena) {
         UsuarioDTO usuarioDTO = iUsuarioNegocio.iniciarSesion(correo, contrasena);
@@ -34,6 +55,10 @@ public class UsuarioSS implements IUsuarioSS {
         }
     }
 
+    /**
+     * Constructor por defecto. Inicializa la instancia de IUsuarioNegocio con
+     * una nueva instancia de UsuarioNegocio.
+     */
     @Override
     public UsuarioDTO agregarUsuario(UsuarioDTO usuarioDTO) {
         try {
@@ -51,20 +76,31 @@ public class UsuarioSS implements IUsuarioSS {
 
     }
 
+    /**
+     * Constructor por defecto. Inicializa la instancia de IUsuarioNegocio con
+     * una nueva instancia de UsuarioNegocio.
+     */
     @Override
     public boolean agregarTarjeta(String usuarioId, TarjetasDTO tarjetasDTO) {
         return iUsuarioNegocio.agregarTarjeta(usuarioId, tarjetasDTO);
     }
 
-
-
+    /**
+     * Constructor por defecto. Inicializa la instancia de IUsuarioNegocio con
+     * una nueva instancia de UsuarioNegocio.
+     */
     @Override
     public List<String> obtenerNumerosTarjetasPorUsuario(String idUsuario) {
- return iUsuarioNegocio.obtenerNumerosTarjetasPorUsuario(idUsuario);
+        return iUsuarioNegocio.obtenerNumerosTarjetasPorUsuario(idUsuario);
     }
 
+    /**
+     * Constructor por defecto. Inicializa la instancia de IUsuarioNegocio con
+     * una nueva instancia de UsuarioNegocio.
+     */
     @Override
     public boolean iniciarSesionPorCVV(String numeroTarjeta, String cvv) {
-return iUsuarioNegocio.iniciarSesionPorCVV(numeroTarjeta, cvv);    }
+        return iUsuarioNegocio.iniciarSesionPorCVV(numeroTarjeta, cvv);
+    }
 
 }
