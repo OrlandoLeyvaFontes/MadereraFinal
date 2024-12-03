@@ -236,6 +236,8 @@ public class MisProductos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        this.setVisible(false);
+        dispose();
         AgregarMadera agregarMadera = new AgregarMadera(maderaVentaSS, iEntradaSS);
         agregarMadera.setVisible(true);
     }//GEN-LAST:event_btnAgregarActionPerformed
@@ -246,6 +248,9 @@ public class MisProductos extends javax.swing.JFrame {
             return;
         }
         MaderaDTO maderaDTO = maderaVentaSS.buscarMaderaPorId(this.getSelectedIdTableMaderas());
+        
+        this.setVisible(false);
+        dispose();
         EditarMadera editarMadera = new EditarMadera(maderaDTO, maderaVentaSS, iEntradaSS);
         editarMadera.setVisible(true);
     }//GEN-LAST:event_btnEditarActionPerformed
