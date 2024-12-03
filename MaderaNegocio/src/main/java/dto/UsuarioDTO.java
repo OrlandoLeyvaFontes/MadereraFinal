@@ -19,13 +19,13 @@ import javax.persistence.Id;
  */
 public class UsuarioDTO {
 
-    private String id;               // Identificador único del usuario
-    private String nombre;           // Nombre del usuario
-    private String apellidoPaterno;  // Apellido paterno del usuario
-    private String apellidoMaterno;  // Apellido materno del usuario
-    private String numero;           // Número telefónico del usuario
-    private String correo;           // Correo electrónico del usuario
-    private String contraseña;       // Contraseña del usuario
+    private String id;               
+    private String nombre;         
+    private String apellidoPaterno;  
+    private String apellidoMaterno; 
+    private String numero;          
+    private String correo;          
+    private String contraseña;       
 
     /**
      * Constructor vacío para crear un objeto `UsuarioDTO`.
