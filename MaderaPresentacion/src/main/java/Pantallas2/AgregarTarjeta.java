@@ -31,6 +31,8 @@ public class AgregarTarjeta extends javax.swing.JFrame {
         this.iUsuarioSS = iUsuarioSS;
         this.usuarioId = usuarioId;
         initComponents();
+    datePickerBloqueo.getComponentDateTextField().setEditable(false);
+
     }
 
     /**
@@ -113,18 +115,16 @@ public class AgregarTarjeta extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-    String nombre = jTextField1.getText();
+     String nombre = jTextField1.getText();
     String numero = jTextField2.getText();
     LocalDate fechaVencimiento = datePickerBloqueo.getDate();
     String ccv = jTextField4.getText();
 
-    // Validación de campos vacíos
     if (nombre.isEmpty() || numero.isEmpty() || fechaVencimiento == null || ccv.isEmpty()) {
         JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
         return;
     }
 
-    // Validar que el nombre solo contenga letras
     if (!nombre.matches("[a-zA-Z]+")) {
         JOptionPane.showMessageDialog(this, "El nombre debe contener solo letras.", "Error en el nombre", JOptionPane.ERROR_MESSAGE);
         return;
@@ -155,7 +155,7 @@ public class AgregarTarjeta extends javax.swing.JFrame {
 
     Calendar fechaVencimientoCalendar = Calendar.getInstance();
     fechaVencimientoCalendar.set(fechaVencimiento.getYear(), fechaVencimiento.getMonthValue() - 1, fechaVencimiento.getDayOfMonth());
-    tarjetasDTO.setFehcaVencimiento(fechaVencimientoCalendar);
+    tarjetasDTO.setFehcaVencimiento(fechaVencimientoCalendar);  // Asegúrate de que el nombre sea correcto
 
     tarjetasDTO.setCVV(ccv);
 
